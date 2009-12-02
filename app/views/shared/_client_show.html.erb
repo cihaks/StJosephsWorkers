@@ -1,0 +1,81 @@
+<div class="banner">
+	<div class="caption"><%=h @client.id%>.&nbsp;&nbsp;<%=h @client.name %></div>
+	<div class="links">
+		<%= link_to_remote 'edit', :url=>edit_client_path(@client), :update=>'client-content', :method=>'get' %>
+	</div>
+	<div class="icons">
+	    <%= image_tag("female.jpg", :size=>"14x24") if @client.gender == 'F' %>
+	    <%= image_tag("male.jpg", :size=>"14x24") if @client.gender == 'M' %>
+		<%= image_tag("caution.jpg", :size=>"24x24") if @client.caution %>
+		<%= image_tag("resource_eligible.jpg", :size=>"24x24") if @client.resource_eligible %>
+        <%= image_tag("veteran.jpg", :size=>"14x24") if @client.veteran %>
+        <%= image_tag("success_story.jpg", :size=>"24x24") if @client.success_story %>
+	</div>
+	<div class="icons" style="float:right;" id="client_status">
+		<% @client.status_types.each do |status_type| %>
+		  <%= status_type.name %>
+		<% end %>
+	</div>
+</div>
+
+<div id="client-content">
+	<div class="photoImage floatLeft">
+	  <tr>
+		<td>
+			<div id="client-image">
+				<% unless @client.pictures.empty? %>
+					<% image_url=@client.pictures.first.photo.url %>
+				<% else %>
+					<% image_url='defaultphoto.gif' %>
+				<% end %>
+				<%= link_to_remote image_tag(image_url, :size=>"50x50"), :url=>edit_client_picture_path(@client,@client.pictures.first), :update=>'contacts-content', :method=>:get %>
+			</div>
+		</td>
+	  </tr>
+	</div>
+
+	<% fields_for @client do |f| %>
+	<table>
+	  <tr>
+	  	<td style="vertical-align: top;">
+			<table>
+			  <tr> 
+			    <td class="fieldLabel">
+				  <b>Birth date:</b>
+			    </td>
+			    <td class="fieldData">
+				  <%=h @client.birth_date %>
+			    </td>
+			  </tr>
+			  <tr>
+			    <td class="fieldLabel">
+			    </td>
+			    <td class="fieldData">
+			    </td>
+			  </tr>
+			  <tr>
+			    <td class="fieldLabel">
+			      <b>Race:</b>
+			    </td>
+			    <td class="fieldData">
+			      <%=h @client.race.name %>
+			    </td>
+			  </tr>
+			</table>
+		</td>
+		<td width="25">
+		
+		</td>
+		<td width="10"></td>
+		<td valign="top">
+		  <table>
+			<tr><td><b>Alerts</b></td></tr>
+			<% @client.contacts.each do |contact| %>
+			  <%= render( :partial=>'shared/alert', :object=>contact ) if contact.alert %>
+			<% end %>
+		  </table>
+		</td>
+	  </tr>
+	</table>
+	<% end %>
+</div>

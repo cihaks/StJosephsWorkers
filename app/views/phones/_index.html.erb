@@ -1,0 +1,29 @@
+
+<table>
+  <tr>
+    <td class="fieldLabel">Phone Number</td>
+	<td width="10"></td>
+    <td class="fieldLabel">Primary</td>
+	<td width="10"></td>
+  </tr>
+
+<% @client.phones.each do |phone| %>
+  <tr>
+    <td class="fieldData"><%=h phone.phone_number %></td>
+	<td width="10"></td>
+    <td class="fieldData"><%= check_box_tag :phone_primary, 'true', phone.primary, :onclick=>"return false;"%></td>
+	<td width="10"></td>
+    <td><%= link_to_remote 'Details', :url=>client_phone_path(@client,phone), :update=>'contacts-content', :method=>:get %></td>
+    <td><%= link_to_remote 'Edit', :url=>edit_client_phone_path(@client,phone), :update=>'contacts-content', :method=>:get %></td>
+    <td><%= link_to_remote 'Destroy', :url=>client_phone_path(@client,phone), :update=>'contacts-content', :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+<% if @client.phones.empty? %>
+  <tr>
+  	<td colspan="5" class="fieldData">No Phones</td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+

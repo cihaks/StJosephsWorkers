@@ -1,0 +1,22 @@
+
+<table>
+  <tr>
+    <td class="fieldLabel">Industry</td>
+	<td width="10"></td>
+    <td class="fieldLabel">Description</td>
+  </tr>
+
+<% @industries.each do |industry| %>
+  <tr>
+    <td class="fieldData"><%=h industry.industry_type %></td>
+	<td width="10"></td>
+    <td class="fieldData"><%=h industry.description[0..49] %><%= "..." if industry.description.length>50 %></td>
+	<td width="10"></td>
+    <td><%= link_to 'Show', industry %></td>
+    <td><%= link_to 'Edit', edit_industry_path(industry) %></td>
+    <td><%= link_to 'Destroy', industry, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />

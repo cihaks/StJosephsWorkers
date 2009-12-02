@@ -1,0 +1,8 @@
+<% if logged_in? %>
+  <div id="user-bar-action"  >(<%= link_to "Profile", edit_profile_path(current_user) %> | <%= link_to "Log out", logout_path, { :title => "Log out" }    %>)</div>
+  <div id="user-bar-greeting"><%= current_user.name unless current_user.name.nil? %><%= current_user.login if current_user.name.nil? %></div>
+<% else %>
+<!--  <div id="user-bar-greeting"><%= link_to_login_with_IP 'Not logged in', :style => 'border: none;' %></div> -->
+  <div id="user-bar-action"  ><%= link_to "Log in",  login_path,  { :title => "Log in" } %></div>
+<!--                               <%# link_to "Sign up", signup_path, { :title => "Create an account" } %> -->
+<% end %>

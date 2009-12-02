@@ -1,0 +1,12 @@
+
+<p>
+  <b>Phone number:</b>
+  <%=h @phone.phone_number %>
+</p>
+
+<p>
+  <b>Primary:</b>
+  <%= check_box_tag :phone_primary, 'true', @phone.primary, :onclick=>"return false;"%>
+</p>
+
+

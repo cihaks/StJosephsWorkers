@@ -1,0 +1,21 @@
+
+<table>
+  <tr>
+    <th>Name</th>
+	<th>County</th>
+	<th>Out of State</th>
+  </tr>
+
+<% @prisons.each do |prison| %>
+  <tr>
+    <td><%=h prison.name %></td>
+	<td><%=h prison.county %></td>
+	<td><%= check_box_tag(:out_of_state,'true',prison.out_of_state,:onclick=>"return false;") %></td>
+    <td><%= link_to 'Show', prison %></td>
+    <td><%= link_to 'Edit', edit_prison_path(prison) %></td>
+    <td><%= link_to 'Destroy', prison, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />

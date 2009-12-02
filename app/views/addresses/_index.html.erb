@@ -1,0 +1,35 @@
+
+<table>
+  <tr>
+    <th align="left">Address</th>
+	<th></th>
+    <th align="left">Start</th>
+	<th></th>
+    <th align="left">End</th>
+	<th></th>
+    <th align="left">Type</th>
+  </tr>
+
+<% @client.addresses.each do |address| %>
+  <tr>
+    <td><%=h address.full_address %></td>
+    <td width="10"></td>
+	<td><%=h address.start_date.strftime("%m/%d/%y") unless address.start_date.nil? %></td>
+    <td width="10"></td>
+    <td><%=h address.end_date.strftime("%m/%d/%y") unless address.end_date.nil? %></td>
+    <td width="10"></td>
+    <td><%=h address.address_type.name unless address.address_type.nil? %></td>
+    <td width="10"></td>
+	<td><%= link_to_remote 'Details', :url=>client_address_path(@client, address), :update=>'contacts-content', :method=>:get %></td>
+    <td><%= link_to_remote 'Edit', :url=>edit_client_address_path(@client,address), :update=>'contacts-content', :method=>:get %></td>
+    <td><%= link_to_remote 'Destroy', :url=>client_address_path(@client, address), :update=>'contacts-content', :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+<% if @client.addresses.empty? %>
+  <tr>
+  	<td colspan="7" class="fieldData">No Addresses</td>
+  </tr>
+<% end %>
+</table>
+
+<br />

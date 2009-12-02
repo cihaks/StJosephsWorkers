@@ -1,0 +1,23 @@
+<p>
+  <b>Client:</b>
+  <%=h @job_rate.client_id %>
+</p>
+
+<p>
+  <b>Job:</b>
+  <%=h @job_rate.job_id %>
+</p>
+
+<p>
+  <b>Hourly rate:</b>
+  <%=h @job_rate.hourly_rate %>
+</p>
+
+<p>
+  <b>Hourly rate date:</b>
+  <%=h @job_rate.hourly_rate_date %>
+</p>
+
+
+<%= link_to 'Edit', edit_job_rate_path(@job_rate) %> |
+<%= link_to 'Back', job_rates_path %>

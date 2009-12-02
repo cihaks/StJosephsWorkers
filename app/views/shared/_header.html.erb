@@ -1,0 +1,16 @@
+<div id="header">
+	<div id="login_bar">
+	<%= render 'users/user_bar' %>
+	</div>
+	
+	<div class="headerTitleStatement">
+		St. Joseph the Worker
+	</div>
+	<div class="headerEmploymentStatement">
+		<% if controller.controller_name == "sessions" %>
+		  Log In - Phoenix, Arizona
+		<% else %>
+		  <%= controller.controller_name.singularize.titleize %> List - Phoenix, Arizona	
+		<% end %>
+	</div>
+</div>

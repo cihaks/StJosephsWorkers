@@ -1,0 +1,37 @@
+
+<p>
+  <b>Start date:</b>
+  <%=h @crime_sentence.start_date.strftime("%m/%d/%Y") unless @crime_sentence.start_date.nil? %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%=h @crime_sentence.release_date.strftime("%m/%d/%Y") unless @crime_sentence.release_date.nil? %>
+</p>
+
+<p>
+  <b>Prison:</b>
+  <%=h @crime_sentence.prison.name %>
+</p>
+
+<p>
+  <b>Crime type:</b>
+  <%=h @crime_sentence.crime_type.name %>
+</p>
+
+<p>
+  <b>Felony:</b>
+  <%= check_box_tag :felony, 'true', @crime_sentence.felony, :onclick=>"return false;" %>
+</p>
+
+<p>
+  <b>Violent:</b>
+  <%= check_box_tag :violent, 'true', @crime_sentence.violent, :onclick=>"return false;" %>
+</p>
+
+<p>
+  <b>Sex offender:</b>
+  <%= check_box_tag :sex_offender, 'true', @crime_sentence.sex_offender, :onclick=>"return false;" %>
+</p>
+
+<br/>

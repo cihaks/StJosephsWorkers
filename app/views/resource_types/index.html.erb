@@ -1,0 +1,23 @@
+
+<table>
+  <tr>
+    <td class="fieldLabel">Name</td>
+	<td width="10"></td>
+    <td class="fieldLabel">Description</td>
+	<td width="10"></td>
+  </tr>
+
+<% @resource_types.each do |resource_type| %>
+  <tr>
+    <td><%=h resource_type.name %></td>
+	<td width="10"></td>
+    <td><%=h resource_type.description[0..59] %><%= "..." if resource_type.description.length>60 %></td>
+	<td width="10"></td>
+    <td><%= link_to 'Show', resource_type %></td>
+    <td><%= link_to 'Edit', edit_resource_type_path(resource_type) %></td>
+    <td><%= link_to 'Destroy', resource_type, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />

@@ -1,0 +1,18 @@
+
+<% form_for(@picture, :url => client_picture_path(@client, :format=>'js'), :html=>{:method=>:put, :multipart=>true, :target=>'upload_frame'}) do |f| %>
+  <%= f.error_messages %>
+  
+  <p>
+	<%= image_tag @picture.photo.url, :size=>'150x150' %>
+  </p>
+  <p>
+    <%= f.label 'Photo' %><br />
+    <%= f.file_field :photo %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+<iframe id="upload_frame" name="upload_frame" style="width:1px;height:1px;border:0px" src="about:blank"></iframe>
+
+<br/>

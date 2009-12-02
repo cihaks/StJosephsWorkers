@@ -1,0 +1,47 @@
+# == Schema Information
+# Schema version: 20090924043100
+#
+# Table name: clients
+#
+#  id                :integer(4)      not null, primary key
+#  race_id           :integer(4)
+#  first_name        :string(255)
+#  middle_name       :string(255)
+#  last_name         :string(255)
+#  gender            :string(255)
+#  caution           :boolean(1)
+#  resource_eligible :boolean(1)
+#  veteran           :boolean(1)
+#  success_story     :boolean(1)
+#  birth_date        :date
+#  created_at        :datetime
+#  updated_at        :datetime
+#
+
+# == Schema Information
+# Schema version: 20090716055901
+#
+# Table name: clients
+#
+#  id                :integer(4)      not null, primary key
+#  race_id           :integer(4)
+#  first_name        :string(255)
+#  middle_name       :string(255)
+#  last_name         :string(255)
+#  gender            :string(255)
+#  caution           :boolean(1)
+#  resource_eligible :boolean(1)
+#  veteran           :boolean(1)
+#  success_story     :boolean(1)
+#  birth_date        :date
+#  created_at        :datetime
+#  updated_at        :datetime
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# one:
+#   column: value
+#
+# two:
+#   column: value

@@ -1,0 +1,10 @@
+<% @profile.password = @profile.password_confirmation = nil %>
+
+<%= error_messages_for :user %>
+
+<% form_for @profile, :url=>{:controller=>"profiles",:action=>"update"} do |form| -%>
+
+<%= render :partial=>"users/form",:locals=>{:form => form} %>
+
+<p><%= submit_tag 'Update' %></p>
+<% end -%>

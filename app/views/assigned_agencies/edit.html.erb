@@ -1,0 +1,22 @@
+
+<% form_for([@client,@assigned_agency]) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :agency_id %><br />
+    <%= f.collection_select(:agency_id,Agency.all,:id,:name) %>
+  </p>
+  <p>
+    <%= f.label :start_date %><br />
+    <%= f.date_select :start_date %>
+  </p>
+  <p>
+    <%= f.label :end_date %><br />
+    <%= f.date_select :end_date %>
+  </p>
+  <p>
+    <%= f.submit 'Update' unless request.xhr? %>
+	<%= submit_to_remote 'update_ajax_btn', 'Update', :url=>{:action=>'update'}, :update=>'infamy-content' if request.xhr?%>
+  </p>
+<% end %>
+

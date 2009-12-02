@@ -1,0 +1,2 @@
+module AssignedAgenciesHelper
+end

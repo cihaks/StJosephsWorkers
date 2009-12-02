@@ -1,0 +1,23 @@
+
+<% form_for([@client,@used_substance]) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :substance_id, 'Substance' %><br />
+    <%= f.collection_select(:substance_id,Substance.all,:id,:name) %>
+  </p>
+  <p>
+    <%= f.label :entry_date, 'Entry Date' %><br />
+    <%= f.date_select :entry_date %>
+  </p>
+  <p>
+    <%= f.label :sober_date, 'Sober Date' %><br />
+    <%= f.date_select :sober_date, :include_blank=>true %>
+  </p>
+  <p>
+    <%= f.submit 'Update' unless request.xhr? %>
+	<%= submit_to_remote 'update_ajax_btn', 'Update', :url=>{:action=>'update'}, :update=>'infamy-content' if request.xhr?%>
+  </p>
+<% end %>
+
+<br/>

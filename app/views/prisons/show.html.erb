@@ -1,0 +1,14 @@
+<p>
+  <b>Name:</b>
+  <%=h @prison.name %>
+</p>
+<p>
+  <b>County:</b>
+  <%=h @prison.county %>
+</p>
+<p>
+  <b>Out of State:</b>
+  <%= check_box_tag(:out_of_state,'true',@prison.out_of_state,:onclick=>"true") %>
+</p>
+
+<br />

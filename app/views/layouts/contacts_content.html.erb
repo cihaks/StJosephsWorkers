@@ -1,0 +1,5 @@
+
+<%= render :partial=>'shared/banner_contacts', :locals => {:name=>session[:contacts_section], :sections=>["contacts","addresses","phones","pictures"] } %>
+<div id="contacts-element">
+<%= yield %>
+</div>

@@ -1,0 +1,24 @@
+# == Schema Information
+# Schema version: 20090716055901
+#
+# Table name: client_phones
+#
+#  id           :integer(4)      not null, primary key
+#  client_id    :integer(4)
+#  phone_number :string(255)
+#  primary      :boolean(1)
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  client_id: 1
+  phone_number: MyString
+  primary: false
+
+two:
+  client_id: 1
+  phone_number: MyString
+  primary: false

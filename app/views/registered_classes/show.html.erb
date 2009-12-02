@@ -1,0 +1,23 @@
+
+<p>
+  <b>Class:</b>
+  <%=h @registered_class.course.name %>
+</p>
+
+<p>
+  <b>Class Date:</b>
+  <%=h @registered_class.class_date.strftime("%m/%d/%Y") unless @registered_class.class_date.nil? %>
+</p>
+
+<p>
+  <b>Waive Date:</b>
+  <%=h @registered_class.waive_date.strftime("%m/%d/%Y") unless @registered_class.waive_date.nil? %>
+</p>
+
+<p>
+  <b>Completed:</b>
+  <%=h @registered_class.completed %>
+</p>
+
+
+<br/>

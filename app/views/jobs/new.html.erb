@@ -1,0 +1,63 @@
+
+<% form_for([@client, @job]) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :job_type_id, 'Job Type' %><br />
+    <%= f.collection_select(:job_type_id, JobType.all, :id, :name) %>
+  </p>
+  <p>
+    <%= f.label :company_id, 'Company' %><br />
+    <%= f.collection_select(:company_id, Company.all, :id, :name) %>
+  </p>
+  <p>
+    <%= f.label :pay_scale_low %><br />
+    <%= f.text_field :pay_scale_low %>
+  </p>
+  <p>
+    <%= f.label :pay_scale_high %><br />
+    <%= f.text_field :pay_scale_high %>
+  </p>
+  <p>
+    <%= f.label :current %><br />
+    <%= f.check_box :current %>
+  </p>
+  <p>
+    <%= f.label :medical %><br />
+    <%= f.check_box :medical %>
+  </p>
+  <p>
+    <%= f.label :dental %><br />
+    <%= f.check_box :dental %>
+  </p>
+  <p>
+    <%= f.label :retirement_401k %><br />
+    <%= f.check_box :retirement_401k %>
+  </p>
+  <p>
+    <%= f.label :pto %><br />
+    <%= f.check_box :pto %>
+  </p>
+  <p>
+    <%= f.label :full_time %><br />
+    <%= f.check_box :full_time %>
+  </p>
+  <p>
+    <%= f.label :temp_to_hire %><br />
+    <%= f.check_box :temp_to_hire %>
+  </p>
+  <p>
+    <%= f.label :start_date %><br />
+    <%= f.date_select :start_date, :include_blank=>true %>
+  </p>
+  <p>
+    <%= f.label :end_date %><br />
+    <%= f.date_select :end_date, :include_blank=>true %>
+  </p>
+  <p>
+    <%= f.submit 'Create' unless request.xhr? %>
+	<%= submit_to_remote 'update_ajax_btn', 'Create', :url=>{:action=>'create'}, :update=>'jobs-content' if request.xhr? %>
+  </p>
+<% end %>
+
+<br/>

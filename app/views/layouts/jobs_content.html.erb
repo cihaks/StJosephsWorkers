@@ -1,0 +1,5 @@
+
+<%= render :partial=>'shared/banner_jobs', :locals => {:name=>session[:jobs_section], :sections=>["jobs","job_applications","job_interviews", "registered_classes"]} %>
+<div id="jobs-element">
+  <%= yield %>
+</div>

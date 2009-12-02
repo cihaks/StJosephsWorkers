@@ -1,0 +1,26 @@
+# == Schema Information
+# Schema version: 20090716055901
+#
+# Table name: class_registereds
+#
+#  id         :integer(4)      not null, primary key
+#  class_date :date
+#  waive_date :date
+#  client_id  :integer(4)
+#  seminar_id :integer(4)
+#  completed  :boolean(1)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  registered: 2009-06-04
+  client_id: 1
+  class_id: 1
+
+two:
+  registered: 2009-06-04
+  client_id: 1
+  class_id: 1

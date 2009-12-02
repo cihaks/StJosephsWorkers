@@ -1,0 +1,50 @@
+
+<% form_for(@client) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :race %><br />
+    <%= f.collection_select(:race_id,Race.all,:id,:name) %>
+  </p>
+  <p>
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </p>
+  <p>
+    <%= f.label :middle_name %><br />
+    <%= f.text_field :middle_name %>
+  </p>
+  <p>
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </p>
+  <p>
+    <%= f.label :gender %><br />
+    <%= f.text_field :gender %>
+  </p>
+  <p>
+    <%= f.label :caution %><br />
+    <%= f.check_box :caution %>
+  </p>
+  <p>
+    <%= f.label :resource_eligible %><br />
+    <%= f.check_box :resource_eligible %>
+  </p>
+  <p>
+    <%= f.label :veteran %><br />
+    <%= f.check_box :veteran %>
+  </p>
+  <p>
+    <%= f.label :success_story %><br />
+    <%= f.check_box :success_story %>
+  </p>
+  <p>
+    <%= f.label :birth_date %><br />
+    <%= f.date_select :birth_date,:include_blank=>true %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<br/>

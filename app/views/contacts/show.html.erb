@@ -1,0 +1,45 @@
+
+<table>
+  <tr> 
+    <td class="fieldLabel">
+	  <b>Type:</b>
+    </td>
+    <td class="fieldData">
+	  <%=h @contact.contact_type.name %>
+    </td>
+	<td width="10"></td>
+    <td class="fieldLabel">
+	  <b>Date:</b>
+    </td>
+    <td class="fieldData">
+	  <%=h @contact.contact_date %>
+    </td>
+	<td width="10"></td>
+    <td class="fieldLabel" align="right">
+      <b>Entered By:</b>
+    </td>
+    <td class="fieldData" align="left">
+      <%=h User.find_by_id(@contact.updater_id).name %>
+    </td>
+	<td width="10"></td>
+    <td class="fieldLabel" align="right">
+      <b>Negative:</b>
+    </td>
+    <td class="fieldData" align="left">
+      <%= check_box_tag :contact_negative, 'true', @contact.contact_negative, :onclick=>"return false;" %>
+    </td>
+	<td width="10"></td>
+    <td class="fieldLabel" align="right">
+      <b>Alert:</b>
+    </td>
+    <td class="fieldData" align="left">
+      <%= check_box_tag :alert, 'true', @contact.alert, :onclick=>"return false;" %>
+    </td>
+  </tr>
+ </table>
+ <table>
+  <tr>
+  	<td class="fieldLabel" valign="top"><b>Note:</b></td>
+	<td class="fieldData" colspan="7"><%=h @contact.note %></td>
+  </tr>
+</table>

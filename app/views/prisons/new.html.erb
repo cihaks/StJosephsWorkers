@@ -1,0 +1,21 @@
+<% form_for(@prison) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+  	<%= f.label :county %><br />
+	<%= f.text_field :county %>
+  </p>
+  <p>
+  	<%= f.label :out_of_state, "Out of State" %><br />
+	<%= f.check_box :out_of_state %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<br />

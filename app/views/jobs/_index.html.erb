@@ -1,0 +1,38 @@
+
+<table>
+  <tr>
+	<td class="fieldLabel">Job type</td>
+    <td class="fieldLabel">Company</td>
+    <td class="fieldLabel">Pay Scale</td>
+    <td class="fieldLabel" style="text-align:center;">Current</td>
+	<td class="fieldLabel" style="text-align:center;">Benefits</td>
+    <td class="fieldLabel" style="text-align:center;">Full Time</td>
+    <td class="fieldLabel" style="text-align:center;">Temp to Hire</td>
+    <td class="fieldLabel">Start Date</td>
+    <td class="fieldLabel">End Date</td>
+  </tr>
+
+<% @client.jobs.each do |job| %>
+  <tr>
+    <td><%=h job.job_type.name unless job.job_type.nil? %></td>
+    <td><%=h job.company.name unless job.company.nil? %></td>
+    <td><%=h number_to_currency(job.pay_scale_low, :precision=>0) %>&nbsp;-<br><%=h number_to_currency(job.pay_scale_high, :precision=>0) %></td>
+    <td align="center"><%= check_box_tag(:current,'true',job.current,:onclick=>"return false;") %></td>
+	<td align="center"><%= check_box_tag(:benefits,'true',job.benefits,:onclick=>"return false;")%>
+    <td align="center"><%= check_box_tag(:full_time,'true',job.full_time,:onclick=>"return false;") %></td>
+    <td align="center"><%= check_box_tag(:temp_to_hire,'true',job.temp_to_hire,:onclick=>"return false;") %></td>
+    <td><%=h job.start_date.strftime("%m/%d/%Y") unless job.start_date.nil? %></td>
+    <td><%=h job.end_date.strftime("%m/%d/%Y") unless job.end_date.nil?  %></td>
+    <td><%= link_to_remote 'Details', :url=>client_job_path(@client,job), :update=>"jobs-content", :method=>'get' %></td>
+    <td><%= link_to_remote 'Edit', :url=>edit_client_job_path(@client,job), :update=>"jobs-content", :method=>'get' %></td>
+    <td><%= link_to_remote 'Destroy', :url=>client_job_path(@client,job), :update=>"jobs-content", :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<!--  <tr><td colspan="12"><hr></td></tr> -->
+<% end %>
+<% if @client.jobs.empty? %>
+  <tr>
+  	<td colspan="9" class="fieldData">No Jobs</td>
+  </tr>
+<% end %>
+</table>
+

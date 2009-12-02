@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title><%= controller.controller_name.titleize %>: <%= controller.action_name %></title>
+  <%= stylesheet_link_tag 'scaffold' %>
+  <%= stylesheet_link_tag 'stjoesmain' %>
+  <%= javascript_include_tag :defaults %>
+</head>
+<body>
+	<div id="wrapper">
+
+		<div class="leftside">
+			<div id="logo"></div>
+			<div id="logo_column"></div>
+		</div>
+
+		<%= render 'shared/header' %>
+		<%= render 'shared/navigation' if logged_in? %>
+
+		<div id="content">
+			<% unless flash[:error].nil? %><p style="color: red"><%= flash[:error] %></p><% end %>
+
+			<% if logged_in? %>
+				<% if !@client.nil? && @controller.controller_name != "clients"%>
+				  <%= render 'shared/client_show' %>
+				<% end %>
+
+				
+				<div class="banner">
+					<div class="caption"><%= link_to controller.controller_name.singularize.titleize, eval("client_#{controller.controller_name.singularize}_path(@client)") %></div>
+					<div class="links">
+						<% if @client.picture.nil? and controller.action_name != 'new' %>
+						  <%= link_to 'New '+controller.controller_name.singularize.titleize, 
+									   eval("new_client_#{controller.controller_name.singularize}_path(@client,@#{controller.controller_name.singularize})") %>
+						<% elsif controller.action_name == 'edit' %>
+						  <%= link_to 'Show', eval("client_#{controller.controller_name.singularize}_path(@client)") %>
+						<% elsif controller.action_name == 'show' %>
+						  <%= link_to 'Edit', eval("edit_client_#{controller.controller_name.singularize}_path(@client)") %>
+						<% end %>
+					</div>
+				</div>
+			<% end %>
+
+			<%= yield %>
+
+			<% unless flash[:notice].nil? %><p style="color: green"><%= flash[:notice] %></p><% end %>
+		</div>
+
+		<div class="close"></div>
+	</div>
+	<div class="spacer"></div>
+</body>
+</html>

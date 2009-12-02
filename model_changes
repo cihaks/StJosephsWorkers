@@ -1,0 +1,50 @@
+New DB Changes needed:
+1.  mandatory fields - e.g. names on client
+
+Altered Models
+----------------------------------
+Industry - does not have companies
+		 - has many job applications
+		 - has many job interviews
+		 - has many jobs
+
+Company - does not belong to industry
+
+Job Application - has industry
+
+Job Interview - has industry
+
+Job - has industry
+	- has many job rates
+
+Prison - updated
+
+Agency - has agency type
+
+Client - has many programs
+
+Ajax submit button template
+<%= submit_to_remote 'update_ajax_btn', 'Update', :url=>{:action=>'update'}, :update=>'contacts-content' if request.xhr?%>
+
+
+New Models
+----------------------------------
+Agency Type - has agencies
+
+Job Rate - belongs to job
+
+Program - has many clients
+
+
+Remove Models
+----------------------------------
+Note
+Health Issue Medicine
+Health Issue Type
+Health Issue
+Medicine Type
+Parole Probation Note
+Parole Probation
+
+
+

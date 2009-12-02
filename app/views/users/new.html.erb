@@ -1,0 +1,16 @@
+<% @user.password = @user.password_confirmation = nil %>
+
+<%= error_messages_for :user %>
+<% form_for :user, :url => users_path do |f| -%>
+
+<%= render :partial=>"form", :locals => { :form => f } %>
+
+<p><%= label_tag 'role_ids', 'Role'%><br/>
+<% for role in Role.find(:all, :order=>"name asc") %>
+		<%= check_box_tag "user[role_ids][]", role.id, false %>
+		<%= role.name %><br/>
+<% end %>
+</p>
+
+<p><%= submit_tag 'Create User Account' %></p>
+<% end -%>

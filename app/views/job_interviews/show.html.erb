@@ -1,0 +1,12 @@
+
+<p>
+  <b>Company:</b>
+  <%=h @job_interview.company.name unless @job_interview.company.nil? %>
+</p>
+
+<p>
+  <b>Interview date:</b>
+  <%=h @job_interview.interview_date.strftime("%m/%d/%Y") unless @job_interview.interview_date.nil? %>
+</p>
+
+<br/>

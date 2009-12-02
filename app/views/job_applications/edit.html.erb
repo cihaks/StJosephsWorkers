@@ -1,0 +1,20 @@
+
+<% form_for([@client,@job_application]) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :company %><br />
+    <%= f.collection_select(:company_id,Company.all,:id,:name) %>
+  </p>
+  <p>
+    <%= f.label :application_date, 'Application Date' %><br />
+    <%= f.date_select :application_date %>
+  </p>
+  <p>
+    <%= f.submit 'Update' unless request.xhr? %>
+	<%= submit_to_remote 'update_ajax_btn', 'Update', :url=>{:action=>'update'}, :update=>'jobs-content' if request.xhr?%>
+
+  </p>
+<% end %>
+
+<br/>

@@ -1,0 +1,13 @@
+<div class="banner">
+	<div class="caption"><%= link_to controller.controller_name.titleize, eval("#{controller.controller_name}_path") %></div>
+	<div class="links">
+		<% if controller.action_name=='index' %>
+		    <%= link_to 'new', 
+						 eval("new_#{controller.controller_name.singularize}_path(@#{controller.controller_name.singularize})") %>
+		<% elsif controller.action_name == 'edit' %>
+			<%= link_to 'show', eval("#{controller.controller_name.singularize}_path(@#{controller.controller_name.singularize})") %>
+		<% elsif controller.action_name == 'show' %>
+			<%= link_to 'edit', eval("edit_#{controller.controller_name.singularize}_path(@#{controller.controller_name.singularize})") %>
+		<% end %>
+	</div>
+</div>

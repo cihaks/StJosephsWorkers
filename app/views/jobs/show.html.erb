@@ -1,0 +1,66 @@
+<p>
+  <b>Job Type:</b>
+  <%=h @job.job_type.name unless @job.job_type.nil? %>
+</p>
+
+<p>
+  <b>Company:</b>
+  <%=h @job.company.name unless @job.company.nil? %>
+</p>
+
+<p>
+  <b>Pay scale low:</b>
+  <%=h @job.pay_scale_low %>
+</p>
+
+<p>
+  <b>Pay scale high:</b>
+  <%=h @job.pay_scale_high %>
+</p>
+
+<p>
+  <b>Current:</b>
+  <%= check_box_tag(:current,'true',@job.current,:onclick=>"true") %>
+</p>
+
+<p>
+  <b>Medical:</b>
+  <%= check_box_tag(:medical,'true',@job.medical,:onclick=>"true") %>
+</p>
+
+<p>
+  <b>Dental:</b>
+  <%= check_box_tag(:dental,'true',@job.dental,:onclick=>"true") %>
+</p>
+
+<p>
+  <b>Retirement 401k:</b>
+  <%= check_box_tag(:retirement_401k,'true',@job.retirement_401k,:onclick=>"true") %>
+</p>
+
+<p>
+  <b>Paid Time Off:</b>
+  <%= check_box_tag(:pto,'true',@job.pto,:onclick=>"true") %>
+</p>
+
+<p>
+  <b>Full Time:</b>
+  <%= check_box_tag(:full_time,'true',@job.full_time,:onclick=>"true") %>
+</p>
+
+<p>
+  <b>Temp to Hire:</b>
+  <%= check_box_tag(:temp_to_hire,'true',@job.temp_to_hire,:onclick=>"true") %>
+</p>
+
+<p>
+  <b>Start Date:</b>
+  <%=h @job.start_date.strftime("%m/%d/%Y") unless @job.start_date.nil? %>
+</p>
+
+<p>
+  <b>End Date:</b>
+  <%=h @job.end_date.strftime("%m/%d/%Y") unless @job.end_date.nil?  %>
+</p>
+
+<br/>

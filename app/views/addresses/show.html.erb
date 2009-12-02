@@ -1,0 +1,25 @@
+
+<table>
+  <tr>
+	<td><b>Address1:</b>&nbsp;<%=h @address.address1 %></td>
+	<td width="10"></td>
+	<% unless @address.address2.nil? or @address.address2.empty? %>
+	<td><b>Address2:</b>&nbsp;<%=h @address.address2 %></td>
+	<td width="10"></td>
+	<% end %>
+	<td><b>City:</b>&nbsp;<%=h @address.city %></td>
+	<td width="10"></td>
+	<td><b>State:</b>&nbsp;<%=h @address.state.code %></td>
+	<td width="10"></td>
+	<td><b>Zip code:</b>&nbsp;<%=h @address.zip_code %></td>
+  </tr>
+</table>
+<table>
+  <tr>
+	<td><b>Start date:</b>&nbsp;<%=h @address.start_date.strftime("%m/%d/%Y") %></td>
+	<td width="10"></td>
+	<td><b>End date:</b>&nbsp;<%=h @address.end_date.strftime("%m/%d/%Y") unless @address.end_date.nil? %></td>
+	<td width="10"></td>
+	<td><b>Housing Type:</b>&nbsp;<%=h @address.address_type.name unless @address.address_type.nil? %></td>
+  </tr>
+</table>

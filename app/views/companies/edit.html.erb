@@ -1,0 +1,24 @@
+
+<% form_for(@company) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label :allow_felony,"Allow Felony" %><br />
+    <%= f.check_box :allow_felony %>
+  </p>
+  <p>
+    <%= f.label :allow_sex_offender,"Allow Sex Offender" %><br />
+    <%= f.check_box :allow_sex_offender %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>

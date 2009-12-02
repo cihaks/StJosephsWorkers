@@ -1,0 +1,19 @@
+
+<table>
+  <tr>
+    <th>Name</th>
+	<td width="10"></td>
+  </tr>
+
+<% @courses.each do |course| %>
+  <tr>
+    <td><%=h course.name %></td>
+	<td width="10"></td>
+    <td><%= link_to 'Show', course %></td>
+    <td><%= link_to 'Edit', edit_course_path(course) %></td>
+    <td><%= link_to 'Destroy', course, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />

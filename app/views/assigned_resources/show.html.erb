@@ -1,0 +1,25 @@
+
+<p>
+  <b>Resource date:</b>
+  <%=h @assigned_resource.resource_date.strftime("%m/%d/%Y") %>
+</p>
+
+<p>
+  <b>Resource type:</b>
+  <%=h @assigned_resource.resource_type.name %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%=h number_to_currency(@assigned_resource.amount, :precision=>0) %>
+</p>
+
+<p>
+  <b>Number:</b>
+  <%=h number_with_delimiter(@assigned_resource.number) %>
+</p>
+
+<p>
+  <b>Verified:</b>
+  <%= check_box_tag :verified, 'true', @assigned_resource.verified, :onclick=>"return false;" %>
+</p>

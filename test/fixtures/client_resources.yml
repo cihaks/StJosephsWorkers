@@ -1,0 +1,23 @@
+# == Schema Information
+# Schema version: 20090716055901
+#
+# Table name: client_resources
+#
+#  id               :integer(4)      not null, primary key
+#  client_id        :integer(4)
+#  resource_type_id :integer(4)
+#  amount           :integer(4)
+#  number           :integer(4)
+#  verified         :boolean(1)
+#  resource_date    :date
+#  created_at       :datetime
+#  updated_at       :datetime
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# one:
+#   column: value
+#
+# two:
+#   column: value

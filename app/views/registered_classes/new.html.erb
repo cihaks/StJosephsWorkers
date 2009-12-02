@@ -1,0 +1,28 @@
+
+<% remote_form_for([@client, @registered_class], :update=>'jobs-content') do |f| %>
+  <%= f.error_messages %>
+<p>Client id: <%=h @client.id%><br/>
+<%= f.text_field :client_id %>
+</p>
+  <p>
+    <%= f.label :course_id, 'Class' %><br />
+    <%= f.collection_select(:course_id,Course.all,:id,:name) %>
+  </p>
+  <p>
+    <%= f.label :class_date, 'Class Date' %><br />
+    <%= f.date_select :class_date %>
+  </p>
+  <p>
+    <%= f.label :waive_date, 'Waive Date' %><br />
+    <%= f.date_select :waive_date, :include_blank=>true %>
+  </p>
+  <p>
+    <%= f.label :completed %><br />
+    <%= f.check_box :completed %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<br/>

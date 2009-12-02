@@ -1,0 +1,37 @@
+
+<% form_for([@client,@crime_sentence]) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :start_date %><br />
+    <%= f.date_select :start_date, :include_blank=>true %>
+  </p>
+  <p>
+    <%= f.label :release_date %><br />
+    <%= f.date_select :release_date, :include_blank=>true %>
+  </p>
+  <p>
+    <%= f.label :prison %><br />
+    <%= f.collection_select(:prison_id,Prison.all,:id,:name) %>
+  </p>
+  <p>
+    <%= f.label :crime_type %><br />
+    <%= f.collection_select(:crime_type_id,CrimeType.all,:id,:name) %>
+  </p>
+  <p>
+    <%= f.label :felony %><br />
+    <%= f.check_box :felony %>
+  </p>
+  <p>
+    <%= f.label :violent %><br />
+    <%= f.check_box :violent %>
+  </p>
+  <p>
+    <%= f.label :sex_offender %><br />
+    <%= f.check_box :sex_offender %>
+  </p>
+  <p>
+    <%= f.submit 'Create' unless request.xhr? %>
+	<%= submit_to_remote 'create_ajax_btn', 'Create', :url=>{:action=>'create'}, :update=>'infamy-content' if request.xhr?%>
+  </p>
+<% end %>

@@ -1,0 +1,41 @@
+
+<% form_for([@client,@address]) do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :state %><br />
+    <%= f.collection_select(:state_id,State.find(:all,:order=>"description"),:id,:description) %>
+  </p>
+  <p>
+    <%= f.label :address1 %><br />
+    <%= f.text_field :address1 %>
+  </p>
+  <p>
+    <%= f.label :address2 %><br />
+    <%= f.text_field :address2 %>
+  </p>
+  <p>
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </p>
+  <p>
+    <%= f.label :zip_code %><br />
+    <%= f.text_field :zip_code %>
+  </p>
+  <p>
+    <%= f.label :start_date, "Start Date"%><br />
+    <%= f.date_select :start_date, :order=>[:month,:day,:year]  %>
+  </p>
+  <p>
+    <%= f.label :end_date, "End Date" %><br />
+    <%= f.date_select :end_date, :order=>[:month,:day,:year], :include_blank=>true %>
+  </p>
+  <p>
+	<%= f.label :address_type, "Type" %><br/>
+	<%= f.collection_select(:address_type_id,AddressType.all,:id,:name) %>
+  <p>
+    <%= f.submit 'Create' unless request.xhr? %>
+	<%= submit_to_remote 'update_ajax_btn', 'Create', :url=>{:action=>'create'}, :update=>'contacts-content' if request.xhr?%>
+  </p>
+<% end %>
+
+

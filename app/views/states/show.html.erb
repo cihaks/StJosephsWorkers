@@ -1,0 +1,18 @@
+<p>
+  <b>Code:</b>
+  <%=h @state.code %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @state.description %>
+</p>
+
+<p>
+  <b>Country:</b>
+  <%=h @state.country %>
+</p>
+
+
+<%= link_to 'Edit', edit_state_path(@state) %> |
+<%= link_to 'Back', states_path %>

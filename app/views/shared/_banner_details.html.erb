@@ -1,0 +1,16 @@
+
+<div class="banner">
+	<div class="caption"><%= link_to controller.controller_name.titleize, eval("client_#{controller.controller_name}_path(@client)") %></div>
+	<div class="links">
+		<% if controller.action_name=='index' %>
+		  <%= link_to 'new', 
+					   eval("new_client_#{controller.controller_name.singularize}_path(@client,@#{controller.controller_name.singularize})") %>
+		<% elsif controller.action_name == 'edit' %>
+		  <%= link_to 'show', eval("client_#{controller.controller_name.singularize}_path(@client,@#{controller.controller_name.singularize})") %>
+		<% elsif controller.action_name == 'show' %>
+		  <%= link_to 'edit', eval("edit_client_#{controller.controller_name.singularize}_path(@client,@#{controller.controller_name.singularize})") %>
+		<% end %>
+	</div>
+</div>
+
+

@@ -1,0 +1,23 @@
+
+<table>
+  <tr>
+    <td class="filedLabel"><b>Name</b></td>
+	<td width="10"></td>
+    <td class="fieldLabel"><b>Description</b></td>
+	<td width="10"></td>
+  </tr>
+
+<% @crime_types.each do |crime_type| %>
+  <tr>
+    <td class="fieldData"><%=h crime_type.name %></td>
+	<td width="10"></td>
+    <td class="fieldData"><%=h crime_type.description %></td>
+	<td width="10"></td>
+    <td><%= link_to 'Show', crime_type %></td>
+    <td><%= link_to 'Edit', edit_crime_type_path(crime_type) %></td>
+    <td><%= link_to 'Destroy', crime_type, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />

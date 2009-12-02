@@ -1,0 +1,26 @@
+<h1>Listing job_rates</h1>
+
+<table>
+  <tr>
+    <th>Client</th>
+    <th>Job</th>
+    <th>Hourly rate</th>
+    <th>Hourly rate date</th>
+  </tr>
+
+<% @job_rates.each do |job_rate| %>
+  <tr>
+    <td><%=h job_rate.client_id %></td>
+    <td><%=h job_rate.job_id %></td>
+    <td><%=h job_rate.hourly_rate %></td>
+    <td><%=h job_rate.hourly_rate_date %></td>
+    <td><%= link_to 'Show', job_rate %></td>
+    <td><%= link_to 'Edit', edit_job_rate_path(job_rate) %></td>
+    <td><%= link_to 'Destroy', job_rate, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New job_rate', new_job_rate_path %>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  client_id: 1
+  job_id: 1
+  hourly_rate: 1.5
+  hourly_rate_date: 2009-11-18
+
+two:
+  client_id: 1
+  job_id: 1
+  hourly_rate: 1.5
+  hourly_rate_date: 2009-11-18

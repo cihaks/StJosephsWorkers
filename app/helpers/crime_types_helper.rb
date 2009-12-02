@@ -1,0 +1,2 @@
+module CrimeTypesHelper
+end

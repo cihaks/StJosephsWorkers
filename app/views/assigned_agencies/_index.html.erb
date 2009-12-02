@@ -1,0 +1,31 @@
+
+<table>
+  <tr>
+    <td class="fieldLabel"><b>Agency</b></th>
+	<td width="10"></td>
+    <td class="fieldLabel"><b>Start date</b></th>
+	<td width="10"></td>
+    <td class="fieldLabel"><b>End date</b></th>
+  </tr>
+
+<% @client.assigned_agencies.each do |assigned_agency| %>
+  <tr>
+    <td class="fieldData"><%=h assigned_agency.agency.name %></td>
+	<td width="10"></td>
+    <td class="fieldData"><%=h assigned_agency.start_date.strftime("%m/%d/%Y") %></td>
+	<td width="10"></td>
+    <td class="fieldData"><%=h assigned_agency.end_date.strftime("%m/%d/%Y") unless assigned_agency.end_date.nil? %></td>
+	<td width="10"></td>
+    <td><%= link_to_remote 'Details', :url=>client_assigned_agency_path(@client, assigned_agency), :update=>'infamy-content', :method=>'get' %></td>
+    <td><%= link_to_remote 'Edit', :url=>edit_client_assigned_agency_path(@client, assigned_agency), :update=>'infamy-content', :method=>'get' %></td>
+    <td><%= link_to_remote 'Destroy', :url=>client_assigned_agency_path(@client, assigned_agency), :update=>'infamy-content', :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+<% if @client.assigned_agencies.empty? %>
+  <tr>
+  	<td colspan="5" class="fieldData">No Assigned Agencies</td>
+  </tr>
+<% end %>
+</table>
+
+<br />

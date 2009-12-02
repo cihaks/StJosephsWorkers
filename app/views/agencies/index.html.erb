@@ -1,0 +1,18 @@
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% @agencies.each do |agency| %>
+  <tr>
+    <td><%=h agency.name %></td>
+	<td width="10"></td>
+    <td><%= link_to 'Show', agency %></td>
+    <td><%= link_to 'Edit', edit_agency_path(agency) %></td>
+    <td><%= link_to 'Destroy', agency, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />

@@ -1,0 +1,3 @@
+<tr>
+  <td class="fieldData"><%=h alert.contact_date.strftime("%m/%d/%y") %>&nbsp;(<%=h User.find(alert.updater_id).name unless alert.updater_id.nil? %>)&nbsp;-&nbsp;<%=h alert.note %></td>
+</tr>

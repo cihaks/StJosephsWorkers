@@ -1,0 +1,27 @@
+<div id="client_index">
+  <form name="sform" action="" style="display:inline;">
+	<label for="query">Filter on Client name: </label>
+	<%= text_field_tag("query", params['query'], :size => 10 ) %>
+	<%= link_to_remote 'clear', :url=>clients_url, :update=>'client_index', :method=>'get', :before=>"sform.reset" %>
+  </form>
+	
+  <%= image_tag("spinner.gif",
+	              :align => "absmiddle",
+	              :border => 0,
+	              :id => "spinner",
+	              :style =>"display: none;" ) %>
+	
+  <%= observe_field 'query',  :frequency => 1,
+			 :update => 'client_list',
+	         :before => "Element.show('spinner')",
+	         :success => "Element.hide('spinner')",
+	         :url => {:controller=>'clients',:action=>'list'},
+	         :with => 'query' %>
+
+  
+  <div id="client_list">
+    <%= render 'clients/list' %>
+  </div>
+</div>
+
+<br />

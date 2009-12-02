@@ -1,0 +1,43 @@
+
+<table>
+  <tr>
+    <td class="fieldLabel"><b>Start Date</b></td>
+	<td width="10"></td>
+    <td class="fieldLabel"><b>Release Date</b></td>
+	<td width="10"></td>
+    <td class="fieldLabel"><b>Prison</b></td>
+	<td width="10"></td>
+    <td class="fieldLabel"><b>Crime Type</b></td>
+	<td width="10"></td>
+    <td class="fieldLabel" align="center"><b>Felony</b></td>
+    <td class="fieldLabel" align="center"><b>Violent</b></td>
+    <td class="fieldLabel" align="center"><b>Sex<br/>Offender</b></td>
+  </tr>
+
+<% @client.crime_sentences.each do |crime_sentence| %>
+  <tr>
+    <td class="fieldData"><%=h crime_sentence.start_date.strftime("%m/%d/%Y") unless crime_sentence.start_date.nil? %></td>
+	<td width="10"></td>
+    <td class="fieldData"><%=h crime_sentence.release_date.strftime("%m/%d/%Y") unless crime_sentence.release_date.nil? %></td>
+	<td width="10"></td>
+    <td class="fieldData"><%=h crime_sentence.prison.name %></td>
+	<td width="10"></td>
+    <td class="fieldData"><%=h crime_sentence.crime_type.name %></td>
+	<td width="10"></td>
+    <td class="fieldData" align="center"><%= check_box_tag :felony, 'true', crime_sentence.felony, :onclick=>"return false;" %></td>
+    <td class="fieldData" align="center"><%= check_box_tag :violent, 'true', crime_sentence.violent, :onclick=>"return false;" %></td>
+    <td class="fieldData" align="center"><%= check_box_tag :sex_offender, 'true', crime_sentence.sex_offender, :onclick=>"return false;" %></td>
+    <td><%= link_to_remote 'Details', :url=>client_crime_sentence_path(@client,crime_sentence), :update=>"infamy-content", :method=>'get' %></td>
+    <td><%= link_to_remote 'Edit', :url=>edit_client_crime_sentence_path(@client,crime_sentence), :update=>"infamy-content", :method=>'get' %></td>
+    <td><%= link_to_remote 'Destroy', :url=>client_crime_sentence_path(@client,crime_sentence), :update=>"infamy-content", :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+<% if @client.crime_sentences.empty? %>
+  <tr>
+  	<td colspan="11" class="fieldData">No Crime Sentences</td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+

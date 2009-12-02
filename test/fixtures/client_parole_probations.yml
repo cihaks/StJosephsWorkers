@@ -1,0 +1,24 @@
+# == Schema Information
+# Schema version: 20090716055901
+#
+# Table name: client_parole_probations
+#
+#  id                :integer(4)      not null, primary key
+#  client_id         :integer(4)
+#  probation_officer :string(255)
+#  probation_contact :string(255)
+#  start_date        :date
+#  end_date          :date
+#  parole            :boolean(1)
+#  probation         :boolean(1)
+#  created_at        :datetime
+#  updated_at        :datetime
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# one:
+#   column: value
+#
+# two:
+#   column: value
