@@ -21,28 +21,18 @@ class ClientsController < ApplicationController
   # GET /clients.xml
   def index
     
-    conditions = ["first_name LIKE ? or middle_name LIKE ? or last_name LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%"] unless params[:query].nil?
-    
-    @clients = Client.find(:all, :conditions=>conditions, :order=>'last_name, first_name, middle_name')
+    @clients = Client.search(params[:query],params[:page],current_user.page_limit)
     
     respond_to do |format|
-      format.js { render 'index', :layout=>false }
-      format.html # index.html.erb
+      format.js { render :layout=>false }
+      format.html 
       format.xml  { render :xml => @clients }
     end
   end
 
-  def list
-    
-    conditions = ["first_name LIKE ? or middle_name LIKE ? or last_name LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%"] unless params[:query].nil?
-    
-    @clients = Client.find(:all, :conditions=>conditions, :order=>'last_name, first_name, middle_name')
-    
-  end
-
   def clear
     @client = nil
-    redirect_to(agencies_url)
+    redirect_to(clients_url)
   end
   
   # GET /clients/1
@@ -74,6 +64,7 @@ class ClientsController < ApplicationController
     @client = Client.find(params[:id])
     respond_to do |format|
       format.js { render :action=>"edit", :layout=>false }
+      format.html
     end
   end
 
@@ -85,7 +76,7 @@ class ClientsController < ApplicationController
     respond_to do |format|
       if @client.save
         flash[:notice] = 'Client was successfully created.'
-        format.html { redirect_to(@client) }
+        format.html { redirect_to(clients_url) }
         format.xml  { render :xml => @client, :status => :created, :location => @client }
       else
         format.html { render :action => "new" }

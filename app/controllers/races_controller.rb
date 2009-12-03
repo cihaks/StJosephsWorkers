@@ -8,9 +8,10 @@ class RacesController < SecurityController
   # GET /races
   # GET /races.xml
   def index
-    @races = Race.all
+    @races = Race.search(params[:query],params[:page],current_user.page_limit)
 
     respond_to do |format|
+      format.js { render :layout=>false }
       format.html # index.html.erb
       format.xml  { render :xml => @races }
     end
@@ -51,7 +52,7 @@ class RacesController < SecurityController
     respond_to do |format|
       if @race.save
         flash[:notice] = 'Race was successfully created.'
-        format.html { redirect_to(@race) }
+        format.html { redirect_to(races_url) }
         format.xml  { render :xml => @race, :status => :created, :location => @race }
       else
         format.html { render :action => "new" }
@@ -68,7 +69,7 @@ class RacesController < SecurityController
     respond_to do |format|
       if @race.update_attributes(params[:race])
         flash[:notice] = 'Race was successfully updated.'
-        format.html { redirect_to(@race) }
+        format.html { redirect_to(races_url) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

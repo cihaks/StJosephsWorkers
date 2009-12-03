@@ -1,12 +1,11 @@
+<br />
+<%= will_paginate @companies, :remote => {:method=>:get, :update => 'item_list'} %>
 
 <table>
   <tr>
     <td class="fieldLabel"><b>Name</b></td>
 	<td width="10"></td>
     <td class="fieldLabel"><b>Description</b></td>
-	<td width="10"></td>
-    <td class="fieldLabel"><b>Allow Felony</b></td>
-    <td class="fieldLabel"><b>Allow Sex Offender</b></td>
   </tr>
 
 <% @companies.each do |company| %>
@@ -15,8 +14,6 @@
 	<td width="10"></td>
     <td class="fieldData"><%=h company.description %></td>
 	<td width="10"></td>
-    <td class="fieldData" align="center"><%= check_box_tag :allow_felony, 'true', company.allow_felony, :onclick=>"return false;" %></td>
-    <td class="fieldData" align="center"><%= check_box_tag :allow_sex_offender, 'true', company.allow_sex_offender, :onclick=>"return false;" %></td>
     <td><%= link_to 'Show', company %></td>
     <td><%= link_to 'Edit', edit_company_path(company) %></td>
     <td><%= link_to 'Destroy', company, :confirm => 'Are you sure?', :method => :delete %></td>
@@ -24,6 +21,6 @@
   <tr><td colspan="10"><hr></td></tr>
 <% end %>
 </table>
-
+<%= will_paginate @companies, :remote => {:method=>:get, :update => 'item_list'} %>
 <br />
 

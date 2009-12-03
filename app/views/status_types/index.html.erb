@@ -1,4 +1,5 @@
-
+<br />
+<%= will_paginate @status_types, :remote => {:method=>:get, :update => 'item_list'} %>
 <table>
   <tr>
     <td class="fieldLabel">Name</td>
@@ -19,5 +20,4 @@
   </tr>
 <% end %>
 </table>
-
 <br />

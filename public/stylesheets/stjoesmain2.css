@@ -199,6 +199,9 @@ font-weight:normal;
 padding:5px 5px 5px 0.5em;
 text-decoration:none;
 }
+img.admin_arrow {
+border: 1 none;
+}
 /*#footer {
 background-color:transparent;
 color:#7A7A7A;
@@ -217,6 +220,13 @@ font-size:9pt;
 #clearance {
 float:left;
 clear:both;
+}
+div.scrollable {
+border:1px solid black;
+width:235px;
+height:200px;
+background-color:
+#ffffff;overflow:auto;
 }
 img {
 border:0 none;

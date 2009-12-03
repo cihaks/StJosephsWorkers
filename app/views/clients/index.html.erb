@@ -1,27 +1,57 @@
-<div id="client_index">
-  <form name="sform" action="" style="display:inline;">
-	<label for="query">Filter on Client name: </label>
-	<%= text_field_tag("query", params['query'], :size => 10 ) %>
-	<%= link_to_remote 'clear', :url=>clients_url, :update=>'client_index', :method=>'get', :before=>"sform.reset" %>
-  </form>
-	
-  <%= image_tag("spinner.gif",
-	              :align => "absmiddle",
-	              :border => 0,
-	              :id => "spinner",
-	              :style =>"display: none;" ) %>
-	
-  <%= observe_field 'query',  :frequency => 1,
-			 :update => 'client_list',
-	         :before => "Element.show('spinner')",
-	         :success => "Element.hide('spinner')",
-	         :url => {:controller=>'clients',:action=>'list'},
-	         :with => 'query' %>
+<br/>
+<%= will_paginate @clients, :remote => {:method=>:get, :update => 'item_list'}%>
 
-  
-  <div id="client_list">
-    <%= render 'clients/list' %>
-  </div>
-</div>
+<table>
+  <tr>
+  	<td></td>
+    <td class="fieldLabel">Name</td>
+    <td class="fieldLabel">Birth date</td>
+	<td width="10"></td>
+	<td class="fieldLabel">Date Added</td>
+	<td width="10"></td>
+	<td class="fieldLabel">Last Modified</td>
+  </tr>
+
+<% @clients.each do |client| %>
+  <tr>
+  	<td>
+  	  <div class="photoImage floatLeft">
+		<% if !client.pictures.empty? and client.pictures.first.photo.exists? %>
+			<%= image_tag client.pictures.first.photo.url, :size=>"25x25" %>
+		<% else %>
+			<%= image_tag 'defaultphoto.gif', :size=>"25x25" %>
+		<% end %>
+	  </div>
+  	</td>
+    <td class="fieldData" align="center"><%= link_to h(client.name), client %>
+	    <%= image_tag("female.jpg", :size=>"14x24") if client.gender == 'F' %>
+	    <%= image_tag("male.jpg", :size=>"14x24") if client.gender == 'M' %>
+		<%= image_tag("caution.jpg", :size=>"24x24") if client.caution %>
+		<%= image_tag("resource_eligible.jpg", :size=>"24x24") if client.resource_eligible %>
+        <%= image_tag("veteran.jpg", :size=>"14x24") if client.veteran %>
+        <%= image_tag("success_story.jpg", :size=>"24x24") if client.success_story %>
+	</td>
+    <td class="fieldData"><%=h client.birth_date.strftime("%m/%d/%Y") unless client.birth_date.nil? %></td>
+	<td width="10"></td>
+	<td class="fieldData"><%=h client.created_at.strftime("%m/%d/%Y") unless client.created_at.nil? %></td>
+	<td width="10"></td>
+	<td class="fieldData"><%=h client.updated_at.strftime("%m/%d/%Y") unless client.updated_at.nil? %></td>
+	<td width="10"></td>
+	<td valign="top"><%= link_to 'Details', client %></td>
+    <td valign="top"><%= link_to 'Edit', edit_client_path(client) %></td>
+    <td valign="top"><%= link_to 'Destroy', client, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+  <tr>
+	<td colspan="11"><hr/></td>
+  </tr>
+<% end %>
+<% if @clients.nil? or @clients.empty? %>
+  <tr>
+  	<td colspan="10">No Clients found</td>
+  </tr>
+<% end %>
+</table>
+<br />
+<%= will_paginate @clients, :remote => {:method=>:get, :update => 'client_list'}%>
 
 <br />

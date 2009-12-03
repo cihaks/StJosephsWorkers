@@ -12,9 +12,10 @@ class ContactTypesController < SecurityController
   # GET /contact_types
   # GET /contact_types.xml
   def index
-    @contact_types = ContactType.all
+    @contact_types = ContactType.search(params[:query],params[:page],current_user.page_limit)
 
     respond_to do |format|
+      format.js { render :layout=>false }
       format.html # index.html.erb
       format.xml  { render :xml => @contact_types }
     end

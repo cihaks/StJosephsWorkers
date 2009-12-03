@@ -1,3 +1,4 @@
+<%= will_paginate @address_types, :remote => {:method=>:get, :update => 'item_list'}%>
 <table>
   <tr>
     <th>Name</th>
@@ -12,5 +13,6 @@
   </tr>
 <% end %>
 </table>
+<%= will_paginate @address_types, :remote => {:method=>:get, :update => 'item_list'}%>
 
 <br />

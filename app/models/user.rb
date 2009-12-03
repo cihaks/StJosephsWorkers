@@ -34,7 +34,9 @@ class User < ActiveRecord::Base
   end
   # ---------------------------------------
   
-  
+  def page_limit
+    10
+  end
   
   
   include Authentication
@@ -61,6 +63,11 @@ class User < ActiveRecord::Base
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email, :name, :password, :password_confirmation, :role_ids
 
+  def self.search(search, page, page_limit)
+    paginate :per_page=>page_limit, :page=>page,
+             :conditions => ["name LIKE ? ", "%#{search}%"],
+             :order => 'name'
+  end
 
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.

@@ -1,17 +1,20 @@
+<br />
+<%= will_paginate @contact_types, :remote => {:method=>:get, :update => 'item_list'} %>
 
 <table>
   <tr>
-    <th>Contact Type</th>
+    <td class="fieldLabel">Contact Type</td>
   </tr>
 
 <% @contact_types.each do |contact_type| %>
   <tr>
-    <td><%=h contact_type.name %></td>
+    <td class="fieldData"><%=h contact_type.name %></td>
+	<td width="10"></td>
     <td><%= link_to 'Show', contact_type %></td>
     <td><%= link_to 'Edit', edit_contact_type_path(contact_type) %></td>
     <td><%= link_to 'Destroy', contact_type, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
-
+<%= will_paginate @contact_types, :remote => {:method=>:get, :update => 'item_list'} %>
 <br />

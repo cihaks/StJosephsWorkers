@@ -4,9 +4,10 @@ class AddressTypesController < SecurityController
   # GET /address_types
   # GET /address_types.xml
   def index
-    @address_types = AddressType.all
+    @address_types = AddressType.search(params[:query],params[:page],current_user.page_limit)
 
     respond_to do |format|
+      format.js { render :layout=>false }
       format.html # index.html.erb
       format.xml  { render :xml => @address_types }
     end
@@ -47,7 +48,7 @@ class AddressTypesController < SecurityController
     respond_to do |format|
       if @address_type.save
         flash[:notice] = 'AddressType was successfully created.'
-        format.html { redirect_to(@address_type) }
+        format.html { redirect_to(address_types_url) }
         format.xml  { render :xml => @address_type, :status => :created, :location => @address_type }
       else
         format.html { render :action => "new" }
@@ -64,7 +65,7 @@ class AddressTypesController < SecurityController
     respond_to do |format|
       if @address_type.update_attributes(params[:address_type])
         flash[:notice] = 'AddressType was successfully updated.'
-        format.html { redirect_to(@address_type) }
+        format.html { redirect_to(address_types_url) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

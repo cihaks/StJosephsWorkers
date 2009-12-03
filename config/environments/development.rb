@@ -19,3 +19,5 @@ config.action_mailer.raise_delivery_errors = false
 # Development environment uses populator and faker to generate test data
 config.gem "populator"
 config.gem "faker"
+
+WillPaginate::ViewHelpers.pagination_options[:renderer] = 'PaginateLinkRenderer'

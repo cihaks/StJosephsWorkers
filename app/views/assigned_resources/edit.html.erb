@@ -1,28 +1,72 @@
 
 <% form_for([@client, @assigned_resource]) do |f| %>
   <%= f.error_messages %>
-  
-  <p>
-    <%= f.label :resource_date %><br />
-    <%= f.date_select :resource_date %>
-  </p>
-  <p>
-    <%= f.label :resource_type %><br />
-    <%= f.collection_select(:resource_type_id,ResourceType.all,:id,:name) %>
-  </p>
-  <p>
-    <%= f.label :amount %><br />
-    <%= f.text_field :amount %>
-  </p>
-  <p>
-    <%= f.label :number %><br />
-    <%= f.text_field :number %>
-  </p>
-  <p>
-    <%= f.label :verified %><br />
-    <%= f.check_box :verified %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
+  <table>
+  	<tr>
+  	  <td valign="top">
+		<table>
+		  <tr>
+			<td>
+			  <%= f.label :resource_date %><br />
+			  <%= f.date_select :resource_date %>
+			</td>
+		  </tr>
+		  <tr>
+			<td>
+		      <%= f.label :resource_type %><br />
+		      <%= f.collection_select(:resource_type_id,ResourceType.all,:id,:name) %>
+			</td>
+		  </tr>
+		  <tr>
+			<td>
+		      <%= f.label :amount %><br />
+		      <%= f.text_field :amount %>
+			</td>
+		  </tr>
+		  <tr>
+			<td>
+		      <%= f.label :number %><br />
+		      <%= f.text_field :number %>
+			</td>
+		  </tr>
+		  <tr>
+			<td>
+		      <%= f.label :verified %><br />
+		      <%= f.check_box :verified %>
+			</td>
+		  </tr>
+		</table>
+	  </td>
+	  <td width="10"></td>
+	  <td>
+	    <%= f.label :companies %><br/>
+	    <div class="scrollable">
+	  	  <% Company.all.each do |company| %>
+		    <div>
+		      <%= check_box_tag "assigned_resource[company_ids][]", company.id, @assigned_resource.companies.include?(company) %>
+		      <%= company.name %>
+		    </div>
+		  <% end %>
+	    </div>
+	  </td>
+	  <td width="10"></td>
+	  <td>
+	    <%= f.label :industries %><br/>
+		<div class="scrollable">
+		  <% Industry.all.each do |industry| %>
+			<div>
+			  <%= check_box_tag "assigned_resource[industry_ids][]", industry.id, @assigned_resource.industries.include?(industry) %>
+			  <%= industry.name %>
+			</div>
+		  <% end %>
+		</div>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+        <%= f.submit 'Update' unless request.xhr? %>
+	    <%= submit_to_remote 'update_ajax_btn', 'Update', :url=>{:action=>'update'}, :update=>'contacts-content' if request.xhr? %>
+	  </td>
+    </tr>
+  </table>
 <% end %>

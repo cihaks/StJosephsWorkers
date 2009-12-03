@@ -9,9 +9,10 @@ class StatusTypesController < SecurityController
   # GET /status_types
   # GET /status_types.xml
   def index
-    @status_types = StatusType.all
+    @status_types = StatusType.search(params[:query],params[:page],current_user.page_limit)
 
     respond_to do |format|
+      format.js { render :layout=>false }
       format.html # index.html.erb
       format.xml  { render :xml => @status_types }
     end

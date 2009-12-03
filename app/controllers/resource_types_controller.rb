@@ -9,9 +9,10 @@ class ResourceTypesController < SecurityController
   # GET /resource_types
   # GET /resource_types.xml
   def index
-    @resource_types = ResourceType.all
+    @resource_types = ResourceType.search(params[:query],params[:page],current_user.page_limit)
 
     respond_to do |format|
+      format.js { render :layout=>false }
       format.html # index.html.erb
       format.xml  { render :xml => @resource_types }
     end

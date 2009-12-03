@@ -1,20 +1,20 @@
-<h1>Listing agency_types</h1>
-
+<br />
+<%= will_paginate @agency_types, :remote => {:method=>:get, :update => 'item_list'} %>
 <table>
   <tr>
-    <th>Name</th>
+    <td class="fieldLabel">Name</td>
   </tr>
 
 <% @agency_types.each do |agency_type| %>
   <tr>
-    <td><%=h agency_type.name %></td>
+    <td class="fieldData"><%=h agency_type.name %></td>
+	<td width="10"></td>
     <td><%= link_to 'Show', agency_type %></td>
     <td><%= link_to 'Edit', edit_agency_type_path(agency_type) %></td>
     <td><%= link_to 'Destroy', agency_type, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
-
+<%= will_paginate @agency_types, :remote => {:method=>:get, :update => 'item_list'} %>
 <br />
 
-<%= link_to 'New agency_type', new_agency_type_path %>

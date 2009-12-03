@@ -10,9 +10,10 @@ class IndustriesController < SecurityController
   # GET /industries
   # GET /industries.xml
   def index
-    @industries = Industry.all
+    @industries = Industry.search(params[:query],params[:page],current_user.page_limit)
 
     respond_to do |format|
+      format.js { render :layout=>false }
       format.html # index.html.erb
       format.xml  { render :xml => @industries }
     end

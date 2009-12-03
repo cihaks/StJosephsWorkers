@@ -19,16 +19,21 @@
 </div>
 
 <div id="client-content">
+<% if controller.controller_name == 'clients' and controller.action_name=='edit' %>
+	<%= yield %>
+<% else %>
 	<div class="photoImage floatLeft">
 	  <tr>
 		<td>
 			<div id="client-image">
 				<% unless @client.pictures.empty? %>
 					<% image_url=@client.pictures.first.photo.url %>
+					<% link_url = edit_client_picture_path(@client,@client.pictures.first) %>
 				<% else %>
 					<% image_url='defaultphoto.gif' %>
+					<% link_url = new_client_picture_path(@client) %>
 				<% end %>
-				<%= link_to_remote image_tag(image_url, :size=>"50x50"), :url=>edit_client_picture_path(@client,@client.pictures.first), :update=>'contacts-content', :method=>:get %>
+				<%= link_to_remote image_tag(image_url, :size=>"50x50"), :url=>link_url, :update=>'contacts-content', :method=>:get %>
 			</div>
 		</td>
 	  </tr>
@@ -78,4 +83,5 @@
 	  </tr>
 	</table>
 	<% end %>
+<% end %>
 </div>

@@ -1,5 +1,5 @@
-<h1>Listing races</h1>
-
+<br />
+<%= will_paginate @races, :remote => {:method=>:get, :update => 'item_list'} %>
 <table>
   <tr>
     <th>Name</th>
@@ -16,7 +16,5 @@
   </tr>
 <% end %>
 </table>
-
+<%= will_paginate @races, :remote => {:method=>:get, :update => 'item_list'} %>
 <br />
-
-<%= link_to 'New race', new_race_path %>

@@ -1,17 +1,7 @@
 class AssignedResourcesController < ApplicationController
-  layout 'references'
+  layout 'contacts_content'
   
-  before_filter :get_client
-  
-  # active_scaffold :assigned_resource do |config|
-  #     config.label = 'Client Resource'
-  #     config.columns[:resource_type].label = 'Resource Type'
-  #     config.columns[:client].form_ui = :select
-  #     config.columns[:companies].form_ui = :select
-  #     config.columns[:resource_type].form_ui = :select
-  # #    config.columns[:resource_date].form_ui = :calendar
-  #     config.columns = [:client, :resource_date, :resource_type, :number, :amount, :verified, :companies]
-  #   end
+  before_filter :get_client, :set_section
   
   # GET /assigned_resources
   # GET /assigned_resources.xml
@@ -71,6 +61,8 @@ class AssignedResourcesController < ApplicationController
   # PUT /assigned_resources/1
   # PUT /assigned_resources/1.xml
   def update
+    params[:assigned_resource][:company_ids] ||= []
+
     @assigned_resource = @client.assigned_resources.find(params[:id])
 
     respond_to do |format|
@@ -96,4 +88,9 @@ class AssignedResourcesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def set_section
+    session[:contacts_section] = controller_name
+  end
+
 end

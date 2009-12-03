@@ -1,16 +1,19 @@
+<br />
+<%= will_paginate @roles, :remote => {:method=>:get, :update => 'item_list'} %>
 <table>
   <tr>
-    <th>Name</th>
+    <td class="fieldLabel">Name</td>
   </tr>
 
 <% @roles.each do |role| %>
   <tr>
-    <td><%=h role.name %></td>
+    <td class="fieldData"><%=h role.name %></td>
+	<td width="10"></td>
     <td><%= link_to 'Show', role %></td>
     <td><%= link_to 'Edit', edit_role_path(role) %></td>
     <td><%= link_to 'Destroy', role, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
-
+<%= will_paginate @roles, :remote => {:method=>:get, :update => 'item_list'} %>
 <br />

@@ -9,9 +9,10 @@ class CrimeTypesController < SecurityController
   # GET /crime_types
   # GET /crime_types.xml
   def index
-    @crime_types = CrimeType.all
+    @crime_types = CrimeType.search(params[:query],params[:page],current_user.page_limit)
 
     respond_to do |format|
+      format.js { render :layout=>false }
       format.html # index.html.erb
       format.xml  { render :xml => @crime_types }
     end

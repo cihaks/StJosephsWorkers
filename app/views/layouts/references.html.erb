@@ -7,6 +7,7 @@
   <title><%= controller.controller_name.titleize %>: <%= controller.action_name %></title>
   <%= stylesheet_link_tag 'scaffold' %>
   <%= stylesheet_link_tag 'stjoesmain2' %>
+  <%= javascript_include_tag 'jquery' %>
   <%= javascript_include_tag :defaults %>
   <%#= active_scaffold_includes %>
 </head>
@@ -20,13 +21,13 @@
 		<% unless flash[:error].nil? %><p style="color: red"><%= flash[:error] %></p><% end %>
 		
 		<% if logged_in? %>
-			<% unless @client.nil? %>
+			<% if !@client.nil? && !@client.new_record? %>
 				<div id="client-content">
 			        <%= render 'shared/client_show' %>
 				</div>
 				<br/>
 				<div id="contacts-content">
-					<%= render :partial=>'shared/banner_contacts', :locals => {:name=>session[:contacts_section], :sections=>["contacts","addresses","phones","pictures"] } %>
+					<%= render :partial=>'shared/banner_contacts', :locals => {:name=>session[:contacts_section], :sections=>["contacts","addresses","phones","pictures","assigned_resources"] } %>
 					<div id="contacts-element">
 					  <%= render "#{session[:contacts_section]}/index" %>
 					</div
@@ -46,7 +47,10 @@
 				  </div>
 				</div>
 			<% else %>
+				<%= render 'shared/banner_references' %>
+				<div id="item_list">
 				<%= yield %>
+				<div id="item_list">
 			<% end %>
 		<% else %>
 			<%= yield %>

@@ -23,6 +23,7 @@
     <%= f.check_box :verified %>
   </p>
   <p>
-    <%= f.submit 'Create' %>
+    <%= f.submit 'Create' unless request.xhr? %>
+	<%= submit_to_remote 'create_ajax_btn', 'Create', :url=>{:action=>'create'}, :update=>'contacts-content' if request.xhr? %>
   </p>
 <% end %>

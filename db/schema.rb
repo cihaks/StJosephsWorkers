@@ -83,6 +83,10 @@ ActiveRecord::Schema.define(:version => 20091108221353) do
   create_table "assigned_resources_companies", :id => false, :force => true do |t|
     t.integer "assigned_resource_id"
     t.integer "company_id"
+  end
+
+  create_table "assigned_resources_industries", :id => false, :force => true do |t|
+    t.integer "assigned_resource_id"
     t.integer "industry_id"
   end
 

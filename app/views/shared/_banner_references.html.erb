@@ -1,13 +1,28 @@
 <div class="banner">
-	<div class="caption"><%= link_to controller.controller_name.titleize, eval("#{controller.controller_name}_path") %></div>
-	<div class="links">
-		<% if controller.action_name=='index' %>
-		    <%= link_to 'new', 
-						 eval("new_#{controller.controller_name.singularize}_path(@#{controller.controller_name.singularize})") %>
-		<% elsif controller.action_name == 'edit' %>
-			<%= link_to 'show', eval("#{controller.controller_name.singularize}_path(@#{controller.controller_name.singularize})") %>
-		<% elsif controller.action_name == 'show' %>
-			<%= link_to 'edit', eval("edit_#{controller.controller_name.singularize}_path(@#{controller.controller_name.singularize})") %>
-		<% end %>
-	</div>
+  <div class="caption"><%= link_to controller.controller_name.titleize, eval("#{controller.controller_name}_path") %></div>
+  <% if controller.action_name == 'index'%>
+	  <div class="links">
+			<%= link_to 'new', eval("new_#{controller.controller_name.singularize}_path(@#{controller.controller_name.singularize})") %>
+	  </div>
+	  <div style="float:right;">
+		  <%= image_tag("spinner.gif",:align => "absmiddle",:border => 0,:id => "spinner",:style =>"display: none;" ) %>
+						  
+		  <form name="sform" action="" style="display:inline;" method="get">
+			<label for="query">Filter: </label>
+			<%= text_field_tag("query", params['query'], :size => 10 ) %>
+			<%= link_to_remote 'clear', :url=>eval("#{controller.controller_name}_path"), :update=>'item_list', :method=>'get', :before=>"sform.query.value=null" %>
+			
+			
+		  <%= observe_field 'query',  
+			         :url => {:controller=>controller.controller_name,:action=>'index'},
+					 :method => :get,
+					 :frequency => 0.5,
+					 :update => :item_list,
+			         :before => "Element.show('spinner')",
+			         :success => "Element.hide('spinner')",
+			         :with => 'query' %>
+		
+		  </form>
+	  </div>
+  <% end %>
 </div>

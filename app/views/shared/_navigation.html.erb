@@ -3,12 +3,13 @@
 <div id="navigation" class="navigation" style="float:left">
   <ul>
 	<% if authorized_for?(:create, :users) %>
-		<li><%= link_to_remote( 'Admin', :url=>{:action=>'toggle_admin'}, :complete=>visual_effect(:toggle_blind, :adminlinks, :duration => 0.5) )%></li>
+		<li>
+			<%= link_to_remote( 'Admin', :url=>{:action=>'toggle_admin'} )%>
+		</li>
 		<div id="adminlinks" style="<%= 'display:none' if session[:show_admin] != true %>">
-		<li class="indent1"><%= link_to "Roles", roles_path %></li>
-		<li class="indent1"><%= link_to "User Accounts", users_path %></li>
 		<li class="indent1"><%= link_to "Address Types", address_types_path %></li>
 		<li class="indent1"><%= link_to "Agencies", agencies_path %></li>
+		<li class="indent1"><%= link_to "Agency Types", agency_types_path %></li>
 		<li class="indent1"><%= link_to "Companies", companies_path %></li>
 		<li class="indent1"><%= link_to "Contact Types", contact_types_path %></li>
 		<li class="indent1"><%= link_to "Courses", courses_path %></li>
@@ -16,10 +17,12 @@
 		<li class="indent1"><%= link_to "Industries", industries_path %></li>
 		<li class="indent1"><%= link_to "Job Types", job_types_path %></li>
 		<li class="indent1"><%= link_to "Prisons", prisons_path %></li>
+		<li class="indent1"><%= link_to "Races", races_path %></li>
 		<li class="indent1"><%= link_to "Resource Types", resource_types_path %></li>
 		<li class="indent1"><%= link_to "Status Types", status_types_path %></li>
 		<li class="indent1"><%= link_to "Substances", substances_path %></li>
 		<li class="indent1"><%= link_to "User Accounts", users_path %></li>
+		<li class="indent1"><%= link_to "Roles", roles_path %></li>
 		</div>
 	<% end %>
 	
@@ -33,7 +36,6 @@
 	
   	<li><%= link_to "Clients", clients_path %></li>
 	<% unless @client.nil? %>
-		<li class="indent1"><%= link_to "Assigned Resources", client_assigned_resources_path(@client) %></li>
 	<% end %>
   </ul>
 </div>

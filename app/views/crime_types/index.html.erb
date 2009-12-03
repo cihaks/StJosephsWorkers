@@ -1,4 +1,5 @@
-
+<br />
+<%= will_paginate @crime_types, :remote => {:method=>:get, :update => 'item_list'} %>
 <table>
   <tr>
     <td class="filedLabel"><b>Name</b></td>
@@ -19,5 +20,5 @@
   </tr>
 <% end %>
 </table>
-
+<%= will_paginate @crime_types, :remote => {:method=>:get, :update => 'item_list'} %>
 <br />

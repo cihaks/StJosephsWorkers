@@ -1,4 +1,5 @@
-
+<br />
+<%= will_paginate @industries, :remote => {:method=>:get, :update => 'item_list'} %>
 <table>
   <tr>
     <td class="fieldLabel">Industry</td>
@@ -8,7 +9,7 @@
 
 <% @industries.each do |industry| %>
   <tr>
-    <td class="fieldData"><%=h industry.industry_type %></td>
+    <td class="fieldData"><%=h industry.name %></td>
 	<td width="10"></td>
     <td class="fieldData"><%=h industry.description[0..49] %><%= "..." if industry.description.length>50 %></td>
 	<td width="10"></td>
@@ -18,5 +19,5 @@
   </tr>
 <% end %>
 </table>
-
+<%= will_paginate @industries, :remote => {:method=>:get, :update => 'item_list'} %>
 <br />

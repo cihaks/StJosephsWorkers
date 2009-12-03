@@ -27,6 +27,10 @@ class ApplicationController < ActionController::Base
   
   def toggle_admin
     session[:show_admin].nil? ? session[:show_admin] = true : session[:show_admin] = !session[:show_admin]
+    render :update do |page|
+      page.visual_effect(:toggle_blind, :adminlinks, :duration => 0.5)
+#      page.toggle 'adminup','admindown'
+    end
   end
   
   layout proc{ |c| c.request.xhr? ? false : "references" }

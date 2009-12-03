@@ -1,21 +1,27 @@
-
+<br />
+<%= will_paginate @prisons, :remote => {:method=>:get, :update => 'item_list'} %>
 <table>
   <tr>
-    <th>Name</th>
-	<th>County</th>
-	<th>Out of State</th>
+    <td class="fieldLabel">Name</td>
+	<td width="10"></td>
+	<td class="fieldLabel">County</td>
+	<td width="10"></td>
+	<td class="fieldLabel" align="center">Out of State</td>
   </tr>
 
 <% @prisons.each do |prison| %>
   <tr>
-    <td><%=h prison.name %></td>
-	<td><%=h prison.county %></td>
-	<td><%= check_box_tag(:out_of_state,'true',prison.out_of_state,:onclick=>"return false;") %></td>
+    <td class="fieldData"><%=h prison.name %></td>
+	<td width="10"></td>
+	<td class="fieldData"><%=h prison.county %></td>
+	<td width="10"></td>
+	<td class="fieldData" style="text-align:center;"><%= check_box_tag(:out_of_state,'true',prison.out_of_state,:onclick=>"return false;") %></td>
+	<td width="10"></td>
     <td><%= link_to 'Show', prison %></td>
     <td><%= link_to 'Edit', edit_prison_path(prison) %></td>
     <td><%= link_to 'Destroy', prison, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
-
+<%= will_paginate @prisons, :remote => {:method=>:get, :update => 'item_list'} %>
 <br />

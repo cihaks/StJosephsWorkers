@@ -9,9 +9,10 @@ class JobTypesController < SecurityController
   # GET /job_types
   # GET /job_types.xml
   def index
-    @job_types = JobType.all
+    @job_types = JobType.search(params[:query],params[:page],current_user.page_limit)
 
     respond_to do |format|
+      format.js { render :layout=>false }
       format.html # index.html.erb
       format.xml  { render :xml => @job_types }
     end

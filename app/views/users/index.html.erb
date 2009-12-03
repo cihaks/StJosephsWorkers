@@ -1,3 +1,5 @@
+<br />
+<%= will_paginate @users, :remote => {:method=>:get, :update => 'item_list'} %>
 <table>
   <tr>
     <th>Login</th>
@@ -12,5 +14,5 @@
   </tr>
 <% end %>
 </table>
-
+<%= will_paginate @users, :remote => {:method=>:get, :update => 'item_list'} %>
 <br />

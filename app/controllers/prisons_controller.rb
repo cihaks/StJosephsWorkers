@@ -8,9 +8,10 @@ class PrisonsController < SecurityController
   # GET /prisons
   # GET /prisons.xml
   def index
-    @prisons = Prison.all
+    @prisons = Prison.search(params[:query],params[:page],current_user.page_limit)
 
     respond_to do |format|
+      format.js { render :layout=>false }
       format.html # index.html.erb
       format.xml  { render :xml => @prisons }
     end

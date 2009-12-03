@@ -2,9 +2,10 @@ class AgencyTypesController < ApplicationController
   # GET /agency_types
   # GET /agency_types.xml
   def index
-    @agency_types = AgencyType.all
+    @agency_types = AgencyType.search(params[:query],params[:page],current_user.page_limit)
 
     respond_to do |format|
+      format.js { render :layout=>false }
       format.html # index.html.erb
       format.xml  { render :xml => @agency_types }
     end
