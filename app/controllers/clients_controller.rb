@@ -1,22 +1,6 @@
 class ClientsController < ApplicationController
   layout 'references', :except=>[:list]
   
-  # active_scaffold :client do |config|
-  #     config.actions = [:list, :show, :update, :delete]
-  #     config.actions.exclude :nested
-  #     config.action_links.add 'new',:label=>'Add Client', :inline=>false
-  #     config.columns[:race].form_ui = :select
-  #     config.columns[:caution].form_ui = :checkbox
-  #     config.columns[:resource_eligible].form_ui = :checkbox
-  #     config.columns[:veteran].form_ui = :checkbox
-  #     config.columns[:success_story].form_ui = :checkbox
-  #     config.list.columns = [:id, :first_name, :middle_name, :last_name, :birth_date, :gender, :caution, :resource_eligible, :veteran, :success_story, :race]
-  #     config.show.columns = [:id, :first_name, :middle_name, :last_name, :birth_date, :gender, :caution, :resource_eligible, :veteran, :success_story, :race, :substances, :courses]
-  #     config.show.link.inline = false
-  #     config.update.link.inline = false
-#    config.create.columns = [:id, :first_name, :middle_name, :last_name, :birth_date, :gender, :caution, :resource_eligible, :veteran, :success_story, :race]
-  # end
-
   # GET /clients
   # GET /clients.xml
   def index
@@ -43,6 +27,7 @@ class ClientsController < ApplicationController
     #redirect_to client_contacts_path(@client)
     
     respond_to do |format|
+      format.js { render :layout=>'client-content' }
       format.html # show.html.erb
       format.xml  { render :xml => @client }
     end
@@ -63,7 +48,7 @@ class ClientsController < ApplicationController
   def edit
     @client = Client.find(params[:id])
     respond_to do |format|
-      format.js { render :action=>"edit", :layout=>false }
+      format.js { render :layout=>'client_content' }
       format.html
     end
   end
@@ -97,11 +82,7 @@ class ClientsController < ApplicationController
         flash[:notice] = 'Client was successfully updated.'
         format.html { redirect_to(@client) }
         format.xml  { head :ok }
-        format.js do
-          render :update do |page|
-            page.replace_html 'client-content', :partial=>'shared/client_show'
-          end
-        end
+        format.js { render 'show', :layout=>'client_content'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @client.errors, :status => :unprocessable_entity }

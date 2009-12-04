@@ -1,24 +1,3 @@
-<div class="banner">
-	<div class="caption"><%=h @client.id%>.&nbsp;&nbsp;<%=h @client.name %></div>
-	<div class="links">
-		<%= link_to_remote 'edit', :url=>edit_client_path(@client), :update=>'client-content', :method=>'get' %>
-	</div>
-	<div class="icons">
-	    <%= image_tag("female.jpg", :size=>"14x24") if @client.gender == 'F' %>
-	    <%= image_tag("male.jpg", :size=>"14x24") if @client.gender == 'M' %>
-		<%= image_tag("caution.jpg", :size=>"24x24") if @client.caution %>
-		<%= image_tag("resource_eligible.jpg", :size=>"24x24") if @client.resource_eligible %>
-        <%= image_tag("veteran.jpg", :size=>"14x24") if @client.veteran %>
-        <%= image_tag("success_story.jpg", :size=>"24x24") if @client.success_story %>
-	</div>
-	<div class="icons" style="float:right;" id="client_status">
-		<% @client.status_types.each do |status_type| %>
-		  <%= status_type.name %>
-		<% end %>
-	</div>
-</div>
-
-<div id="client-content">
 <% if controller.controller_name == 'clients' and controller.action_name=='edit' %>
 	<%= yield %>
 <% else %>
@@ -84,4 +63,3 @@
 	</table>
 	<% end %>
 <% end %>
-</div>

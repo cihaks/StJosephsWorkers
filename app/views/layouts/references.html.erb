@@ -23,7 +23,10 @@
 		<% if logged_in? %>
 			<% if !@client.nil? && !@client.new_record? %>
 				<div id="client-content">
-			        <%= render 'shared/client_show' %>
+				  <%= render 'shared/banner_client' %>
+				  <div id="client-element">
+					<%= yield %>
+				  </div>
 				</div>
 				<br/>
 				<div id="contacts-content">

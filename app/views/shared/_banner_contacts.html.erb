@@ -4,7 +4,7 @@
 		<% if section == session[:contacts_section] %>
 			<div id="#{section}" class="caption"><%= link_to_remote name.titleize, :url=>eval("client_#{name}_path(@client)"), :update=>'contacts-content',:method=>:get %></div>
 			<div class="links">
-			    <%= link_to_remote 'new', :url=>eval("new_client_#{name.singularize}_path(@client,@#{name.singularize})"), :update=>'contacts-content',:method=>:get %>
+			    <%= link_to_remote 'new', :url=>eval("new_client_#{name.singularize}_path(@client)"), :update=>'contacts-content',:method=>:get %>
 			</div>
 		<% else %>
 			<div class="caption"><div id="#{section}" class="inactive"><%= link_to_remote section.titleize, :url=>eval("client_#{section}_path(@client)"), :update=>'contacts-content',:method=>:get %></div></div>
