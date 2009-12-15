@@ -181,7 +181,7 @@ namespace :db do
       client.updated_at = mydate
       client.creator_id = User.all.rand.id
       client.updater_id = User.all.rand.id
-      Contact.populate 1..3 do |contact|
+      Contact.populate 1..15 do |contact|
         type = ContactType.all.rand
         contact.client_id = client.id
         contact.contact_type_id = type.id

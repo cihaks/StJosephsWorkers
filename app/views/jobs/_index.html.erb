@@ -3,7 +3,7 @@
   <tr>
 	<td class="fieldLabel">Job type</td>
     <td class="fieldLabel">Company</td>
-    <td class="fieldLabel">Pay Scale</td>
+    <td class="fieldLabel">Pay Rate</td>
     <td class="fieldLabel" style="text-align:center;">Current</td>
 	<td class="fieldLabel" style="text-align:center;">Benefits</td>
     <td class="fieldLabel" style="text-align:center;">Full Time</td>
@@ -16,7 +16,11 @@
   <tr>
     <td><%=h job.job_type.name unless job.job_type.nil? %></td>
     <td><%=h job.company.name unless job.company.nil? %></td>
-    <td><%=h number_to_currency(job.pay_scale_low, :precision=>0) %>&nbsp;-<br><%=h number_to_currency(job.pay_scale_high, :precision=>0) %></td>
+    <td>
+    	<!--<%=h number_to_currency(job.pay_scale_low, :precision=>0) %>&nbsp;-<br>
+	    <%=h number_to_currency(job.pay_scale_high, :precision=>0) %><br/>-->
+		<%=h number_to_currency(job.job_rates.last.hourly_rate) unless job.job_rates.empty? %>
+	</td>
     <td align="center"><%= check_box_tag(:current,'true',job.current,:onclick=>"return false;") %></td>
 	<td align="center"><%= check_box_tag(:benefits,'true',job.benefits,:onclick=>"return false;")%>
     <td align="center"><%= check_box_tag(:full_time,'true',job.full_time,:onclick=>"return false;") %></td>

@@ -17,7 +17,7 @@
   <tr>
     <td class="fieldData"><%=h contact.contact_type.name %></td>
     <td width="10"></td>
-    <td class="fieldData"><%=h contact.contact_date.strftime("%m/%d/%y") %></td>
+    <td class="fieldData"><%=h contact.contact_date.strftime("%m/%d/%y") unless contact.contact_date.nil? %></td>
     <td width="10"></td>
     <td class="fieldData" style="text-align: center;"><%= check_box_tag :contact_negative, 'true', contact.contact_negative, :onclick=>"return false;" %></td>
     <td width="10"></td>

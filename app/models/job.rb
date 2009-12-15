@@ -27,7 +27,10 @@ class Job < ActiveRecord::Base
   belongs_to :job_type
   belongs_to :company
   belongs_to :industry
-  has_many :job_rates
+  has_many :job_rates, :order=>"hourly_rate_date DESC"
+  
+  after_update :save_job_rates
+
   
   def benefits
     if medical or dental or retirement_401k or pto 
@@ -35,4 +38,29 @@ class Job < ActiveRecord::Base
     end
     false
   end
+  
+
+  def new_job_rate_attributes=(job_rate_attributes)
+    job_rate_attributes.each do |attributes|
+      job_rates.build(attributes)
+    end
+  end
+  
+  def existing_job_rate_attributes=(job_rate_attributes)
+    job_rates.reject(&:new_record?).each do |job_rate|
+      attributes = job_rate_attributes[job_rate.id.to_s]
+      if attributes
+        job_rate.attributes = attributes
+      else
+        job_rates.delete(task)
+      end
+    end
+  end
+  
+  def save_job_rates
+    job_rates.each do |job_rate|
+      job_rate.save(false)
+    end
+  end
+
 end

@@ -1,5 +1,5 @@
 class ClientsController < ApplicationController
-  layout 'references', :except=>[:list]
+  layout 'references'
   
   # GET /clients
   # GET /clients.xml

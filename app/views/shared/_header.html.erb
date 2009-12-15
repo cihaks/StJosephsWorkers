@@ -3,14 +3,18 @@
 	<%= render 'users/user_bar' %>
 	</div>
 	
-	<div class="headerTitleStatement">
+	<a href="<%= url_for :controller=>'home', :action=>'index' %>"><div class="headerTitleStatement">
 		St. Joseph the Worker
 	</div>
+	</a>
 	<div class="headerEmploymentStatement">
 		<% if controller.controller_name == "sessions" %>
-		  Log In - Phoenix, Arizona
+		  Log In&nbsp;-
 		<% else %>
-		  <%= controller.controller_name.singularize.titleize %> List - Phoenix, Arizona	
+		  <% unless controller.controller_name == "home" %>
+		    <%= controller.controller_name.singularize.titleize %> List&nbsp;-
+		  <% end %>	
 		<% end %>
+		Phoenix, Arizona
 	</div>
 </div>

@@ -24,6 +24,14 @@
 		    <%= f.label :last_verified_date, "Last Verified Date" %><br />
 		    <%= f.date_select :last_verified_date %>
 		  </p>
+		  <p>
+		    <%= f.label :start_date %><br />
+		    <%= f.date_select :start_date, :include_blank=>true %>
+		  </p>
+		  <p>
+		    <%= f.label :end_date %><br />
+		    <%= f.date_select :end_date, :include_blank=>true %>
+		  </p>
       </td>
 	  <td width="15"></td>
 	  <td valign="top">
@@ -36,12 +44,7 @@
 		    <%= f.text_field :pay_scale_high %>
 		  </p>
 		  <p>
-		    <%= f.label :start_date %><br />
-		    <%= f.date_select :start_date, :include_blank=>true %>
-		  </p>
-		  <p>
-		    <%= f.label :end_date %><br />
-		    <%= f.date_select :end_date, :include_blank=>true %>
+		    <%= render 'jobs/job_rate_fields', :locals => { :f=>f } %>
 		  </p>
       </td>
 	  <td width="15"></td>

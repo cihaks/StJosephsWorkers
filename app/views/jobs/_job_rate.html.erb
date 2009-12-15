@@ -1,0 +1,15 @@
+<div class="job_rate">
+  <% fields_for_job_rate(job_rate) do |job_rate_form| %>
+    <p>
+      <%= job_rate_form.label :hourly_rate, "Pay Rate" %><br/>
+	  <%= job_rate_form.text_field :hourly_rate %>
+      <%= link_to_function "remove", "$(this).up('.job_rate').remove()" %>
+    </p>
+	<p>
+	  <%= job_rate_form.label :hourly_rate_date, "Pay Rate Start Date" %><br />
+	  <%= job_rate_form.date_select :hourly_rate_date, :include_blank=>true %>
+	</p>
+  <% end %>
+</div>
+
+

@@ -69,52 +69,26 @@ Parole Probation
 
 
 
+After data intake
+----------------------------------
+Add
+  Agencies
+  Agency Types
+  Crime Types
+  Industries
+  Job Types
+  Prisons
+  Resource Types
+  Status Types
+  Substances
 
 
- <!-- Script by hscripts.com -->
- <!-- Copyright of HIOXINDIA -->
- <!-- More scripts @www.hscripts.com -->
+Notes for Data Conversion
+----------------------------------
+Gender => M or F
+determine true or false for tinyint(1)
 
-//Insert the below code into your head part. 
-
-  <script type="text/javascript" src="hexpander/movingjs.js"></script>
-
-  //Insert the below code into your body part.    
-
-  <table align=center height="100px" border=0 width="500px" cellspacing=0 cellpadding=0>
-  <tr><td>
-  <a style="font-family:verdana;font-size:12px;">
-  <img src="hexpander/insert.jpg" id="insert1" align="absmiddle" onClick="toggleSlide('div1',this.id);">Hioxindia</a>
-  <div id="div1" style="display:none; overflow: hidden; height: 75px;margin:10px;">
-  <div style="font-family:verdana;font-size:12px;">HIOX INDIA is currently involved in web services, software/application development, web content development, web hosting, domain registration, internet solutions and web design.</div>
-  </div><br>
-  <a style="font-family:verdana;font-size:12px;"><img src="hexpander/insert.jpg" id="insert2" align="absmiddle" onClick="toggleSlide('div2',this.id);">Hscripts</a>
-  <div id="div2" style="display:none; overflow: hidden; height: 75px;margin:10px;">
-  <div style="font-family:verdana;font-size:12px;">Free php, javascript and jsp scripts,  free tutorials, free online web site tools, free gif myspace icons, free clipart images and other webmaster resources. </div>
-  </div><br>
-  <a style="font-family:verdana;font-size:12px;"><img src="hexpander/insert.jpg" id="insert3" align="absmiddle" onClick="toggleSlide('div3',this.id);">Funmin</a>
-  <div id="div3" style="display:none; overflow: hidden; height: 75px;margin:10px;">
-  <div style="font-family:verdana;font-size:12px;">Free online games , offline games and flash games are available. All the games are very interesting and challenging. </div>
-  </div><br>
-  </td></tr></table>
-  <div style="font-size: 10px; color: #dadada;" id="dumdiv">
-  <a href="http://www.hscripts.com" id="dum" style="text-decoration:none; color: #dadada;">© hscripts.com</a>
-  </div>
-  <script language="javascript">
-  document.onload = ctck();
-  function ctck()
-  {
-     var sds = document.getElementById("dum");
-     if(sds == null){alert("You are using a free package.\n You are not allowed to remove the tag.\n");}
-       var sdss = document.getElementById("dumdiv");
-     if(sdss == null){alert("You are using a free package.\n You are not allowed to remove the tag.\n");}
-   }
-
-  </script>
-
-  <!-- Script by hscripts.com -->
-
-
+  
 
 
 

@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   
   # render new.rhtml
   def new
-    redirect_to clients_path if logged_in?
+    redirect_to home_path if logged_in?
   end
 
   def create
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
       self.current_user = user
       new_cookie_flag = (params[:remember_me] == "1")
       handle_remember_cookie! new_cookie_flag
-      redirect_to clients_path
+      redirect_to home_path
       flash[:notice] = "Logged in successfully"
     else
       note_failed_signin

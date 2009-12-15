@@ -31,6 +31,7 @@ class JobsController < ApplicationController
   # GET /jobs/new.xml
   def new
     @job = @client.jobs.build
+    @job.job_rates.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -63,6 +64,8 @@ class JobsController < ApplicationController
   # PUT /jobs/1
   # PUT /jobs/1.xml
   def update
+    params[:job][:existing_job_rate_attributes] ||= {}
+
     @job = @client.jobs.find(params[:id])
 
     respond_to do |format|

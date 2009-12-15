@@ -40,6 +40,12 @@
   </tr>
   <tr height="3"><td colspan="15" height="3"><hr></td></tr>
 <% end %>
+<% if @client.assigned_resources.empty? %>
+  <tr>
+  	<td colspan="5" class="fieldData">No Assigned Resources</td>
+  </tr>
+<% end %>
+
 </table>
 
 <br />

@@ -1,0 +1,13 @@
+<p>Welcome to the new St Joseph the Worker Job Readiness Application</p>
+
+<p>To search for a client, please enter the first name or last name (do not enter both).</p>
+
+<p>
+	<form name="sform" action="<%= url_for :controller=>'clients', :action=>'index' %>" method="get">
+		<label for="query">Filter: </label>
+		<%= text_field_tag("query", params['query'], :size => 10 ) %>
+		<%= submit_tag 'Search' %>
+	</form>
+</p>
+
+<br/>

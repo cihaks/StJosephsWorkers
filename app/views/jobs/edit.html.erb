@@ -1,63 +1,88 @@
 
 <% form_for([@client, @job]) do |f| %>
   <%= f.error_messages %>
-
-  <p>
-    <%= f.label :job_type_id, 'Job Type' %><br />
-    <%= f.collection_select(:job_type_id, JobType.all, :id, :name) %>
-  </p>
-  <p>
-    <%= f.label :company_id, 'Company' %><br />
-    <%= f.collection_select(:company_id, Company.all, :id, :name) %>
-  </p>
-  <p>
-    <%= f.label :pay_scale_low %><br />
-    <%= f.text_field :pay_scale_low %>
-  </p>
-  <p>
-    <%= f.label :pay_scale_high %><br />
-    <%= f.text_field :pay_scale_high %>
-  </p>
-  <p>
-    <%= f.label :current %><br />
-    <%= f.check_box :current %>
-  </p>
-  <p>
-    <%= f.label :medical %><br />
-    <%= f.check_box :medical %>
-  </p>
-  <p>
-    <%= f.label :dental %><br />
-    <%= f.check_box :dental %>
-  </p>
-  <p>
-    <%= f.label :retirement_401k %><br />
-    <%= f.check_box :retirement_401k %>
-  </p>
-  <p>
-    <%= f.label :pto, 'Paid Time Off' %><br />
-    <%= f.check_box :pto %>
-  </p>
-  <p>
-    <%= f.label :full_time, 'Full Time' %><br />
-    <%= f.check_box :full_time %>
-  </p>
-  <p>
-    <%= f.label :temp_to_hire, 'Temp To Hire' %><br />
-    <%= f.check_box :temp_to_hire %>
-  </p>
-  <p>
-    <%= f.label :start_date %><br />
-    <%= f.date_select :start_date, :include_blank=>true %>
-  </p>
-  <p>
-    <%= f.label :end_date %><br />
-    <%= f.date_select :end_date, :include_blank=>true %>
-  </p>
-  <p>
-    <%= f.submit 'Update' unless request.xhr? %>
-	<%= submit_to_remote 'update_ajax_btn', 'Update', :url=>{:action=>'update'}, :update=>'jobs-content' if request.xhr? %>
-  </p>
+  <table>
+  	<tr>
+  	  <td valign="top">
+		  <p>
+		    <%= f.label :job_type_id, 'Job Type' %><br />
+		    <%= f.collection_select(:job_type_id, JobType.all, :id, :name) %>
+		  </p>
+		  <p>
+		    <%= f.label :company_id, 'Company' %><br />
+		    <%= f.collection_select(:company_id, Company.all, :id, :name) %>
+		  </p>
+		  <p>
+		    <%= f.label :industry_id, 'Industry' %><br />
+		    <%= f.collection_select(:industry_id, Industry.all, :id, :name) %>
+		  </p>
+		  <p>
+		    <%= f.check_box :current %>
+		    <%= f.label :current %>
+		  </p>
+		  <p>
+		    <%= f.label :last_verified_date, "Last Verified Date" %><br />
+		    <%= f.date_select :last_verified_date %>
+		  </p>
+		  <p>
+		    <%= f.label :start_date %><br />
+		    <%= f.date_select :start_date, :include_blank=>true %>
+		  </p>
+		  <p>
+		    <%= f.label :end_date %><br />
+		    <%= f.date_select :end_date, :include_blank=>true %>
+		  </p>
+      </td>
+	  <td width="15"></td>
+	  <td valign="top">
+		  <p>
+		    <%= f.label :pay_scale_low %><br />
+		    <%= f.text_field :pay_scale_low %>
+		  </p>
+		  <p>
+		    <%= f.label :pay_scale_high %><br />
+		    <%= f.text_field :pay_scale_high %>
+		  </p>
+		  <p>
+		    <%= render 'jobs/job_rate_fields', :locals => { :f=>f } %>
+		  </p>
+      </td>
+	  <td width="15"></td>
+	  <td valign="top">
+		  <p>
+			<%= f.label :benefits %><br/>
+		    <%= f.check_box :medical %>
+		    <%= f.label :medical %>
+		  </p>
+		  <p>
+		    <%= f.check_box :dental %>
+		    <%= f.label :dental %>
+		  </p>
+		  <p>
+		    <%= f.check_box :retirement_401k %>
+		    <%= f.label :retirement_401k %>
+		  </p>
+		  <p>
+		    <%= f.check_box :pto %>
+		    <%= f.label :pto %>
+		  </p>
+		  <p>
+		    <%= f.check_box :full_time %>
+		    <%= f.label :full_time %>
+		  </p>
+		  <p>
+		    <%= f.check_box :temp_to_hire %>
+		    <%= f.label :temp_to_hire %>
+		  </p>
+      </td>
+    </tr>
+    <tr>
+	  <td>
+	    <%= f.submit 'Update' unless request.xhr? %>
+		<%= submit_to_remote 'update_ajax_btn', 'Update', :url=>{:action=>'update'}, :update=>'jobs-content' if request.xhr? %>
+  	  </td>
+  	</tr>
+  </table>
 <% end %>
 
 <br/>
