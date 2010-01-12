@@ -311,7 +311,7 @@ namespace :db do
         phone.client_id = client.id
         phone.phone_number = Faker::PhoneNumber.phone_number
         if [false,true,true,true,true].rand
-          phone.primary = true
+          phone.primary_ind = true
         end
         phone.creator_id = User.all.rand.id
         phone.updater_id = User.all.rand.id

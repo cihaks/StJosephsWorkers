@@ -101,4 +101,8 @@ class ClientsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def add_office_visit
+    
+  end
 end

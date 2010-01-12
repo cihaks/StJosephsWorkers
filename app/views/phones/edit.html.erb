@@ -7,8 +7,8 @@
     <%= f.text_field :phone_number %>
   </p>
   <p>
-    <%= f.label :primary %><br />
-    <%= f.check_box :primary %>
+    <%= f.label :primary_ind, "Primary" %><br />
+    <%= f.check_box :primary_ind %>
   </p>
   <p>
     <%= f.submit 'Update' unless request.xhr? %>

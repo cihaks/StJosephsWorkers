@@ -26,4 +26,9 @@
 
 class Phone < ActiveRecord::Base
   belongs_to :client
+  
+  def is_primary?
+    self.primary_ind
+  end
+  
 end

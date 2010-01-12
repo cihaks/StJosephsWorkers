@@ -6,7 +6,7 @@
 
 <p>
   <b>Primary:</b>
-  <%= check_box_tag :phone_primary, 'true', @phone.primary, :onclick=>"return false;"%>
+  <%= check_box_tag :phone_primary, 'true', @phone.is_primary?, :onclick=>"return false;"%>
 </p>
 
 

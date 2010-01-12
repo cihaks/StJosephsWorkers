@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091108221353) do
+ActiveRecord::Schema.define(:version => 20091108042459) do
 
   create_table "address_types", :force => true do |t|
     t.string   "name"
@@ -101,16 +101,6 @@ ActiveRecord::Schema.define(:version => 20091108221353) do
     t.boolean  "veteran"
     t.boolean  "success_story"
     t.date     "birth_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "creator_id"
-    t.integer  "updater_id"
-  end
-
-  create_table "clients_programs", :id => false, :force => true do |t|
-    t.integer  "client_id"
-    t.integer  "jobs_id"
-    t.integer  "programs_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "creator_id"
@@ -267,7 +257,7 @@ ActiveRecord::Schema.define(:version => 20091108221353) do
   create_table "phones", :force => true do |t|
     t.integer  "client_id"
     t.string   "phone_number"
-    t.boolean  "primary"
+    t.boolean  "primary_ind"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "creator_id"
@@ -290,15 +280,6 @@ ActiveRecord::Schema.define(:version => 20091108221353) do
     t.string   "name"
     t.string   "county"
     t.boolean  "out_of_state"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "creator_id"
-    t.integer  "updater_id"
-  end
-
-  create_table "programs", :force => true do |t|
-    t.string   "name"
-    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "creator_id"

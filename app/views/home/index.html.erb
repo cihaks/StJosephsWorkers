@@ -3,7 +3,7 @@
 <p>To search for a client, please enter the first name or last name (do not enter both).</p>
 
 <p>
-	<form name="sform" action="<%= url_for :controller=>'clients', :action=>'index' %>" method="get">
+	<form action="<%= url_for :controller=>'clients', :action=>'index' %>">
 		<label for="query">Filter: </label>
 		<%= text_field_tag("query", params['query'], :size => 10 ) %>
 		<%= submit_tag 'Search' %>
