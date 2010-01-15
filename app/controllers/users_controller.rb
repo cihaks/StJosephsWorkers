@@ -6,8 +6,8 @@ class UsersController < SecurityController
     @users = User.search(params[:query],params[:page],current_user.page_limit)
     
     respond_to do |format|
-      format.js { render :layout=>false }
       format.html
+      format.js { render :layout=>false }
       format.xml { render :xml => @users }
     end
   end

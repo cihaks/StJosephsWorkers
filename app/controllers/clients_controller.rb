@@ -8,10 +8,9 @@ class ClientsController < ApplicationController
     @clients = Client.search(params[:query],params[:page],current_user.page_limit)
     
     respond_to do |format|
-      format.js { render :layout=>false }
       format.html 
+      format.js { render :layout=>false }
       format.xml  { render :xml => @clients }
-      format.any
     end
   end
 
@@ -28,8 +27,8 @@ class ClientsController < ApplicationController
     #redirect_to client_contacts_path(@client)
     
     respond_to do |format|
-      format.js { render :layout=>'client-content' }
       format.html # show.html.erb
+      format.js { render :layout=>'client-content' }
       format.xml  { render :xml => @client }
     end
   end
@@ -49,8 +48,8 @@ class ClientsController < ApplicationController
   def edit
     @client = Client.find(params[:id])
     respond_to do |format|
-      format.js { render :layout=>'client_content' }
       format.html
+      format.js { render :layout=>'client_content' }
     end
   end
 

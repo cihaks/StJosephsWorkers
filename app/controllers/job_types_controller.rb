@@ -12,8 +12,8 @@ class JobTypesController < SecurityController
     @job_types = JobType.search(params[:query],params[:page],current_user.page_limit)
 
     respond_to do |format|
-      format.js { render :layout=>false }
       format.html # index.html.erb
+      format.js { render :layout=>false }
       format.xml  { render :xml => @job_types }
     end
   end
