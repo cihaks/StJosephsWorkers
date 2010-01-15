@@ -23,6 +23,7 @@ class ApplicationController < ActionController::Base
     @alerts = @client.contacts.find( :all, :conditions=>"alert = true" ) unless @client.nil?
   end
   
+  before_filter :check_session, :no_cache
   after_filter :store_location, :only => [:index, :new, :show, :edit]
   
   def toggle_admin
@@ -35,12 +36,18 @@ class ApplicationController < ActionController::Base
   
   layout proc{ |c| c.request.xhr? ? false : "references" }
   
-  before_filter :check_session
-  
   def check_session
     session[:jobs_section] = 'jobs' if session[:jobs_section].nil?
     session[:contacts_section] = 'contacts' if session[:contacts_section].nil?
     session[:infamy_section] = 'used_substances' if session[:infamy_section].nil?
+  end
+  
+  def no_cache
+    response.headers["Expires"] = 0
+    # HTTP 1.0
+    response.headers["Pragma"] = "no-cache"
+    # HTTP 1.1 'pre-check=0, post-check=0' (IE specific)
+    response.headers["Cache-Control"] = 'no-store, no-cache, must-revalidate, max-age=0, pre-check=0, post-check=0'
   end
   
 end
