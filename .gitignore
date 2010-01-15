@@ -6,3 +6,6 @@ db/*.sqlite3
 public/system/photos/**/*
 .project
 config/database.yml
+MeetingNotes20091214.txt
+StJoesDB.sql
+*.pem
