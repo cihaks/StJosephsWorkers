@@ -11,6 +11,7 @@ class ClientsController < ApplicationController
       format.js { render :layout=>false }
       format.html 
       format.xml  { render :xml => @clients }
+      format.any
     end
   end
 
