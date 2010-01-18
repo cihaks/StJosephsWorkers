@@ -38,7 +38,7 @@
     <td><%= link_to_remote 'Edit', :url=>edit_client_assigned_resource_path(@client,assigned_resource), :update=>'contacts-content', :method=>:get %></td>
     <td><%= link_to_remote 'Destroy', :url=>client_assigned_resource_path(@client,assigned_resource), :update=>'contacts-content', :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
-  <tr height="3"><td colspan="15" height="3"><hr></td></tr>
+  <tr><td colspan="15" height="3"><hr/></td></tr>
 <% end %>
 <% if @client.assigned_resources.empty? %>
   <tr>

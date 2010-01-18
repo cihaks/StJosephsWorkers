@@ -14,8 +14,8 @@
 <body>
 <div id="wrapper">
 	
-	<%= render 'shared/header' %>
-	<%= render 'shared/navigation' %>
+	<%= render "/shared/header" %>
+	<%= render '/shared/navigation' %>
 		
 	<div id="content">
 		<% unless flash[:error].nil? %><p style="color: red"><%= flash[:error] %></p><% end %>
@@ -33,7 +33,7 @@
 					<%= render :partial=>'shared/banner_contacts', :locals => {:name=>session[:contacts_section], :sections=>["contacts","addresses","phones","pictures","assigned_resources"] } %>
 					<div id="contacts-element">
 					  <%= render "#{session[:contacts_section]}/index" %>
-					</div
+					</div>
 				</div>
 			    <br/>
 				<div id="jobs-content">
@@ -45,15 +45,15 @@
 			    <br/>
 				<div id="infamy-content">
 				  <%= render :partial=>'shared/banner_infamy', :locals => {:name=>session[:infamy_section], :sections=>["assigned_agencies","used_substances","crime_sentences"]} %>
-				  <div id="jobs-element">
+				  <div id="infamy-element">
 				    <%= render "#{session[:infamy_section]}/index"  %>
 				  </div>
 				</div>
 			<% else %>
 				<%= render 'shared/banner_references' %>
 				<div id="item_list">
-				<%= yield %>
-				<div id="item_list">
+				  <%= yield %>
+				</div>
 			<% end %>
 		<% else %>
 			<%= yield %>

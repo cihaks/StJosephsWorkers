@@ -18,7 +18,7 @@
     <td><%= link_to 'Edit', edit_company_path(company) %></td>
     <td><%= link_to 'Destroy', company, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
-  <tr><td colspan="10"><hr></td></tr>
+  <tr><td colspan="10"><hr/></td></tr>
 <% end %>
 </table>
 <%= will_paginate @companies, :remote => {:method=>:get, :update => 'item_list'} %>

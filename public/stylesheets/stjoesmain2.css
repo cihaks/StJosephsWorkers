@@ -200,7 +200,7 @@ padding:5px 5px 5px 0.5em;
 text-decoration:none;
 }
 img.admin_arrow {
-border: 1 none;
+border: 0 none;
 }
 /*#footer {
 background-color:transparent;
@@ -269,7 +269,7 @@ float:left;
 text-decoration:none;
 }
 div.banner .caption .inactive a {
-	color:grey;
+	color: gray;
 }
 div.banner .tabspacer {
 	padding-left: 10px;
@@ -280,7 +280,7 @@ div.banner .icons {
 	margin-left:10px;
 	color: black;
 	float:left;
-	text-align:top;
+	text-align:left;
 }
 div.banner .links {
 	margin-top:3px;
@@ -293,7 +293,7 @@ div.banner .links {
 	padding-left:2px;
 	padding-right:2px;
 	text-align:center;
-	vertical-align:center;
+	vertical-align:middle;
 	float: left;
 }
 .links a {

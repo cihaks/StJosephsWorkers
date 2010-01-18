@@ -3,9 +3,10 @@
 	<%= render 'users/user_bar' %>
 	</div>
 	
-	<a href="<%= url_for :controller=>'home', :action=>'index' %>"><div class="headerTitleStatement">
+	<a href="<%= url_for :controller=>'home', :action=>'index' %>">
+	  <span class="headerTitleStatement">
 		St. Joseph the Worker
-	</div>
+	  </span>
 	</a>
 	<div class="headerEmploymentStatement">
 		<% if controller.controller_name == "sessions" %>

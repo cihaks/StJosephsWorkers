@@ -23,10 +23,11 @@ class Address < ActiveRecord::Base
   
   def full_address
     address = ""
-    address+address1 unless address1.nil?
-    address+", "+address2 unless address2.nil? or address2.empty?
-    address+", "+city unless city.nil?
-    address+", "+state.code unless state.nil?
-    address+", "+zip_code.to_s unless zip_code.nil?
+    address = address+address1 unless address1.nil?
+    address = address+", "+address2 unless (address2.nil? or address2.empty?)
+    address = address+", "+city unless city.nil?
+    address = address+", "+state.code unless state.nil?
+    address = address+", "+zip_code.to_s unless zip_code.nil?
+    address
   end
 end

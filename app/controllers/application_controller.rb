@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
   end
   
   def no_cache
-    response.headers["Expires"] = 0
+    response.headers["Expires"] = '0'
     # HTTP 1.0
     response.headers["Pragma"] = "no-cache"
     # HTTP 1.1 'pre-check=0, post-check=0' (IE specific)

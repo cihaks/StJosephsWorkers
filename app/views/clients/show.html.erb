@@ -1,6 +1,4 @@
 <div class="photoImage floatLeft">
-  <tr>
-	<td>
 		<div id="client-image">
 			<% unless @client.pictures.empty? %>
 				<% image_url=@client.pictures.first.photo.url %>
@@ -11,8 +9,6 @@
 			<% end %>
 			<%= link_to_remote image_tag(image_url, :size=>"50x50"), :url=>link_url, :update=>'contacts-content', :method=>:get %>
 		</div>
-	</td>
-  </tr>
 </div>
 
 <% fields_for @client do |f| %>

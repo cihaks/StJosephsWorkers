@@ -7,7 +7,7 @@
 				<%= link_to_remote 'new', :url=>eval("new_client_#{name.singularize}_path(@client)"), :update=>'infamy-content',:method=>:get %>
 			</div>
 		<% else %>
-			<div class="caption"><div id="#{section}" class="inactive"><%= link_to_remote section.titleize, :url=>eval("client_#{section}_path(@client)"), :update=>'infamy-content',:method=>:get %></div></div>
+			<div class="caption"><div id="<%= section %>" class="inactive"><%= link_to_remote section.titleize, :url=>eval("client_#{section}_path(@client)"), :update=>'infamy-content',:method=>:get %></div></div>
 		<% end %>
 		<div class="tabspacer">&nbsp;</div>
 	<% end %>

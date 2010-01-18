@@ -5,7 +5,7 @@
 			<%= link_to 'new', eval("new_#{controller.controller_name.singularize}_path(@#{controller.controller_name.singularize})") %>
 	  </div>
 	  <div style="float:right;">
-		  <%= image_tag("spinner.gif",:align => "absmiddle",:border => 0,:id => "spinner",:style =>"display: none;" ) %>
+		  <%= image_tag("spinner.gif",:align => "middle",:border => 0,:id => "spinner",:style =>"display: none;" ) %>
 						  
 		  <form name="sform" action="" style="display:inline;" method="get">
 			<label for="query">Filter: </label>

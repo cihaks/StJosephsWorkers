@@ -6,7 +6,9 @@
 		<li>
 			<%= link_to_remote( 'Admin', :url=>{:action=>'toggle_admin'} )%>
 		</li>
+		</ul>
 		<div id="adminlinks" style="<%= 'display:none' if session[:show_admin] != true %>">
+		<ul>
 		<li class="indent1"><%= link_to "Address Types", address_types_path %></li>
 		<li class="indent1"><%= link_to "Agencies", agencies_path %></li>
 		<li class="indent1"><%= link_to "Agency Types", agency_types_path %></li>
@@ -23,9 +25,10 @@
 		<li class="indent1"><%= link_to "Substances", substances_path %></li>
 		<li class="indent1"><%= link_to "User Accounts", users_path %></li>
 		<li class="indent1"><%= link_to "Roles", roles_path %></li>
+		</ul>
 		</div>
 	<% end %>
-	
+	<ul>
 	<% if authorized_for? :index, :reports %>
 		<li><%= link_to "Reports", reports_path %></li>
 		<% if @reports_flag %>
