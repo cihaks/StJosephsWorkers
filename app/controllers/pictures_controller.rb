@@ -93,7 +93,7 @@ class PicturesController < ApplicationController
   def destroy
     @picture = @client.pictures.find(params[:id])
     @picture.destroy
-
+    
     respond_to do |format|
       format.html { redirect_to client_pictures_path(@client) }
       format.xml  { head :ok }
