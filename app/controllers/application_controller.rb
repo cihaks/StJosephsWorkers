@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
   def check_session
     session[:jobs_section] = 'jobs' if session[:jobs_section].nil?
     session[:contacts_section] = 'contacts' if session[:contacts_section].nil?
-    session[:infamy_section] = 'used_substances' if session[:infamy_section].nil?
+    session[:infamy_section] = 'assigned_agencies' if session[:infamy_section].nil?
   end
   
   #fixes issue with IE cache and page updates
