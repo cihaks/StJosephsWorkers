@@ -14,6 +14,12 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
   
+  #set default layout for non-ajax calls
+  layout proc{ |c| c.request.xhr? ? false : "references" }
+  
+  before_filter :check_session, :no_cache
+  after_filter :store_location, :only => [:index, :new, :show, :edit]
+  
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
   
@@ -23,9 +29,6 @@ class ApplicationController < ActionController::Base
     @alerts = @client.contacts.find( :all, :conditions=>"alert = true" ) unless @client.nil?
   end
   
-  before_filter :check_session, :no_cache
-  after_filter :store_location, :only => [:index, :new, :show, :edit]
-  
   def toggle_admin
     session[:show_admin].nil? ? session[:show_admin] = true : session[:show_admin] = !session[:show_admin]
     render :update do |page|
@@ -34,14 +37,13 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  layout proc{ |c| c.request.xhr? ? false : "references" }
-  
   def check_session
     session[:jobs_section] = 'jobs' if session[:jobs_section].nil?
     session[:contacts_section] = 'contacts' if session[:contacts_section].nil?
     session[:infamy_section] = 'used_substances' if session[:infamy_section].nil?
   end
   
+  #fixes issue with IE cache and page updates
   def no_cache
     response.headers["Expires"] = '0'
     # HTTP 1.0

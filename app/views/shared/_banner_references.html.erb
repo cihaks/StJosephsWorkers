@@ -10,10 +10,10 @@
 		  <form name="sform" action="" style="display:inline;" method="get">
 			<label for="query">Filter: </label>
 			<%= text_field_tag("query", params['query'], :size => 10 ) %>
-			<%= link_to_remote 'clear', :url=>eval("#{controller.controller_name}_path"), :update=>'item_list', :method=>'get', :before=>"sform.query.value=null" %>
+			<%= link_to_remote 'clear', :url=>eval("#{controller.controller_name}_path"), :update=>'item_list', :method=>'get', :before=>"sform.query.value=''" %>
 			
 			
-		  <%= observe_field 'query',  
+		    <%= observe_field 'query',  
 			         :url => {:controller=>controller.controller_name,:action=>'index'},
 					 :method => :get,
 					 :frequency => 0.5,
