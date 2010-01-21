@@ -15,7 +15,7 @@
     <td width="10"></td>
   </tr>
 
-<%= render :partial=>'contacts/contact', :collection=>@client.contacts.take(session[:show_all_contacts]==1 ? @client.contacts.length : @current_user.sub_page_limit) %>
+<%= render :partial=>'contacts/contact', :collection=>@client.contacts.first(session[:show_all_contacts]==1 ? @client.contacts.length : @current_user.sub_page_limit) %>
 
 <% if @client.contacts.empty? %>
   <tr>
