@@ -74,7 +74,7 @@ class Client < ActiveRecord::Base
   
   def self.search(search, page, page_limit)
     paginate :per_page=>page_limit, :page=>page,
-             :conditions => ["first_name LIKE ? or middle_name LIKE ? or last_name LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%"],
+             :conditions => ["first_name LIKE ? or middle_name LIKE ? or last_name LIKE ? or id=?", "%#{search}%", "%#{search}%", "%#{search}%", "#{search}"],
              :order => 'last_name, first_name, middle_name'
   end
 end

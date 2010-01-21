@@ -1,0 +1,15 @@
+<tr>
+  <td class="fieldData"><%=h contact.contact_type.name %></td>
+  <td width="10"></td>
+  <td class="fieldData"><%=h contact.contact_date.strftime("%m/%d/%y") unless contact.contact_date.nil? %></td>
+  <td width="10"></td>
+  <td class="fieldData" style="text-align: center;"><%= check_box_tag :contact_negative, 'true', contact.contact_negative, :onclick=>"return false;" %></td>
+  <td width="10"></td>
+  <td class="fieldData" style="text-align: center;"><%= check_box_tag :alert, 'true', contact.alert, :onclick=>"return false;" %></td>
+  <td width="10"></td>
+	<td class="fieldData"><%=h contact.note %></td>
+  <td width="10"></td>
+  <td><%= link_to_remote 'Details', :url=>client_contact_path(@client,contact), :update=>'contacts-content', :method=>:get %></td>
+  <td><%= link_to_remote 'Edit', :url=>edit_client_contact_path(@client,contact), :update=>'contacts-content', :method=>:get %></td>
+  <td><%= link_to_remote 'Destroy', :url=>client_contact_path(@client,contact), :update=>'contacts-content', :confirm => 'Are you sure?', :method => :delete %></td>
+</tr>

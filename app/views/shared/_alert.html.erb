@@ -1,3 +1,7 @@
 <tr>
-  <td class="fieldData"><%=h alert.contact_date.strftime("%m/%d/%y") %>&nbsp;(<%=h User.find(alert.updater_id).name unless alert.updater_id.nil? %>)&nbsp;-&nbsp;<%=h alert.note %></td>
+  <td class="fieldData">
+	<%=h alert.contact_date.strftime("%m/%d/%y") %>&nbsp;(<%=h User.find(alert.updater_id).name unless alert.updater_id.nil? %>)&nbsp;-&nbsp;<%=h alert.note %>&nbsp;&nbsp;
+	<%= link_to_remote 'remove alert', :url=>{:controller => :contacts, :action=>:remove_alert, :id=>alert.id}, :with=>"'client_id="+@client.id.to_s+"'", :update=>'client-element' %>
+	
+  </td>
 </tr>

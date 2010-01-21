@@ -7,8 +7,13 @@ class ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.xml
   def index
+    
+    session[:show_all_contacts] = 1 if params[:show_all_contacts]=='true'
+    session[:show_all_contacts] = 0 if params[:show_all_contacts]=='false'
+    
     respond_to do |format|
       format.html # index.html.erb
+      format.js { render :layout => false unless params[:show_all_contacts].nil? }
       format.xml  { render :xml => @contacts }
     end
   end
@@ -93,6 +98,26 @@ class ContactsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(client_contacts_path(@client)) }
       format.xml  { head :ok }
+    end
+  end
+  
+  def remove_alert
+    @contact.alert = false
+    
+    respond_to do |format|
+      if @contact.save
+        format.html { redirect_to(client_contacts_path(@client) ) }
+        format.xml  { render :xml => @contact, :status => :created, :location => @contact }
+        format.js do
+          render :update do |page|
+            page.replace_html 'client-content', :partial=>'shared/client_show'
+            page.replace_html 'contacts-element', :partial=>'contacts/index'
+          end
+        end
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @contact.errors, :status => :unprocessable_entity }
+      end
     end
   end
   

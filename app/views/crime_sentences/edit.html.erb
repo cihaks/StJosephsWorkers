@@ -4,11 +4,11 @@
 
   <p>
     <%= f.label :start_date %><br />
-    <%= f.date_select :start_date %>
+    <%= f.date_select :start_date, :include_blank=>true, :discard_day=>true, :start_year=>Time.now.year-50, :end_year=>Time.now.year %>
   </p>
   <p>
     <%= f.label :release_date %><br />
-    <%= f.date_select :release_date %>
+    <%= f.date_select :start_date, :include_blank=>true, :discard_day=>true, :start_year=>Time.now.year-50, :end_year=>Time.now.year %>
   </p>
   <p>
     <%= f.label :prison %><br />

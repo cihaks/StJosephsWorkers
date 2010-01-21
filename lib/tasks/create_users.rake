@@ -1,6 +1,6 @@
 
 namespace :db do
-  task :create_clients => :environment do
+  task :create_users => :environment do
     require 'populator'
     require 'faker'
     require 'digest/sha1'

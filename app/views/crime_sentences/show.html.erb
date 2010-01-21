@@ -1,22 +1,22 @@
 
 <p>
   <b>Start date:</b>
-  <%=h @crime_sentence.start_date.strftime("%m/%d/%Y") unless @crime_sentence.start_date.nil? %>
+  <%=h @crime_sentence.start_date.strftime("%b %Y") unless @crime_sentence.start_date.nil? %>
 </p>
 
 <p>
   <b>End date:</b>
-  <%=h @crime_sentence.release_date.strftime("%m/%d/%Y") unless @crime_sentence.release_date.nil? %>
+  <%=h @crime_sentence.release_date.strftime("%b %Y") unless @crime_sentence.release_date.nil? %>
 </p>
 
 <p>
   <b>Prison:</b>
-  <%=h @crime_sentence.prison.name %>
+  <%=h @crime_sentence.prison.name unless @crime_sentence.prison.nil? %>
 </p>
 
 <p>
   <b>Crime type:</b>
-  <%=h @crime_sentence.crime_type.name %>
+  <%=h @crime_sentence.crime_type.name unless @crime_sentence.crime_type.nil? %>
 </p>
 
 <p>

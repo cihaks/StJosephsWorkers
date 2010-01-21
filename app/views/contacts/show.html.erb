@@ -19,7 +19,7 @@
       <b>Entered By:</b>
     </td>
     <td class="fieldData" align="left">
-      <%=h User.find_by_id(@contact.updater_id).name %>
+      <%=h User.find_by_id(@contact.updater_id).name unless @contact.updater_id.nil? %>
     </td>
 	<td width="10"></td>
     <td class="fieldLabel" align="right">

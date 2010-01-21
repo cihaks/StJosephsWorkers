@@ -19,7 +19,7 @@
 		  </p>
 		  <p>
 		    <%= f.label :birth_date %><br />
-		    <%= f.date_select :birth_date,:include_blank=>true %>
+		    <%= f.date_select :birth_date,:include_blank=>true, :start_year=>Time.now.year-70, :end_year=>Time.now.year-10 %>
 		  </p>
   		</td>
 		<td width="10"></td>

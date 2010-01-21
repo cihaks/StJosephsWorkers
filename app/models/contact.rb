@@ -17,4 +17,11 @@
 class Contact < ActiveRecord::Base
   belongs_to :client
   belongs_to :contact_type
+  
+  def self.search(search, page, page_limit)
+    paginate :per_page=>page_limit, :page=>page,
+             :conditions => ["client_id = ?", "%#{search}%"],
+             :order => 'contact_date desc'
+  end
+  
 end

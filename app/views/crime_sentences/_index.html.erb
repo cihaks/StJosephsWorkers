@@ -16,13 +16,13 @@
 
 <% @client.crime_sentences.each do |crime_sentence| %>
   <tr>
-    <td class="fieldData"><%=h crime_sentence.start_date.strftime("%m/%d/%Y") unless crime_sentence.start_date.nil? %></td>
+    <td class="fieldData"><%=h crime_sentence.start_date.strftime("%b %Y") unless crime_sentence.start_date.nil? %></td>
 	<td width="10"></td>
-    <td class="fieldData"><%=h crime_sentence.release_date.strftime("%m/%d/%Y") unless crime_sentence.release_date.nil? %></td>
+    <td class="fieldData"><%=h crime_sentence.release_date.strftime("%b %Y") unless crime_sentence.release_date.nil? %></td>
 	<td width="10"></td>
-    <td class="fieldData"><%=h crime_sentence.prison.name %></td>
+    <td class="fieldData"><%=h crime_sentence.prison.name unless crime_sentence.prison.nil? %></td>
 	<td width="10"></td>
-    <td class="fieldData"><%=h crime_sentence.crime_type.name %></td>
+    <td class="fieldData"><%=h crime_sentence.crime_type.name unless crime_sentence.crime_type.nil? %></td>
 	<td width="10"></td>
     <td class="fieldData" align="center"><%= check_box_tag :felony, 'true', crime_sentence.felony, :onclick=>"return false;" %></td>
     <td class="fieldData" align="center"><%= check_box_tag :violent, 'true', crime_sentence.violent, :onclick=>"return false;" %></td>
