@@ -71,7 +71,7 @@ class AssignedAgenciesController < ApplicationController
     respond_to do |format|
       if @assigned_agency.update_attributes(params[:assigned_agency])
         flash[:notice] = 'AssignedAgency was successfully updated.'
-        format.html { redirect_to( client_assigned_agency_path(@client,@assigned_agency) ) }
+        format.html { redirect_to( client_assigned_agencies_url(@client) ) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
