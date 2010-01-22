@@ -21,13 +21,13 @@
   <tr>
   	<td colspan="10" class="fieldData">No Contacts</td>
   </tr>
-<% elsif session[:show_all_contacts]==0 or session[:show_all_contacts].nil? %>
+<% elsif (session[:show_all_contacts]==0 or session[:show_all_contacts].nil?) and @client.contacts.length > @current_user.sub_page_limit %>
   <tr>
 	<td colspan="10" class="fieldData">
 		<%= link_to_remote 'More...', :url=>client_contacts_path(@client), :with => "'show_all_contacts=true'", :update=>'contacts-element', :method=>:get %>
 	</td>
   </tr>
-<% elsif session[:show_all_contacts]==1 %>
+<% elsif session[:show_all_contacts]==1 and @client.contacts.length > @current_user.sub_page_limit %>
   <tr>
 	<td colspan="10" class="fieldData">
 		<%= link_to_remote 'Less...', :url=>client_contacts_path(@client), :with => "'show_all_contacts=false'", :update=>'contacts-element', :method=>:get %>
