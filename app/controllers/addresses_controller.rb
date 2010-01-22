@@ -3,11 +3,6 @@ class AddressesController < ApplicationController
   
   before_filter :get_client, :set_section
   
-  # active_scaffold :address do |config|
-  #     config.label = 'Client Addresses'
-  #     config.list.columns = [:client, :address1, :address2, :city, :state, :zip_code, :current, :start_date, :end_date]
-  #   end
-
   # GET /addresses
   # GET /addresses.xml
   def index
@@ -34,6 +29,8 @@ class AddressesController < ApplicationController
     @address = @client.addresses.build
     state = State.find_by_code('AZ')
     @address.state = state
+    
+    @primary_address = @client.addresses.find_by_address_type_id(AddressType.find(:first, :conditions => ['name like ?','%Primary%']))
 
     respond_to do |format|
       format.html # new.html.erb
