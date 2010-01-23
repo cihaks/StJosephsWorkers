@@ -9,18 +9,34 @@
 </p>
 
 <p>
-  <b>Pay scale low:</b>
-  <%=h @job.pay_scale_low %>
-</p>
-
-<p>
-  <b>Pay scale high:</b>
-  <%=h @job.pay_scale_high %>
-</p>
-
-<p>
   <b>Current:</b>
   <%= check_box_tag(:current,'true',@job.current,:onclick=>"true") %>
+</p>
+
+<p>
+  <b>Start Date:</b>
+  <%=h @job.start_date.strftime("%m/%d/%Y") unless @job.start_date.nil? %>
+</p>
+
+<p>
+  <b>End Date:</b>
+  <%=h @job.end_date.strftime("%m/%d/%Y") unless @job.end_date.nil?  %>
+</p>
+
+<p>
+  <table>
+	<tr>
+	  <td colspan="4"><b>Job Rates:</b></td>
+	</tr>
+    <% @job.job_rates.each do |job_rate| %>
+	  <tr>
+		<td width="20"></td>
+        <td><%=h job_rate.hourly_rate_date.strftime("%m/%d/%Y") unless job_rate.hourly_rate_date.nil? %></td>
+		<td width="10"></td>
+	    <td><%=h number_to_currency(job_rate.hourly_rate) %></td>
+	  </tr>
+  <% end %>
+  </table>
 </p>
 
 <p>
@@ -51,16 +67,6 @@
 <p>
   <b>Temp to Hire:</b>
   <%= check_box_tag(:temp_to_hire,'true',@job.temp_to_hire,:onclick=>"true") %>
-</p>
-
-<p>
-  <b>Start Date:</b>
-  <%=h @job.start_date.strftime("%m/%d/%Y") unless @job.start_date.nil? %>
-</p>
-
-<p>
-  <b>End Date:</b>
-  <%=h @job.end_date.strftime("%m/%d/%Y") unless @job.end_date.nil?  %>
 </p>
 
 <br/>

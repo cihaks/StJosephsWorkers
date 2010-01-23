@@ -3,5 +3,9 @@
   <b>Name:</b>
   <%=h @agency.name %>
 </p>
+<p>
+  <b>Agency Type"</b>
+  <%=h @agency.agency_type.name unless @agency.agency_type.nil? %>
+</p>
 
 

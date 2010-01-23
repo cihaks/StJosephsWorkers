@@ -12,7 +12,7 @@
   <tr>
     <td><%=h status_type.name %></td>
 	<td width="10"></td>
-    <td><%=h status_type.description[0..49] %><%= "..." if status_type.description.length>50 %></td>
+    <td><%=h status_type.description %></td>
 	<td width="10"></td>
     <td><%= link_to 'Show', status_type %></td>
     <td><%= link_to 'Edit', edit_status_type_path(status_type) %></td>

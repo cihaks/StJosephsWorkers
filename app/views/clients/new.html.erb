@@ -20,8 +20,11 @@
   </p>
   <p>
     <%= f.label :gender %><br />
-    <%= f.text_field :gender %>
+    <%= f.radio_button (:gender, "M") %>Male
+    <%= f.radio_button (:gender, "F") %>Female
+    <%= f.radio_button (:gender, "O") %>Other
   </p>
+<!--
   <p>
     <%= f.label :caution %><br />
     <%= f.check_box :caution %>
@@ -31,12 +34,13 @@
     <%= f.check_box :resource_eligible %>
   </p>
   <p>
-    <%= f.label :veteran %><br />
-    <%= f.check_box :veteran %>
-  </p>
-  <p>
     <%= f.label :success_story %><br />
     <%= f.check_box :success_story %>
+  </p>
+-->
+  <p>
+    <%= f.label :veteran %><br />
+    <%= f.check_box :veteran %>
   </p>
   <p>
     <%= f.label :birth_date %><br />

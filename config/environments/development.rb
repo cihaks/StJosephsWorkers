@@ -20,4 +20,9 @@ config.action_mailer.raise_delivery_errors = false
 config.gem "populator"
 config.gem "faker"
 
+# Use custom renderer for pagination
 WillPaginate::ViewHelpers.pagination_options[:renderer] = 'PaginateLinkRenderer'
+
+#set default format for Calendar Date Select plugin
+CalendarDateSelect.format = :american
+

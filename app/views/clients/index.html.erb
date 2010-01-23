@@ -23,13 +23,8 @@
 		<% end %>
 	  </div>
   	</td>
-    <td class="fieldData" align="center"><%= link_to h(client.name), client %>
-	    <%= image_tag("female.jpg", :size=>"14x24", :title=>"female") if client.gender == 'F' %>
-	    <%= image_tag("male.jpg", :size=>"14x24", :title=>"male") if client.gender == 'M' %>
-		<%= image_tag("caution.jpg", :size=>"24x24", :title=>"caution") if client.caution %>
-		<%= image_tag("resource_eligible.jpg", :size=>"24x24", :title=>"resource eligible") if client.resource_eligible %>
-        <%= image_tag("veteran.jpg", :size=>"14x24", :title=>"veteran") if client.veteran %>
-        <%= image_tag("success_story.jpg", :size=>"24x24", :title=>"success story") if client.success_story %>
+    <td class="fieldData" align="center">
+	  <%= link_to h(client.name), client %><%= render :partial=>'clients/client_icons', :locals=>{:client=>client}%>
 	</td>
     <td class="fieldData"><%=h client.birth_date.strftime("%m/%d/%Y") unless client.birth_date.nil? %></td>
 	<td width="10"></td>

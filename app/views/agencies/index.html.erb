@@ -4,11 +4,13 @@
 <table>
   <tr>
     <th>Name</th>
+	<th>Agency Type</th>
   </tr>
 
 <% @agencies.each do |agency| %>
   <tr>
     <td><%=h agency.name %></td>
+	<td><%=h agency.agency_type.name unless agency.agency_type.nil? %></td>
 	<td width="10"></td>
     <td><%= link_to 'Show', agency %></td>
     <td><%= link_to 'Edit', edit_agency_path(agency) %></td>

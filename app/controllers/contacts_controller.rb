@@ -57,7 +57,7 @@ class ContactsController < ApplicationController
         format.xml  { render :xml => @contact, :status => :created, :location => @contact }
         format.js do
           render :update do |page|
-            page.replace_html 'client-content', :partial=>'shared/client_show'
+            page.replace_html 'client-element', :partial=>'shared/client_show'
             page.replace_html 'contacts-element', :partial=>'contacts/index'
           end
         end
@@ -79,7 +79,7 @@ class ContactsController < ApplicationController
         format.xml  { head :ok }
         format.js do
           render :update do |page|
-            page.replace_html 'client-content', :partial=>'shared/client_show'
+            page.replace_html 'client-element', :partial=>'shared/client_show'
             page.replace_html 'contacts-element', :partial=>'contacts/index'
           end
         end
@@ -110,7 +110,7 @@ class ContactsController < ApplicationController
         format.xml  { render :xml => @contact, :status => :created, :location => @contact }
         format.js do
           render :update do |page|
-            page.replace_html 'client-content', :partial=>'shared/client_show'
+            page.replace_html 'client-element', :partial=>'shared/client_show'
             page.replace_html 'contacts-element', :partial=>'contacts/index'
           end
         end

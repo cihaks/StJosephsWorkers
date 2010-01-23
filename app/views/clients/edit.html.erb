@@ -30,7 +30,9 @@
 		  </p>
 		  <p>
 		    <%= f.label :gender %><br />
-		    <%= f.select(:gender,["M","F"]) %>
+		    <%= f.radio_button (:gender, "M") %>Male
+		    <%= f.radio_button (:gender, "F") %>Female
+		    <%= f.radio_button (:gender, "O") %>Other
 		  </p>
 		  <p>
 		    <%= f.check_box :caution %>

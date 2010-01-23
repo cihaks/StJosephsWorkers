@@ -1,11 +1,11 @@
 
 <p>
-  <b>Start date:</b>
+  <b>Incarceration date:</b>
   <%=h @crime_sentence.start_date.strftime("%b %Y") unless @crime_sentence.start_date.nil? %>
 </p>
 
 <p>
-  <b>End date:</b>
+  <b>Release date:</b>
   <%=h @crime_sentence.release_date.strftime("%b %Y") unless @crime_sentence.release_date.nil? %>
 </p>
 

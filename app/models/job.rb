@@ -52,7 +52,7 @@ class Job < ActiveRecord::Base
       if attributes
         job_rate.attributes = attributes
       else
-        job_rates.delete(task)
+        job_rates.delete(job_rate)
       end
     end
   end

@@ -5,8 +5,7 @@
 <%=h @user.name %></p>
 
 <p><%= label_tag 'role_ids', 'Role'%><br/>
-<% for role in Role.find(:all, :order=>"name asc") %>
-		<%= check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role), :onclick=>"return false;" %>
+<% @user.roles.each do |role| %>
 		<%= role.name %><br/>
 <% end %>
 </p>

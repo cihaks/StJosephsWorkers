@@ -26,3 +26,9 @@ config.action_view.cache_template_loading            = true
 
 # Enable threaded mode
 # config.threadsafe!
+
+# Use custom renderer for pagination
+WillPaginate::ViewHelpers.pagination_options[:renderer] = 'PaginateLinkRenderer'
+
+#set default format for Calendar Date Select plugin
+CalendarDateSelect.format = :american
