@@ -1,0 +1,19 @@
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% @incarceration_lengths.each do |incarceration_length| %>
+  <tr>
+    <td><%=h incarceration_length.name %></td>
+	<td width="10"></td>
+<!--
+    <td><%= link_to 'Show', incarceration_length %></td>
+-->
+    <td><%= link_to 'Edit', edit_incarceration_length_path(incarceration_length) %></td>
+    <td><%= link_to 'Delete', incarceration_length, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />

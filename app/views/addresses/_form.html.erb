@@ -1,0 +1,16 @@
+<tr>
+  <th align="left">Address</th>
+  <th width="10"></th>
+  <th align="left">Type</th>
+</tr>
+<tr>
+  <td style="line-height: .8em;">
+	<%= f.text_field :address1, :size=>'30', :height=>'20pt' %>&nbsp;<br/>
+	<%= f.text_field :address2, :size=>'30' %>&nbsp;<br/>
+	<%= f.text_field :city, :size=>'10' %>,&nbsp; 
+	<%= f.collection_select(:state_id,State.find(:all,:order=>"description"),:id,:code) %>,&nbsp;
+	<%= f.text_field :zip_code, :maxlength=>'5', :size=>'5' %>
+  </td>
+  <td width="10"></td>
+  <td valign="top"><%= f.collection_select(:address_type_id,AddressType.all,:id,:name) %></td>
+</tr>

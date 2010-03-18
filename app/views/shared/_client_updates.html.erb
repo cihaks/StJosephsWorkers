@@ -1,0 +1,5 @@
+<div id="client-update-notes">
+	<% @activity_logs.each do |activity_log| %>
+	    <p><%=h activity_log.activity unless activity_log.nil? %></p>
+	<% end unless @activity_logs.nil? %>
+</div>

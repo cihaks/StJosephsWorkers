@@ -1,0 +1,22 @@
+<br />
+<%= will_paginate @benefits_types, :remote => {:method=>:get, :update => 'item_list'} %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% @benefits_types.each do |benefits_type| %>
+  <tr>
+    <td><%=h benefits_type.name %></td>
+<!--    
+	<td><%= link_to 'Details', benefits_type %></td>
+-->
+    <td><%= link_to 'Edit', edit_benefits_type_path(benefits_type) %></td>
+    <td><%= link_to 'Delete', benefits_type, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= will_paginate @benefits_types, :remote => {:method=>:get, :update => 'item_list'} %>
+<br />

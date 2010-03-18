@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  assigned_resource_id: 1
+  cvm_number: MyString
+  cvm_password: MyString
+
+two:
+  assigned_resource_id: 1
+  cvm_number: MyString
+  cvm_password: MyString

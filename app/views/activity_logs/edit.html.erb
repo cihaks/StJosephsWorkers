@@ -1,0 +1,20 @@
+<h1>Editing activity_log</h1>
+
+<% form_for(@activity_log) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :action %><br />
+    <%= f.text_field :action %>
+  </p>
+  <p>
+    <%= f.label :model %><br />
+    <%= f.text_field :model %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @activity_log %> |
+<%= link_to 'Back', activity_logs_path %>

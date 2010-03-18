@@ -1,0 +1,22 @@
+<h1>Listing activity_logs</h1>
+
+<table>
+  <tr>
+    <th>Action</th>
+    <th>Model</th>
+  </tr>
+
+<% @activity_logs.each do |activity_log| %>
+  <tr>
+    <td><%=h activity_log.action %></td>
+    <td><%=h activity_log.model %></td>
+    <td><%= link_to 'Show', activity_log %></td>
+    <td><%= link_to 'Edit', edit_activity_log_path(activity_log) %></td>
+    <td><%= link_to 'Destroy', activity_log, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New activity_log', new_activity_log_path %>
