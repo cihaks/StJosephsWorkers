@@ -1,70 +1,27 @@
 
 <% form_for([@client,@address]) do |f| %>
   <%= f.error_messages %>
-	<table width="75%">
+	<table>
 	  <tr>
-	    <td>
-	    <%= f.label :state %><br />
-	    <%= f.collection_select(:state_id,State.find(:all,:order=>"description"),:id,:description) %>
+		<td>
+		  <table>
+			<%= render :partial=>'addresses/form', :locals=>{ :f=>f } %>
+		  </table>
 		</td>
-	    <td align="right" width="200">
+	    <td height="30" valign="bottom">
 		  <!-- javascript to update with primary address info -->
-		  <%= link_to_function("Copy from Primary Address", nil, :id => "more_link") do |page|
-			  	page[:address_address1].value = @primary_address.address1
-				page[:address_address2].value = @primary_address.address2
-				page[:address_city].value = @primary_address.city
-				page[:address_state_id].value = @primary_address.state_id
-				page[:address_zip_code].value = @primary_address.zip_code
+		  <%= link_to_function("Copy&nbsp;from&nbsp;Primary&nbsp;Address", :style=>"font-size: 7pt;") do |page|
+			  page[:address_address1].value = @primary_address.address1
+			  page[:address_address2].value = @primary_address.address2
+			  page[:address_city].value = @primary_address.city
+			  page[:address_state_id].value = @primary_address.state_id
+			  page[:address_zip_code].value = @primary_address.zip_code
 			  end unless @primary_address.nil?
 		  %>
-		</td>
-	  </tr>
-	  <tr>
-	    <td>
-	      <%= f.label :address1 %><br />
-	      <%= f.text_field :address1 %>
-		</td>
-	  </tr>
-	  <tr>
-	    <td>
-	      <%= f.label :address2 %><br />
-	      <%= f.text_field :address2 %>
-		</td>
-	  </tr>
-	  <tr>
-	    <td>
-	      <%= f.label :city %><br />
-	      <%= f.text_field :city %>
-		</td>
-	  </tr>
-	  <tr>
-	    <td>
-	      <%= f.label :zip_code %><br />
-	      <%= f.text_field :zip_code %>
-		</td>
-	  </tr>
-	  <tr>
-	    <td>
-	      <%= f.label :start_date, "Start Date"%><br />
-	      <%= f.date_select :start_date, :order=>[:month,:day,:year], :include_blank=>true  %>
-		</td>
-	  </tr>
-	  <tr>
-	    <td>
-	      <%= f.label :end_date, "End Date" %><br />
-	      <%= f.date_select :end_date, :order=>[:month,:day,:year], :include_blank=>true %>
-		</td>
-	  </tr>
-	  <tr>
-	    <td>
-		  <%= f.label :address_type, "Type" %><br/>
-		  <%= f.collection_select(:address_type_id,AddressType.all,:id,:name) %>
-		</td>
-	  </tr>
-	  <tr>
-	    <td height="30" valign="bottom">
+		  <br/>
+		  <br/>
 	      <%= f.submit 'Create' unless request.xhr? %>
-		  <%= submit_to_remote 'update_ajax_btn', 'Create', :url=>{:action=>'create'}, :update=>'contacts-content' if request.xhr?%>
+		  <%= submit_to_remote 'update_ajax_btn', 'Create', :url=>{:action=>'create'} if request.xhr?%>
 		</td>
 	  </tr>
 	</table>

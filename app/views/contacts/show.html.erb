@@ -35,6 +35,12 @@
     <td class="fieldData" align="left">
       <%= check_box_tag :alert, 'true', @contact.alert, :onclick=>"return false;" %>
     </td>
+    <td class="fieldLabel" align="right">
+      <b>Modified By:</b>
+    </td>
+    <td class="fieldData" align="left">
+      <%=h User.find(@contact.updater_id).name unless @contact.updater_id.nil? %>
+    </td>
   </tr>
  </table>
  <table>

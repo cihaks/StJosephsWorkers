@@ -9,7 +9,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091108042459) do
+ActiveRecord::Schema.define(:version => 20100307042027) do
+
+  create_table "activity_logs", :force => true do |t|
+    t.integer  "client_id"
+    t.integer  "model_id"
+    t.string   "action"
+    t.string   "model_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "creator_id"
+    t.integer  "updater_id"
+  end
 
   create_table "address_types", :force => true do |t|
     t.string   "name"
@@ -30,8 +41,6 @@ ActiveRecord::Schema.define(:version => 20091108042459) do
     t.integer  "zip_code",        :limit => 8
     t.boolean  "primary_ind"
     t.boolean  "current_ind"
-    t.date     "start_date"
-    t.date     "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "creator_id"
@@ -58,8 +67,6 @@ ActiveRecord::Schema.define(:version => 20091108042459) do
   create_table "assigned_agencies", :force => true do |t|
     t.integer  "client_id"
     t.integer  "agency_id"
-    t.date     "start_date"
-    t.date     "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "creator_id"
@@ -88,6 +95,14 @@ ActiveRecord::Schema.define(:version => 20091108042459) do
   create_table "assigned_resources_industries", :id => false, :force => true do |t|
     t.integer "assigned_resource_id"
     t.integer "industry_id"
+  end
+
+  create_table "benefits_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "creator_id"
+    t.integer  "updater_id"
   end
 
   create_table "clients", :force => true do |t|
@@ -160,7 +175,6 @@ ActiveRecord::Schema.define(:version => 20091108042459) do
   create_table "crime_sentences", :force => true do |t|
     t.integer  "client_id"
     t.integer  "prison_id"
-    t.integer  "crime_type_id"
     t.date     "start_date"
     t.date     "end_date"
     t.date     "release_date"
@@ -171,11 +185,33 @@ ActiveRecord::Schema.define(:version => 20091108042459) do
     t.datetime "updated_at"
     t.integer  "creator_id"
     t.integer  "updater_id"
+    t.integer  "incarceration_length_id"
+  end
+
+  create_table "crime_sentences_crime_types", :id => false, :force => true do |t|
+    t.integer "crime_sentence_id", :null => false
+    t.integer "crime_type_id",     :null => false
   end
 
   create_table "crime_types", :force => true do |t|
     t.string   "name"
     t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "creator_id"
+    t.integer  "updater_id"
+  end
+
+  create_table "daily_passes", :force => true do |t|
+    t.integer  "assigned_resource_id"
+    t.string   "company"
+    t.string   "note",                 :limit => 2048
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "incarceration_lengths", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "creator_id"
@@ -239,12 +275,6 @@ ActiveRecord::Schema.define(:version => 20091108042459) do
     t.integer  "pay_scale_low"
     t.integer  "pay_scale_high"
     t.boolean  "current"
-    t.boolean  "medical"
-    t.boolean  "dental"
-    t.boolean  "retirement_401k"
-    t.boolean  "pto"
-    t.boolean  "full_time"
-    t.boolean  "temp_to_hire"
     t.date     "start_date"
     t.date     "end_date"
     t.date     "last_verified_date"
@@ -252,6 +282,15 @@ ActiveRecord::Schema.define(:version => 20091108042459) do
     t.datetime "updated_at"
     t.integer  "creator_id"
     t.integer  "updater_id"
+    t.integer  "benefits_type_id"
+  end
+
+  create_table "monthly_passes", :force => true do |t|
+    t.integer  "assigned_resource_id"
+    t.integer  "amount_paid",          :precision => 10, :scale => 2
+    t.integer  "amount_due",           :precision => 10, :scale => 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "phones", :force => true do |t|
@@ -297,10 +336,9 @@ ActiveRecord::Schema.define(:version => 20091108042459) do
 
   create_table "registered_classes", :force => true do |t|
     t.date     "class_date"
-    t.date     "waive_date"
     t.integer  "client_id"
     t.integer  "course_id"
-    t.boolean  "completed"
+    t.string   "completed"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "creator_id"
@@ -386,5 +424,13 @@ ActiveRecord::Schema.define(:version => 20091108042459) do
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
+
+  create_table "voice_mails", :force => true do |t|
+    t.integer  "assigned_resource_id"
+    t.string   "cvm_number"
+    t.string   "cvm_password"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

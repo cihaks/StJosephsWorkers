@@ -2,18 +2,20 @@
 <table>
   <tr>
     <td>
-      <div class="photoImage floatLeft">
+  	  <div class="photoImage floatLeft">
     	<% unless @client.pictures.empty? %>
-			<%= image_tag @client.pictures.first.photo.url, :size=>"150x150" %>
+		  <%= image_tag @client.pictures.first.photo.url, :size=>"150x150" %><br />
+		  <b>Last Modified: </b><%=h @client.pictures.first.updated_at.strftime("%m/%d/%y") unless @client.pictures.first.updated_at.nil? %>
+		  <b>Modified By: </b><%=h User.find(@client.pictures.first.updater_id).name unless @client.pictures.first.updater_id.nil? %>
 		<% else %>
-			<%= image_tag 'defaultphoto.gif', :size=>"150x150" %>
+	      <%= image_tag 'defaultphoto.gif', :size=>"150x150" %>
 		<% end %>
 	  </div>
     </td>
     <% unless @client.pictures.empty? %>
       <!-- <td><%= link_to_remote 'Show', :url=>client_picture_path(@client,@client.pictures.first), :update=>'contacts-content', :method=>:get %></td> -->
       <td><%= link_to_remote 'Edit', :url=>edit_client_picture_path(@client,@client.pictures.first), :update=>'contacts-content', :method=>:get %></td>
-      <td><%= link_to_remote 'Destroy', :url=>client_picture_path(@client,@client.pictures.first), :update=>'contacts-content', :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to_remote 'Delete', :url=>client_picture_path(@client,@client.pictures.first), :confirm => 'Are you sure?', :method => :delete %></td>
 	<% end %>
   </tr>
 </table>

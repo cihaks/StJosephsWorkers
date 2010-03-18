@@ -2,28 +2,85 @@
 <% form_for([@client, @assigned_resource]) do |f| %>
   <%= f.error_messages %>
   
-  <p>
-    <%= f.label :resource_date %><br />
-    <%= f.date_select :resource_date %>
-  </p>
-  <p>
-    <%= f.label :resource_type %><br />
-    <%= f.collection_select(:resource_type_id,ResourceType.all,:id,:name) %>
-  </p>
-  <p>
-    <%= f.label :amount %><br />
-    <%= f.text_field :amount %>
-  </p>
-  <p>
-    <%= f.label :number %><br />
-    <%= f.text_field :number %>
-  </p>
-  <p>
-    <%= f.label :verified %><br />
-    <%= f.check_box :verified %>
-  </p>
-  <p>
-    <%= f.submit 'Create' unless request.xhr? %>
-	<%= submit_to_remote 'create_ajax_btn', 'Create', :url=>{:action=>'create'}, :update=>'contacts-content' if request.xhr? %>
-  </p>
+  <table>
+  	<tr>
+  	  <td valign="top">
+		<table>
+		  <tr>
+			<td>
+			  <%= f.label :resource_date, "Resource Date" %><br />
+			  <%= f.date_select :resource_date %>
+			</td>
+		  </tr>
+		  <tr>
+			<td>
+		      <%= f.label :resource_type, "Resource Type" %><br />
+		      <%= f.collection_select(:resource_type_id,ResourceType.all,:id,:name, {:prompt=>true}, {:onchange=>"Element.hide('#{"has_"+@daily_pass_key.id.to_s}'); Element.hide('#{"has_"+@monthly_pass_key.id.to_s}'); Element.hide('#{"has_"+@voice_mail_key.id.to_s}'); Element.show('has_'+value);"}) %>
+			</td>
+			<td width="10"></td>
+			<td valign="top" rowspan="4">
+			  <div id="<%=h "has_#{@daily_pass_key.id}" %>" style="display:none">
+				  <% fields_for_association(@assigned_resource, :daily_pass) do |subform| %>
+					<%= subform.label :company %><br />
+				    <%= subform.text_field :company %><br /><br />
+					<%= subform.label :note, "Notes" %><br />
+					<%= subform.text_area :note, :size=>"30x4" %>
+		          <% end %>
+		      </div>
+			  <div id="<%=h "has_#{@monthly_pass_key.id}" %>" style="display:none">
+				  <% fields_for_association(@assigned_resource, :monthly_pass) do |subform| %>
+					<%= subform.label :amount_paid, "Amount Paid" %><br />
+				    <%=h "$" %><%= subform.text_field :amount_paid %><br /><br />
+					<%= subform.label :amount_due, "Amount Due" %><br />
+					<%=h "$" %><%= subform.text_field :amount_due %>
+		          <% end %>
+		      </div>
+			  <div id="<%=h "has_#{@voice_mail_key.id}" %>" style="display:none">
+				  <% fields_for_association(@assigned_resource, :voice_mail) do |subform| %>
+					<%= subform.label :cvm_number, "Number" %><br />
+				    <%= subform.text_field :cvm_number %><br /><br />
+					<%= subform.label :cvm_password, "Password" %><br />
+					<%= subform.text_field :cvm_password %>
+		          <% end %>
+		      </div>
+			</td>
+		  </tr>
+		  <tr>
+			<td>
+		      <%= f.label :amount, "Amount" %><br />
+		      <%=h "$" %><%= f.text_field :amount, :size=>"15" %>
+			</td>
+		  </tr>
+		  <tr>
+			<td>
+		      <%= f.label :number, "Quantity" %><br />
+		      <%= f.text_field :number, :size=>"15" %>
+			</td>
+		  </tr>
+		  <tr>
+			<td>
+		      <%= f.label :verified %><br />
+		      <%= f.check_box :verified %>
+			</td>
+		  </tr>
+		</table>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+    	<%= f.submit 'Create' unless request.xhr? %>
+		<%= submit_to_remote 'create_ajax_btn', 'Create', :url=>{:action=>'create'} if request.xhr? %>
+	  </td>
+    </tr>
+  </table>
 <% end %>
+
+<script language="javascript">
+  function toggle_elements(value) {
+	<% ResourceType.all.each do |resource_type| %>
+	  Element.hide('<%=h "has_#{resource_type.id}"%>');
+	<% end %>
+	Element.show('has_'+value);
+  }
+</script>
+

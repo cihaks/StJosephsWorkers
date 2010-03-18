@@ -12,10 +12,12 @@
 		<li class="indent1"><%= link_to "Address Types", address_types_path %></li>
 		<li class="indent1"><%= link_to "Agencies", agencies_path %></li>
 		<li class="indent1"><%= link_to "Agency Types", agency_types_path %></li>
+		<li class="indent1"><%= link_to "Benefits Types", benefits_types_path %></li>
 		<li class="indent1"><%= link_to "Companies", companies_path %></li>
 		<li class="indent1"><%= link_to "Contact Types", contact_types_path %></li>
 		<li class="indent1"><%= link_to "Courses", courses_path %></li>
 		<li class="indent1"><%= link_to "Crime Types", crime_types_path %></li>
+		<li class="indent1"><%= link_to "Incarceration Lengths", incarceration_lengths_path %></li>
 		<li class="indent1"><%= link_to "Industries", industries_path %></li>
 		<li class="indent1"><%= link_to "Job Types", job_types_path %></li>
 		<li class="indent1"><%= link_to "Prisons", prisons_path %></li>
@@ -37,10 +39,14 @@
 		<% end %>
 	<% end %>
 	
-  	<li><%= link_to "Clients", home_path %></li>
-	<li><%= link_to "New Client", new_client_path %></li>
+  	<li><%= link_to "Home", home_path %></li>
+	<li><%= link_to "Add Client", new_client_path %></li>
 	<% unless @client.nil? %>
 	<% end %>
   </ul>
+  <div id="client-updates">
+    <%= render '/shared/client_updates' %>
+  </div>
 </div>
 <% end %>
+

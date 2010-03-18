@@ -10,7 +10,7 @@
 
 <p>
   <b>Current:</b>
-  <%= check_box_tag(:current,'true',@job.current,:onclick=>"true") %>
+  <%= check_box_tag(:current,'true',@job.current,:onclick=>"return false;") %>
 </p>
 
 <p>
@@ -40,33 +40,18 @@
 </p>
 
 <p>
-  <b>Medical:</b>
-  <%= check_box_tag(:medical,'true',@job.medical,:onclick=>"true") %>
+  <b>Benefits:</b>
+  <%=h @job.benefits_type.name unless @job.benefits_type.nil? %>
 </p>
 
 <p>
-  <b>Dental:</b>
-  <%= check_box_tag(:dental,'true',@job.dental,:onclick=>"true") %>
+  <b>Last Modified:</b>
+  <%=h @job.updated_at.strftime("%m/%d/%Y") unless @job.updated_at.nil? %>
 </p>
 
 <p>
-  <b>Retirement 401k:</b>
-  <%= check_box_tag(:retirement_401k,'true',@job.retirement_401k,:onclick=>"true") %>
-</p>
-
-<p>
-  <b>Paid Time Off:</b>
-  <%= check_box_tag(:pto,'true',@job.pto,:onclick=>"true") %>
-</p>
-
-<p>
-  <b>Full Time:</b>
-  <%= check_box_tag(:full_time,'true',@job.full_time,:onclick=>"true") %>
-</p>
-
-<p>
-  <b>Temp to Hire:</b>
-  <%= check_box_tag(:temp_to_hire,'true',@job.temp_to_hire,:onclick=>"true") %>
+  <b>Modified By:</b>
+  <%=h User.find(@job.updater_id).name unless @job.updater_id.nil? %>
 </p>
 
 <br/>

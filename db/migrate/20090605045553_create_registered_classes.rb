@@ -1,10 +1,10 @@
 class CreateRegisteredClasses < ActiveRecord::Migration
   def self.up
     create_table :registered_classes do |t|
-      t.date :class_date, :waive_date
+      t.date :class_date
       t.integer :client_id
       t.integer :course_id
-      t.boolean :completed
+      t.string :completed
       t.timestamps
       t.userstamps
     end

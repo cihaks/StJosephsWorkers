@@ -7,6 +7,8 @@ class ClientsController < ApplicationController
     
     @clients = Client.search(params[:query],params[:page],current_user.page_limit)
     
+    @office_visit = ContactType.find(:first, :conditions => ['name like ?','Office Visit%'])
+    
     respond_to do |format|
       format.html 
       format.js { render :layout=>false }
@@ -23,6 +25,8 @@ class ClientsController < ApplicationController
   # GET /clients/1.xml
   def show
     @client = Client.find(params[:id])
+    
+    @activity_logs = ActivityLog.search(@client.id, 5)
     
     #redirect_to client_contacts_path(@client)
     

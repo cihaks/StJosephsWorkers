@@ -4,14 +4,26 @@
   <%=h @used_substance.substance.name %>
 </p>
 
+<!--
 <p>
   <b>Entry Date:</b>
   <%=h @used_substance.entry_date.strftime("%m/%d/%Y") unless @used_substance.entry_date.nil? %>
 </p>
+-->
 
 <p>
   <b>Sober Date:</b>
   <%=h @used_substance.sober_date.strftime("%m/%d/%Y") unless @used_substance.sober_date.nil? %>
+</p>
+
+<p>
+  <b>Last Modified:</b>
+  <%=h @used_substance.updated_at.strftime("%m/%d/%Y") unless @used_substance.updated_at.nil? %>
+</p>
+
+<p>
+  <b>Modified By:</b>
+  <%=h User.find(@used_substance.updater_id).name unless @used_substance.updater_id.nil? %>
 </p>
 
 <br/>

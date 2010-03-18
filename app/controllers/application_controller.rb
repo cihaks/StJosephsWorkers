@@ -19,16 +19,11 @@ class ApplicationController < ActionController::Base
   
   before_filter :check_session, :no_cache
   after_filter :store_location, :only => [:index, :new, :show, :edit]
+  # after_filter :update_activity_list, :only => [:create, :update, :destroy]
   
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
-  
-  #common method for most controllers
-  def get_client
-    @client = Client.find(params[:client_id]) unless params[:client_id].nil?
-    @alerts = @client.contacts.find( :all, :conditions=>"alert = true" ) unless @client.nil?
-  end
-  
+    
   def toggle_admin
     session[:show_admin].nil? ? session[:show_admin] = true : session[:show_admin] = !session[:show_admin]
     render :update do |page|

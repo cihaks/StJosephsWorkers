@@ -35,43 +35,27 @@
       </td>
 	  <td width="15"></td>
 	  <td valign="top">
-		  <p>
-		    <%= render 'jobs/job_rate_fields', :locals => { :f=>f } %>
-		  </p>
+		<div id="job_rates">
+		<% f.fields_for :job_rates do |builder| %>
+		  <%= render "job_rate_fields", :f => builder %>
+		<% end %>
+		</div>
+		<%= link_to_add_fields "Add a rate", f %>
+		
+		<!-- < render 'jobs/job_rate_fields', :locals => { :f=>f } > -->
       </td>
 	  <td width="15"></td>
 	  <td valign="top">
-		  <p>
-			<%= f.label :benefits %><br/>
-		    <%= f.check_box :medical %>
-		    <%= f.label :medical %>
-		  </p>
-		  <p>
-		    <%= f.check_box :dental %>
-		    <%= f.label :dental %>
-		  </p>
-		  <p>
-		    <%= f.check_box :retirement_401k %>
-		    <%= f.label :retirement_401k %>
-		  </p>
-		  <p>
-		    <%= f.check_box :pto %>
-		    <%= f.label :pto %>
-		  </p>
-		  <p>
-		    <%= f.check_box :full_time %>
-		    <%= f.label :full_time %>
-		  </p>
-		  <p>
-		    <%= f.check_box :temp_to_hire %>
-		    <%= f.label :temp_to_hire %>
-		  </p>
+		<p>
+		  <%= f.label :benefits %><br />
+		  <%= f.collection_select(:benefits_type_id,BenefitsType.all,:id,:name) %>
+		</p>
       </td>
     </tr>
     <tr>
 	  <td>
 	    <%= f.submit 'Create' unless request.xhr? %>
-		<%= submit_to_remote 'update_ajax_btn', 'Create', :url=>{:action=>'create'}, :update=>'jobs-content' if request.xhr? %>
+		<%= submit_to_remote 'update_ajax_btn', 'Create', :url=>{:action=>'create'} if request.xhr? %>
   	  </td>
   	</tr>
   </table>

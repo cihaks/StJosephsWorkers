@@ -7,6 +7,10 @@
 	<td width="10"></td> -->
     <td class="fieldLabel">Sober Date</td>
 	<td width="10"></td>
+    <td class="fieldLabel">Last Modified</td>
+	<td width="10"></td>
+    <td class="fieldLabel">Modified By</td>
+	<td width="10"></td>
   </tr>
 
 <% @client.used_substances.each do |used_substance| %>
@@ -17,9 +21,15 @@
 	<td width="10"></td>-->
     <td class="fieldData"><%=h used_substance.sober_date.strftime("%m/%d/%Y") unless used_substance.sober_date.nil? %></td>
 	<td width="10"></td>
+    <td class="fieldData"><%=h used_substance.updated_at.strftime("%m/%d/%Y") unless used_substance.updated_at.nil? %></td>
+	<td width="10"></td>
+    <td class="fieldData"><%=h User.find(used_substance.updater_id).name unless used_substance.updater_id.nil? %></td>
+	<td width="10"></td>
+<!--
     <td><%= link_to_remote 'Details', :url=>client_used_substance_path(@client,used_substance), :update=>"infamy-content", :method=>'get' %></td>
+-->
     <td><%= link_to_remote 'Edit', :url=>edit_client_used_substance_path(@client,used_substance), :update=>"infamy-content", :method=>'get' %></td>
-    <td><%= link_to_remote 'Destroy', :url=>client_used_substance_path(@client,used_substance), :update=>"infamy-content", :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to_remote 'Delete', :url=>client_used_substance_path(@client,used_substance), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 <% if @client.used_substances.empty? %>

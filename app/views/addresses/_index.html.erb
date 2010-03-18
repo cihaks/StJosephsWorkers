@@ -3,26 +3,26 @@
   <tr>
     <th align="left">Address</th>
 	<th></th>
-    <th align="left">Start</th>
-	<th></th>
-    <th align="left">End</th>
-	<th></th>
     <th align="left">Type</th>
+	<th></th>
+    <th align="left">Last Modified</th>
+	<th></th>
+    <th align="left">Modified By</th>
   </tr>
 
 <% @client.addresses.each do |address| %>
   <tr>
     <td><%=h address.full_address %></td>
     <td width="10"></td>
-	<td><%=h address.start_date.strftime("%m/%d/%y") unless address.start_date.nil? %></td>
-    <td width="10"></td>
-    <td><%=h address.end_date.strftime("%m/%d/%y") unless address.end_date.nil? %></td>
-    <td width="10"></td>
     <td><%=h address.address_type.name unless address.address_type.nil? %></td>
     <td width="10"></td>
-	<td><%= link_to_remote 'Details', :url=>client_address_path(@client, address), :update=>'contacts-content', :method=>:get %></td>
+    <td><%=h address.updated_at.strftime("%m/%d/%y") unless address.updated_at.nil? %></td>
+    <td width="10"></td>
+    <td><%=h User.find(address.updater_id).name unless address.updater_id.nil? %></td>
+    <td width="10"></td>
+<!--	<td><%= link_to_remote 'Details', :url=>client_address_path(@client, address), :update=>'contacts-content', :method=>:get %></td> -->
     <td><%= link_to_remote 'Edit', :url=>edit_client_address_path(@client,address), :update=>'contacts-content', :method=>:get %></td>
-    <td><%= link_to_remote 'Destroy', :url=>client_address_path(@client, address), :update=>'contacts-content', :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to_remote 'Delete', :url=>client_address_path(@client, address), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 <% if @client.addresses.empty? %>

@@ -9,4 +9,13 @@
   <%= check_box_tag :phone_primary, 'true', @phone.is_primary?, :onclick=>"return false;"%>
 </p>
 
+<p>
+  <b>Last Modified:</b>
+  <%=h @phone.updated_at.strftime("%m/%d/%y") unless @phone.updated_at.nil? %>
+</p>
+
+<p>
+  <b>Modified By:</b>
+  <%=h User.find(@phone.updater_id).name unless @phone.updater_id.nil? %>
+</p>
 

@@ -1,4 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :activity_logs
+
+  map.resources :incarceration_lengths
+
+  map.resources :benefits_types
+
 
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new', :conditions => { :method => :get }
@@ -21,7 +27,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :industries
   map.resources :job_types
   map.resources :races
-  map.resources :registered_classes
   map.resources :resource_types
   map.resources :prisons
   map.resources :states

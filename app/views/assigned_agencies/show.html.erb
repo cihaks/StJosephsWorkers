@@ -5,12 +5,13 @@
 </p>
 
 <p>
-  <b>Start date:</b>
-  <%=h @assigned_agency.start_date %>
+  <b>Last Modified:</b>
+  <%=h @assigned_agency.updated_at.strftime("%m/%d/%Y") unless @assigned_agency.updated_at.nil? %>
 </p>
 
 <p>
-  <b>End date:</b>
-  <%=h @assigned_agency.end_date %>
+  <b>Modified By:</b>
+  <%=h User.find(@assigned_agency.updater_id).name unless @assigned_agency.updater_id.nil? %>
 </p>
 
+<br/>

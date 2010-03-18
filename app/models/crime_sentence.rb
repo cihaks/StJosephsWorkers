@@ -17,7 +17,9 @@
 #
 
 class CrimeSentence < ActiveRecord::Base
-  belongs_to :crime_type
   belongs_to :client
   belongs_to :prison
+  belongs_to :incarceration_length
+  
+  has_and_belongs_to_many :crime_types
 end

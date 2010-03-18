@@ -1,12 +1,18 @@
 module JobsHelper
-  def fields_for_job_rate(job_rate, &block)
-    prefix = job_rate.new_record? ? 'new' : 'existing'
-    fields_for("job[#{prefix}_job_rate_attributes][]", job_rate, &block)
-  end
   
-  def add_job_rate_link(name) 
-    link_to_function name do |page| 
-      page.insert_html :bottom, :job_rates, :partial => 'jobs/job_rate', :object => JobRate.new 
-    end 
-  end 
+	def link_to_remove_fields(name, f)
+	  f.hidden_field(:_destroy) + link_to_function(name, "this.previous('input[type=hidden]').value = '1';this.up('.job_rate').hide()")
+	end
+
+	def link_to_add_fields(name, f)
+	  fields = f.fields_for(:job_rates, JobRate.new, :child_index => "#{Time.now.to_i.to_s}") do |builder|
+      render("jobs/job_rate_fields", :f => builder)
+    end
+    link_to_function name do |page|
+			page.insert_html :bottom, :job_rates, "#{fields}"
+		end
+  end
+	
 end
+
+

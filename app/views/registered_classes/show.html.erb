@@ -15,9 +15,13 @@
 </p>
 
 <p>
-  <b>Completed:</b>
-  <%=h @registered_class.completed %>
+  <b>Completed Class?:</b>
+  <%=h @registered_class.completed_value %>
 </p>
 
+<p>
+  <b>Modified By:</b>
+  <%=h User.find(@registered_class.updater_id).name unless @registered_class.updater_id.nil? %>
+</p>
 
 <br/>

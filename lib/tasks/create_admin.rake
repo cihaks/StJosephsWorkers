@@ -9,8 +9,8 @@ namespace :db do
     
     ActiveRecord::Base.connection.execute("DELETE FROM roles_users")
     [Role, User].each(&:delete_all)
-    [AgencyType, Agency, Industry, CrimeType].each(&:delete_all)
-    [JobType, Prison, ResourceType, StatusType, Substance].each(&:delete_all)
+    [AgencyType, Agency, BenefitType, Prison, Industry, CrimeType, IncarcerationLength].each(&:delete_all)
+    [JobType, Prison, ResourceType, StatusType, Substance, ContactType, Course, Race].each(&:delete_all)
     
     desc "creating roles and users"
     Role.populate 1 do |roleAdmin|
@@ -49,58 +49,77 @@ namespace :db do
     end
     
 #    User.create(:login=>"crosslr2",:name=>"Rob Crossley",:password=>"crossley")
+    
+    desc "populating benefit types"
+    BenefitType.create :name => 'After Probation Period'
+    BenefitType.create :name => 'Immediately'
+    BenefitType.create :name => 'None'
+    BenefitType.create :name => 'Possible'
+    
     desc "populating job types"
-      JobType.populate 8..20 do |job_type|
-      job_type.name = Populator.words(1..2).titleize
-      job_type.creator_id = adminuser.id
-      job_type.updater_id = adminuser.id
-    end
+    JobType.create :name => 'Full-Time Permanent'
+    JobType.create :name => 'Full-Time Temporary'
+    JobType.create :name => 'Part-Time Permanent'
+    JobType.create :name => 'Part-Time Temporary'
+    JobType.create :name => 'Seasonal'
+    JobType.create :name => 'Temp to Hire'
     
     desc "populating status types"
-    StatusType.populate 10..20 do |status_type|
-      status_type.name = Populator.words(1..2).titleize
-      status_type.description = Populator.sentences(1)[0..255].capitalize
-      status_type.creator_id = adminuser.id
-      status_type.updater_id = adminuser.id
-    end
+    StatusType.create :name => 'Follow-Up'
+    StatusType.create :name => 'HWP'
+    StatusType.create :name => 'Parole'
+    StatusType.create :name => 'Previously Incarcerated'
+    StatusType.create :name => 'Previous Felon'
+    StatusType.create :name => 'Probation'
+    StatusType.create :name => 'Success Story'
+    StatusType.create :name => 'WIRC'
     
     desc "populating prisons"
-    Prison.populate 5 do |prison|
-      prison.name = Populator.words(1..2).titleize
-      prison.creator_id = adminuser.id
-      prison.updater_id = adminuser.id
-    end
+    Prison.create :name => 'County Jail'
+    Prison.create :name => 'In-State Penitentary'
+    Prison.create :name => 'Out-of-State Penitentary'
+    Prison.create :name => 'Federal Penitentary'
     
     desc "populating crime types"
-    CrimeType.populate 7..15 do |crime_type|
-      crime_type.name = Populator.words(1..3).titleize
-      crime_type.description = Populator.words(3..5).capitalize
-      crime_type.creator_id = adminuser.id
-      crime_type.updater_id = adminuser.id
-    end
+    CrimeType.create :name => 'Felony'
+    CrimeType.create :name => 'Sex Offense'
+    CrimeType.create :name => 'Violent'
+    
+    desc "populating incarceration lengths"
+    IncarcerationLength.create :name => '< 1 month'
+    IncarcerationLength.create :name => '1 - 12 months'
+    IncarcerationLength.create :name => '1 - 5 years'
+    IncarcerationLength.create :name => '5 - 10 years'
+    IncarcerationLength.create :name => '10 - 15 years'
+    IncarcerationLength.create :name => '15 - 20 years'
+    IncarcerationLength.create :name => '> 20 years'
     
     desc "populating agency types"
-    AgencyType.populate 4 do |agency_type|
-      agency_type.name = Populator.words(1).titleize
-      agency_type.creator_id = adminuser.id
-      agency_type.updater_id = adminuser.id
-    end
+    AgencyType.create :name => 'Mental Health'
+    AgencyType.create :name => 'Shelter'
+    AgencyType.create :name => 'Substance Abuse'
     
     desc "populating agencies"
-    Agency.populate 15 do |agency|
-      agency.agency_type_id = AgencyType.all.rand.id
-      agency.name = Populator.words(1).titleize
-      agency.creator_id = adminuser.id
-      agency.updater_id = adminuser.id
-    end
+    Agency.create :name => 'Andre House'
+    Agency.create :name => 'CASS'
+    Agency.create :name => 'EVMC'
+    Agency.create :name => 'Friend/Family'
+    Agency.create :name => 'MOS'
+    Agency.create :name => 'Phoenix Resource'
+    Agency.create :name => 'UMOM'
+    Agency.create :name => 'WOF'
     
     desc "populating industries"
-    Industry.populate 6..12 do |industry|
-      industry.name = Populator.words(1..3).titleize
-      industry.description = Populator.words(5..10).capitalize
-      industry.creator_id = adminuser.id
-      industry.updater_id = adminuser.id
-    end
+    Industry.create :name => 'Administrative'
+    Industry.create :name => 'Custodial/Maintenance'
+    Industry.create :name => 'Customer Service'
+    Industry.create :name => 'Driving'
+    Industry.create :name => 'General'
+    Industry.create :name => 'Healthcare'
+    Industry.create :name => 'Hospitality'
+    Industry.create :name => 'Security'
+    Industry.create :name => 'Trades'
+    Industry.create :name => 'Warehouse'
     
 #    desc "populating companies"
 #    Company.populate 8..105 do |company|
@@ -110,33 +129,40 @@ namespace :db do
 #      company.updater_id = adminuser.id
 #    end
     
-#    desc "populating courses"
-#    Course.populate 1 do |course|
-#      course.name = "Job Readiness"
-#      course.creator_id = adminuser.id
-#      course.updater_id = adminuser.id
-#    end
-    
     desc "populating resource types"
-    ResourceType.populate 1 do |resource_type|
-      resource_type.name = "Bus Ticket"
-      resource_type.description = "Bus Ticket"
-      resource_type.creator_id = adminuser.id
-      resource_type.updater_id = adminuser.id
-    end
-    ResourceType.populate 1 do |resource_type|
-      resource_type.name = "Clothes"
-      resource_type.description = "Clothes"
-      resource_type.creator_id = adminuser.id
-      resource_type.updater_id = adminuser.id
-    end
+    ResourceType.create :name => 'Bus - Daily Pass'
+    ResourceType.create :name => 'Bus - Monthly Pass'
+    ResourceType.create :name => 'Clothing'
+    ResourceType.create :name => 'CVM - Community Voice Mail'
+    ResourceType.create :name => 'Financial Assist: Housing Related'
+    ResourceType.create :name => 'Financial Assist: Work Essentials'
+    ResourceType.create :name => 'Hygiene'
+    ResourceType.create :name => 'Shoes'
+    ResourceType.create :name => 'Work Boots'
     
     desc "populating substances"
-    Substance.populate 25..50 do |substance|
-      substance.name = Populator.words(1..3).titleize
-      substance.creator_id = adminuser.id
-      substance.updater_id = adminuser.id
-    end
+    Substance.create :name => 'Alcohol'
+    Substance.create :name => 'Cocaine'
+    Substance.create :name => 'Crack'
+    Substance.create :name => 'Heroin'
+    Substance.create :name => 'Marijuana'
+    Substance.create :name => 'Methamphetamine'
+    
+    desc "populating contact types"
+    ContactType.create :name => 'Client Contact'
+    ContactType.create :name => 'Office Visit Only'
+    
+    desc "populating courses"
+    Course.create :name => 'Job Readiness Workshop'
+    Course.create :name => 'WIRC'
+    
+    desc "populating races"
+    Race.create :name => 'African American'
+    Race.create :name => 'Asian'
+    Race.create :name => 'Caucasian'
+    Race.create :name => 'Hispanic'
+    Race.create :name => 'Native American'
+    Race.create :name => 'Other'
     
   end
 

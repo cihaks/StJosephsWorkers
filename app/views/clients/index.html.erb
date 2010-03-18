@@ -5,11 +5,12 @@
   <tr>
   	<td></td>
     <td class="fieldLabel">Name</td>
+	<td width="5"></td>
     <td class="fieldLabel">Birth date</td>
-	<td width="10"></td>
+	<td width="5"></td>
 	<td class="fieldLabel">Date Added</td>
-	<td width="10"></td>
-	<td class="fieldLabel">Last Modified</td>
+	<td width="5"></td>
+	<td class="fieldLabel">Last Modified (By)</td>
   </tr>
 
 <% @clients.each do |client| %>
@@ -26,18 +27,20 @@
     <td class="fieldData" align="center">
 	  <%= link_to h(client.name), client %><%= render :partial=>'clients/client_icons', :locals=>{:client=>client}%>
 	</td>
+	<td width="5"></td>
     <td class="fieldData"><%=h client.birth_date.strftime("%m/%d/%Y") unless client.birth_date.nil? %></td>
-	<td width="10"></td>
+	<td width="5"></td>
 	<td class="fieldData"><%=h client.created_at.strftime("%m/%d/%Y") unless client.created_at.nil? %></td>
-	<td width="10"></td>
-	<td class="fieldData"><%=h client.updated_at.strftime("%m/%d/%Y") unless client.updated_at.nil? %></td>
-	<td width="10"></td>
+	<td width="5"></td>
+	<td class="fieldData"><%=h client.updated_at.strftime("%m/%d/%Y") unless client.updated_at.nil? %><%=h " ("+User.find(client.updater_id).name+")" unless client.updater_id.nil? %></td>
+	<td width="5"></td>
 	<td valign="top"><%= link_to 'Details', client %></td>
     <td valign="top"><%= link_to 'Edit', edit_client_path(client) %></td>
-    <td valign="top"><%= link_to 'Destroy', client, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td valign="top"><%= link_to 'Delete', client, :confirm => 'Are you sure?', :method => :delete %></td>
+	<td valign="top"><%= link_to_remote 'Office Visit', :url=>client_contacts_path(client), :with => "'contact[client_id]="+client.id.to_s+"&contact[contact_type_id]="+@office_visit.id.to_s+"&contact[contact_date]="+Time.now.to_s+"&page_update=false'" , :method => :post %></td>
   </tr>
   <tr>
-	<td colspan="11"><hr/></td>
+	<td colspan="15"><hr/></td>
   </tr>
 <% end %>
 <% if @clients.nil? or @clients.empty? %>

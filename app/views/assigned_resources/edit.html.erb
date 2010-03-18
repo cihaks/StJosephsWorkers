@@ -13,20 +13,47 @@
 		  </tr>
 		  <tr>
 			<td>
-		      <%= f.label :resource_type %><br />
-		      <%= f.collection_select(:resource_type_id,ResourceType.all,:id,:name) %>
+			  <%= f.label :resource_type, "Resource Type" %><br />
+		      <%= f.collection_select(:resource_type_id,ResourceType.all,:id,:name, {}, {:onchange=>"Element.hide('#{"has_"+@daily_pass_key.id.to_s}'); Element.hide('#{"has_"+@monthly_pass_key.id.to_s}'); Element.hide('#{"has_"+@voice_mail_key.id.to_s}'); Element.show('has_'+value);"}) %>
+			</td>
+			<td width="10"></td>
+			<td valign="top" rowspan="4">
+			  <div id="<%=h "has_#{@daily_pass_key.id}" %>" <%= "style=\"display:none\"" unless @assigned_resource.resource_type_id == @daily_pass_key.id %>>
+				  <% fields_for_association(@assigned_resource, :daily_pass) do |subform| %>
+					<%= subform.label :company %><br />
+				    <%= subform.text_field :company %><br /><br />
+					<%= subform.label :note, "Notes" %><br />
+					<%= subform.text_area :note, :size=>"30x4" %>
+		          <% end %>
+		      </div>
+			  <div id="<%=h "has_#{@monthly_pass_key.id}" %>" <%= "style=\"display:none\"" unless @assigned_resource.resource_type_id == @monthly_pass_key.id %>>
+				  <% fields_for_association(@assigned_resource, :monthly_pass) do |subform| %>
+					<%= subform.label :amount_paid, "Amount Paid" %><br />
+				    <%=h "$" %><%= subform.text_field :amount_paid %><br /><br />
+					<%= subform.label :amount_due, "Amount Due" %><br />
+					<%=h "$" %><%= subform.text_field :amount_due %>
+		          <% end %>
+		      </div>
+			  <div id="<%=h "has_#{@voice_mail_key.id}" %>" <%= "style=\"display:none\"" unless @assigned_resource.resource_type_id == @voice_mail_key.id %>>
+				  <% fields_for_association(@assigned_resource, :voice_mail) do |subform| %>
+					<%= subform.label :cvm_number, "Number" %><br />
+				    <%= subform.text_field :cvm_number %><br /><br />
+					<%= subform.label :cvm_password, "Password" %><br />
+					<%= subform.text_field :cvm_password %>
+		          <% end %>
+		      </div>
 			</td>
 		  </tr>
 		  <tr>
 			<td>
 		      <%= f.label :amount %><br />
-		      <%= f.text_field :amount %>
+		      <%=h "$" %><%= f.text_field :amount, :size=>"15" %>
 			</td>
 		  </tr>
 		  <tr>
 			<td>
-		      <%= f.label :number %><br />
-		      <%= f.text_field :number %>
+		      <%= f.label :number, "Quantity" %><br />
+		      <%= f.text_field :number, :size=>"15" %>
 			</td>
 		  </tr>
 		  <tr>
@@ -37,35 +64,11 @@
 		  </tr>
 		</table>
 	  </td>
-	  <td width="10"></td>
-	  <td>
-	    <%= f.label :companies %><br/>
-	    <div class="scrollable">
-	  	  <% Company.all.each do |company| %>
-		    <div>
-		      <%= check_box_tag "assigned_resource[company_ids][]", company.id, @assigned_resource.companies.include?(company) %>
-		      <%= company.name %>
-		    </div>
-		  <% end %>
-	    </div>
-	  </td>
-	  <td width="10"></td>
-	  <td>
-	    <%= f.label :industries %><br/>
-		<div class="scrollable">
-		  <% Industry.all.each do |industry| %>
-			<div>
-			  <%= check_box_tag "assigned_resource[industry_ids][]", industry.id, @assigned_resource.industries.include?(industry) %>
-			  <%= industry.name %>
-			</div>
-		  <% end %>
-		</div>
-	  </td>
 	</tr>
 	<tr>
 	  <td>
         <%= f.submit 'Update' unless request.xhr? %>
-	    <%= submit_to_remote 'update_ajax_btn', 'Update', :url=>{:action=>'update'}, :update=>'contacts-content' if request.xhr? %>
+	    <%= submit_to_remote 'update_ajax_btn', 'Update', :url=>{:action=>'update'} if request.xhr? %>
 	  </td>
     </tr>
   </table>

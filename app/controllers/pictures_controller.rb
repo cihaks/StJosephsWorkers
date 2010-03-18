@@ -1,32 +1,13 @@
 class PicturesController < ApplicationController
   layout 'contacts_content'
   
-  before_filter :get_client, :set_section
-
-  # active_scaffold :picture do |config|
-  #   config.label = 'Client Picture'
-  # end
+  ajax_updates do |config|
+    config.refresh_element 'contacts-element'
+    config.add_refresh 'client-element', 'shared/client_show'
+  end
   
-  # GET /pictures
-  # GET /pictures.xml
-  def index
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @client.pictures }
-    end
-  end
-
-  # GET /pictures/1
-  # GET /pictures/1.xml
-  def show
-    @picture = @client.pictures.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @picture }
-    end
-  end
-
+  before_filter :get_client, :set_section
+  
   # GET /pictures/new
   # GET /pictures/new.xml
   def new
@@ -58,7 +39,7 @@ class PicturesController < ApplicationController
         format.js do
           responds_to_parent do
             render :update do |page|
-              page.replace_html 'client-content', :partial=>'shared/client_show'
+              page.replace_html 'client-element', :partial=>'shared/client_show'
               page.replace_html 'contacts-element', :partial=>'pictures/index'
             end
           end
@@ -79,24 +60,12 @@ class PicturesController < ApplicationController
       flash[:notice] = 'Picture was successfully updated.'
       responds_to_parent do
         render :update do |page|
-          page.replace_html 'client-content', :partial=>'shared/client_show'
+          page.replace_html 'client-element', :partial=>'shared/client_show'
           page.replace_html 'contacts-element', :partial=>'pictures/index'
         end
       end
     else
       render :action => "edit"
-    end
-  end
-
-  # DELETE /pictures/1
-  # DELETE /pictures/1.xml
-  def destroy
-    @picture = @client.pictures.find(params[:id])
-    @picture.destroy
-    
-    respond_to do |format|
-      format.html { redirect_to client_pictures_path(@client) }
-      format.xml  { head :ok }
     end
   end
   

@@ -1,37 +1,37 @@
 
 <p>
-  <b>Incarceration date:</b>
-  <%=h @crime_sentence.start_date.strftime("%b %Y") unless @crime_sentence.start_date.nil? %>
-</p>
-
-<p>
-  <b>Release date:</b>
-  <%=h @crime_sentence.release_date.strftime("%b %Y") unless @crime_sentence.release_date.nil? %>
-</p>
-
-<p>
   <b>Prison:</b>
   <%=h @crime_sentence.prison.name unless @crime_sentence.prison.nil? %>
 </p>
 
 <p>
-  <b>Crime type:</b>
+  <b>Incarceration Length:</b>
+  <%=h @crime_sentence.incarceration_length.name unless @crime_sentence.incarceration_length.nil? %>
+</p>
+
+<p>
+  <b>Crime Type:</b>
   <%=h @crime_sentence.crime_type.name unless @crime_sentence.crime_type.nil? %>
 </p>
 
 <p>
-  <b>Felony:</b>
-  <%= check_box_tag :felony, 'true', @crime_sentence.felony, :onclick=>"return false;" %>
+  <%= f.label :crime_types, "Crime Type(s)" %><br/>
+  <div>
+	<% @crime_sentence.crime_types.each do |crime_type| %>
+		<%=h crime_type.name %>
+		<br/>
+	<% end %>
+  </div>
 </p>
 
 <p>
-  <b>Violent:</b>
-  <%= check_box_tag :violent, 'true', @crime_sentence.violent, :onclick=>"return false;" %>
+  <b>Last Modified:</b>
+  <%=h @crime_sentence.updated_at.strftime("%m/%d/%Y") unless @crime_sentence.updated_at.nil? %>
 </p>
 
 <p>
-  <b>Sex offender:</b>
-  <%= check_box_tag :sex_offender, 'true', @crime_sentence.sex_offender, :onclick=>"return false;" %>
+  <b>Modified By:</b>
+  <%=h User.find(@crime_sentence.updater_id).name unless @crime_sentence.updated_at.nil? %>
 </p>
 
 <br/>

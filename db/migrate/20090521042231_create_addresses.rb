@@ -5,7 +5,6 @@ class CreateAddresses < ActiveRecord::Migration
       t.string :address1, :address2, :city
       t.column :zip_code, :integer, :limit => 5
       t.boolean :primary_ind, :current_ind
-      t.date :start_date, :end_date
       t.timestamps
       t.userstamps
     end

@@ -14,9 +14,11 @@
 	<td width="10"></td>
     <td><%=h resource_type.description %></td>
 	<td width="10"></td>
+<!--
     <td><%= link_to 'Show', resource_type %></td>
+-->
     <td><%= link_to 'Edit', edit_resource_type_path(resource_type) %></td>
-    <td><%= link_to 'Destroy', resource_type, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Delete', resource_type, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

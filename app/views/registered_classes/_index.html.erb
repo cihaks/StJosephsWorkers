@@ -5,9 +5,11 @@
 	<td width="10"></td>
     <th>Class date</th>
 	<td width="10"></td>
-    <th>Waive date</th>
+    <th>Completed?</th>
 	<td width="10"></td>
-    <th>Completed</th>
+    <th>Last Modified</th>
+	<td width="10"></td>
+    <th>Modified By</th>
 	<td width="10"></td>
   </tr>
 
@@ -17,13 +19,17 @@
 	<td width="10"></td>
     <td><%=h registered_class.class_date.strftime("%m/%d/%Y") unless registered_class.class_date.nil? %></td>
 	<td width="10"></td>
-    <td><%=h registered_class.waive_date.strftime("%m/%d/%Y") unless registered_class.waive_date.nil? %></td>
+    <td align="center"><%=h registered_class.completed_value %></td>
 	<td width="10"></td>
-    <td align="center"><%= check_box_tag(:completed,'true',registered_class.completed, :onclick=>"return false;") %></td>
+    <td align="center"><%=h registered_class.updated_at.strftime("%m/%d/%Y") unless registered_class.updated_at.nil? %></td>
 	<td width="10"></td>
+    <td align="center"><%=h User.find(registered_class.updater_id).name unless registered_class.updater_id.nil? %></td>
+	<td width="10"></td>
+<!--
     <td><%= link_to_remote 'Details', :url=>client_registered_class_path(@client,registered_class), :update=>'jobs-content', :method=>:get %></td>
+-->
     <td><%= link_to_remote 'Edit', :url=>edit_client_registered_class_path(@client,registered_class), :update=>'jobs-content', :method=>:get %></td>
-    <td><%= link_to_remote 'Destroy', :url=>client_registered_class_path(@client,registered_class), :update=>'jobs-content', :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to_remote 'Delete', :url=>client_registered_class_path(@client,registered_class), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 <% if @client.registered_classes.empty? %>

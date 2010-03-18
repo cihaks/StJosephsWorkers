@@ -10,9 +10,11 @@
   <tr>
     <td class="fieldData"><%=h substance.name %></td>
 	<td width="10"></td>
+<!--
     <td><%= link_to 'Show', substance %></td>
+-->
     <td><%= link_to 'Edit', edit_substance_path(substance) %></td>
-    <td><%= link_to 'Destroy', substance, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Delete', substance, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

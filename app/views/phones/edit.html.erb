@@ -12,7 +12,7 @@
   </p>
   <p>
     <%= f.submit 'Update' unless request.xhr? %>
-	<%= submit_to_remote 'update_ajax_btn', 'Update', :url=>{:action=>'update'}, :update=>'contacts-content' if request.xhr?%>
+	<%= submit_to_remote 'update_ajax_btn', 'Update', :url=>{:action=>'update'} if request.xhr?%>
   </p>
 <% end %>
 

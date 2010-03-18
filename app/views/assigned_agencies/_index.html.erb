@@ -3,22 +3,24 @@
   <tr>
     <td class="fieldLabel"><b>Agency</b></td>
 	<td width="10"></td>
-    <td class="fieldLabel"><b>Start date</b></td>
+    <td class="fieldLabel"><b>Last Modified</b></td>
 	<td width="10"></td>
-    <td class="fieldLabel"><b>End date</b></td>
+    <td class="fieldLabel"><b>Modified By</b></td>
   </tr>
 
 <% @client.assigned_agencies.each do |assigned_agency| %>
   <tr>
     <td class="fieldData"><%=h assigned_agency.agency.name unless assigned_agency.agency.nil? %></td>
 	<td width="10"></td>
-    <td class="fieldData"><%=h assigned_agency.start_date.strftime("%m/%d/%Y") unless assigned_agency.start_date.nil? %></td>
+    <td class="fieldData"><%=h assigned_agency.updated_at.strftime("%m/%d/%Y") unless assigned_agency.updated_at.nil? %></td>
 	<td width="10"></td>
-    <td class="fieldData"><%=h assigned_agency.end_date.strftime("%m/%d/%Y") unless assigned_agency.end_date.nil? %></td>
+	<td class="fieldData"><%=h User.find(assigned_agency.updater_id).name unless assigned_agency.updater_id.nil? %></td>
 	<td width="10"></td>
+<!--
     <td><%= link_to_remote 'Details', :url=>client_assigned_agency_path(@client, assigned_agency), :update=>'infamy-content', :method=>'get' %></td>
+-->
     <td><%= link_to_remote 'Edit', :url=>edit_client_assigned_agency_path(@client, assigned_agency), :update=>'infamy-content', :method=>'get' %></td>
-    <td><%= link_to_remote 'Destroy', :url=>client_assigned_agency_path(@client, assigned_agency), :update=>'infamy-content', :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to_remote 'Delete', :url=>client_assigned_agency_path(@client, assigned_agency), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 <% if @client.assigned_agencies.empty? %>

@@ -52,7 +52,7 @@ class PrisonsController < SecurityController
     respond_to do |format|
       if @prison.save
         flash[:notice] = 'Prison was successfully created.'
-        format.html { redirect_to(@prison) }
+        format.html { redirect_to(prisons_url) }
         format.xml  { render :xml => @prison, :status => :created, :location => @prison }
       else
         format.html { render :action => "new" }
@@ -69,7 +69,7 @@ class PrisonsController < SecurityController
     respond_to do |format|
       if @prison.update_attributes(params[:prison])
         flash[:notice] = 'Prison was successfully updated.'
-        format.html { redirect_to(@prison) }
+        format.html { redirect_to(prisons_url) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

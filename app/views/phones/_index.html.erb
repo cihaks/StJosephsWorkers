@@ -5,17 +5,27 @@
 	<td width="10"></td>
     <td class="fieldLabel">Primary</td>
 	<td width="10"></td>
+    <td class="fieldLabel">Last Modified</td>
+	<td width="10"></td>
+    <td class="fieldLabel">Modified By</td>
+	<td width="10"></td>
   </tr>
 
 <% @client.phones.each do |phone| %>
   <tr>
     <td class="fieldData"><%=h phone.phone_number %></td>
 	<td width="10"></td>
-    <td class="fieldData"><%= check_box_tag :phone_primary, 'true', phone.is_primary?, :onclick=>"return false;"%></td>
+    <td class="fieldData"><%= link_to_remote (check_box_tag :phone_primary, 'true', phone.is_primary?, :onclick=>"return false;"), :url=>client_phone_path(@client,phone), :with=>"'phone[primary_ind]="+(!phone.is_primary?).to_s+"'", :method => :put %></td>
 	<td width="10"></td>
+    <td class="fieldData"><%=h phone.updated_at.strftime("%m/%d/%y") unless phone.updated_at.nil? %></td>
+	<td width="10"></td>
+    <td class="fieldData"><%=h User.find(phone.updater_id).name unless phone.updater_id.nil? %></td>
+	<td width="10"></td>
+<!--
     <td><%= link_to_remote 'Details', :url=>client_phone_path(@client,phone), :update=>'contacts-content', :method=>:get %></td>
+-->
     <td><%= link_to_remote 'Edit', :url=>edit_client_phone_path(@client,phone), :update=>'contacts-content', :method=>:get %></td>
-    <td><%= link_to_remote 'Destroy', :url=>client_phone_path(@client,phone), :update=>'contacts-content', :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to_remote 'Delete', :url=>client_phone_path(@client,phone), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 <% if @client.phones.empty? %>

@@ -3,7 +3,11 @@
   <tr>
     <td class="fieldLabel">Company</td>
 	<td width="10"></td>
-    <td class="fieldLabel">Interview date</td>
+    <td class="fieldLabel">Interview Date</td>
+	<td width="10"></td>
+    <td class="fieldLabel">Last Modified</td>
+	<td width="10"></td>
+    <td class="fieldLabel">Modified By</td>
 	<td width="10"></td>
   </tr>
 
@@ -13,9 +17,13 @@
 	<td width="10"></td>
     <td class="fieldData"><%=h job_interview.interview_date.strftime("%m/%d/%Y") unless job_interview.interview_date.nil? %></td>
 	<td width="10"></td>
+    <td class="fieldData"><%=h job_interview.updated_at.strftime("%m/%d/%Y") unless job_interview.updated_at.nil? %></td>
+	<td width="10"></td>
+    <td class="fieldData"><%=h User.find(job_interview.updater_id).name unless job_interview.updater_id.nil? %></td>
+	<td width="10"></td>
     <td><%= link_to_remote 'Details', :url=>client_job_interview_path(@client,job_interview), :update=>'jobs-content', :method=>:get %></td>
     <td><%= link_to_remote 'Edit', :url=>edit_client_job_interview_path(@client, job_interview), :update=>'jobs-content', :method=>:get %></td>
-    <td><%= link_to_remote 'Destroy', :url=>client_job_interview_path(@client, job_interview), :update=>'jobs-content', :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to_remote 'Delete', :url=>client_job_interview_path(@client, job_interview), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 <% if @client.job_interviews.empty? %>

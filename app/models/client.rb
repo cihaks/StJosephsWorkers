@@ -21,14 +21,14 @@
 class Client < ActiveRecord::Base
   belongs_to :race
   has_many :pictures
-  has_many :addresses, :order => "start_date DESC"
-  has_many :phones
-  has_many :contacts, :order => "contact_date desc"
-  has_many :assigned_resources
-  has_many :registered_classes, :order => "class_date DESC"
+  has_many :addresses, :order => "address_type"
+  has_many :phones, :order => "primary_ind DESC, updated_at DESC"
+  has_many :contacts, :order => "contact_date DESC"
+  has_many :assigned_resources, :order => "resource_date DESC"
+  has_many :registered_classes, :order => "class_date DESC, updated_at DESC"
   has_many :used_substances, :order => "sober_date DESC"
   has_many :crime_sentences, :order => "start_date DESC"
-  has_many :assigned_agencies, :order => "start_date DESC"
+  has_many :assigned_agencies, :order => "updated_at DESC"
   has_many :jobs, :order => "start_date DESC"
   has_many :job_interviews, :order => "interview_date DESC"
   has_many :job_applications, :order => "application_date DESC"
@@ -39,6 +39,8 @@ class Client < ActiveRecord::Base
   has_many :substances, :through => :used_substances, :uniq => true
   has_many :agencies, :through => :assigned_agencies, :uniq => true
   has_many :courses, :through => :registered_classes, :source => :course, :uniq => true
+  
+  validates_uniqueness_of :birth_date, :scope=>[:first_name, :last_name]
   
   def name
     if first_name.nil?
@@ -73,8 +75,19 @@ class Client < ActiveRecord::Base
   end
   
   def self.search(search, page, page_limit)
+    search_array = search.split unless search.nil?
+    search_array ||= []
+    
+    if search_array[1].nil?
+      search_condition = "first_name LIKE :name1 or middle_name LIKE :name1 or last_name LIKE :name1 or id=:name1"
+      search_values = {:name1=>"%#{search_array[0]}%"}
+    else
+      search_condition = "(first_name LIKE :name1 or middle_name LIKE :name1 or last_name LIKE :name1 or id=:name1) and (first_name LIKE :name2 or middle_name LIKE :name2 or last_name LIKE :name2)"
+      search_values = {:name1=>"%#{search_array[0]}%", :name2=>"%#{search_array[1]}%"}
+    end
+    
     paginate :per_page=>page_limit, :page=>page,
-             :conditions => ["first_name LIKE ? or middle_name LIKE ? or last_name LIKE ? or id=?", "%#{search}%", "%#{search}%", "%#{search}%", "#{search}"],
+             :conditions => [search_condition, search_values],
              :order => 'last_name, first_name, middle_name'
   end
 end

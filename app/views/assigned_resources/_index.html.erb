@@ -5,16 +5,16 @@
 	<td width="10"></td>
     <td class="fieldLabel"><b>Type</b></td>
 	<td width="10"></td>
-    <td class="fieldLabel"><b>Amount</b></td>
+    <td class="fieldLabel"><b>Amt</b></td>
 	<td width="10"></td>
-    <td class="fieldLabel"><b>Number</b></td>
+    <td class="fieldLabel"><b>Qty</b></td>
 	<td width="10"></td>
     <td class="fieldLabel"><b>Verified</b></td>
 	<td width="10"></td>
-<!--    
-	<td class="fieldLabel"><b>From<br>Companies</b></td>
-	<td colspan="4"></td>
--->
+	<!-- <td class="fieldLabel"><b>From<br>Companies</b></td>
+	<td width="10"></td> -->
+    <td class="fieldLabel"><b>Modified By</b></td>
+	<td width="10"></td>
   </tr>
 <!--  <tr height="3"><td colspan="15" height="3"><hr></td></tr> -->
 
@@ -22,23 +22,58 @@
   <tr>
     <td class="fieldData"><%=h assigned_resource.resource_date.strftime("%m/%d/%Y") %></td>
 	<td width="10"></td>
-    <td class="fieldData"><%=h assigned_resource.resource_type.name %></td>
+    <td class="fieldData">
+	  <%=h assigned_resource.resource_type.name unless assigned_resource.resource_type.nil? %>
+	</td>
 	<td width="10"></td>
     <td class="fieldData" align="right"><%=h number_to_currency(assigned_resource.amount, :precision=>0) %></td>
 	<td width="10"></td>
     <td class="fieldData" align="right"><%=h number_with_delimiter(assigned_resource.number) %></td>
 	<td width="10"></td>
-    <td class="fieldData" align="center"><%= check_box_tag :verified, 'true', assigned_resource.verified, :onclick=>"return false;" %></td>
+    <td class="fieldData" align="center"><%= link_to_remote (check_box_tag :verified, 'true', assigned_resource.verified, :onclick=>"return false;"), :url=>client_assigned_resource_path(@client,assigned_resource), :with=>"'assigned_resource[verified]="+(!assigned_resource.verified).to_s+"&assoc=false'", :method => :put %></td>
+	<td width="10"></td>
+    <!-- <td class="fieldData"><% assigned_resource.companies.each {|company| %><%=h company.name%><br><% } %></td>
+	<td width="10"></td> -->
+	<td class="fieldData"><%= User.find(assigned_resource.updater_id).name unless assigned_resource.updater_id.nil? %></td>
 	<td width="10"></td>
 <!--
-    <td class="fieldData"><% assigned_resource.companies.each {|company| %><%=h company.name%><br><% } %></td>
-	<td width="10"></td>
+    <td><%= link_to_remote 'Details', :url=>client_assigned_resource_path(@client,assigned_resource), :update=>'contacts-content', :method=>:get %></td>
 -->
-    <td><%= link_to_remote 'Show', :url=>client_assigned_resource_path(@client,assigned_resource), :update=>'contacts-content', :method=>:get %></td>
     <td><%= link_to_remote 'Edit', :url=>edit_client_assigned_resource_path(@client,assigned_resource), :update=>'contacts-content', :method=>:get %></td>
-    <td><%= link_to_remote 'Destroy', :url=>client_assigned_resource_path(@client,assigned_resource), :update=>'contacts-content', :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to_remote 'Delete', :url=>client_assigned_resource_path(@client,assigned_resource), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
-  <tr><td colspan="15" height="3"><hr/></td></tr>
+  <tr>
+	<% if !assigned_resource.daily_pass.nil? %>
+	  <td colspan="2"></td>
+	  <td colspan="9" class="fieldData">
+		<span class="fieldLabel"><b>Company: </b></span>
+		<%= assigned_resource.daily_pass.company %>
+		<br />
+		<span class="fieldLabel"><b>Note: </b></span>
+		<%= assigned_resource.daily_pass.note %>
+	  </td>
+	<% elsif !assigned_resource.monthly_pass.nil? %>
+	  <td colspan="2"></td>
+	  <td colspan="9" class="fieldData">
+		<span class="fieldLabel"><b>Amount Paid: </b></span>
+		<%= number_to_currency(assigned_resource.monthly_pass.amount_paid) unless assigned_resource.monthly_pass.amount_paid.nil? %>
+		<br />
+		<span class="fieldLabel"><b>Amount Due: </b></span>
+		<%= number_to_currency(assigned_resource.monthly_pass.amount_due) unless assigned_resource.monthly_pass.amount_due.nil? %>
+	  </td>
+	<% elsif !assigned_resource.voice_mail.nil? %>
+	  <td colspan="2"></td>
+	  <td colspan="9" class="fieldData">
+		<span class="fieldLabel"><b>CVM Number: </b></span>
+		<%= number_to_phone(assigned_resource.voice_mail.cvm_number) unless assigned_resource.voice_mail.cvm_number.nil? %>
+		<br />
+		<span class="fieldLabel"><b>CVM Password: </b></span>
+		<%= assigned_resource.voice_mail.cvm_password %>
+	  </td>
+	  
+	<% end %>
+  </tr>
+  <tr><td colspan="17" height="3"><hr/></td></tr>
 <% end %>
 <% if @client.assigned_resources.empty? %>
   <tr>

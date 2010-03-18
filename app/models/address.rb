@@ -17,6 +17,7 @@
 #
 
 class Address < ActiveRecord::Base
+  
   belongs_to :state
   belongs_to :client
   belongs_to :address_type
@@ -25,7 +26,7 @@ class Address < ActiveRecord::Base
     address = ""
     address = address+address1 unless address1.nil?
     address = address+", "+address2 unless (address2.nil? or address2.empty?)
-    address = address+", "+city unless city.nil?
+    address = address+", "+city unless (city.nil? or city.empty?)
     address = address+", "+state.code unless state.nil?
     address = address+", "+zip_code.to_s unless zip_code.nil?
     address

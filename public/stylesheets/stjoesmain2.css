@@ -22,7 +22,7 @@ text-align:center;
 a:link, a:visited, a:active {
 color:#86052A;
 font-family:verdana,arial,sans-serif;
-font-size:9pt;
+font-size:8pt;
 font-style:normal;
 font-weight:normal;
 text-decoration:underline;
@@ -30,7 +30,7 @@ text-decoration:underline;
 a:hover {
 color:#265602;
 font-family:verdana,arial,sans-serif;
-font-size:9pt;
+font-size:8pt;
 font-style:normal;
 font-weight:normal;
 text-decoration:none;
@@ -103,6 +103,11 @@ padding:10px 10px 0 0;
 }
 #client-content {
 	padding-bottom:5px;
+}
+#client-update-notes {
+	padding-left:10px;
+	font-size:9px;
+	color:gray;
 }
 #encounter-content {
 	margin-bottom: 5px;
@@ -185,14 +190,14 @@ width:180px;
 #navigation li a:hover {
 background-color:#953006;
 color:#FFFFFF;
-font-size:10pt;
+font-size:9pt;
 }
 #navigation a:link, #navigation a:visited, #navigation a:active {
 background-color:#57021A;
 border-left:12px solid #57021A;
 border-right:1px solid #57021A;
 color:#FFFFFF;
-font-size:10pt;
+font-size:9pt;
 display:block;
 font-style:normal;
 font-weight:normal;
@@ -285,6 +290,9 @@ div.banner .icons {
 div.banner .links {
 	margin-top:3px;
 }
+.formlinks {
+	font-size: 6pt;
+}
 .links {
 	margin-left:5px;
 	color: white;
@@ -344,9 +352,13 @@ vertical-align:top;
 }
 td.fieldData {
 border:0 solid red;
+font-size:8pt;
 font-style:inherit;
 font-weight:normal;
 text-align:left;
 vertical-align:top;
 /*white-space:nowrap;*/
+}
+td.userStamp {
+font-size:8pt;
 }

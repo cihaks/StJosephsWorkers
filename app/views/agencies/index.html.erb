@@ -12,9 +12,11 @@
     <td><%=h agency.name %></td>
 	<td><%=h agency.agency_type.name unless agency.agency_type.nil? %></td>
 	<td width="10"></td>
+<!--
     <td><%= link_to 'Show', agency %></td>
+-->
     <td><%= link_to 'Edit', edit_agency_path(agency) %></td>
-    <td><%= link_to 'Destroy', agency, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Delete', agency, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

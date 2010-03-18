@@ -1,5 +1,5 @@
 
-<% remote_form_for([@client,@registered_class], :update=>'jobs-content') do |f| %>
+<% form_for([@client,@registered_class]) do |f| %>
   <%= f.error_messages %>
 
   <p>
@@ -11,15 +11,14 @@
     <%= f.date_select :class_date %>
   </p>
   <p>
-    <%= f.label :waive_date, 'Waive Date' %><br />
-    <%= f.date_select :waive_date, :include_blank=>true %>
+    <%= f.label :completed, "Completed?" %><br />
+	<%= f.radio_button :completed, "0" %>Completed<br />
+	<%= f.radio_button :completed, "1" %>Waived<br />
+	<%= f.radio_button :completed, "2" %>No Show
   </p>
   <p>
-    <%= f.label :completed %><br />
-    <%= f.check_box :completed %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
+    <%= f.submit 'Update' unless request.xhr? %>
+	<%= submit_to_remote 'update_ajax_btn', 'Update', :url=>{:action=>'update'} if request.xhr?%>
   </p>
 <% end %>
 

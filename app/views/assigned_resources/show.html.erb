@@ -23,7 +23,7 @@
 		  </tr>
 		  <tr>
 			<td>
-			  <b>Number:</b>
+			  <b>Quantity:</b>
 			  <%=h number_with_delimiter(@assigned_resource.number) %>
 			</td>
 		  </tr>
@@ -33,10 +33,16 @@
 			  <%= check_box_tag :verified, 'true', @assigned_resource.verified, :onclick=>"return false;" %>
 			</td>
 		  </tr>
+		  <tr>
+			<td>
+			  <b>Modified By:</b>
+			  <%=h User.find(@assigned_resource.updater_id).name unless @assigned_resource.updater_id.nil? %>
+			</td>
+		  </tr>
 		</table>
 	  </td>
 	  <td width="10"></td>
-	  <td>
+	  <!-- <td>
 	    <b>Companies:</b><br/>
 	    <div class="scrollable">
 	  	  <% @assigned_resource.companies.each do |company| %>
@@ -58,6 +64,6 @@
 			</div>
 		  <% end %>
 		</div>
-	  </td>
+	  </td> -->
 	</tr>
   </table>

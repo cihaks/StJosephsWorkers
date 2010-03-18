@@ -16,10 +16,10 @@
 </table>
 <table>
   <tr>
-	<td><b>Start date:</b>&nbsp;<%=h @address.start_date.strftime("%m/%d/%Y") unless @address.start_date.nil? %></td>
-	<td width="10"></td>
-	<td><b>End date:</b>&nbsp;<%=h @address.end_date.strftime("%m/%d/%Y") unless @address.end_date.nil? %></td>
-	<td width="10"></td>
 	<td><b>Housing Type:</b>&nbsp;<%=h @address.address_type.name unless @address.address_type.nil? %></td>
+	<td width="10"></td>
+	<td><b>Last Modified:</b>&nbsp;<%=h @address.updated_at.strftime("%m/%d/%y") unless @address.updated_at.nil? %></td>
+	<td width="10"></td>
+	<td><b>Modified By:</b>&nbsp;<%=h h User.find(@address.updater_id).name unless @address.updater_id.nil? %></td>
   </tr>
 </table>

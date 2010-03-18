@@ -7,16 +7,8 @@
     <%= f.collection_select(:agency_id,Agency.all,:id,:name) %>
   </p>
   <p>
-    <%= f.label :start_date %><br />
-    <%= f.date_select :start_date %>
-  </p>
-  <p>
-    <%= f.label :end_date %><br />
-    <%= f.date_select :end_date, :include_blank => true %>
-  </p>
-  <p>
     <%= f.submit 'Create' unless request.xhr? %>
-	<%= submit_to_remote 'create_ajax_btn', 'Create', :url=>{:action=>'create'}, :update=>'infamy-content' if request.xhr?%>
+	<%= submit_to_remote 'create_ajax_btn', 'Create', :url=>{:action=>'create'} if request.xhr?%>
   </p>
 <% end %>
 

@@ -1,19 +1,8 @@
 class AgenciesController < SecurityController
   layout 'references'
   
-#  active_scaffold :agency do |config|
-#    config.actions = [:list, :show, :update, :delete]
-#    config.actions.exclude :nested
-#    config.action_links.add 'new',:label=>'Add Client', :inline=>false
-#    config.show.link.inline = false
-#    config.update.link.inline = false
-#    config.columns.exclude :client_agencies, :clients, :client_health_issues
-#    config.show.columns << :created_at
-#    config.show.columns << :updated_at
-#  end
-  
-#  # GET /agencies
-#  # GET /agencies.xml
+  # GET /agencies
+  # GET /agencies.xml
   def index
     @agencies = Agency.search(params[:query],params[:page],current_user.page_limit)
     

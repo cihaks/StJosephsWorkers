@@ -16,4 +16,14 @@
 class RegisteredClass < ActiveRecord::Base
   belongs_to :course
   belongs_to :client
+  
+  def completed_value
+    if completed == '0'
+      "Completed"
+    elsif completed == '1'
+      "Waived"
+    elsif completed == '2'
+      "No Show"
+    end
+  end
 end
