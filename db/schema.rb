@@ -212,6 +212,7 @@ ActiveRecord::Schema.define(:version => 20100307042027) do
 
   create_table "incarceration_lengths", :force => true do |t|
     t.string   "name"
+    t.integer  "list_order"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "creator_id"
@@ -287,8 +288,8 @@ ActiveRecord::Schema.define(:version => 20100307042027) do
 
   create_table "monthly_passes", :force => true do |t|
     t.integer  "assigned_resource_id"
-    t.integer  "amount_paid",          :precision => 10, :scale => 2
-    t.integer  "amount_due",           :precision => 10, :scale => 2
+    t.decimal  "amount_paid",          :precision => 10, :scale => 2
+    t.decimal  "amount_due",           :precision => 10, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end

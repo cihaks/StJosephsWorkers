@@ -1,12 +1,15 @@
 <table>
   <tr>
-    <th>Name</th>
+    <td class="fieldLabel">Name</td>
+	<td width="10"></td>
+	<td class="fieldLabel">List Order</td>
   </tr>
 
 <% @incarceration_lengths.each do |incarceration_length| %>
   <tr>
-    <td><%=h incarceration_length.name %></td>
+    <td class="fieldData"><%=h incarceration_length.name %></td>
 	<td width="10"></td>
+    <td class="fieldData"><%=h incarceration_length.list_order %></td>
 <!--
     <td><%= link_to 'Show', incarceration_length %></td>
 -->

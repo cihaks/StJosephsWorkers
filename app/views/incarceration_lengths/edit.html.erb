@@ -6,6 +6,10 @@
     <%= f.text_field :name %>
   </p>
   <p>
+    <%= f.label :list_order, "List Order" %><br />
+    <%= f.text_field :list_order, :size=>"4", :maxlength=>"2" %>
+  </p>
+  <p>
     <%= f.submit 'Update' %>
   </p>
 <% end %>

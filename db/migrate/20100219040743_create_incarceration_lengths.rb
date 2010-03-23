@@ -2,6 +2,7 @@ class CreateIncarcerationLengths < ActiveRecord::Migration
   def self.up
     create_table :incarceration_lengths do |t|
       t.string :name
+			t.integer :list_order
 
       t.timestamps
       t.userstamps
