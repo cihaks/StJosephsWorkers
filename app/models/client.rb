@@ -79,10 +79,10 @@ class Client < ActiveRecord::Base
     search_array ||= []
     
     if search_array[1].nil?
-      search_condition = "first_name LIKE :name1 or middle_name LIKE :name1 or last_name LIKE :name1 or id=:name1"
+      search_condition = "first_name LIKE :name1 or middle_name LIKE :name1 or last_name LIKE :name1 or id like :name1"
       search_values = {:name1=>"%#{search_array[0]}%"}
     else
-      search_condition = "(first_name LIKE :name1 or middle_name LIKE :name1 or last_name LIKE :name1 or id=:name1) and (first_name LIKE :name2 or middle_name LIKE :name2 or last_name LIKE :name2)"
+      search_condition = "(first_name LIKE :name1 or middle_name LIKE :name1 or last_name LIKE :name1 or id like :name1) and (first_name LIKE :name2 or middle_name LIKE :name2 or last_name LIKE :name2)"
       search_values = {:name1=>"%#{search_array[0]}%", :name2=>"%#{search_array[1]}%"}
     end
     
