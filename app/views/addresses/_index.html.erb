@@ -5,6 +5,8 @@
 	<th></th>
     <th align="left">Type</th>
 	<th></th>
+    <th align="left">Shelter</th>
+	<th></th>
     <th align="left">Last Modified</th>
 	<th></th>
     <th align="left">Modified By</th>
@@ -15,6 +17,8 @@
     <td><%=h address.full_address %></td>
     <td width="10"></td>
     <td><%=h address.address_type.name unless address.address_type.nil? %></td>
+    <td width="10"></td>
+    <td><%=h address.shelter.name unless address.shelter.nil? %></td>
     <td width="10"></td>
     <td><%=h address.updated_at.strftime("%m/%d/%y") unless address.updated_at.nil? %></td>
     <td width="10"></td>

@@ -8,7 +8,7 @@ ActiveRecord::Base.send :include, Acts::DomainBasedAssociation
 require "fields_for_helper" 
 ActionView::Base.send :include, FieldsForHelper
 
-# base = User
+# base domain = User
 # type = UserType
 # associations = Manager, Underwriter, Technologist
 

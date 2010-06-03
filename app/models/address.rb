@@ -21,6 +21,7 @@ class Address < ActiveRecord::Base
   belongs_to :state
   belongs_to :client
   belongs_to :address_type
+  belongs_to :shelter
   
   def full_address
     address = ""

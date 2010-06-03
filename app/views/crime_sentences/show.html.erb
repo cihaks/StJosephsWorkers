@@ -1,6 +1,6 @@
 
 <p>
-  <b>Prison:</b>
+  <b>Facility:</b>
   <%=h @crime_sentence.prison.name unless @crime_sentence.prison.nil? %>
 </p>
 
@@ -10,8 +10,8 @@
 </p>
 
 <p>
-  <b>Crime Type:</b>
-  <%=h @crime_sentence.crime_type.name unless @crime_sentence.crime_type.nil? %>
+  <b>Work Furlough/Work Release:</b>
+  <%= check_box_tag :verified, 'true', @crime_sentence.furlough, :onclick=>"return false;" %>
 </p>
 
 <p>

@@ -3,12 +3,12 @@ class CreateCrimeSentences < ActiveRecord::Migration
     create_table :crime_sentences do |t|
       t.integer :client_id, :prison_id, :incarceration_length_id
       t.date :start_date, :end_date, :release_date
-      t.boolean :felony, :violent, :sex_offender
+      t.boolean :felony, :violent, :sex_offender, :furlough
       t.timestamps
       t.userstamps
     end
     
-    create_table :crime_sentences_crime_types do |t|
+    create_table :crime_sentences_crime_types, :id=>false do |t|
       t.references :crime_sentence
       t.references :crime_type
     end

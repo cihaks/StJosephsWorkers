@@ -1,54 +1,105 @@
+<% form_for(@client, :builder=>MyFormBuilder) do |f| %>
+	<div id="client-content">
+	  <div class="banner"><div class="caption">New Client</div></div>
+	  <div id="client-element">
+	    <%= render :partial=>'clients/form', :locals=>{ :f => f } %>
+	  </div>
+	</div>
+	<br/>
+	
+	<div id="contacts-content">
+	  <div class="banner"><div class="caption">Contacts</div></div>
+	  <div id="contacts-element">
+		<% f.fields_for :contacts do |contact_fields| %>
+		  <%= render :partial=>'contacts/form', :locals => { :f => contact_fields } %>
+		<% end %>
+	  </div>
+	</div>
+	<%= add_element_link("add contact", f, :contacts) %>
+    <br />
+	<br />
 
-<% form_for(@client) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :race %><br />
-    <%= f.collection_select(:race_id,Race.all,:id,:name) %>
-  </p>
-  <p>
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-  </p>
-  <p>
-    <%= f.label :middle_name %><br />
-    <%= f.text_field :middle_name %>
-  </p>
-  <p>
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
-  </p>
-  <p>
-    <%= f.label :gender %><br />
-    <%= f.radio_button (:gender, "M") %>Male
-    <%= f.radio_button (:gender, "F") %>Female
-    <%= f.radio_button (:gender, "O") %>Other
-  </p>
-<!--
-  <p>
-    <%= f.label :caution %><br />
-    <%= f.check_box :caution %>
-  </p>
-  <p>
-    <%= f.label :resource_eligible %><br />
-    <%= f.check_box :resource_eligible %>
-  </p>
-  <p>
-    <%= f.label :success_story %><br />
-    <%= f.check_box :success_story %>
-  </p>
--->
-  <p>
-    <%= f.label :veteran %><br />
-    <%= f.check_box :veteran %>
-  </p>
-  <p>
-    <%= f.label :birth_date %><br />
-    <%= f.date_select :birth_date,:include_blank=>true, :start_year=>Time.now.year-70, :end_year=>Time.now.year-10 %>
-  </p>
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
+	<div id="addresses-content">
+	  <div class="banner"><div class="caption">Addresses</div></div>
+	  <div id="addresses-element">
+		<% f.fields_for :addresses do |address_fields| %>
+		  <table>
+		  <%= render :partial=>'addresses/form', :locals => { :f => address_fields } %>
+		  </table>
+		<% end %>
+	  </div>
+	</div>
+	<%= add_element_link("add address", f, :addresses) %>
+    <br />
+	<br />
+	
+	<div id="phones-content">
+	  <div class="banner"><div class="caption">Phones</div></div>
+	  <div id="phones-element">
+		<% f.fields_for :phones do |phone_fields| %>
+		  <%= render :partial=>'phones/form', :locals => { :f => phone_fields } %>
+		<% end %>
+	  </div>
+	</div>
+	<%= add_element_link("add phone", f, :phones) %>
+    <br />
+    <br />
+	
+	<div id="workhistory-content">
+	  <div class="banner"><div class="caption">Work History</div></div>
+	  <div id="workhistory-element">
+		<p>New Work History section should be placed here</p>
+	  </div>
+	</div>
+    <br/>
+	
+	<div id="registered_classes-content">
+	  <div class="banner"><div class="caption">Registered Classes</div></div>
+	  <div id="registered_classes-element">
+		<% f.fields_for :registered_classes do |classes_fields| %>
+		  <%= render :partial=>'registered_classes/form', :locals => { :f => classes_fields } %>
+		<% end %>
+	  </div>
+	</div>
+	<%= add_element_link("add registered class", f, :registered_classes) %>
+    <br />
+    <br />
+	
+	<div id="assigned_agencies-content">
+	  <div class="banner"><div class="caption">Assigned Agencies</div></div>
+	  <div id="assigned_agencies-element">
+		<% f.fields_for :assigned_agencies do |assigned_agency_fields| %>
+		  <%= render :partial=>'assigned_agencies/form', :locals => { :f => assigned_agency_fields } %>
+		<% end %>
+	  </div>
+	</div>
+    <br/>
+	
+	<div id="used_substances-content">
+	  <div class="banner"><div class="caption">Used Substances</div></div>
+	  <div id="used_substances-element">
+		<% f.fields_for :used_substances do |substance_fields| %>
+		  <%= render :partial=>'used_substances/form', :locals => { :f => substance_fields } %>
+		<% end %>
+	  </div>
+	</div>
+    <br/>
+	
+	<div id="crime_sentences-content">
+	  <div class="banner"><div class="caption">Crime Sentences</div></div>
+	  <div id="crime_sentences-element">
+		<% f.fields_for :crime_sentences do |crime_sentences_fields| %>
+		  <%= render :partial=>'crime_sentences/form', :locals => { :f => crime_sentences_fields } %>
+		<% end %>
+	  </div>
+	</div>
+    <br/>
+	<table>
+	  <tr>
+		<td>
+		    <%= f.submit 'Create' %>
+		</td>
+	  </tr>
+    </table>
+  
 <% end %>
-
-<br/>

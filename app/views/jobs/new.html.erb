@@ -10,7 +10,7 @@
 		  </p>
 		  <p>
 		    <%= f.label :company_id, 'Company' %><br />
-		    <%= f.collection_select(:company_id, Company.all, :id, :name) %>
+			<%= text_field_with_auto_complete :job, :company_name, {}, { :url => formatted_companies_path(:js), :method => :get, :param_name => 'query' } %>
 		  </p>
 		  <p>
 		    <%= f.label :industry_id, 'Industry' %><br />

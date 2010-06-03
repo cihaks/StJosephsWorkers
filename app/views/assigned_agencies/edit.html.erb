@@ -2,10 +2,7 @@
 <% form_for([@client,@assigned_agency]) do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :agency_id %><br />
-    <%= f.collection_select(:agency_id,Agency.all,:id,:name) %>
-  </p>
+  <%= render :partial => 'assigned_agencies/form', :locals => { :f => f } %>
   <p>
     <%= f.submit 'Update' unless request.xhr? %>
 	<%= submit_to_remote 'update_ajax_btn', 'Update', :url=>{:action=>'update'} if request.xhr? %>

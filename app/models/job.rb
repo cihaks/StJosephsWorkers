@@ -25,7 +25,15 @@ class Job < ActiveRecord::Base
   #       end
   #     end
   #   end
-  
+
+  def company_name
+	  company.name if company
+	end
+	
+	def company_name=(name)
+		self.company = Company.find_or_create_by_name(name) unless name.blank?
+	end
+
   def save_job_rates
     job_rates.each do |job_rate|
       job_rate.save(false)

@@ -1,7 +1,10 @@
+<table>
 <tr>
   <th align="left">Address</th>
   <th width="10"></th>
   <th align="left">Type</th>
+  <th width="10"></th>
+  <th align="left">Shelter</th>
 </tr>
 <tr>
   <td style="line-height: .8em;">
@@ -13,4 +16,7 @@
   </td>
   <td width="10"></td>
   <td valign="top"><%= f.collection_select(:address_type_id,AddressType.all,:id,:name) %></td>
+  <td width="10"></td>
+  <td valign="top"><%= f.collection_select(:shelter_id,Shelter.all,:id,:name, { :include_blank => :true }) %></td>
 </tr>
+</table>

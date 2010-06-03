@@ -119,12 +119,19 @@ namespace :db do
     end
     
     desc "populating agencies"
-    Agency.populate 15 do |agency|
+    Agency.populate 6 do |agency|
       agency.agency_type_id = AgencyType.all.rand.id
       agency.name = Populator.words(1).titleize
       agency.creator_id = adminuser.id
       agency.updater_id = adminuser.id
     end
+
+		desc "populating shelters"
+		Shelter.populate 15 do |shelter|
+			shelter.name = Populator.words(1..3).titleize
+			shelter.creator_id = adminuser.id
+			shelter.updater_id = adminuser.id
+		end
     
     desc "populating industries and companies"
     Industry.populate 6..12 do |industry|
@@ -205,7 +212,10 @@ namespace :db do
         address.start_date = 5.years.ago..Time.now
         if [true,false].rand
           address.end_date = 3.years.ago..Time.now
-        end 
+        end
+				if [true,true,false,false,false].rand
+				  address.shelter_id = Shelter.all.rand.id
+			  end
         address.creator_id = User.all.rand.id
         address.updater_id = User.all.rand.id
       end

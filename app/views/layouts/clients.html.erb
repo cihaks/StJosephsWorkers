@@ -4,43 +4,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title<%= controller.controller_name.titleize %>: <%= controller.action_name %></title>
-  <%= stylesheet_link_tag 'scaffold' %>
-  <%= stylesheet_link_tag 'stjoesmain' %>
+  <title><%= controller.controller_name.titleize %>: <%= controller.action_name %></title>
+  <%= stylesheet_link_tag 'stjoesmain2' %>
+  <%= javascript_include_tag 'jquery' %>
   <%= javascript_include_tag :defaults %>
+  <%= calendar_date_select_includes :red %>
+  <%#= active_scaffold_includes %>
 </head>
 <body>
 <div id="wrapper">
-
-	<div class="leftside">
-		<div id="logo"></div>
-		<div id="logo_column"></div>
-	</div>
 	
-	<div id="header">
-		<center>
-			<div class="headerTitleStatement">
-				St. Joseph the Worker
-			</div>
-		</center>
-		<br/>
-		<div class="headerEmploymentStatement">
-			<%= controller.controller_name.singularize.titleize %> List - Phoenix, Arizona	
-		</div>
-		<%= render 'users/user_bar' %>
+	<%= render "/shared/header" %>
+	<%= render '/shared/navigation' %>
 		
-	</div>
-	
-	<%= render 'shared/navigation' %>
-	
 	<div id="content">
-		<p> Clients layout</p>
-
-		<p style="color: green"><%= flash[:notice] %></p>
-
-		<%= yield %>
+			<%= yield %>
 	</div>
 	
+	<div class="close"></div>
 </div>
+<div class="spacer"></div>
+
 </body>
 </html>

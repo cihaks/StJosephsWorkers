@@ -5,6 +5,11 @@
 </p>
 
 <p>
+  <b>Staff Contact:</b>
+  <%=h @assigned_agency.staff_contact %>
+</p>
+
+<p>
   <b>Last Modified:</b>
   <%=h @assigned_agency.updated_at.strftime("%m/%d/%Y") unless @assigned_agency.updated_at.nil? %>
 </p>

@@ -2,24 +2,7 @@
 <% form_for([@client,@crime_sentence]) do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :prison %><br />
-    <%= f.collection_select(:prison_id,Prison.all,:id,:name) %>
-  </p>
-  <p>
-    <%= f.label :incarceration_length, "Incarceration Length" %><br />
-    <%= f.collection_select(:incarceration_length_id,IncarcerationLength.all,:id,:name) %>
-  </p>
-  <p>
-    <%= f.label :crime_types, "Crime Type(s)" %><br/>
-    <div>
-	  <% CrimeType.all.each do |crime_type| %>
-		<%= check_box_tag "crime_sentence[crime_type_ids][]", crime_type.id, @crime_sentence.crime_types.include?(crime_type) %>
-		<%=h crime_type.name %>
-		<br/>
-	  <% end %>
-    </div>
-  </p>
+  <%= render :partial=>'crime_sentences/form', :locals=>{ :f => f } %>
   <p>
     <%= f.submit 'Create' unless request.xhr? %>
 	<%= submit_to_remote 'create_ajax_btn', 'Create', :url=>{:action=>'create'} if request.xhr?%>

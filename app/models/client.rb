@@ -22,13 +22,13 @@ class Client < ActiveRecord::Base
   belongs_to :race
   has_many :pictures
   has_many :addresses, :order => "address_type"
-  has_many :phones, :order => "primary_ind DESC, updated_at DESC"
-  has_many :contacts, :order => "contact_date DESC"
-  has_many :assigned_resources, :order => "resource_date DESC"
-  has_many :registered_classes, :order => "class_date DESC, updated_at DESC"
+  has_many :phones, :order => "primary_ind DESC, updated_at DESC, id DESC"
+  has_many :contacts, :order => "contact_date DESC, id DESC"
+  has_many :assigned_resources, :order => "resource_date DESC, id DESC"
+  has_many :registered_classes, :order => "class_date DESC, updated_at DESC, id DESC"
   has_many :used_substances, :order => "sober_date DESC"
   has_many :crime_sentences, :order => "start_date DESC"
-  has_many :assigned_agencies, :order => "updated_at DESC"
+  has_many :assigned_agencies, :order => "updated_at DESC, id DESC"
   has_many :jobs, :order => "start_date DESC"
   has_many :job_interviews, :order => "interview_date DESC"
   has_many :job_applications, :order => "application_date DESC"
@@ -39,6 +39,18 @@ class Client < ActiveRecord::Base
   has_many :substances, :through => :used_substances, :uniq => true
   has_many :agencies, :through => :assigned_agencies, :uniq => true
   has_many :courses, :through => :registered_classes, :source => :course, :uniq => true
+
+	accepts_nested_attributes_for :contacts, :reject_if=>lambda { |a| a[:note].blank? }, :allow_destroy=>true
+	accepts_nested_attributes_for :registered_classes, :reject_if=>lambda { |a| a[:class_date].blank? }, :allow_destroy=>true
+	accepts_nested_attributes_for :used_substances, :allow_destroy=>true
+	accepts_nested_attributes_for :addresses, :allow_destroy=>true
+	accepts_nested_attributes_for :phones, :allow_destroy=>true
+	accepts_nested_attributes_for :assigned_resources, :allow_destroy=>true
+	accepts_nested_attributes_for :crime_sentences, :allow_destroy=>true
+	accepts_nested_attributes_for :assigned_agencies, :allow_destroy=>true
+	accepts_nested_attributes_for :jobs, :allow_destroy=>true
+	accepts_nested_attributes_for :job_interviews, :allow_destroy=>true
+	accepts_nested_attributes_for :job_applications, :allow_destroy=>true
   
   validates_uniqueness_of :birth_date, :scope=>[:first_name, :last_name]
   

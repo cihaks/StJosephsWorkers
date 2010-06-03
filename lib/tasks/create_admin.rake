@@ -13,15 +13,21 @@ namespace :db do
     AgencyType.create :name => 'Substance Abuse'
     
     desc "populating agencies"
-    Agency.create :name => 'Andre House', :agency_type => agency_type
-    Agency.create :name => 'CASS', :agency_type => agency_type
-    Agency.create :name => 'EVMC', :agency_type => agency_type
-    Agency.create :name => 'Friend/Family', :agency_type => agency_type
-    Agency.create :name => 'MOS', :agency_type => agency_type
-    Agency.create :name => 'Phoenix Resource Mission', :agency_type => agency_type
-    Agency.create :name => 'UMOM', :agency_type => agency_type
-    Agency.create :name => 'WOF', :agency_type => agency_type
-    
+    Agency.create :name => 'SW Behavioral'
+    Agency.create :name => 'Magellan / People of Color'
+    Agency.create :name => 'Community Bridges'
+    Agency.create :name => 'Healthcare for the Homeless'
+
+    desc "populating shelters"
+    Shelter.create :name => 'Andre House'
+    Shelter.create :name => 'CASS'
+    Shelter.create :name => 'EVMC'
+    Shelter.create :name => 'Friend/Family'
+    Shelter.create :name => 'MOS'
+    Shelter.create :name => 'Phoenix Resource Mission'
+    Shelter.create :name => 'UMOM'
+    Shelter.create :name => 'WOF'
+
     desc "populating benefit types"
     BenefitsType.create :name => 'After Probation Period'
     BenefitsType.create :name => 'Immediately'
@@ -39,6 +45,7 @@ namespace :db do
     desc "populating contact types"
     ContactType.create :name => 'Client Contact'
     ContactType.create :name => 'Office Visit Only'
+		ContactType.create :name => 'Intake'
     
     desc "populating courses"
     Course.create :name => 'Job Readiness Workshop'
@@ -80,9 +87,9 @@ namespace :db do
     
     desc "populating prisons"
     Prison.create :name => 'County Jail'
-    Prison.create :name => 'In-State Penitentary'
-    Prison.create :name => 'Out-of-State Penitentary'
-    Prison.create :name => 'Federal Penitentary'
+    Prison.create :name => 'In-State Penitentiary'
+    Prison.create :name => 'Out-of-State Penitentiary'
+    Prison.create :name => 'Federal Penitentiary'
     
     desc "populating races"
     Race.create :name => 'African American'
@@ -93,13 +100,13 @@ namespace :db do
     Race.create :name => 'Other'
     
     desc "populating resource types"
-    ResourceType.create :name => 'Bus - Daily Pass'
-    ResourceType.create :name => 'Bus - Monthly Pass'
-    ResourceType.create :name => 'Clothing'
-    ResourceType.create :name => 'CVM - Community Voice Mail'
+    ResourceType.create :name => 'Bus - Daily Pass', :type_name => 'daily_pass'
+    ResourceType.create :name => 'Bus - Monthly Pass', :type_name => 'monthly_pass'
+    ResourceType.create :name => 'Clothing', :type_name => 'clothing'
+    ResourceType.create :name => 'CVM - Community Voice Mail', :type_name => 'voice_mail'
     ResourceType.create :name => 'Financial Assist: Housing Related'
     ResourceType.create :name => 'Financial Assist: Work Essentials'
-    ResourceType.create :name => 'Hygiene'
+    ResourceType.create :name => 'Hygiene', :type_name => 'hygiene'
     ResourceType.create :name => 'Shoes'
     ResourceType.create :name => 'Work Boots'
     

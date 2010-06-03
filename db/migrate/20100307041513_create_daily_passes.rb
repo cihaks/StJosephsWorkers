@@ -6,6 +6,7 @@ class CreateDailyPasses < ActiveRecord::Migration
       t.string :note, :limit=>2048
 
       t.timestamps
+			t.userstamps
     end
   end
 

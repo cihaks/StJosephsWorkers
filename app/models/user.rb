@@ -41,7 +41,10 @@ class User < ActiveRecord::Base
   def sub_page_limit
     3
   end
-  
+
+	def log_limit
+		10
+	end
   
   include Authentication
   include Authentication::ByPassword

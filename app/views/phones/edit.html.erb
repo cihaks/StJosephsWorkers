@@ -2,14 +2,7 @@
 <% form_for([@client,@phone]) do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :phone_number %><br />
-    <%= f.text_field :phone_number %>
-  </p>
-  <p>
-    <%= f.label :primary_ind, "Primary" %><br />
-    <%= f.check_box :primary_ind %>
-  </p>
+  <%= render :partial=>'phones/form', :locals=>{ :f => f } %>
   <p>
     <%= f.submit 'Update' unless request.xhr? %>
 	<%= submit_to_remote 'update_ajax_btn', 'Update', :url=>{:action=>'update'} if request.xhr?%>

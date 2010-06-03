@@ -26,7 +26,7 @@ class ClientsController < ApplicationController
   def show
     @client = Client.find(params[:id])
     
-    @activity_logs = ActivityLog.search(@client.id, 5)
+    @activity_logs = ActivityLog.search(@client.id, current_user.log_limit)
     
     #redirect_to client_contacts_path(@client)
     
@@ -41,9 +41,16 @@ class ClientsController < ApplicationController
   # GET /clients/new.xml
   def new
     @client = Client.new
+		@client.contacts.build
+		@client.addresses.build
+		@client.phones.build
+		@client.assigned_agencies.build
+		@crime_sentence = @client.crime_sentences.build
+		@client.registered_classes.build
+		@client.used_substances.build
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render :layout=>'client_new' }
       format.xml  { render :xml => @client }
     end
   end

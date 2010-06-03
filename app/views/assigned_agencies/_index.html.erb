@@ -3,6 +3,8 @@
   <tr>
     <td class="fieldLabel"><b>Agency</b></td>
 	<td width="10"></td>
+    <td class="fieldLabel"><b>Staff Contact</b></td>
+	<td width="10"></td>
     <td class="fieldLabel"><b>Last Modified</b></td>
 	<td width="10"></td>
     <td class="fieldLabel"><b>Modified By</b></td>
@@ -11,6 +13,8 @@
 <% @client.assigned_agencies.each do |assigned_agency| %>
   <tr>
     <td class="fieldData"><%=h assigned_agency.agency.name unless assigned_agency.agency.nil? %></td>
+	<td width="10"></td>
+    <td class="fieldData"><%=h assigned_agency.staff_contact %></td>
 	<td width="10"></td>
     <td class="fieldData"><%=h assigned_agency.updated_at.strftime("%m/%d/%Y") unless assigned_agency.updated_at.nil? %></td>
 	<td width="10"></td>

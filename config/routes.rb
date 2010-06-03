@@ -1,9 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :activity_logs
+  map.resources :educations
 
-  map.resources :incarceration_lengths
+  map.resources :convictions
 
-  map.resources :benefits_types
+  map.resources :shelters
 
 
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
@@ -17,13 +17,17 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :profiles
   map.resources :roles
 
+  map.resources :activity_logs
   map.resources :address_types
   map.resources :agency_types
   map.resources :agencies
+  map.resources :benefits_types
+	map.resources :course_attendances
   map.resources :companies
   map.resources :contact_types
   map.resources :courses
   map.resources :crime_types
+  map.resources :incarceration_lengths
   map.resources :industries
   map.resources :job_types
   map.resources :races

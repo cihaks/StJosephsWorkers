@@ -15,6 +15,7 @@
 		<li class="indent1"><%= link_to "Benefits Types", benefits_types_path %></li>
 		<li class="indent1"><%= link_to "Companies", companies_path %></li>
 		<li class="indent1"><%= link_to "Contact Types", contact_types_path %></li>
+		<li class="indent1"><%= link_to "Convictions", convictions_path %></li>
 		<li class="indent1"><%= link_to "Courses", courses_path %></li>
 		<li class="indent1"><%= link_to "Crime Types", crime_types_path %></li>
 		<li class="indent1"><%= link_to "Incarceration Lengths", incarceration_lengths_path %></li>
@@ -23,6 +24,7 @@
 		<li class="indent1"><%= link_to "Prisons", prisons_path %></li>
 		<li class="indent1"><%= link_to "Races", races_path %></li>
 		<li class="indent1"><%= link_to "Resource Types", resource_types_path %></li>
+		<li class="indent1"><%= link_to "Shelters", shelters_path %></li>
 		<li class="indent1"><%= link_to "Status Types", status_types_path %></li>
 		<li class="indent1"><%= link_to "Substances", substances_path %></li>
 		<li class="indent1"><%= link_to "User Accounts", users_path %></li>
@@ -42,6 +44,14 @@
   	<li><%= link_to "Home", home_path %></li>
 	<li><%= link_to "Add Client", new_client_path %></li>
 	<% unless @client.nil? %>
+		<li>
+		  <div style="float:right;">
+			  <form action="<%= url_for :controller=>'clients', :action=>'index' %>">
+				<%= text_field_tag("query", params['query'], :size => 10 ) %>
+				<%= submit_tag 'Search' %>
+			</form>
+		  </div>
+		</li>
 	<% end %>
   </ul>
   <div id="client-updates">

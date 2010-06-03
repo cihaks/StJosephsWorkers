@@ -11,4 +11,5 @@
 
 ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'assigned_resource', 'assigned_resources'
+  inflect.irregular 'clothing', 'clothings'
 end

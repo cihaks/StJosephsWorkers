@@ -21,5 +21,16 @@ module ApplicationHelper
   #   <% elsif controller.action_name == 'show' %>
   #     <%= link_to 'Edit', eval("edit_client_#{controller.controller_name.singularize}_path(@client,@#{controller.controller_name.singularize})") %>
   #   <% end %>  
-  
+  	
+	
+end
+
+class MyFormBuilder < ActionView::Helpers::FormBuilder
+	
+	# def date_field(object_name, method, options = {})
+	# 	options.merge(:onfocus=>'new CalendarDateSelect( $(this), {time:false, year_range:10} );')
+	# 	# options.merge(:value=>eval("\"form.object.#{method}.strftime('%m/%d/%Y')\""))
+	# 	InstanceTag.new(object_name, method, self, options.delete(:object)).to_input_field_tag("text", options)
+	# end
+	
 end

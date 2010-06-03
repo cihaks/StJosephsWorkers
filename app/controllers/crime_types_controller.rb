@@ -1,11 +1,6 @@
 class CrimeTypesController < SecurityController
   layout 'references'
   
-  # active_scaffold :crime_type do |config|
-  #     config.label = 'Crime Type'
-  #     config.columns = [:name, :description]
-  #   end
-  
   # GET /crime_types
   # GET /crime_types.xml
   def index

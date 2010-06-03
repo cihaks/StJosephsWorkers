@@ -22,4 +22,5 @@ class CrimeSentence < ActiveRecord::Base
   belongs_to :incarceration_length
   
   has_and_belongs_to_many :crime_types
+  has_and_belongs_to_many :convictions
 end

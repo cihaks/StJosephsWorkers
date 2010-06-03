@@ -6,6 +6,7 @@ class CreateVoiceMails < ActiveRecord::Migration
       t.string :cvm_password
 
       t.timestamps
+			t.userstamps
     end
   end
 

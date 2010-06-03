@@ -5,11 +5,13 @@ module JobsHelper
 	end
 
 	def link_to_add_fields(name, f)
-	  fields = f.fields_for(:job_rates, JobRate.new, :child_index => "#{Time.now.to_i.to_s}") do |builder|
+	  fields = f.fields_for(:job_rates, JobRate.new, :child_index => "new_job_rate") do |builder|
       render("jobs/job_rate_fields", :f => builder)
     end
-    link_to_function name do |page|
-			page.insert_html :bottom, :job_rates, "#{fields}"
+		# link_to_function(name, h("add_fields(this, \"job_rate\", \"#{escape_javascript(fields)}\")"))
+
+		link_to_function name do |page|
+		 	page.insert_html :bottom, :job_rates, "#{fields}"
 		end
   end
 	

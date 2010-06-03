@@ -1,11 +1,15 @@
 
 <table>
   <tr>
-    <td class="fieldLabel"><b>Prison</b></td>
+    <td class="fieldLabel"><b>Facility</b></td>
 	<td width="10"></td>
     <td class="fieldLabel"><b>Incarceration Length</b></td>
 	<td width="10"></td>
+    <td class="fieldLabel"><b>Work Furlough/Release</b></td>
+	<td width="10"></td>
     <td class="fieldLabel"><b>Crime Type(s)</b></td>
+	<td width="10"></td>
+    <td class="fieldLabel"><b>Conviction(s)</b></td>
 	<td width="10"></td>
     <td class="fieldLabel"><b>Last Modified</b></td>
 	<td width="10"></td>
@@ -19,9 +23,18 @@
 	<td width="10"></td>
     <td class="fieldData"><%=h crime_sentence.incarceration_length.name unless crime_sentence.incarceration_length.nil? %></td>
 	<td width="10"></td>
+    <td class="fieldData"><%= link_to_remote (check_box_tag :furlough, 'true', crime_sentence.furlough, :onclick=>"return false;"), :url=>client_crime_sentence_path(@client,crime_sentence), :with=>"'crime_sentence[furlough]="+(!crime_sentence.furlough).to_s+"&assoc=false'", :method => :put %></td>
+	<td width="10"></td>
     <td class="fieldData">
     	<% crime_sentence.crime_types.each do |crime_type| %>
 			<%=h crime_type.name %>
+			<br/>
+		<% end %>
+    </td>
+	<td width="10"></td>
+    <td class="fieldData">
+    	<% crime_sentence.convictions.each do |conviction| %>
+			<%=h conviction.name %>
 			<br/>
 		<% end %>
     </td>

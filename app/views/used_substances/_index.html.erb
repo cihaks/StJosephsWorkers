@@ -5,7 +5,7 @@
 	<td width="10"></td>
 <!--    <td class="fieldLabel">Entry Date</td>
 	<td width="10"></td> -->
-    <td class="fieldLabel">Sober Date</td>
+    <td class="fieldLabel">Sober Since</td>
 	<td width="10"></td>
     <td class="fieldLabel">Last Modified</td>
 	<td width="10"></td>
@@ -15,7 +15,7 @@
 
 <% @client.used_substances.each do |used_substance| %>
   <tr>
-    <td class="fieldData"><%=h used_substance.substance.name %></td>
+    <td class="fieldData"><%=h used_substance.substance.name unless used_substance.substance.nil? %></td>
 	<td width="10"></td>
 <!--    <td class="fieldData"><%=h used_substance.entry_date.strftime("%m/%d/%Y") unless used_substance.entry_date.nil? %></td> 
 	<td width="10"></td>-->

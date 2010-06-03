@@ -1,20 +1,8 @@
 
 <% form_for([@client, @registered_class]) do |f| %>
   <%= f.error_messages %>
-  <p>
-    <%= f.label :course_id, 'Class' %><br />
-    <%= f.collection_select(:course_id,Course.all,:id,:name) %>
-  </p>
-  <p>
-    <%= f.label :class_date, 'Class Date' %><br />
-    <%= f.date_select :class_date %>
-  </p>
-  <p>
-    <%= f.label :completed, "Completed?" %><br />
-	<%= f.radio_button :completed, "0" %>Completed<br />
-	<%= f.radio_button :completed, "1" %>Waived<br />
-	<%= f.radio_button :completed, "2" %>No Show
-  </p>
+  
+  <%= render :partial => 'registered_classes/form', :locals => { :f => f } %>
   <p>
 	<%= f.submit 'Create' unless request.xhr? %>
 	<%= submit_to_remote 'update_ajax_btn', 'Create', :url=>{:action=>'create'} if request.xhr?%>

@@ -26,3 +26,10 @@ WillPaginate::ViewHelpers.pagination_options[:renderer] = 'PaginateLinkRenderer'
 #set default format for Calendar Date Select plugin
 CalendarDateSelect.format = :american
 
+CalendarDateSelect.default_options.update(
+#     :popup => "force",
+#     :month_year => "label",
+#     :image => "custom_calendar_picker.png"
+	:size=>"13"
+  )
+

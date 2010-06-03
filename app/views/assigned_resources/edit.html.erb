@@ -14,34 +14,11 @@
 		  <tr>
 			<td>
 			  <%= f.label :resource_type, "Resource Type" %><br />
-		      <%= f.collection_select(:resource_type_id,ResourceType.all,:id,:name, {}, {:onchange=>"Element.hide('#{"has_"+@daily_pass_key.id.to_s}'); Element.hide('#{"has_"+@monthly_pass_key.id.to_s}'); Element.hide('#{"has_"+@voice_mail_key.id.to_s}'); Element.show('has_'+value);"}) %>
+		      <%= type_select(f, :resource_type_id, ResourceType.all, :id, :name) %>
 			</td>
 			<td width="10"></td>
 			<td valign="top" rowspan="4">
-			  <div id="<%=h "has_#{@daily_pass_key.id}" %>" <%= "style=\"display:none\"" unless @assigned_resource.resource_type_id == @daily_pass_key.id %>>
-				  <% fields_for_association(@assigned_resource, :daily_pass) do |subform| %>
-					<%= subform.label :company %><br />
-				    <%= subform.text_field :company %><br /><br />
-					<%= subform.label :note, "Notes" %><br />
-					<%= subform.text_area :note, :size=>"30x4" %>
-		          <% end %>
-		      </div>
-			  <div id="<%=h "has_#{@monthly_pass_key.id}" %>" <%= "style=\"display:none\"" unless @assigned_resource.resource_type_id == @monthly_pass_key.id %>>
-				  <% fields_for_association(@assigned_resource, :monthly_pass) do |subform| %>
-					<%= subform.label :amount_paid, "Amount Paid" %><br />
-				    <%=h "$" %><%= subform.text_field :amount_paid %><br /><br />
-					<%= subform.label :amount_due, "Amount Due" %><br />
-					<%=h "$" %><%= subform.text_field :amount_due %>
-		          <% end %>
-		      </div>
-			  <div id="<%=h "has_#{@voice_mail_key.id}" %>" <%= "style=\"display:none\"" unless @assigned_resource.resource_type_id == @voice_mail_key.id %>>
-				  <% fields_for_association(@assigned_resource, :voice_mail) do |subform| %>
-					<%= subform.label :cvm_number, "Number" %><br />
-				    <%= subform.text_field :cvm_number %><br /><br />
-					<%= subform.label :cvm_password, "Password" %><br />
-					<%= subform.text_field :cvm_password %>
-		          <% end %>
-		      </div>
+			  <%= render 'association_fields'%>
 			</td>
 		  </tr>
 		  <tr>
@@ -73,3 +50,12 @@
     </tr>
   </table>
 <% end %>
+
+<script language="javascript">
+  function toggle_elements(value) {
+	<% ResourceType.all.each do |resource_type| %>
+	  Element.hide('<%=h "has_#{resource_type.id}"%>');
+	<% end %>
+	Element.show('has_'+value);
+  }
+</script>
