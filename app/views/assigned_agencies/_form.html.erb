@@ -1,0 +1,13 @@
+<table>
+  <tr>
+	<td>
+  	  <%= f.label :agency_id %><br />
+  	  <%= f.collection_select(:agency_id,Agency.all,:id,:name,{ :prompt => true }) %>
+    </td>
+	<td width="10"></td>
+    <td>
+  	  <%= f.label :staff_contact %><br />
+  	  <%= f.text_field :staff_contact %>
+	<td>
+  </tr>
+</table>

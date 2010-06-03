@@ -1,0 +1,2 @@
+module CourseAttendenceHelper
+end

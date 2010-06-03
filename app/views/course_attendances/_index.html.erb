@@ -1,0 +1,33 @@
+<div class="banner">
+	<div class="caption">Course Attendance</div>
+	<div class="tabspacer">&nbsp;</div>
+</div>
+<div id="attendance-element">
+  <div>
+	<%= @course_search.errors.on(:from_date) %>
+	<%= @course_search.errors.on(:to_date) %>
+	<% form_for @course_search, :url=>course_attendances_path do |f| %>
+	Class: <%= f.collection_select :course_id, Course.all, :id, :name %>
+	From Date: <%= f.text_field :from_date_string, :size=>10 %>
+	To Date: <%= f.text_field :to_date_string, :size=>10 %>
+	<%= f.submit "Search" %>
+	<% end %>
+  </div>
+  <br/>
+  <table>
+    <tr>
+	  <td class="fieldlabel"><b>Class Name</b></td>
+	  <td width="10"></td>
+	  <td class="fieldLabel"><b>Class Date</b></td>
+	  <td width="10"></td>
+	  <td class="fieldLabel"><b>Client</b></td>
+	  <td width="10"></td>
+	  <td class="fieldLabel"><b>Status</b></td>
+	</tr>
+	<% @attendances.each do |attendance| %>
+	  <tr id="attendance-<%= attendance.id %>">
+		<%= render :partial=>'course_attendances/attendance', :object => attendance %>
+	  </tr>
+	<% end %>
+  </table>
+</div>

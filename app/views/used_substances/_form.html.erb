@@ -1,0 +1,13 @@
+<table>
+  <tr>
+	<td>
+      <%= f.label :substance_id, 'Substance' %><br />
+  	  <%= f.collection_select(:substance_id,Substance.all,:id,:name,{:prompt=>true}) %>
+    </td>
+	<td width="10"></td>
+    <td>
+  	  <%= f.label :sober_date, 'Sober Since' %><br />
+  	  <%= f.calendar_date_select :sober_date, :include_blank=>true %>
+	</td>
+  </tr>
+</table>

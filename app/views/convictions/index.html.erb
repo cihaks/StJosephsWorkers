@@ -1,0 +1,26 @@
+<br />
+<%= will_paginate @convictions, :remote => {:method=>:get, :update => 'item_list'} %>
+
+<table>
+  <tr>
+    <td class="fieldLabel">Name</td>
+	<td width="10"></td>
+    <td class="fieldLabel">Description</td>
+	<td width="10"></td>
+  </tr>
+
+<% @convictions.each do |conviction| %>
+  <tr>
+    <td class="fieldData"><%=h conviction.name %></td>
+	<td width="10"></td>
+    <td class="fieldData"><%=h conviction.description %></td>
+	<td width="10"></td>
+    <td><%= link_to 'Show', conviction %></td>
+    <td><%= link_to 'Edit', edit_conviction_path(conviction) %></td>
+    <td><%= link_to 'Delete', conviction, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= will_paginate @convictions, :remote => {:method=>:get, :update => 'item_list'} %>
+<br />

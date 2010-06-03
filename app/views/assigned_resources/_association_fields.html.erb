@@ -1,0 +1,28 @@
+<% fields_for_association(@assigned_resource, :daily_pass, @assigned_resource.resource_type)  do |subform| %>
+		<%= subform.label :company %><br />
+	    <%= subform.text_field :company %><br /><br />
+		<%= subform.label :note, "Notes" %><br />
+		<%= subform.text_area :note, :size=>"30x4" %>
+<% end %>
+<% fields_for_association(@assigned_resource, :monthly_pass, @assigned_resource.resource_type) do |subform| %>
+		<%= subform.label :amount_paid, "Amount Paid" %><br />
+	    <%=h "$" %><%= subform.text_field :amount_paid %><br /><br />
+		<%= subform.label :amount_due, "Amount Due Next Month" %><br />
+		<%=h "$" %><%= subform.text_field :amount_due %><br /><br/>
+		<%= subform.label :note, "Notes" %><br />
+		<%= subform.text_area :note, :size=>"30x4" %>
+<% end %>
+<% fields_for_association(@assigned_resource, :voice_mail, @assigned_resource.resource_type) do |subform| %>
+		<%= subform.label :cvm_number, "Number" %><br />
+	    <%= subform.text_field :cvm_number %><br /><br />
+		<%= subform.label :cvm_password, "Password" %><br />
+		<%= subform.text_field :cvm_password %>
+<% end %>
+<% fields_for_association(@assigned_resource, :clothing, @assigned_resource.resource_type) do |subform| %>
+	<%= subform.label :note, "Notes" %><br />
+	<%= subform.text_area :note, :size=>"30x4" %>
+<% end %>
+<% fields_for_association(@assigned_resource, :hygiene, @assigned_resource.resource_type) do |subform| %>
+	<%= subform.label :note, "Notes" %><br />
+	<%= subform.text_area :note, :size=>"30x4" %>
+<% end %>

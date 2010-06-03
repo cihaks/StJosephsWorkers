@@ -1,0 +1,19 @@
+
+	<td class="fieldData"><%=h attendance.class_date.strftime("%m/%d/%Y") %></td>
+    <td width="10"></td>
+	<td class="fieldData"><%=h attendance.course.name %></td>
+    <td width="10"></td>
+	<td class="fieldData"><%=h attendance.client.name %></td>
+    <td width="10"></td>
+	<td class="fieldData">
+	  	<%= link_to_remote (radio_button_tag :completed, '0', attendance.completed == '0', :onclick=>"return false;"), :url=>course_attendance_path(attendance), :with=>"'registered_class[completed]=0'", :method => :put %>Completed
+	</td>
+	<td class="fieldData">
+		<%= link_to_remote (radio_button_tag :completed, '1', attendance.completed == '1', :onclick=>"return false;"), :url=>course_attendance_path(attendance), :with=>"'registered_class[completed]=1'", :method => :put %>Waived
+	</td>
+	<td class="fieldData">
+		<%= link_to_remote (radio_button_tag :completed, '2', attendance.completed == '2', :onclick=>"return false;"), :url=>course_attendance_path(attendance), :with=>"'registered_class[completed]=2'", :method => :put %>No Show
+	</td>
+	<td class="fieldData">
+		<%= link_to_remote (radio_button_tag :completed, '-1', attendance.completed == '-1', :onclick=>"return false;"), :url=>course_attendance_path(attendance), :with=>"'registered_class[completed]=-1'", :method => :put %>Clear
+	</td>

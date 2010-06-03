@@ -1,0 +1,31 @@
+<table>
+  <tr>
+	<td>
+  	  <%= f.label :contact_type_id, "Type" %><br />
+  	  <%= f.collection_select(:contact_type_id, ContactType.all, :id, :name) %>
+	</td>
+	<td width="10"></td>
+	<td>
+	  <%= f.label :contact_date, "Date" %><br />
+	  <%= f.calendar_date_select :contact_date, :size=>"13" %>
+	</td>
+	<td width="10"></td>
+	<td>
+	  <%= f.label :contact_negative, "Negative" %><br />
+	  <%= f.check_box :contact_negative %>
+	</td>
+	<td width="10"></td>
+	<td>
+	  <%= f.label :alert, "Alert" %><br />
+	  <%= f.check_box :alert %>
+	</td>
+  </tr>
+</table>
+<table>
+  <tr>
+	<td colspan="7">
+	  <%= f.label :note %><br />
+	  <%= f.text_area :note, :size=>"80x4" %>
+	</td>
+  </tr>
+</table>

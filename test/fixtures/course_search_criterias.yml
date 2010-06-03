@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  course_id: 1
+  from_date: 2010-03-26
+  to_date: 2010-03-26
+
+two:
+  course_id: 1
+  from_date: 2010-03-26
+  to_date: 2010-03-26

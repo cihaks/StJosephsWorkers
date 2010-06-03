@@ -1,0 +1,24 @@
+<br />
+<%= will_paginate @shelters, :remote => {:method=>:get, :update => 'item_list'} %>
+<table>
+  <tr>
+    <th>Name</th>
+	<td width="10"></td>
+    <th>Description</th>
+	<td width="10"></td>
+  </tr>
+
+<% @shelters.each do |shelter| %>
+  <tr>
+    <td><%=h shelter.name %></td>
+	<td width="10"></td>
+    <td><%=h shelter.description %></td>
+	<td width="10"></td>
+    <td><%= link_to 'Show', shelter %></td>
+    <td><%= link_to 'Edit', edit_shelter_path(shelter) %></td>
+    <td><%= link_to 'Destroy', shelter, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @shelters, :remote => {:method=>:get, :update => 'item_list'} %>
+<br />

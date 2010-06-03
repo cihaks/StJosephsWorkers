@@ -1,0 +1,43 @@
+<% if !assigned_resource.daily_pass.nil? %>
+  <td colspan="2"></td>
+  <td colspan="9" class="fieldData">
+	<span class="fieldLabel"><b>Company: </b></span>
+	<%= assigned_resource.daily_pass.company %>
+	<br />
+	<span class="fieldLabel"><b>Note: </b></span>
+	<%= assigned_resource.daily_pass.note %>
+  </td>
+<% elsif !assigned_resource.monthly_pass.nil? %>
+  <td colspan="2"></td>
+  <td colspan="9" class="fieldData">
+	<span class="fieldLabel"><b>Amount Paid: </b></span>
+	<%= number_to_currency(assigned_resource.monthly_pass.amount_paid) unless assigned_resource.monthly_pass.amount_paid.nil? %>
+	<br />
+	<span class="fieldLabel"><b>Amount Due Next Month: </b></span>
+	<%= number_to_currency(assigned_resource.monthly_pass.amount_due) unless assigned_resource.monthly_pass.amount_due.nil? %>
+	<br />
+	<span class="fieldLabel"><b>Note: </b></span>
+	<%= assigned_resource.monthly_pass.note %>
+  </td>
+<% elsif !assigned_resource.voice_mail.nil? %>
+  <td colspan="2"></td>
+  <td colspan="9" class="fieldData">
+	<span class="fieldLabel"><b>CVM Number: </b></span>
+	<%= number_to_phone(assigned_resource.voice_mail.cvm_number) unless assigned_resource.voice_mail.cvm_number.nil? %>
+	<br />
+	<span class="fieldLabel"><b>CVM Password: </b></span>
+	<%= assigned_resource.voice_mail.cvm_password %>
+  </td>
+<% elsif !assigned_resource.clothing.nil? %>
+  <td colspan="2"></td>
+  <td colspan="9" class="fieldData">
+	<span class="fieldLabel"><b>Note: </b></span>
+	<%= assigned_resource.clothing.note %>
+  </td>
+<% elsif !assigned_resource.hygiene.nil? %>
+  <td colspan="2"></td>
+  <td colspan="9" class="fieldData">
+	<span class="fieldLabel"><b>Note: </b></span>
+	<%= assigned_resource.hygiene.note %>
+  </td>
+<% end %>
