@@ -21,6 +21,13 @@ namespace :db do
         ActiveRecord::Base.connection.execute("INSERT INTO roles_users (role_id,user_id) VALUES (#{roleAdmin.id}, #{user.id})")
       end
       User.populate 1 do |user|
+        user.login = 'crosslr2'
+        user.name = 'Rob Crossley'
+        user.salt = make_token
+        user.crypted_password = password_digest('password',user.salt)
+        ActiveRecord::Base.connection.execute("INSERT INTO roles_users (role_id,user_id) VALUES (#{roleAdmin.id}, #{user.id})")
+      end      
+      User.populate 1 do |user|
         user.login = 'amy'
         user.name = 'Amy Caffarello'
         user.salt = make_token

@@ -40,6 +40,14 @@
 		      <%=h @client.race.name %>
 		    </td>
 		  </tr>
+		<tr>
+		    <td class="fieldLabel">
+		      <b>Education:</b>
+		    </td>
+		    <td class="fieldData">
+		      <%=h @client.education.name unless @client.education.nil? %>
+		    </td>
+		  </tr>
 		</table>
 	</td>
 	<td width="25">

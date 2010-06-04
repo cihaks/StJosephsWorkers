@@ -23,7 +23,7 @@
 		  <br />
 		  <br />
 		    <%= f.label :education %><br />
-			<%= select(:event, :education, ["Education List TBD"])%>
+		    <%= f.collection_select(:education_id,Education.all,:id,:name, {:include_blank=>true}) %>
 		  <br />
 		  <br />
 		    <%= f.label :gender %><br />

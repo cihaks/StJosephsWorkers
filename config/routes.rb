@@ -1,6 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :educations
 
+  map.resources :educations
+
   map.resources :convictions
 
   map.resources :shelters
