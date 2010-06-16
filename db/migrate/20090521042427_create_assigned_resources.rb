@@ -8,11 +8,6 @@ class CreateAssignedResources < ActiveRecord::Migration
       t.userstamps
     end
     
-    create_table :assigned_resources_companies, :id=>false do |t|
-      t.references :assigned_resource
-      t.references :company
-    end
-    
     create_table :assigned_resources_industries, :id=>false do |t|
       t.references :assigned_resource
       t.references :industry

@@ -1,3 +1,4 @@
+
 <table>
   <tr>
 	<td>
@@ -7,7 +8,7 @@
 	<td width="10"></td>
 	<td>
 	  <%= f.label :contact_date, "Date" %><br />
-	  <%= f.calendar_date_select :contact_date, :size=>"13" %>
+	  <%= f.calendar_date_select :contact_date, :size=>"13", :value=>"#{ f.object.contact_date.nil? ? Time.now.strftime("%m/%d/%Y") : f.object.contact_date.strftime("%m/%d/%Y") }" %>
 	</td>
 	<td width="10"></td>
 	<td>

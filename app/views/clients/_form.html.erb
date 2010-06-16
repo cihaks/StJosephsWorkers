@@ -26,6 +26,10 @@
 		    <%= f.collection_select(:education_id,Education.all,:id,:name, {:include_blank=>true}) %>
 		  <br />
 		  <br />
+			<%= f.label :education_subjects, "Subjects Studied" %><br />
+			<%= f.text_field :education_subjects %>
+		  <br />
+		  <br />
 		    <%= f.label :gender %><br />
 		    <%= f.radio_button (:gender, "M") %>Male
 		    <%= f.radio_button (:gender, "F") %>Female

@@ -4,7 +4,7 @@ namespace :db do
     
     desc "Clear existing data"
     
-    [AgencyType, Agency, BenefitsType, Prison, Industry, CrimeType, IncarcerationLength].each(&:delete_all)
+    [AgencyType, Agency, BenefitsType, Prison, Industry, Company, CrimeType, IncarcerationLength].each(&:delete_all)
     [JobType, Prison, ResourceType, StatusType, Substance, ContactType, Course, Race].each(&:delete_all)
     
     desc "populating agency types"

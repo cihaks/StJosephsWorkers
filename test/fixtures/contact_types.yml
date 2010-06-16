@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20090924043100
+# Schema version: 20100604003228
 #
 # Table name: contact_types
 #
@@ -8,6 +8,8 @@
 #  description :string(500)
 #  created_at  :datetime
 #  updated_at  :datetime
+#  creator_id  :integer(4)
+#  updater_id  :integer(4)
 #
 
 # == Schema Information

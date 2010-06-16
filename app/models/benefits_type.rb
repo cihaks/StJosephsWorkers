@@ -1,3 +1,16 @@
+# == Schema Information
+# Schema version: 20100604003228
+#
+# Table name: benefits_types
+#
+#  id         :integer(4)      not null, primary key
+#  name       :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#  creator_id :integer(4)
+#  updater_id :integer(4)
+#
+
 class BenefitsType < ActiveRecord::Base
   has_many :jobs
 

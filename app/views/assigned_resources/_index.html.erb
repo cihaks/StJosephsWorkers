@@ -11,8 +11,6 @@
 	<td width="10"></td>
     <td class="fieldLabel"><b>Verified</b></td>
 	<td width="10"></td>
-	<!-- <td class="fieldLabel"><b>From<br>Companies</b></td>
-	<td width="10"></td> -->
     <td class="fieldLabel"><b>Modified By</b></td>
 	<td width="10"></td>
   </tr>
@@ -32,8 +30,6 @@
 	<td width="10"></td>
     <td class="fieldData" align="center"><%= link_to_remote (check_box_tag :verified, 'true', assigned_resource.verified, :onclick=>"return false;"), :url=>client_assigned_resource_path(@client,assigned_resource), :with=>"'assigned_resource[verified]="+(!assigned_resource.verified).to_s+"&assoc=false'", :method => :put %></td>
 	<td width="10"></td>
-    <!-- <td class="fieldData"><% assigned_resource.companies.each {|company| %><%=h company.name%><br><% } %></td>
-	<td width="10"></td> -->
 	<td class="fieldData"><%= User.find(assigned_resource.updater_id).name unless assigned_resource.updater_id.nil? %></td>
 	<td width="10"></td>
 <!--

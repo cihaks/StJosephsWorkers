@@ -1,22 +1,27 @@
-  # == Schema Information
-# Schema version: 20090924043100
+# == Schema Information
+# Schema version: 20100604003228
 #
 # Table name: clients
 #
-#  id                :integer(4)      not null, primary key
-#  race_id           :integer(4)
-#  first_name        :string(255)
-#  middle_name       :string(255)
-#  last_name         :string(255)
-#  gender            :string(255)
-#  caution           :boolean(1)
-#  resource_eligible :boolean(1)
-#  veteran           :boolean(1)
-#  success_story     :boolean(1)
-#  birth_date        :date
-#  created_at        :datetime
-#  updated_at        :datetime
+#  id                 :integer(4)      not null, primary key
+#  race_id            :integer(4)
+#  first_name         :string(255)
+#  middle_name        :string(255)
+#  last_name          :string(255)
+#  gender             :string(255)
+#  caution            :boolean(1)
+#  resource_eligible  :boolean(1)
+#  veteran            :boolean(1)
+#  success_story      :boolean(1)
+#  birth_date         :date
+#  created_at         :datetime
+#  updated_at         :datetime
+#  creator_id         :integer(4)
+#  updater_id         :integer(4)
+#  education_id       :integer(4)
+#  education_subjects :string(255)
 #
+
 
 class Client < ActiveRecord::Base
   belongs_to :race
@@ -25,10 +30,11 @@ class Client < ActiveRecord::Base
   has_many :addresses, :order => "address_type"
   has_many :phones, :order => "primary_ind DESC, updated_at DESC, id DESC"
   has_many :contacts, :order => "contact_date DESC, id DESC"
+
   has_many :assigned_resources, :order => "resource_date DESC, id DESC"
   has_many :registered_classes, :order => "class_date DESC, updated_at DESC, id DESC"
   has_many :used_substances, :order => "sober_date DESC"
-  has_many :crime_sentences, :order => "start_date DESC"
+  has_many :crime_sentences, :order => "created_at DESC"
   has_many :assigned_agencies, :order => "updated_at DESC, id DESC"
   has_many :jobs, :order => "start_date DESC"
   has_many :job_interviews, :order => "interview_date DESC"
@@ -41,19 +47,20 @@ class Client < ActiveRecord::Base
   has_many :agencies, :through => :assigned_agencies, :uniq => true
   has_many :courses, :through => :registered_classes, :source => :course, :uniq => true
 
-	accepts_nested_attributes_for :contacts, :reject_if=>lambda { |a| a[:note].blank? }, :allow_destroy=>true
-	accepts_nested_attributes_for :registered_classes, :reject_if=>lambda { |a| a[:class_date].blank? }, :allow_destroy=>true
-	accepts_nested_attributes_for :used_substances, :allow_destroy=>true
-	accepts_nested_attributes_for :addresses, :allow_destroy=>true
-	accepts_nested_attributes_for :phones, :allow_destroy=>true
-	accepts_nested_attributes_for :assigned_resources, :allow_destroy=>true
-	accepts_nested_attributes_for :crime_sentences, :allow_destroy=>true
-	accepts_nested_attributes_for :assigned_agencies, :allow_destroy=>true
-	accepts_nested_attributes_for :jobs, :allow_destroy=>true
-	accepts_nested_attributes_for :job_interviews, :allow_destroy=>true
-	accepts_nested_attributes_for :job_applications, :allow_destroy=>true
+	accepts_nested_attributes_for :contacts, :allow_destroy=>true, :reject_if=>lambda { |a| a[:note].blank? }, :allow_destroy=>true
+	accepts_nested_attributes_for :registered_classes, :allow_destroy=>true, :reject_if=>lambda { |a| a[:class_date].blank? }
+	accepts_nested_attributes_for :used_substances, :allow_destroy=>true, :reject_if=>lambda { |a| a[:substance_id].blank? }
+	accepts_nested_attributes_for :addresses, :allow_destroy=>true, :reject_if=>lambda { |a| a[:address1].blank? }
+	accepts_nested_attributes_for :phones, :allow_destroy=>true, :reject_if=>lambda { |a| a[:phone_number].blank? }
+	accepts_nested_attributes_for :assigned_resources, :allow_destroy=>true, :reject_if=>lambda { |a| a[:resource_type_id].blank? }
+	accepts_nested_attributes_for :crime_sentences, :allow_destroy=>true, :reject_if=>lambda { |a| a[:prison_id].blank? }
+	accepts_nested_attributes_for :assigned_agencies, :allow_destroy=>true, :reject_if=>lambda { |a| a[:agency_id].blank? }
+	accepts_nested_attributes_for :jobs, :allow_destroy=>true, :reject_if=>lambda { |a| a[:job_type_id].blank? }
+	accepts_nested_attributes_for :job_interviews, :allow_destroy=>true, :reject_if=>lambda { |a| a[:interview_date].blank? }
+	accepts_nested_attributes_for :job_applications, :allow_destroy=>true, :reject_if=>lambda { |a| a[:application_date].blank? }
   
   validates_uniqueness_of :birth_date, :scope=>[:first_name, :last_name]
+	validates_date :birth_date
   
   def name
     if first_name.nil?

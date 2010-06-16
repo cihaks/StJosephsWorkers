@@ -1,0 +1,7 @@
+<%= subform.label :company %>
+<br />
+<%= subform.text_field_with_auto_complete :company, {}, { :url => companies_path(:ac), :method => :get, :param_name => 'query' } %>
+<br />
+<br />
+<%= subform.label :note, "Notes" %><br />
+<%= subform.text_area :note, :size=>"30x4" %>

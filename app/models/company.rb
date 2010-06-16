@@ -1,21 +1,21 @@
 # == Schema Information
-# Schema version: 20090924043100
+# Schema version: 20100604003228
 #
 # Table name: companies
 #
-#  id                 :integer(4)      not null, primary key
-#  name               :string(255)
-#  description        :string(255)
-#  created_at         :datetime
-#  updated_at         :datetime
+#  id          :integer(4)      not null, primary key
+#  name        :string(255)
+#  description :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#  creator_id  :integer(4)
+#  updater_id  :integer(4)
 #
-
 
 class Company < ActiveRecord::Base
   has_many :job_interviews
   has_many :job_applications
   has_many :jobs
-  has_and_belongs_to_many :assigned_resources
   
   def to_label
     name

@@ -1,3 +1,17 @@
+# == Schema Information
+# Schema version: 20100604003228
+#
+# Table name: convictions
+#
+#  id          :integer(4)      not null, primary key
+#  name        :string(255)
+#  description :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#  creator_id  :integer(4)
+#  updater_id  :integer(4)
+#
+
 class Conviction < ActiveRecord::Base
   has_and_belongs_to_many :crime_sentences
 

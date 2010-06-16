@@ -17,6 +17,7 @@ class CompaniesController < SecurityController
     respond_to do |format|
       format.html unless request.xhr? # index.html.erb
       format.js { render :layout => false }
+			format.ac { render :layout => false }
       format.xml  { render :xml => @companies }
     end
   end

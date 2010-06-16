@@ -2,8 +2,7 @@ class CreateCrimeSentences < ActiveRecord::Migration
   def self.up
     create_table :crime_sentences do |t|
       t.integer :client_id, :prison_id, :incarceration_length_id
-      t.date :start_date, :end_date, :release_date
-      t.boolean :felony, :violent, :sex_offender, :furlough
+      t.boolean :furlough
       t.timestamps
       t.userstamps
     end
