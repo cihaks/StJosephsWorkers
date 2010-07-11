@@ -41,7 +41,8 @@ class ClientsController < ApplicationController
   # GET /clients/new.xml
   def new
     @client = Client.new
-		@client.contacts.build
+		contact_type = ContactType.find_by_default_selection(true)
+		@client.contacts.build( :contact_type => contact_type )
 		@client.addresses.build
 		@client.phones.build
 		@client.assigned_agencies.build
@@ -104,16 +105,23 @@ class ClientsController < ApplicationController
   # DELETE /clients/1
   # DELETE /clients/1.xml
   def destroy
-    @client = Client.find(params[:id])
-    @client.destroy
+    client = Client.find(params[:id])
+    client.deleted = true
+		client.save
 
     respond_to do |format|
-      format.html { redirect_to(clients_url) }
+      format.html do
+        render :update do |page|
+					page.hide "#{client.id}", "#{client.id}_line"
+        end
+      end
       format.xml  { head :ok }
+			format.js do
+        render :update do |page|
+					page.hide "#{client.id}", "#{client.id}_line"
+        end
+      end
     end
   end
-  
-  def add_office_visit
-    
-  end
+	
 end

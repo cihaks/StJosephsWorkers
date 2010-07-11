@@ -1,5 +1,5 @@
 
-<% form_for(@status_type) do |f| %>
+<% form_for(@status_type,:html => { :multipart => true }) do |f| %>
   <%= f.error_messages %>
 
   <p>
@@ -9,6 +9,10 @@
   <p>
     <%= f.label :description %><br />
     <%= f.text_field :description %>
+  </p>
+  <p>
+	<%= f.label :icon, "Icon" %><br />
+	<%= f.file_field :icon %>
   </p>
   <p>
     <%= f.submit 'Update' %>

@@ -4,6 +4,7 @@ class CreateDailyPasses < ActiveRecord::Migration
       t.integer :assigned_resource_id
       t.string :company
       t.string :note, :limit=>2048
+			t.boolean :application, :interview
 
       t.timestamps
 			t.userstamps

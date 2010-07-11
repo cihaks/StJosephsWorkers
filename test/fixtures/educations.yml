@@ -1,21 +1,36 @@
-# == Schema Information
-# Schema version: 20100604003228
-#
-# Table name: educations
-#
-#  id          :integer(4)      not null, primary key
-#  name        :string(255)
-#  description :string(255)
-#  created_at  :datetime
-#  updated_at  :datetime
-#
-
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
-  name: MyString
-  description: MyString
-
-two:
-  name: MyString
-  description: MyString
+--- 
+education_id_6: 
+  name: Master's Degree
+  list_order: "6"
+  id: "6"
+  description: 
+education_id_7: 
+  name: PhD
+  list_order: "7"
+  id: "7"
+  description: 
+education_id_1: 
+  name: No High School/GED
+  list_order: "1"
+  id: "1"
+  description: 
+education_id_2: 
+  name: High School/GED
+  list_order: "2"
+  id: "2"
+  description: 
+education_id_3: 
+  name: Trade School
+  list_order: "3"
+  id: "3"
+  description: 
+education_id_4: 
+  name: Some College
+  list_order: "4"
+  id: "4"
+  description: 
+education_id_5: 
+  name: College
+  list_order: "5"
+  id: "5"
+  description: 

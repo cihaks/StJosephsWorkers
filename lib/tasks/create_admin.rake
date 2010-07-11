@@ -4,7 +4,7 @@ namespace :db do
     
     desc "Clear existing data"
     
-    [AgencyType, Agency, BenefitsType, Prison, Industry, Company, CrimeType, IncarcerationLength].each(&:delete_all)
+    [AgencyType, Agency, BenefitsType, Industry, Company, CrimeType, IncarcerationLength].each(&:delete_all)
     [JobType, Prison, ResourceType, StatusType, Substance, ContactType, Course, Race].each(&:delete_all)
     
     desc "populating agency types"
@@ -44,7 +44,7 @@ namespace :db do
 		
     desc "populating contact types"
     ContactType.create :name => 'Client Contact'
-    ContactType.create :name => 'Office Visit Only'
+    ContactType.create :name => 'Office Visit Only', :default_selection => false
 		ContactType.create :name => 'Intake'
     
     desc "populating courses"
@@ -55,6 +55,15 @@ namespace :db do
     CrimeType.create :name => 'Felony'
     CrimeType.create :name => 'Sex Offense'
     CrimeType.create :name => 'Violent'
+
+		desc "populating education"
+		Education.create :name => 'No High School/GED', :list_order => 1
+		Education.create :name => 'High School/GED', :list_order => 2
+		Education.create :name => 'Trade School', :list_order => 3
+		Education.create :name => 'Some College', :list_order => 4
+		Education.create :name => 'College', :list_order => 5
+		Education.create :name => 'Master\'s Degree', :list_order => 6
+		Education.create :name => 'PhD', :list_order => 7
     
     desc "populating incarceration lengths"
     IncarcerationLength.create :name => '< 1 month', :list_order => 1

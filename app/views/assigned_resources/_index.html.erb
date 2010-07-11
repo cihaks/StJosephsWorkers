@@ -35,7 +35,7 @@
 <!--
     <td><%= link_to_remote 'Details', :url=>client_assigned_resource_path(@client,assigned_resource), :update=>'contacts-content', :method=>:get %></td>
 -->
-    <td><%= link_to_remote 'Edit', :url=>edit_client_assigned_resource_path(@client,assigned_resource), :update=>'contacts-content', :method=>:get %></td>
+    <td><%= link_to_remote 'Edit', :url=>edit_client_assigned_resource_path(@client,assigned_resource), :update=>'jobs-content', :method=>:get %></td>
     <td><%= link_to_remote 'Delete', :url=>client_assigned_resource_path(@client,assigned_resource), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
   <tr>

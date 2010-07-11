@@ -4,11 +4,15 @@
 <table>
   <tr>
     <td class="fieldLabel">Contact Type</td>
+	<td width="10"></td>
+	<td class="fieldLabel">New Client Default</td>
   </tr>
 
 <% @contact_types.each do |contact_type| %>
   <tr>
     <td class="fieldData"><%=h contact_type.name %></td>
+	<td width="10"></td>
+	<td class="fieldData"><%= check_box_tag(:default_selection,'true',contact_type.default_selection,:onclick=>"return false;") %></td>
 	<td width="10"></td>
     <td><%= link_to 'Show', contact_type %></td>
     <td><%= link_to 'Edit', edit_contact_type_path(contact_type) %></td>

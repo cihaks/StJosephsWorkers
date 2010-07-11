@@ -29,7 +29,7 @@ class Client < ActiveRecord::Base
   has_many :pictures
   has_many :addresses, :order => "address_type"
   has_many :phones, :order => "primary_ind DESC, updated_at DESC, id DESC"
-  has_many :contacts, :order => "contact_date DESC, id DESC"
+  has_many :contacts, :order => "contact_date DESC, id DESC", :dependent=>:destroy
 
   has_many :assigned_resources, :order => "resource_date DESC, id DESC"
   has_many :registered_classes, :order => "class_date DESC, updated_at DESC, id DESC"
@@ -66,46 +66,54 @@ class Client < ActiveRecord::Base
     if first_name.nil?
       if middle_name.nil?
         if last_name.nil?
-          "<no name for client>"
+          display_name = "<no name for client>"
         else
-          last_name
+          display_name = last_name
         end
       else
         if last_name.nil?
-          middle_name
+          display_name = middle_name
         else
-          middle_name + last_name
+          display_name = middle_name + last_name
         end
       end
     else
       if middle_name.nil?
         if last_name.nil?
-          first_name
+          display_name = first_name
         else
-          first_name + " " + last_name
+          display_name = first_name + " " + last_name
         end
       else
         if last_name.nil?
-          first_name + " " + middle_name
+          display_name = first_name + " " + middle_name
         else
-          first_name + " " + middle_name + " " + last_name
+          display_name = first_name + " " + middle_name + " " + last_name
         end
       end
     end
+		display_name = display_name + " (deleted)" if deleted unless deleted.nil?
+		display_name
   end
   
-  def self.search(search, page, page_limit)
+  def self.search(search, page, page_limit, admin = false)
     search_array = search.split unless search.nil?
     search_array ||= []
     
     if search_array[1].nil?
-      search_condition = "first_name LIKE :name1 or middle_name LIKE :name1 or last_name LIKE :name1 or id like :name1"
+      search_condition = "(first_name LIKE :name1 or middle_name LIKE :name1 or last_name LIKE :name1 or id like :name1)"
       search_values = {:name1=>"%#{search_array[0]}%"}
     else
       search_condition = "(first_name LIKE :name1 or middle_name LIKE :name1 or last_name LIKE :name1 or id like :name1) and (first_name LIKE :name2 or middle_name LIKE :name2 or last_name LIKE :name2)"
       search_values = {:name1=>"%#{search_array[0]}%", :name2=>"%#{search_array[1]}%"}
     end
     
+		unless admin
+			search_condition = search_condition + " and (deleted = false or deleted is null)"
+		else
+			search_condition = search_condition + " and deleted = true"
+		end
+		
     paginate :per_page=>page_limit, :page=>page,
              :conditions => [search_condition, search_values],
              :order => 'last_name, first_name, middle_name'

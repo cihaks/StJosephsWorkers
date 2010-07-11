@@ -1,0 +1,15 @@
+--- 
+courses_001: 
+  name: Job Readiness Workshop
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-01 04:41:04
+  creator_id: 
+  id: "3"
+  updater_id: 
+courses_002: 
+  name: WIRC
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-01 04:41:04
+  creator_id: 
+  id: "4"
+  updater_id: 

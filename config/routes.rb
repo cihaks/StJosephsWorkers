@@ -1,12 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :educations
-
-  map.resources :educations
-
-  map.resources :convictions
-
-  map.resources :shelters
-
 
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new', :conditions => { :method => :get }
@@ -27,14 +19,17 @@ ActionController::Routing::Routes.draw do |map|
 	map.resources :course_attendances
   map.resources :companies
   map.resources :contact_types
+  map.resources :convictions
   map.resources :courses
   map.resources :crime_types
+  map.resources :educations
   map.resources :incarceration_lengths
   map.resources :industries
   map.resources :job_types
   map.resources :races
   map.resources :resource_types
   map.resources :prisons
+  map.resources :shelters
   map.resources :states
   map.resources :status_types
   map.resources :substances
@@ -49,7 +44,8 @@ ActionController::Routing::Routes.draw do |map|
   
   map.reports 'reports', :controller => 'reports'
 
-  
+	map.delete_clients 'delete_clients', :controller => 'delete_clients'
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

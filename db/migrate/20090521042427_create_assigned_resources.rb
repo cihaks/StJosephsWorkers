@@ -7,16 +7,9 @@ class CreateAssignedResources < ActiveRecord::Migration
       t.timestamps
       t.userstamps
     end
-    
-    create_table :assigned_resources_industries, :id=>false do |t|
-      t.references :assigned_resource
-      t.references :industry
-    end
   end
 
   def self.down
-    drop_table :assigned_resources_industries
-    drop_table :assigned_resources_companies
     drop_table :assigned_resources
   end
 end

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100604003228) do
+ActiveRecord::Schema.define(:version => 20100701040856) do
 
   create_table "activity_logs", :force => true do |t|
     t.integer  "client_id"
@@ -228,13 +228,18 @@ ActiveRecord::Schema.define(:version => 20100604003228) do
     t.integer  "assigned_resource_id"
     t.string   "company"
     t.string   "note",                 :limit => 2048
+    t.boolean  "application"
+    t.boolean  "interview"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "creator_id"
+    t.integer  "updater_id"
   end
 
   create_table "educations", :force => true do |t|
     t.string   "name"
     t.string   "description"
+    t.integer  "list_order"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -328,9 +333,11 @@ ActiveRecord::Schema.define(:version => 20100604003228) do
     t.integer  "assigned_resource_id"
     t.decimal  "amount_paid",                          :precision => 10, :scale => 2
     t.decimal  "amount_due",                           :precision => 10, :scale => 2
+    t.string   "note",                 :limit => 2048
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "note",                 :limit => 2048
+    t.integer  "creator_id"
+    t.integer  "updater_id"
   end
 
   create_table "phones", :force => true do |t|
@@ -438,6 +445,9 @@ ActiveRecord::Schema.define(:version => 20100604003228) do
     t.datetime "updated_at"
     t.integer  "creator_id"
     t.integer  "updater_id"
+    t.string   "icon_file_name"
+    t.string   "icon_content_type"
+    t.integer  "icon_file_size"
   end
 
   create_table "substances", :force => true do |t|
@@ -481,6 +491,8 @@ ActiveRecord::Schema.define(:version => 20100604003228) do
     t.string   "cvm_password"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "creator_id"
+    t.integer  "updater_id"
   end
 
 end

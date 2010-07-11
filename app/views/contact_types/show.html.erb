@@ -3,5 +3,9 @@
   <b>Contact type:</b>
   <%=h @contact_type.name %>
 </p>
+<p>
+  <b>New Client Default:</b>
+  <%= check_box_tag(:default_selection,'true',@contact_type.default_selection,:onclick=>"return false;") %>
+</p>
 
 
