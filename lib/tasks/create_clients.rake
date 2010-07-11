@@ -253,25 +253,19 @@ namespace :db do
         if [false,false,false,true].rand
           crime_sentence.end_date = 3.years.ago..Time.now
         end
-        crime_sentence.felony = [true,false,false,false,false]
-        crime_sentence.violent = [true,false,false,false]
-        crime_sentence.sex_offender = [false,false,false,false,true]
+        crime_sentence.felony = [true,false,false,false,false].rand
+        crime_sentence.violent = [true,false,false,false].rand
+        crime_sentence.sex_offender = [false,false,false,false,true].rand
         crime_sentence.creator_id = User.all.rand.id
         crime_sentence.updater_id = User.all.rand.id
       end
-      JobApplication.populate 1..3 do |job_app|
-        job_app.client_id = client.id
-        job_app.company_id = Company.all.rand.id
-        job_app.industry_id = Industry.all.rand.id
-        job_app.application_date = 6.months.ago..Time.now
-        job_app.creator_id = User.all.rand.id
-        job_app.updater_id = User.all.rand.id
-      end
-      JobInterview.populate 1..2 do |interview|
+      AppInterview.populate 1..5 do |interview|
         interview.client_id = client.id
         interview.company_id = Company.all.rand.id
         interview.industry_id = Industry.all.rand.id
-        interview.interview_date = 2.months.ago..Time.now
+        interview.meeting_date = 2.months.ago..Time.now
+				interview.application = [true,true,false,false,false].rand
+				interview.interview = [true,true,true,false,false].rand
         interview.creator_id = User.all.rand.id
         interview.updater_id = User.all.rand.id
       end

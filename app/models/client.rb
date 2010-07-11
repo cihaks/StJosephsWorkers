@@ -37,8 +37,7 @@ class Client < ActiveRecord::Base
   has_many :crime_sentences, :order => "created_at DESC"
   has_many :assigned_agencies, :order => "updated_at DESC, id DESC"
   has_many :jobs, :order => "start_date DESC"
-  has_many :job_interviews, :order => "interview_date DESC"
-  has_many :job_applications, :order => "application_date DESC"
+	has_many :app_interviews, :order => "meeting_date DESC"
 
   has_and_belongs_to_many :status_types
 
@@ -56,8 +55,7 @@ class Client < ActiveRecord::Base
 	accepts_nested_attributes_for :crime_sentences, :allow_destroy=>true, :reject_if=>lambda { |a| a[:prison_id].blank? }
 	accepts_nested_attributes_for :assigned_agencies, :allow_destroy=>true, :reject_if=>lambda { |a| a[:agency_id].blank? }
 	accepts_nested_attributes_for :jobs, :allow_destroy=>true, :reject_if=>lambda { |a| a[:job_type_id].blank? }
-	accepts_nested_attributes_for :job_interviews, :allow_destroy=>true, :reject_if=>lambda { |a| a[:interview_date].blank? }
-	accepts_nested_attributes_for :job_applications, :allow_destroy=>true, :reject_if=>lambda { |a| a[:application_date].blank? }
+	accepts_nested_attributes_for :app_interviews, :allow_destroy=>true, :reject_if=>lambda { |a| a[:meeting_date].blank? }
   
   validates_uniqueness_of :birth_date, :scope=>[:first_name, :last_name]
 	validates_date :birth_date

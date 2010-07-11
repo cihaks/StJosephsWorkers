@@ -13,8 +13,7 @@
 #
 
 class Company < ActiveRecord::Base
-  has_many :job_interviews
-  has_many :job_applications
+  has_many :app_interviews
   has_many :jobs
   
   def to_label

@@ -34,9 +34,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :status_types
   map.resources :substances
 
-  map.resources :clients, :has_many => [:assigned_agencies,:contacts,:phones,:pictures,
-                                        :assigned_resources,:jobs,:used_substances,:addresses,
-                                        :job_applications, :job_interviews, 
+  map.resources :clients, :has_many => [:addresses,:phones,:pictures,
+                                        :assigned_agencies,:used_substances,
+                                        :jobs, :app_interviews, :assigned_resources,
                                         :contacts,:registered_classes,:crime_sentences]
 
   map.resources :job_rates  #add to jobs route....

@@ -1,6 +1,6 @@
-class JobInterviewsController < ApplicationController
-  layout 'jobs_content'
-  
+class AppInterviewsController < ApplicationController
+	layout 'jobs_content'
+	
   ajax_updates do |config|
     config.refresh_element 'jobs-element'
   end
@@ -9,7 +9,7 @@ class JobInterviewsController < ApplicationController
   before_filter :set_section
   
   def set_section
-    session[:jobs_section] = "job_interviews"
+    session[:jobs_section] = "app_interviews"
   end
   
 end

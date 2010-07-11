@@ -1,0 +1,51 @@
+
+<table>
+  <tr>
+    <td class="fieldLabel">Company</td>
+	<td width="10"></td>
+    <td class="fieldLabel">Industry</td>
+	<td width="10"></td>
+    <td class="fieldLabel">Date</td>
+	<td width="10"></td>
+    <td class="fieldLabel">Application</td>
+	<td width="10"></td>
+    <td class="fieldLabel">Interview</td>
+	<td width="10"></td>
+    <td class="fieldLabel">Last Modified</td>
+	<td width="10"></td>
+    <td class="fieldLabel">Modified By</td>
+	<td width="10"></td>
+  </tr>
+
+<% @client.app_interviews.each do |app_interview| %>
+  <tr>
+    <td class="fieldData"><%=h app_interview.company.name unless app_interview.company.nil? %></td>
+	<td width="10"></td>
+    <td class="fieldData"><%=h app_interview.industry.name unless app_interview.industry.nil? %></td>
+	<td width="10"></td>
+    <td class="fieldData"><%=h app_interview.meeting_date.strftime("%m/%d/%Y") unless app_interview.meeting_date.nil? %></td>
+	<td width="10"></td>
+    <td class="fieldData"><%= link_to_remote (check_box_tag :application,'true',app_interview.application,:onclick=>"return false;"), :url=>client_app_interview_path(@client,app_interview), :with=>"'app_interview[application]="+(!app_interview.application).to_s+"'", :method => :put %></td>
+	<td width="10"></td>
+    <td class="fieldData"><%= link_to_remote (check_box_tag :interview,'true',app_interview.interview,:onclick=>"return false;"), :url=>client_app_interview_path(@client,app_interview), :with=>"'app_interview[interview]="+(!app_interview.interview).to_s+"'", :method => :put %></td>
+	<td width="10"></td>
+    <td class="fieldData"><%=h app_interview.updated_at.strftime("%m/%d/%Y") unless app_interview.updated_at.nil? %></td>
+	<td width="10"></td>
+    <td class="fieldData"><%=h User.find(app_interview.updater_id).name unless app_interview.updater_id.nil? %></td>
+	<td width="10"></td>
+    <td><%= link_to_remote 'Details', :url=>client_app_interview_path(@client,app_interview), :update=>'jobs-content', :method=>:get  %></td>
+    <td><%= link_to_remote 'Edit', :url=>edit_client_app_interview_path(@client,app_interview), :update=>'jobs-content', :method=>:get  %></td>
+    <td><%= link_to_remote 'Delete', :url=>client_app_interview_path(@client,app_interview), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+<% if @client.app_interviews.empty? %>
+  <tr>
+  	<td colspan="5" class="fieldData">No Job Applications or Interviews</td>
+  </tr>
+<% end %>
+
+</table>
+
+<br />
+
+<br />

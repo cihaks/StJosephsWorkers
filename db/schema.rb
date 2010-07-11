@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100701040856) do
+ActiveRecord::Schema.define(:version => 20100711050053) do
 
   create_table "activity_logs", :force => true do |t|
     t.integer  "client_id"
@@ -59,6 +59,19 @@ ActiveRecord::Schema.define(:version => 20100701040856) do
 
   create_table "agency_types", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "creator_id"
+    t.integer  "updater_id"
+  end
+
+  create_table "app_interviews", :force => true do |t|
+    t.integer  "client_id"
+    t.integer  "company_id"
+    t.integer  "industry_id"
+    t.date     "meeting_date"
+    t.boolean  "application"
+    t.boolean  "interview"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "creator_id"
@@ -119,6 +132,7 @@ ActiveRecord::Schema.define(:version => 20100701040856) do
     t.integer  "updater_id"
     t.integer  "education_id"
     t.string   "education_subjects"
+    t.boolean  "deleted"
   end
 
   create_table "clients_status_types", :id => false, :force => true do |t|
@@ -156,12 +170,13 @@ ActiveRecord::Schema.define(:version => 20100701040856) do
   end
 
   create_table "contact_types", :force => true do |t|
-    t.string   "name",        :limit => 25
-    t.string   "description", :limit => 500
+    t.string   "name",              :limit => 25
+    t.string   "description",       :limit => 500
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "creator_id"
     t.integer  "updater_id"
+    t.boolean  "default_selection"
   end
 
   create_table "contacts", :force => true do |t|

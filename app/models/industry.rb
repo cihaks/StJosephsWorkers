@@ -14,8 +14,7 @@
 
 class Industry < ActiveRecord::Base
   has_many :jobs
-  has_many :job_applications
-  has_many :job_interviews
+  has_many :app_interviews
 
   def self.search(search, page, page_limit)
     paginate :per_page=>page_limit, :page=>page,
