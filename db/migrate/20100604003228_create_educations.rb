@@ -3,6 +3,7 @@ class CreateEducations < ActiveRecord::Migration
     create_table :educations do |t|
       t.string :name
       t.string :description
+			t.integer :list_order
 
       t.timestamps
     end

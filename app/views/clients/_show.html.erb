@@ -29,7 +29,8 @@
 			  <b>Last Modified:</b>
 		    </td>
 		    <td class="fieldData">
-			  <%=h @client.updated_at.strftime("%m/%d/%y %H:%M:%S") unless @client.updated_at.nil? %>
+			  <%=h @client.updated_at.strftime("%m/%d/%y %H:%M:%S") unless @client.updated_at.nil? %><br/>
+			  (<%=h User.find(@client.updater_id).name unless @client.updater_id.nil?%>)
 		    </td>
 		  </tr>
 		  <tr>

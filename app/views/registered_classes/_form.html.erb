@@ -9,7 +9,7 @@
   	  <%= f.label :class_date, 'Class Date' %><br />
   	  <%= f.calendar_date_select :class_date, :size=>"13" %>
 	</td>
-	<% unless @registered_class.nil? %>
+	<% unless @registered_class and @registered_class.new_record? %>
 	<td width="10"></td>
 	<td valign="top">
       <%= f.label :completed, "Completed?" %><br />

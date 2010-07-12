@@ -20,8 +20,8 @@
 class AssignedResource < ActiveRecord::Base
   
   belongs_to :client
-  has_and_belongs_to_many :companies
-  has_and_belongs_to_many :industries
+#  has_and_belongs_to_many :companies
+#  has_and_belongs_to_many :industries
 
 	validates_date :resource_date
 

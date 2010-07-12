@@ -1,33 +1,49 @@
-# == Schema Information
-# Schema version: 20100604003228
-#
-# Table name: races
-#
-#  id          :integer(4)      not null, primary key
-#  name        :string(255)
-#  description :string(255)
-#  created_at  :datetime
-#  updated_at  :datetime
-#  creator_id  :integer(4)
-#  updater_id  :integer(4)
-#
-
-# == Schema Information
-# Schema version: 20090716055901
-#
-# Table name: races
-#
-#  id          :integer(4)      not null, primary key
-#  name        :string(255)
-#  description :string(255)
-#  created_at  :datetime
-#  updated_at  :datetime
-#
-
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-# one:
-#   column: value
-#
-# two:
-#   column: value
+--- 
+races_003: 
+  name: Caucasian
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-01 04:41:04
+  creator_id: 
+  id: "3"
+  updater_id: 
+  description: 
+races_004: 
+  name: Hispanic
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-01 04:41:04
+  creator_id: 
+  id: "4"
+  updater_id: 
+  description: 
+races_005: 
+  name: Native American
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-01 04:41:04
+  creator_id: 
+  id: "5"
+  updater_id: 
+  description: 
+races_006: 
+  name: Other
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-01 04:41:04
+  creator_id: 
+  id: "6"
+  updater_id: 
+  description: 
+races_001: 
+  name: African American
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-01 04:41:04
+  creator_id: 
+  id: "1"
+  updater_id: 
+  description: 
+races_002: 
+  name: Asian
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-01 04:41:04
+  creator_id: 
+  id: "2"
+  updater_id: 
+  description: 

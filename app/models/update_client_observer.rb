@@ -1,6 +1,6 @@
 class UpdateClientObserver < ActiveRecord::Observer
   
-  observe :address,:picture,:phone,:contact,:assigned_resource,:registered_class,:used_substance,:crime_sentence,:assigned_agency,:job,:job_interview,:job_application
+  observe :address,:picture,:phone,:contact,:assigned_resource,:registered_class,:used_substance,:crime_sentence,:assigned_agency,:job,:app_interview
   
   def before_save(record)
     if record.new_record?

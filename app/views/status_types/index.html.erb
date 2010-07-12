@@ -6,6 +6,8 @@
 	<td width="10"></td>
     <td class="fieldLabel">Description</td>
 	<td width="10"></td>
+    <td class="fieldLabel">Icon</td>
+	<td width="10"></td>
   </tr>
 
 <% @status_types.each do |status_type| %>
@@ -13,6 +15,8 @@
     <td><%=h status_type.name %></td>
 	<td width="10"></td>
     <td><%=h status_type.description %></td>
+	<td width="10"></td>
+    <td><%= image_tag status_type.icon.url, :size=>"24x24" unless status_type.icon_file_name.blank? %></td>
 	<td width="10"></td>
     <td><%= link_to 'Show', status_type %></td>
     <td><%= link_to 'Edit', edit_status_type_path(status_type) %></td>

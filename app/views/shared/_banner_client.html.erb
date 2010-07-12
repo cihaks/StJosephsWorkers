@@ -4,12 +4,11 @@
 		<%= link_to_remote 'edit', :url=>edit_client_path(@client), :update=>'client-content', :method=>'get' %>
 	</div>
 	<div class="icons">
-		<span class="body">(Modified By: <%=h User.find(@client.updater_id).name unless @client.updater_id.nil?%>)</span>
 		<%= render :partial=>'clients/client_icons', :locals=>{:client=>@client} %>
 	</div>
 	<div class="icons" style="float:right;" id="client_status">
 		<% @client.status_types.each do |status_type| %>
-		  <%= status_type.name %>
+		  <%= status_type.name if status_type.icon_file_name.blank? %>
 		<% end %>
 	</div>
 </div>

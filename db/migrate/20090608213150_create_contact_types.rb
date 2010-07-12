@@ -3,6 +3,7 @@ class CreateContactTypes < ActiveRecord::Migration
     create_table :contact_types do |t|
       t.string :name, :limit =>25
       t.string :description, :limit=>500
+			t.boolean :default_selection
       t.timestamps
       t.userstamps
     end

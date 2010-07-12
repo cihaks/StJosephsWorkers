@@ -1,8 +1,0 @@
-<p>
-  <%= f.label :company %><br />
-  <%= text_field_with_auto_complete :job_application, :company_name, {}, { :url => companies_path(:js), :method => :get, :param_name => 'query' } %>
-</p>
-<p>
-  <%= f.label :application_date, 'Application Date' %><br />
-  <%= f.calendar_date_select :application_date %>
-</p>

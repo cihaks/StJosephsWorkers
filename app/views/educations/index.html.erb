@@ -7,6 +7,8 @@
     <td class="fieldLabel"><b>Name</b></td>
 	<td width="10"></td>
     <td class="fieldLabel"><b>Description</b></td>
+	<td width="10"></td>
+	<td class="fieldLabel">List Order</td>
   </tr>
 
 <% @educations.each do |education| %>
@@ -14,6 +16,8 @@
     <td class="fieldData"><%=h education.name %></td>
 	<td width="10"></td>
     <td class="fieldData"><%=h education.description %></td>
+	<td width="10"></td>
+	<td class="fieldData"><%=h education.list_order %></td>
     <td><%= link_to 'Show', education %></td>
     <td><%= link_to 'Edit', edit_education_path(education) %></td>
     <td><%= link_to 'Delete', education, :confirm => 'Are you sure?', :method => :delete %></td>

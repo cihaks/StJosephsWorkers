@@ -1,0 +1,55 @@
+<br/>
+<%= will_paginate @clients, :remote => {:method=>:get, :update => 'item_list'}%>
+
+<table>
+  <tr>
+  	<td></td>
+    <td class="fieldLabel">Name</td>
+	<td width="5"></td>
+    <td class="fieldLabel">Birth date</td>
+	<td width="5"></td>
+	<td class="fieldLabel">Date Added</td>
+	<td width="5"></td>
+	<td class="fieldLabel">Last Modified (By)</td>
+  </tr>
+
+<% @clients.each do |client| %>
+  <tr id="<%=client.id%>">
+  	<td>
+  	  <div class="photoImage floatLeft">
+		<% if !client.pictures.empty? and client.pictures.first.photo.exists? %>
+			<%= image_tag client.pictures.first.photo.url, :size=>"30x30" %>
+		<% else %>
+			<%= image_tag 'defaultphoto.gif', :size=>"30x30" %>
+		<% end %>
+	  </div>
+  	</td>
+    <td class="fieldData" align="center">
+	  <%= link_to h(client.name), client %><br/>
+	  <%= render :partial=>'clients/client_icons', :locals=>{:client=>client}%>
+	</td>
+	<td width="5"></td>
+    <td class="fieldData"><%=h client.birth_date.strftime("%m/%d/%Y") unless client.birth_date.nil? %></td>
+	<td width="5"></td>
+	<td class="fieldData"><%=h client.created_at.strftime("%m/%d/%Y") unless client.created_at.nil? %></td>
+	<td width="5"></td>
+	<td class="fieldData"><%=h client.updated_at.strftime("%m/%d/%Y") unless client.updated_at.nil? %><%=h " ("+User.find(client.updater_id).name+")" unless client.updater_id.nil? %></td>
+	<td width="5"></td>
+	<td valign="top"><%= link_to 'Details', client %></td>
+    <td valign="top"><%= link_to_remote 'Restore', :url=>url_for(:controller=>'delete_clients',:action=>'restore',:id=>client.id), :confirm => 'Are you sure?' %></td>
+    <td valign="top"><%= link_to_remote 'Delete', :url=>url_for(:controller=>'delete_clients',:action=>'admin_destroy',:id=>client.id), :confirm => 'Are you sure?' %></td>
+  </tr>
+  <tr id="<%=client.id%>_line">
+	<td colspan="15"><hr/></td>
+  </tr>
+<% end %>
+<% if @clients.nil? or @clients.empty? %>
+  <tr>
+  	<td colspan="10">No Deleted Clients found</td>
+  </tr>
+<% end %>
+</table>
+<br />
+<%= will_paginate @clients, :remote => {:method=>:get, :update => 'item_list'}%>
+
+<br />

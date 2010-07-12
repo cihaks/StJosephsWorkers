@@ -1,5 +1,5 @@
 
-<%= render :partial=>'shared/banner_infamy', :locals => {:name=>session[:infamy_section], :sections=>["assigned_agencies","used_substances","crime_sentences"]} %>
+<%= render :partial=>'shared/section_banner', :locals => {:section_key=>:infamy_section, :section_content=>'infamy-content', :sections=>[["assigned_agencies","Assigned Agencies"],["used_substances","Used Substances"],["crime_sentences","Crime Sentences"]]} %>
 <div id="infamy-element">
   <%= yield %>
 </div>
