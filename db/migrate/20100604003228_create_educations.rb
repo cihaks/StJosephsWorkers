@@ -6,6 +6,7 @@ class CreateEducations < ActiveRecord::Migration
 			t.integer :list_order
 
       t.timestamps
+			t.userstamps
     end
   end
 
