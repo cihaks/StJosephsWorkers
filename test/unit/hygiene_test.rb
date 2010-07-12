@@ -6,3 +6,5 @@ class HygieneTest < ActiveSupport::TestCase
     assert true
   end
 end
+
+#test line from remote repository
