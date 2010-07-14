@@ -15,6 +15,7 @@
 
 class ResourceType < ActiveRecord::Base
   has_many :assigned_resources
+  belongs_to :status_type # 1 to 0 or more association
 
   def self.search(search, page, page_limit)
     paginate :per_page=>page_limit, :page=>page,

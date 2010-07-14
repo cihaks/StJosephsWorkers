@@ -2,18 +2,7 @@
 <% form_for(@status_type,:html => { :multipart => true }) do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
-  </p>
-  <p>
-	<%= f.label :icon, "Icon" %><br />
-	<%= f.file_field :icon %>
-  </p>
+  <%= render :partial=>'status_types/form', :locals=>{:f=>f} %>
   <p>
     <%= f.submit 'Update' %>
   </p>

@@ -1,0 +1,11 @@
+<div id="assigned_resource_banner">
+  <table width="100%">
+	<tr>
+  <% StatusType.find_all_by_category('Resource').each do |status| %>
+	<td><%= check_box_tag :restricted_resource, 'true', @client.status_types.include?(status), :onclick=>"return false;" %>
+	<span class="red"><b><%=h status.name %></b></span>
+	</td>
+  <% end %>
+    </tr>
+  </table>
+</div>

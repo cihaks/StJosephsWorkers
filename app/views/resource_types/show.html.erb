@@ -13,4 +13,10 @@
   <b>Type Name:</b>
   <%=h @resource_type.type_name %>
 </p>
+
+<p>
+  <b>Associated with Status Type:</b>
+  <%=h @resource_type.status_type.name if @resource_type.status_type %>
+</p>
+
 <br/>

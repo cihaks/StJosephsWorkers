@@ -14,6 +14,7 @@
 
 class StatusType < ActiveRecord::Base
   has_and_belongs_to_many :clients
+  has_many :resource_types  # 1 to 0 or more association
   has_attached_file :icon
   
   def self.search(search, page, page_limit)

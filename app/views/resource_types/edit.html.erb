@@ -2,18 +2,8 @@
 <% form_for(@resource_type) do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
-  </p>
-  <p>
-    <%= f.label :type_name, "Type Name" %><br />
-    <%= f.text_field :type_name %>
-  </p>
+  <%= render :partial=>'resource_types/form', :locals=>{:f=>f} %>
+
   <p>
     <%= f.submit 'Update' %>
   </p>
