@@ -13,4 +13,13 @@ class AppInterview < ActiveRecord::Base
 		self.company = Company.find_or_create_by_name(name) unless name.blank?
 	end
 
+	def self.find_by_company_name(name)
+		company = Company.find_by_name(name)
+		self.find_by_company_id(company.id)
+	end
+	
+	def self.find_by_meeting_date_and_company_name(meeting_date, name)
+		company = Company.find_by_name(name)
+		self.find_by_meeting_date_and_company_id(meeting_date, company.id)
+	end
 end

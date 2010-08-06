@@ -4,6 +4,10 @@
   <% StatusType.find_all_by_category('Resource').each do |status| %>
 	<td><%= check_box_tag :restricted_resource, 'true', @client.status_types.include?(status), :onclick=>"return false;" %>
 	<span class="red"><b><%=h status.name %></b></span>
+	<% status.resource_types.each do |type| %>
+		<%= hidden_field_tag "restrict_"+type.id.to_s, true %>
+	<% end if @client.status_types.include?(status) %>
+	
 	</td>
   <% end %>
     </tr>

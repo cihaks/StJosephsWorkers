@@ -1,14 +1,6 @@
 class CompaniesController < SecurityController
   layout 'references'
   
-  # active_scaffold :company do |config|
-  #     config.columns[:industry].form_ui = :select
-  #     config.columns[:allow_felony].form_ui = :checkbox
-  #     config.columns[:allow_sex_offender].form_ui = :checkbox
-  #     config.list.columns = [:name, :description, :industry, :allow_felony, :allow_sex_offender, :job_applications, :job_interviews, :jobs]
-  #     config.create.columns = [:name, :description, :industry, :allow_felony, :allow_sex_offender]
-  #   end
-
   # GET /companies
   # GET /companies.xml
   def index

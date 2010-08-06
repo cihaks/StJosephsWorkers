@@ -13,6 +13,7 @@ class AssignedResourcesController < ApplicationController
   
   def update_callback_before_object
 	  set_domain_association if !params[:assigned_resource].nil? and !params[:assigned_resource][:resource_type_id].nil? # update includes resource type 
+	  
   end
 
   def set_section

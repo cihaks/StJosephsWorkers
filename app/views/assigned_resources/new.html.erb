@@ -9,7 +9,7 @@
 	<tr>
 	  <td>
     	<%= f.submit 'Create' unless request.xhr? %>
-		<%= submit_to_remote 'create_ajax_btn', 'Create', :url=>{:action=>'create'} if request.xhr? %>
+		<%= submit_to_remote 'create_ajax_btn', 'Create', :url=>{:action=>'create'}, :html=>{:onclick=>"if (!check_form()) return;"} if request.xhr? %>
 	  </td>
     </tr>
   </table>

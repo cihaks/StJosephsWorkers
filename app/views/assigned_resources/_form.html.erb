@@ -1,12 +1,3 @@
-<script language="javascript">
-  function toggle_elements(value) {
-	<% ResourceType.all.each do |resource_type| %>
-	  Element.hide('<%=h "has_#{resource_type.id}"%>');
-	<% end %>
-	Element.show('has_'+value);
-  }
-</script>
-
 
 
 <table>
