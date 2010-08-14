@@ -1,17 +1,9 @@
-class SheltersController < ApplicationController
+class SheltersController < SecurityController
 	layout 'references'
 	
   # GET /shelters
   # GET /shelters.xml
-  def index
-    @shelters = Shelter.search(params[:query],params[:page],current_user.page_limit)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.js { render :layout=>false }
-      format.xml  { render :xml => @shelters }
-    end
-  end
+  # inherited from SecurityController
 
   # GET /shelters/1
   # GET /shelters/1.xml

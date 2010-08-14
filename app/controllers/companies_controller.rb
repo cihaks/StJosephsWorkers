@@ -3,16 +3,7 @@ class CompaniesController < SecurityController
   
   # GET /companies
   # GET /companies.xml
-  def index
-    @companies = Company.search(params[:query],params[:page],current_user.page_limit)
-
-    respond_to do |format|
-      format.html unless request.xhr? # index.html.erb
-      format.js { render :layout => false }
-			format.ac { render :layout => false }
-      format.xml  { render :xml => @companies }
-    end
-  end
+  # inherited from SecurityController
 
   # GET /companies/1
   # GET /companies/1.xml

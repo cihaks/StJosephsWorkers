@@ -2,15 +2,7 @@ class UsersController < SecurityController
   layout 'references'
   
   # render index.rhmtl
-  def index
-    @users = User.search(params[:query],params[:page],current_user.page_limit)
-    
-    respond_to do |format|
-      format.html
-      format.js { render :layout=>false }
-      format.xml { render :xml => @users }
-    end
-  end
+  # inherited from SecurityController
   
   def show
     @user = User.find(params[:id])

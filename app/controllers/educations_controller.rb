@@ -1,16 +1,8 @@
-class EducationsController < ApplicationController
+class EducationsController < SecurityController
   layout 'references'
   # GET /educations
   # GET /educations.xml
-  def index
-    @educations = Education.search(params[:query],params[:page],current_user.page_limit)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.js { render :layout => false}
-      format.xml  { render :xml => @educations }
-    end
-  end
+  # inherited from SecurityController
 
   # GET /educations/1
   # GET /educations/1.xml

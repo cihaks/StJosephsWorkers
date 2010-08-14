@@ -1,16 +1,9 @@
-class ConvictionsController < ApplicationController
+class ConvictionsController < SecurityController
 	layout 'references'
 	
   # GET /convictions
   # GET /convictions.xml
-  def index
-    @convictions = Conviction.search(params[:query],params[:page],current_user.page_limit)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @convictions }
-    end
-  end
+  # inherited from SecurityController
 
   # GET /convictions/1
   # GET /convictions/1.xml

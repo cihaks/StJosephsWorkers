@@ -3,15 +3,7 @@ class AgenciesController < SecurityController
   
   # GET /agencies
   # GET /agencies.xml
-  def index
-    @agencies = Agency.search(params[:query],params[:page],current_user.page_limit)
-    
-    respond_to do |format|
-      format.html # index.html.erb
-      format.js { render :layout=>false }
-      format.xml  { render :xml => @agencies }
-    end
-  end
+  # inherited from SecurityController
 
   # GET /agencies/1
   # GET /agencies/1.xml

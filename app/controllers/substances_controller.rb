@@ -1,21 +1,9 @@
 class SubstancesController < SecurityController
   layout 'references'
   
-  # active_scaffold :substance do |config|
-  #   config.columns = [:name]
-  # end
-
   # GET /substances
   # GET /substances.xml
-  def index
-    @substances = Substance.search(params[:query],params[:page],current_user.page_limit)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.js { render :layout=>false }
-      format.xml  { render :xml => @substances }
-    end
-  end
+  # inherited from SecurityController
 
   # GET /substances/1
   # GET /substances/1.xml

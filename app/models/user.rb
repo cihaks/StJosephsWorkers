@@ -46,6 +46,10 @@ class User < ActiveRecord::Base
     3
   end
 
+  def admin_list_limit
+		20
+	end
+
 	def log_limit
 		10
 	end

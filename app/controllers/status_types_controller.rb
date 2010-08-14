@@ -1,22 +1,9 @@
 class StatusTypesController < SecurityController
   layout 'references'
   
-  # active_scaffold :status_type do |config|
-  #   config.label = 'Status Types'
-  #   config.columns = [:name, :description]
-  # end
-
   # GET /status_types
   # GET /status_types.xml
-  def index
-    @status_types = StatusType.search(params[:query],params[:page],current_user.page_limit)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.js { render :layout=>false }
-      format.xml  { render :xml => @status_types }
-    end
-  end
+  # inherited from SecurityController
 
   # GET /status_types/1
   # GET /status_types/1.xml

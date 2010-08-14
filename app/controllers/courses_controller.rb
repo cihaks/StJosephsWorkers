@@ -1,21 +1,9 @@
 class CoursesController < SecurityController
   layout 'references'
-#  active_scaffold :course do |config|
-#    config.label = 'Class'
-#    config.list.columns = [:name]
-#  end
 
   # GET /Courses
   # GET /Courses.xml
-  def index
-    @courses = Course.search(params[:query],params[:page],current_user.page_limit)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.js { render :layout=>false }
-      format.xml  { render :xml => @courses }
-    end
-  end
+  # inherited from SecurityController
 
   # GET /Courses/1
   # GET /Courses/1.xml

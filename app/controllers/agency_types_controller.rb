@@ -1,16 +1,10 @@
-class AgencyTypesController < ApplicationController
+class AgencyTypesController < SecurityController
+	layout 'references'
+	
   # GET /agency_types
   # GET /agency_types.xml
-  def index
-    @agency_types = AgencyType.search(params[:query],params[:page],current_user.page_limit)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.js { render :layout=>false }
-      format.xml  { render :xml => @agency_types }
-    end
-  end
-
+  # inherited from SecurityController
+  
   # GET /agency_types/1
   # GET /agency_types/1.xml
   def show

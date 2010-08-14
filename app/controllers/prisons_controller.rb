@@ -1,21 +1,9 @@
 class PrisonsController < SecurityController
   layout 'references'
   
-  # active_scaffold :prison do |config|
-  #     config.columns = [:name]
-  #   end
-
   # GET /prisons
   # GET /prisons.xml
-  def index
-    @prisons = Prison.search(params[:query],params[:page],current_user.page_limit)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.js { render :layout=>false }
-      format.xml  { render :xml => @prisons }
-    end
-  end
+  # inherited from SecurityController
 
   # GET /prisons/1
   # GET /prisons/1.xml

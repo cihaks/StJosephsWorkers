@@ -3,15 +3,7 @@ class BenefitsTypesController < SecurityController
   
   # GET /benefits_types
   # GET /benefits_types.xml
-  def index
-    @benefits_types = BenefitsType.search(params[:query],params[:page],current_user.page_limit)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.js { render :layout => false }
-      format.xml  { render :xml => @benefits_types }
-    end
-  end
+  # inherited from SecurityController
 
   # GET /benefits_types/1
   # GET /benefits_types/1.xml

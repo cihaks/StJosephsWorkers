@@ -3,15 +3,7 @@ class CrimeTypesController < SecurityController
   
   # GET /crime_types
   # GET /crime_types.xml
-  def index
-    @crime_types = CrimeType.search(params[:query],params[:page],current_user.page_limit)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.js { render :layout=>false }
-      format.xml  { render :xml => @crime_types }
-    end
-  end
+  # inherited from SecurityController
 
   # GET /crime_types/1
   # GET /crime_types/1.xml
