@@ -21,6 +21,7 @@
 class Client < ActiveRecord::Base
   belongs_to :race
   belongs_to :education
+  belongs_to :work_history
   has_many :pictures
   has_many :addresses, :order => "address_type"
   has_many :phones, :order => "primary_ind DESC, updated_at DESC, id DESC"

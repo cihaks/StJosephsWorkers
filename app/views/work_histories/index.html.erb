@@ -1,0 +1,24 @@
+<br />
+<%= will_paginate @work_histories, :remote => {:method=>:get, :update => 'item_list'} %>
+
+<table>
+  <tr>
+    <td class="fieldLabel"><b>Name</b></td>
+	<td width="10"></td>
+    <td class="fieldLabel"><b>Description</b></td>
+  </tr>
+
+<% @work_histories.each do |work_history| %>
+  <tr>
+    <td class="fieldData"><%=h work_history.name %></td>
+	<td width="10"></td>
+    <td class="fieldData"><%=h work_history.description %></td>
+    <td><%= link_to 'Show', work_history %></td>
+    <td><%= link_to 'Edit', edit_work_history_path(work_history) %></td>
+    <td><%= link_to 'Delete', work_history, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= will_paginate @work_histories, :remote => {:method=>:get, :update => 'item_list'} %>
+<br />

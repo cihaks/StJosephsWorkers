@@ -43,6 +43,17 @@
 		    <%= f.check_box :success_story %>
 		    <%= f.label :success_story %><br />
   		 -->
+          <% unless @client.new_record?%>
+          <br />
+          <br />
+		    <%= f.label :work_history %><br />
+		    <%= f.collection_select(:work_history_id,WorkHistory.all,:id,:name, {:include_blank=>true}) %>
+		  <br />
+          <br />
+          <br />		
+		    <%= f.label :work_note %><br />
+			<%= f.text_area :work_note, :size=>"30x6" %>		
+			<%end%>
       </td>
 	  <td width="10"></td>
 	  <td valign="top">

@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :work_histories
+
   map.resources :educations
 
   map.resources :educations

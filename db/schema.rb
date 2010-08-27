@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100506050913) do
+ActiveRecord::Schema.define(:version => 20100612012147) do
 
   create_table "activity_logs", :force => true do |t|
     t.integer  "client_id"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20100506050913) do
     t.string   "address1"
     t.string   "address2"
     t.string   "city"
+    t.string   "address_type"
     t.integer  "zip_code",        :limit => 8
     t.boolean  "primary_ind"
     t.boolean  "current_ind"
@@ -44,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20100506050913) do
     t.datetime "updated_at"
     t.integer  "creator_id"
     t.integer  "updater_id"
+    t.integer  "shelter_id"
   end
 
   create_table "agencies", :force => true do |t|
@@ -66,11 +68,11 @@ ActiveRecord::Schema.define(:version => 20100506050913) do
   create_table "assigned_agencies", :force => true do |t|
     t.integer  "client_id"
     t.integer  "agency_id"
-    t.string   "staff_contact"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "creator_id"
     t.integer  "updater_id"
+    t.string   "staff_contact"
   end
 
   create_table "assigned_resources", :force => true do |t|
@@ -120,6 +122,7 @@ ActiveRecord::Schema.define(:version => 20100506050913) do
     t.datetime "updated_at"
     t.integer  "creator_id"
     t.integer  "updater_id"
+    t.integer  "education_id"
   end
 
   create_table "clients_status_types", :id => false, :force => true do |t|
@@ -198,23 +201,28 @@ ActiveRecord::Schema.define(:version => 20100506050913) do
   create_table "crime_sentences", :force => true do |t|
     t.integer  "client_id"
     t.integer  "prison_id"
-    t.integer  "incarceration_length_id"
     t.date     "start_date"
     t.date     "end_date"
     t.date     "release_date"
     t.boolean  "felony"
     t.boolean  "violent"
     t.boolean  "sex_offender"
-    t.boolean  "furlough"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "creator_id"
     t.integer  "updater_id"
+    t.integer  "incarceration_length_id"
+    t.boolean  "furlough"
+  end
+
+  create_table "crime_sentences_convictions", :force => true do |t|
+    t.integer "crime_sentences_id"
+    t.integer "convictions_id"
   end
 
   create_table "crime_sentences_crime_types", :id => false, :force => true do |t|
-    t.integer "crime_sentence_id"
-    t.integer "crime_type_id"
+    t.integer "crime_sentence_id", :null => false
+    t.integer "crime_type_id",     :null => false
   end
 
   create_table "crime_types", :force => true do |t|
@@ -232,8 +240,13 @@ ActiveRecord::Schema.define(:version => 20100506050913) do
     t.string   "note",                 :limit => 2048
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "creator_id"
-    t.integer  "updater_id"
+  end
+
+  create_table "educations", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "hygienes", :force => true do |t|
@@ -307,9 +320,9 @@ ActiveRecord::Schema.define(:version => 20100506050913) do
     t.integer  "client_id"
     t.integer  "job_type_id"
     t.integer  "industry_id"
-    t.integer  "benefits_type_id"
+    t.integer  "pay_scale_low"
+    t.integer  "pay_scale_high"
     t.boolean  "current"
-    t.string   "company"
     t.date     "start_date"
     t.date     "end_date"
     t.date     "last_verified_date"
@@ -317,17 +330,17 @@ ActiveRecord::Schema.define(:version => 20100506050913) do
     t.datetime "updated_at"
     t.integer  "creator_id"
     t.integer  "updater_id"
+    t.integer  "benefits_type_id"
+    t.string   "company"
   end
 
   create_table "monthly_passes", :force => true do |t|
     t.integer  "assigned_resource_id"
     t.decimal  "amount_paid",                          :precision => 10, :scale => 2
     t.decimal  "amount_due",                           :precision => 10, :scale => 2
-    t.string   "note",                 :limit => 2048
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "creator_id"
-    t.integer  "updater_id"
+    t.string   "note",                 :limit => 2048
   end
 
   create_table "phones", :force => true do |t|
@@ -385,7 +398,6 @@ ActiveRecord::Schema.define(:version => 20100506050913) do
   create_table "resource_types", :force => true do |t|
     t.string   "name"
     t.string   "description"
-    t.string   "type_name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "creator_id"
@@ -478,8 +490,13 @@ ActiveRecord::Schema.define(:version => 20100506050913) do
     t.string   "cvm_password"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "creator_id"
-    t.integer  "updater_id"
+  end
+
+  create_table "work_histories", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

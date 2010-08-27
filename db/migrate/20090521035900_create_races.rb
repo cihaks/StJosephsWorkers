@@ -11,3 +11,4 @@ class CreateRaces < ActiveRecord::Migration
     drop_table :races
   end
 end
+

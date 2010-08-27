@@ -60,8 +60,21 @@
 		<% @client.contacts.each do |contact| %>
 		  <%= render( :partial=>'shared/alert', :object=>contact ) if contact.alert %>
 		<% end %>
-	  </table>
+	  </table>	
 	</td>
   </tr>
 </table>
+<table>
+		<td width="64"></td>
+	    <td class="fieldLabel">
+	      <b>Work History:</b>
+	    </td>
+	    <td class="fieldData">
+	      <%=h @client.work_history.name unless @client.work_history.nil? %>
+	    </td>
+		<td width="10"></td>
+	    <td class="fieldData">
+	      <%=h @client.work_note unless @client.work_note.nil? %>
+	    </td>
+<table />
 <% end %>
