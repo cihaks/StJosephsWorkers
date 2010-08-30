@@ -26,6 +26,7 @@ module AjaxUpdater
       
       def refresh_element(element = '')
         self.configuration[:elements] << { :element => element, :partial => eval("'#{controller_name}/index'") }
+				self.configuration[:error_element] = element+"-errors"
       end
       
       def section(section = '')
@@ -99,22 +100,24 @@ module AjaxUpdater
     
     def create
       elements = get_elements
+			error_element = get_error_section
+			
       skip_message = skip_message('create')
       
       create_callback_before_object
       
-      @object_to_create = eval("@client.#{controller_name}.new(params[:#{controller_name.singularize}])")
+      eval("@#{controller_name.singularize} = @client.#{controller_name}.new(params[:#{controller_name.singularize}])")
       
       create_callback_before
 
       respond_to do |format|
-        if @object_to_create.save
+        if eval("@#{controller_name.singularize}.save")
           
           create_callback_after
           
           flash[:notice] = "#{controller_name.singularize.humanize.titleize}" + ' was successfully created.'
           format.html { redirect_to( eval("client_#{controller_name}_path(@client)") ) }
-          format.xml  { render :xml => @object_to_create, :status => :created, :location => @object_to_create }
+          format.xml  { render :xml => eval("@#{controller_name.singularize}"), :status => :created, :location => eval("@#{controller_name}") }
           format.js do
             render :update do |page|
               if !params[:page_update].nil? and params[:page_update] == 'false' and !skip_message.nil?
@@ -127,8 +130,17 @@ module AjaxUpdater
             end
           end
         else
+					errors = eval("@#{controller_name.singularize}.errors")
+					flash[:errors] = eval("@#{controller_name.singularize}.errors")
           format.html { render :action => "new" }
-          format.xml  { render :xml => @object_to_create.errors, :status => :unprocessable_entity }
+          format.xml  { render :xml => eval("@#{controller_name.singularize}.errors"), :status => :unprocessable_entity }
+					# format.js do
+					# 	render :update do |page|
+					# 		errors.collect do |e, m|
+					#       page.replace_html e+"-error", :text=>"  "+m unless e.nil? or m.nil?
+					#     end
+					# 	end
+					# end
         end
       end
     end
@@ -139,12 +151,12 @@ module AjaxUpdater
       
       update_callback_before_object
       
-      @object_to_update = eval("@client.#{controller_name}.find(params[:id])")
+      eval("@#{controller_name.singularize} = @client.#{controller_name}.find(params[:id])")
       
       update_callback_before
         
       respond_to do |format|
-        if @object_to_update.update_attributes(eval("params[:#{controller_name.singularize}]"))
+        if eval("@#{controller_name.singularize}.update_attributes(params[:#{controller_name.singularize}])")
           
           update_callback_after
           
@@ -164,7 +176,7 @@ module AjaxUpdater
           end
         else
           format.html { render :action => "edit" }
-          format.xml  { render :xml => @object_to_update.errors, :status => :unprocessable_entity }
+          format.xml  { render :xml => eval("@#{controller_name.singularize}.errors"), :status => :unprocessable_entity }
         end
       end
     end
@@ -227,4 +239,27 @@ module AjaxUpdater
   def get_section
     configuration[:section]
   end
+
+	def get_error_section
+		configuration[:error_element]
+	end
+	
+	def get_error_message(errors, message = 'There were some problems with your submission:')
+	  flash_to_display = message
+	  if errors.instance_of? ActiveRecord::Errors
+	    flash_to_display << activerecord_error_list(errors)
+	  else
+	    flash_to_display = errors
+	  end
+		flash_to_display
+  end
+
+  def activerecord_error_list(errors)
+    error_list = '<ul class="error_list">'
+    error_list << errors.collect do |e, m|
+      "<li>#{e.humanize unless e == "base"} #{m}</li>"
+    end.to_s << '</ul>'
+    error_list
+  end
+  
 end

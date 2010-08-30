@@ -9,8 +9,13 @@ class AppInterview < ActiveRecord::Base
 	  company.name if company
 	end
 	
-	def company_name=(name)
-		self.company = Company.find_or_create_by_name(name) unless name.blank?
+	def company_name=(names)
+		if names
+		  name_list = names.split(',').each {|n| n.strip!}
+		  name_list.each do |name|
+		    self.company = Company.find_or_create_by_name(name) unless name.blank?
+	    end
+    end
 	end
 
 	def self.find_by_company_name(name)

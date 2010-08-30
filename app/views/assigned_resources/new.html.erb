@@ -1,6 +1,6 @@
 <%= render 'assigned_resources/banner' %>
 
-<% form_for([@client, @assigned_resource]) do |f| %>
+<% form_for([@client, @assigned_resource], :builder=>LabelingFormBuilder) do |f| %>
   <%= f.error_messages %>
   
   <%= render :partial=>'assigned_resources/form', :locals=>{:f=>f}%>

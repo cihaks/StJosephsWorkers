@@ -4,6 +4,6 @@
 # Mime::Type.register "text/richtext", :rtf
 # Mime::Type.register_alias "text/html", :iphone
 
-Mime::Type.register "app/autocomplete", :ac
+Mime::Type.register_alias "text/html", :ac
 
 

@@ -1,9 +1,13 @@
-<% [:daily_pass, :monthly_pass, :voice_mail, :clothing, :hygiene].each do |association| %>
-
-	<% fields_for_association(@assigned_resource, association, @assigned_resource.resource_type)  do |subform| %>
-	
-		<%= render :partial=>"assigned_resources/associations/#{association.to_s}_form", :locals=>{:subform=>subform} %>
-	
+<% ResourceType.all.each do |res_type| %>
+	<% association = res_type.type_name%>
+	<% unless association.nil? or association.blank? %>
+	    <div id="<%="has_#{res_type.id}"%>" <%="style=\"display:none\"" unless @assigned_resource.resource_type.id == res_type.id %> >
+		  <% f.fields_for association do |subform| %>
+			<%= render :partial=>"assigned_resources/associations/#{association.to_s}_form", :locals=>{:subform=>subform} %>
+		  <% end %>
+		</div>
 	<% end %>
-
 <% end %>
+
+
+<% #should do observe_field on resource_type and hide if needed.....  %>
