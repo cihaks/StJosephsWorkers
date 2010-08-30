@@ -3,15 +3,7 @@ class IncarcerationLengthsController < SecurityController
   
   # GET /incarceration_lengths
   # GET /incarceration_lengths.xml
-  def index
-    @incarceration_lengths = IncarcerationLength.search(params[:query],params[:page],current_user.page_limit)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.js { render :layout => false }
-      format.xml  { render :xml => @incarceration_lengths }
-    end
-  end
+  # inherited from SecurityController
 
   # GET /incarceration_lengths/1
   # GET /incarceration_lengths/1.xml

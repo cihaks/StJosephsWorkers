@@ -1,20 +1,26 @@
 # == Schema Information
-# Schema version: 20090924043100
+# Schema version: 20100604003228
 #
 # Table name: addresses
 #
-#  id         :integer(4)      not null, primary key
-#  client_id  :integer(4)
-#  state_id   :integer(4)
-#  address1   :string(255)
-#  address2   :string(255)
-#  city       :string(255)
-#  zip_code   :integer(8)
-#  start_date :date
-#  end_date   :date
-#  created_at :datetime
-#  updated_at :datetime
+#  id              :integer(4)      not null, primary key
+#  client_id       :integer(4)
+#  state_id        :integer(4)
+#  address_type_id :integer(4)
+#  address1        :string(255)
+#  address2        :string(255)
+#  city            :string(255)
+#  address_type    :string(255)
+#  zip_code        :integer(8)
+#  primary_ind     :boolean(1)
+#  current_ind     :boolean(1)
+#  created_at      :datetime
+#  updated_at      :datetime
+#  creator_id      :integer(4)
+#  updater_id      :integer(4)
+#  shelter_id      :integer(4)
 #
+
 
 class Address < ActiveRecord::Base
   

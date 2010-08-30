@@ -15,7 +15,7 @@
   <tr>
     <td class="fieldData"><%=h job.job_type.name unless job.job_type.nil? %></td>
     <td class="fieldData"><%=h job.company.name unless job.company.nil? %></td>
-    <td class="fieldData"><%=h number_to_currency(job.job_rates.first.hourly_rate) unless job.job_rates.empty? %></td>
+    <td class="fieldData"><%=h my_number_to_currency(job.job_rates.first.hourly_rate) unless job.job_rates.empty? %></td>
     <td class="fieldData" align="center"><%= link_to_remote (check_box_tag :current,'true',job.current,:onclick=>"return false;"), :url=>client_job_path(@client,job), :with=>"'job[current]="+(!job.current).to_s+"'", :method => :put %></td>
 	<td class="fieldData" align="center"><%=h job.benefits_type.name unless job.benefits_type.nil? %></td>
     <td class="fieldData">

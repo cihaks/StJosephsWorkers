@@ -1,8 +1,8 @@
 class AssignedResourcesController < ApplicationController
-  layout 'contacts_content'
+  layout 'jobs_content'
   
   ajax_updates do |config|
-    config.refresh_element 'contacts-element'
+    config.refresh_element 'jobs-element'
   end
   
   before_filter :get_client, :set_section
@@ -13,10 +13,11 @@ class AssignedResourcesController < ApplicationController
   
   def update_callback_before_object
 	  set_domain_association if !params[:assigned_resource].nil? and !params[:assigned_resource][:resource_type_id].nil? # update includes resource type 
+	  
   end
 
   def set_section
-    session[:contacts_section] = controller_name
+    session[:jobs_section] = controller_name
   end
   
 end

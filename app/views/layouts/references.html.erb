@@ -7,6 +7,7 @@
   <title><%= controller.controller_name.titleize %>: <%= controller.action_name %></title>
   <%= stylesheet_link_tag 'stjoesmain2' %>
   <%= javascript_include_tag 'jquery' %>
+  <%= javascript_include_tag 'resource_type_validation' %>
   <%= javascript_include_tag :defaults %>
   <%= calendar_date_select_includes :red %>
   <%#= active_scaffold_includes %>
@@ -30,21 +31,21 @@
 				</div>
 				<br/>
 				<div id="contacts-content">
-					<%= render :partial=>'shared/banner_contacts', :locals => {:name=>session[:contacts_section], :sections=>["contacts","addresses","phones","pictures","assigned_resources"] } %>
+					<%= render :partial=>'shared/section_banner', :locals => {:section_key=>:contacts_section, :section_content=>'contacts-content', :sections=>[["contacts","Encounters"],["addresses","Addresses"],["phones","Phones"],["pictures","Picture"]] } %>
 					<div id="contacts-element">
 					  <%= render "#{session[:contacts_section]}/index" %>
 					</div>
 				</div>
 			    <br/>
 				<div id="jobs-content">
-				  <%= render :partial=>'shared/banner_jobs', :locals => {:name=>session[:jobs_section], :sections=>["jobs","job_applications","job_interviews", "registered_classes"]} %>
+				  <%= render :partial=>'shared/section_banner', :locals => {:section_key=>:jobs_section, :section_content=>'jobs-content', :sections=>[["jobs","Jobs"], ["app_interviews","Apps/Interviews"], ["registered_classes","Registered Classes"], ["assigned_resources","Assigned Resources"]] } %>
 				  <div id="jobs-element">
 				    <%= render "#{session[:jobs_section]}/index"  %>
 				  </div>
 				</div>
 			    <br/>
 				<div id="infamy-content">
-				  <%= render :partial=>'shared/banner_infamy', :locals => {:name=>session[:infamy_section], :sections=>["assigned_agencies","used_substances","crime_sentences"]} %>
+				  <%= render :partial=>'shared/section_banner', :locals => {:section_key=>:infamy_section, :section_content=>'infamy-content', :sections=>[["assigned_agencies","Assigned Agencies"],["used_substances","Used Substances"],["crime_sentences","Crime Sentences"]]} %>
 				  <div id="infamy-element">
 				    <%= render "#{session[:infamy_section]}/index"  %>
 				  </div>

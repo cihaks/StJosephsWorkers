@@ -1,31 +1,82 @@
-# == Schema Information
-# Schema version: 20090924043100
-#
-# Table name: resource_types
-#
-#  id          :integer(4)      not null, primary key
-#  name        :string(255)
-#  description :string(255)
-#  created_at  :datetime
-#  updated_at  :datetime
-#
-
-# == Schema Information
-# Schema version: 20090716055901
-#
-# Table name: resource_types
-#
-#  id          :integer(4)      not null, primary key
-#  name        :string(255)
-#  description :string(255)
-#  created_at  :datetime
-#  updated_at  :datetime
-#
-
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-# one:
-#   column: value
-#
-# two:
-#   column: value
+--- 
+resource_types_006: 
+  name: "Financial Assist: Work Essentials"
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-01 04:41:04
+  creator_id: 
+  id: "6"
+  updater_id: 
+  type_name: 
+  description: 
+resource_types_007: 
+  name: Hygiene
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-02 14:31:47
+  creator_id: 
+  id: "7"
+  updater_id: "1"
+  type_name: hygiene
+  description: ""
+resource_types_008: 
+  name: Shoes
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-01 04:41:04
+  creator_id: 
+  id: "8"
+  updater_id: 
+  type_name: 
+  description: 
+resource_types_009: 
+  name: Work Boots
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-01 04:41:04
+  creator_id: 
+  id: "9"
+  updater_id: 
+  type_name: 
+  description: 
+resource_types_001: 
+  name: Bus - Daily Pass
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-02 14:31:10
+  creator_id: 
+  id: "1"
+  updater_id: "1"
+  type_name: daily_pass
+  description: ""
+resource_types_002: 
+  name: Bus - Monthly Pass
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-02 14:31:20
+  creator_id: 
+  id: "2"
+  updater_id: "1"
+  type_name: monthly_pass
+  description: ""
+resource_types_003: 
+  name: Clothing
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-02 14:31:27
+  creator_id: 
+  id: "3"
+  updater_id: "1"
+  type_name: clothing
+  description: ""
+resource_types_004: 
+  name: CVM - Community Voice Mail
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-02 14:31:39
+  creator_id: 
+  id: "4"
+  updater_id: "1"
+  type_name: voice_mail
+  description: ""
+resource_types_005: 
+  name: "Financial Assist: Housing Related"
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-01 04:41:04
+  creator_id: 
+  id: "5"
+  updater_id: 
+  type_name: 
+  description: 

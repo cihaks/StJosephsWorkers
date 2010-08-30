@@ -1,25 +1,9 @@
 class ContactTypesController < SecurityController
   layout 'references'
   
-#  active_scaffold :contact_type do |config|
-#    config.label = 'Contact Type'
-#    config.columns[:client_contacts].form_ui = :select
-#    config.list.columns = [:contact_type]
-#    config.create.columns = [:contact_type]
-#    config.update.columns = [:contact_type]
-#  end
-
   # GET /contact_types
   # GET /contact_types.xml
-  def index
-    @contact_types = ContactType.search(params[:query],params[:page],current_user.page_limit)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.js { render :layout=>false }
-      format.xml  { render :xml => @contact_types }
-    end
-  end
+  # inherited from SecurityController
 
   # GET /contact_types/1
   # GET /contact_types/1.xml

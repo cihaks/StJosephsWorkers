@@ -7,6 +7,10 @@
     <%= f.text_field :name %>
   </p>
   <p>
+    <%= f.label :default_selection, "New Client Default" %><br />
+    <%= f.check_box :default_selection %>
+  </p>
+  <p>
     <%= f.submit 'Update' %>
   </p>
 <% end %>

@@ -1,7 +1,6 @@
 
 <% form_for([@client,@contact]) do |f| %>
   <%= f.error_messages %>
-
   <%= render :partial=>'contacts/form', :locals=>{:f=>f} %>
   <p>
     <%= f.submit 'Create' unless request.xhr? %>

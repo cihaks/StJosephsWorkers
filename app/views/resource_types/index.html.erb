@@ -8,6 +8,8 @@
 	<td width="10"></td>
     <td class="fieldLabel">Type Name</td>
 	<td width="10"></td>
+    <td class="fieldLabel">Status Type</td>
+	<td width="10"></td>
   </tr>
 
 <% @resource_types.each do |resource_type| %>
@@ -17,6 +19,8 @@
     <td><%=h resource_type.description %></td>
 	<td width="10"></td>
     <td><%=h resource_type.type_name %></td>
+	<td width="10"></td>
+    <td><%=h resource_type.status_type.name if resource_type.status_type %></td>
 	<td width="10"></td>
 <!--
     <td><%= link_to 'Show', resource_type %></td>

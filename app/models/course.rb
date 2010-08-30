@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20090924043100
+# Schema version: 20100604003228
 #
 # Table name: courses
 #
@@ -7,6 +7,8 @@
 #  name       :string(255)
 #  created_at :datetime
 #  updated_at :datetime
+#  creator_id :integer(4)
+#  updater_id :integer(4)
 #
 
 class Course < ActiveRecord::Base

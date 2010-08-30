@@ -1,30 +1,25 @@
-# == Schema Information
-# Schema version: 20090924043100
-#
-# Table name: contact_types
-#
-#  id          :integer(4)      not null, primary key
-#  name        :string(25)
-#  description :string(500)
-#  created_at  :datetime
-#  updated_at  :datetime
-#
-
-# == Schema Information
-# Schema version: 20090716055901
-#
-# Table name: contact_types
-#
-#  id           :integer(4)      not null, primary key
-#  contact_type :string(255)
-#  created_at   :datetime
-#  updated_at   :datetime
-#
-
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
-  contact_type: MyString
-
-two:
-  contact_type: MyString
+--- 
+contact_types_001: 
+  name: Client Contact
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-01 04:41:04
+  creator_id: 
+  id: "1"
+  updater_id: 
+  description: 
+contact_types_002: 
+  name: Office Visit Only
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-01 04:41:04
+  creator_id: 
+  id: "2"
+  updater_id: 
+  description: 
+contact_types_003: 
+  name: Intake
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-01 04:41:04
+  creator_id: 
+  id: "3"
+  updater_id: 
+  description: 

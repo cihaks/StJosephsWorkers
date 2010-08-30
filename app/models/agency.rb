@@ -1,13 +1,17 @@
 # == Schema Information
-# Schema version: 20090924043100
+# Schema version: 20100604003228
 #
 # Table name: agencies
 #
-#  id         :integer(4)      not null, primary key
-#  name       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  id             :integer(4)      not null, primary key
+#  agency_type_id :integer(4)
+#  name           :string(255)
+#  created_at     :datetime
+#  updated_at     :datetime
+#  creator_id     :integer(4)
+#  updater_id     :integer(4)
 #
+
 
 class Agency < ActiveRecord::Base
   belongs_to :agency_type

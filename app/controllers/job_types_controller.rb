@@ -1,22 +1,9 @@
 class JobTypesController < SecurityController
   layout 'references'
   
-  # active_scaffold :job_type do |config|
-  #   config.label = 'Job Type'
-  #   config.columns = [:name]
-  # end
-
   # GET /job_types
   # GET /job_types.xml
-  def index
-    @job_types = JobType.search(params[:query],params[:page],current_user.page_limit)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.js { render :layout=>false }
-      format.xml  { render :xml => @job_types }
-    end
-  end
+  # inherited from SecurityController
 
   # GET /job_types/1
   # GET /job_types/1.xml

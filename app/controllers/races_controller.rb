@@ -1,21 +1,9 @@
 class RacesController < SecurityController
   layout 'references'
   
-  # active_scaffold :race do |config|
-  #     config.columns = [:name, :description]
-  #   end
-
   # GET /races
   # GET /races.xml
-  def index
-    @races = Race.search(params[:query],params[:page],current_user.page_limit)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.js { render :layout=>false }
-      format.xml  { render :xml => @races }
-    end
-  end
+  # inherited from SecurityController
 
   # GET /races/1
   # GET /races/1.xml

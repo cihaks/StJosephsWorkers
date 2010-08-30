@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20090924043100
+# Schema version: 20100604003228
 #
 # Table name: resource_types
 #
@@ -8,10 +8,14 @@
 #  description :string(255)
 #  created_at  :datetime
 #  updated_at  :datetime
+#  creator_id  :integer(4)
+#  updater_id  :integer(4)
+#  type_name   :string(255)
 #
 
 class ResourceType < ActiveRecord::Base
   has_many :assigned_resources
+  belongs_to :status_type # 1 to 0 or more association
 
   def self.search(search, page, page_limit)
     paginate :per_page=>page_limit, :page=>page,

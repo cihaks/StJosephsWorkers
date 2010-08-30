@@ -1,13 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :work_histories
-
-  map.resources :educations
-
-  map.resources :educations
-
-  map.resources :convictions
-
-  map.resources :shelters
 
 
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
@@ -29,21 +20,25 @@ ActionController::Routing::Routes.draw do |map|
 	map.resources :course_attendances
   map.resources :companies
   map.resources :contact_types
+  map.resources :convictions
   map.resources :courses
   map.resources :crime_types
+  map.resources :educations
   map.resources :incarceration_lengths
   map.resources :industries
   map.resources :job_types
   map.resources :races
   map.resources :resource_types
   map.resources :prisons
+  map.resources :shelters
   map.resources :states
   map.resources :status_types
   map.resources :substances
+  map.resources :work_histories
 
-  map.resources :clients, :has_many => [:assigned_agencies,:contacts,:phones,:pictures,
-                                        :assigned_resources,:jobs,:used_substances,:addresses,
-                                        :job_applications, :job_interviews, 
+  map.resources :clients, :has_many => [:addresses,:phones,:pictures,
+                                        :assigned_agencies,:used_substances,
+                                        :jobs, :app_interviews, :assigned_resources,
                                         :contacts,:registered_classes,:crime_sentences]
 
   map.resources :job_rates  #add to jobs route....
@@ -51,7 +46,8 @@ ActionController::Routing::Routes.draw do |map|
   
   map.reports 'reports', :controller => 'reports'
 
-  
+	map.delete_clients 'delete_clients', :controller => 'delete_clients'
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

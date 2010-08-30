@@ -1,0 +1,36 @@
+<p>
+  <b>Company:</b>
+  <%=h @app_interview.company.name unless @app_interview.company.nil? %>
+</p>
+
+<p>
+  <b>Industry:</b>
+  <%=h @app_interview.industry.name unless @app_interview.industry.nil? %>
+</p>
+
+<p>
+  <b>Meeting date:</b>
+  <%=h @app_interview.meeting_date.strftime("%m/%d/%Y") unless @app_interview.meeting_date.nil? %>
+</p>
+
+<p>
+  <b>Application:</b>
+  <%= check_box_tag(:application,'true',@app_interview.application,:onclick=>"return false;") %>
+</p>
+
+<p>
+  <b>Interview:</b>
+  <%= check_box_tag(:interview,'true',@app_interview.interview,:onclick=>"return false;") %>
+</p>
+
+<p>
+  <b>Last Modified:</b>
+  <%=h @app_interview.updated_at.strftime("%m/%d/%Y") unless @app_interview.updated_at.nil? %>
+</p>
+
+<p>
+  <b>Modified By:</b>
+  <%=h User.find(@app_interview.updater_id).name unless @app_interview.updater_id.nil? %>
+</p>
+
+<br />

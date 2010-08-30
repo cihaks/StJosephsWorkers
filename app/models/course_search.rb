@@ -1,3 +1,15 @@
+# == Schema Information
+# Schema version: 20100604003228
+#
+# Table name: course_searches
+#
+#  course_id :integer
+#  from_date :date
+#  to_date   :date
+#
+
+# TODO: revamp with validates_date method?
+
 class CourseSearch < ActiveRecord::Base
 	def self.columns() @columns ||= []; end
 

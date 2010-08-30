@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100612012147) do
+ActiveRecord::Schema.define(:version => 0) do
 
   create_table "activity_logs", :force => true do |t|
     t.integer  "client_id"
@@ -123,6 +123,8 @@ ActiveRecord::Schema.define(:version => 20100612012147) do
     t.integer  "creator_id"
     t.integer  "updater_id"
     t.integer  "education_id"
+    t.integer  "work_history_id"
+    t.string   "work_note",         :limit => 2048
   end
 
   create_table "clients_status_types", :id => false, :force => true do |t|
@@ -238,13 +240,6 @@ ActiveRecord::Schema.define(:version => 20100612012147) do
     t.integer  "assigned_resource_id"
     t.string   "company"
     t.string   "note",                 :limit => 2048
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "educations", :force => true do |t|
-    t.string   "name"
-    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -488,13 +483,6 @@ ActiveRecord::Schema.define(:version => 20100612012147) do
     t.integer  "assigned_resource_id"
     t.string   "cvm_number"
     t.string   "cvm_password"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "work_histories", :force => true do |t|
-    t.string   "name"
-    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,0 +1,17 @@
+
+<div class="banner">
+	<% sections.each do |item| %>
+	  <% section, display_name = item[0], item[1]%>
+		<% if section == session[section_key] %>
+			<div id="<%= section %>" class="caption"><%= link_to_remote display_name, :url=>eval("client_#{section}_path(@client)"), :update=>"#{section_content}",:method=>:get %></div>
+			<div class="links">
+				<%= link_to_remote 'new', :url=>eval("new_client_#{section.singularize}_path(@client)"), :update=>"#{section_content}",:method=>:get %>
+			</div>
+		<% else %>
+			<div class="caption"><div id="<%= section %>" class="inactive"><%= link_to_remote display_name, :url=>eval("client_#{section}_path(@client)"), :update=>"#{section_content}",:method=>:get %></div></div>
+		<% end %>
+		<div class="tabspacer">&nbsp;</div>
+	<% end %>
+</div>
+
+

@@ -1,7 +1,7 @@
 class CreateStatusTypes < ActiveRecord::Migration
   def self.up
     create_table :status_types do |t|
-      t.string :name, :description
+      t.string :name, :description, :category
       t.timestamps
       t.userstamps
     end

@@ -4,13 +4,6 @@
   <%=h @used_substance.substance.name %>
 </p>
 
-<!--
-<p>
-  <b>Entry Date:</b>
-  <%=h @used_substance.entry_date.strftime("%m/%d/%Y") unless @used_substance.entry_date.nil? %>
-</p>
--->
-
 <p>
   <b>Sober Since:</b>
   <%=h @used_substance.sober_date.strftime("%m/%d/%Y") unless @used_substance.sober_date.nil? %>

@@ -14,18 +14,19 @@
   </tr>
 
 <% @clients.each do |client| %>
-  <tr>
+  <tr id="<%=client.id%>">
   	<td>
   	  <div class="photoImage floatLeft">
 		<% if !client.pictures.empty? and client.pictures.first.photo.exists? %>
-			<%= image_tag client.pictures.first.photo.url, :size=>"25x25" %>
+			<%= image_tag client.pictures.first.photo.url, :size=>"30x30" %>
 		<% else %>
-			<%= image_tag 'defaultphoto.gif', :size=>"25x25" %>
+			<%= image_tag 'defaultphoto.gif', :size=>"30x30" %>
 		<% end %>
 	  </div>
   	</td>
     <td class="fieldData" align="center">
-	  <%= link_to h(client.name), client %><%= render :partial=>'clients/client_icons', :locals=>{:client=>client}%>
+	  <%= link_to h(client.name), client %><br/>
+	  <%= render :partial=>'clients/client_icons', :locals=>{:client=>client}%>
 	</td>
 	<td width="5"></td>
     <td class="fieldData"><%=h client.birth_date.strftime("%m/%d/%Y") unless client.birth_date.nil? %></td>
@@ -36,10 +37,10 @@
 	<td width="5"></td>
 	<td valign="top"><%= link_to 'Details', client %></td>
     <td valign="top"><%= link_to 'Edit', edit_client_path(client) %></td>
-    <td valign="top"><%= link_to 'Delete', client, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td valign="top"><%= link_to_remote 'Delete', :url=>client, :confirm => 'Are you sure?', :method => :delete %></td>
 	<td valign="top"><%= link_to_remote 'Office Visit', :url=>client_contacts_path(client), :with => "'contact[client_id]="+client.id.to_s+"&contact[contact_type_id]="+@office_visit.id.to_s+"&contact[contact_date]="+Time.now.to_s+"&page_update=false'" , :method => :post %></td>
   </tr>
-  <tr>
+  <tr id="<%=client.id%>_line">
 	<td colspan="15"><hr/></td>
   </tr>
 <% end %>

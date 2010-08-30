@@ -3,15 +3,7 @@ class RolesController < SecurityController
   
   # GET /roles
   # GET /roles.xml
-  def index
-    @roles = Role.search(params[:query],params[:page],current_user.page_limit)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.js { render :layout=>false }
-      format.xml  { render :xml => @roles }
-    end
-  end
+  # inherited from SecurityController
 
   # GET /roles/1
   # GET /roles/1.xml

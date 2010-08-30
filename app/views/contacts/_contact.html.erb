@@ -1,5 +1,5 @@
 <tr>
-  <td class="fieldData" height="10"><%=h contact.contact_type.name %></td>
+  <td class="fieldData" height="10"><%=h contact.contact_type.name unless contact.contact_type.nil? %></td>
   <td width="10" height="10"></td>
   <td class="fieldData" style="text-align: center;" height="10"><%= link_to_remote (check_box_tag :contact_negative, 'true', contact.contact_negative, :onclick=>"return false;"), :url=>client_contact_path(@client,contact), :with=>"'contact[contact_negative]="+(!contact.contact_negative).to_s+"'", :method=>:put %></td>
   <td width="10" height="10"></td>

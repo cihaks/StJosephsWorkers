@@ -3,8 +3,6 @@
   <tr>
     <td class="fieldLabel">Substance</td>
 	<td width="10"></td>
-<!--    <td class="fieldLabel">Entry Date</td>
-	<td width="10"></td> -->
     <td class="fieldLabel">Sober Since</td>
 	<td width="10"></td>
     <td class="fieldLabel">Last Modified</td>
@@ -17,8 +15,6 @@
   <tr>
     <td class="fieldData"><%=h used_substance.substance.name unless used_substance.substance.nil? %></td>
 	<td width="10"></td>
-<!--    <td class="fieldData"><%=h used_substance.entry_date.strftime("%m/%d/%Y") unless used_substance.entry_date.nil? %></td> 
-	<td width="10"></td>-->
     <td class="fieldData"><%=h used_substance.sober_date.strftime("%m/%d/%Y") unless used_substance.sober_date.nil? %></td>
 	<td width="10"></td>
     <td class="fieldData"><%=h used_substance.updated_at.strftime("%m/%d/%Y") unless used_substance.updated_at.nil? %></td>

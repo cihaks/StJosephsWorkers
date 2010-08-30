@@ -1,4 +1,4 @@
-<% form_for(@client, :builder=>MyFormBuilder) do |f| %>
+<% form_for(@client) do |f| %>
 	<div id="client-content">
 	  <div class="banner"><div class="caption">New Client</div></div>
 	  <div id="client-element">
@@ -12,7 +12,7 @@
 	  <div id="contacts-element">
 		<% f.fields_for :contacts do |contact_fields| %>
 		  <%= render :partial=>'contacts/form', :locals => { :f => contact_fields } %>
-		<% end %>
+		<% end %> 
 	  </div>
 	</div>
 	<%= add_element_link("add contact", f, :contacts) %>
@@ -23,9 +23,7 @@
 	  <div class="banner"><div class="caption">Addresses</div></div>
 	  <div id="addresses-element">
 		<% f.fields_for :addresses do |address_fields| %>
-		  <table>
 		  <%= render :partial=>'addresses/form', :locals => { :f => address_fields } %>
-		  </table>
 		<% end %>
 	  </div>
 	</div>
@@ -66,7 +64,44 @@
 	  </div>
 	</div>
     <br/>
+	<br/>
 	
+	<div id="assigned_agencies-content">
+	  <div class="banner"><div class="caption">Assigned Agencies</div></div>
+	  <div id="assigned_agencies-element">
+		<% f.fields_for :assigned_agencies do |assigned_agency_fields| %>
+		  <%= render :partial=>'assigned_agencies/form', :locals => { :f => assigned_agency_fields } %>
+		<% end %>
+	  </div>
+	</div>
+	<%= add_element_link("add assigned agency", f, :assigned_agencies) %>
+    <br/>
+	<br/>
+	
+	<div id="used_substances-content">
+	  <div class="banner"><div class="caption">Used Substances</div></div>
+	  <div id="used_substances-element">
+		<% f.fields_for :used_substances do |substance_fields| %>
+		  <%= render :partial=>'used_substances/form', :locals => { :f => substance_fields } %>
+		<% end %>
+	  </div>
+	</div>
+	<%= add_element_link("add used substance", f, :used_substances) %>
+    <br />
+	<br />
+	
+	<div id="crime_sentences-content">
+	  <div class="banner"><div class="caption">Crime Sentences</div></div>
+	  <div id="crime_sentences-element">
+		<% f.fields_for :crime_sentences do |crime_sentences_fields| %>
+		  <%= render :partial=>'crime_sentences/form', :locals => { :f => crime_sentences_fields } %>
+		<% end %>
+	  </div>
+	</div>
+	<%= add_element_link("add crime sentence", f, :crime_sentences) %>
+	<br/>
+    <br/>
+
 	<div id="registered_classes-content">
 	  <div class="banner"><div class="caption">Registered Classes</div></div>
 	  <div id="registered_classes-element">
@@ -79,35 +114,6 @@
     <br />
     <br />
 	
-	<div id="assigned_agencies-content">
-	  <div class="banner"><div class="caption">Assigned Agencies</div></div>
-	  <div id="assigned_agencies-element">
-		<% f.fields_for :assigned_agencies do |assigned_agency_fields| %>
-		  <%= render :partial=>'assigned_agencies/form', :locals => { :f => assigned_agency_fields } %>
-		<% end %>
-	  </div>
-	</div>
-    <br/>
-	
-	<div id="used_substances-content">
-	  <div class="banner"><div class="caption">Used Substances</div></div>
-	  <div id="used_substances-element">
-		<% f.fields_for :used_substances do |substance_fields| %>
-		  <%= render :partial=>'used_substances/form', :locals => { :f => substance_fields } %>
-		<% end %>
-	  </div>
-	</div>
-    <br/>
-	
-	<div id="crime_sentences-content">
-	  <div class="banner"><div class="caption">Crime Sentences</div></div>
-	  <div id="crime_sentences-element">
-		<% f.fields_for :crime_sentences do |crime_sentences_fields| %>
-		  <%= render :partial=>'crime_sentences/form', :locals => { :f => crime_sentences_fields } %>
-		<% end %>
-	  </div>
-	</div>
-    <br/>
 	<table>
 	  <tr>
 		<td>
@@ -115,5 +121,7 @@
 		</td>
 	  </tr>
     </table>
-  
+
+	<br/>
+	<br/>
 <% end %>

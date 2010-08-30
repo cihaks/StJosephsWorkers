@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  client_id: 1
+  company_id: 1
+  industry_id: 1
+  meeting_date: 2010-07-10
+  application: false
+  interview: false
+
+two:
+  client_id: 1
+  company_id: 1
+  industry_id: 1
+  meeting_date: 2010-07-10
+  application: false
+  interview: false

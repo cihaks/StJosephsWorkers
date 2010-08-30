@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20090924043100
+# Schema version: 20100604003228
 #
 # Table name: pictures
 #
@@ -8,21 +8,8 @@
 #  picture            :binary
 #  created_at         :datetime
 #  updated_at         :datetime
-#  photo_file_name    :string(255)
-#  photo_content_type :string(255)
-#  photo_file_size    :integer(4)
-#
-
-# == Schema Information
-# Schema version: 20090716055901
-#
-# Table name: pictures
-#
-#  id                 :integer(4)      not null, primary key
-#  client_id          :integer(4)
-#  picture            :binary
-#  created_at         :datetime
-#  updated_at         :datetime
+#  creator_id         :integer(4)
+#  updater_id         :integer(4)
 #  photo_file_name    :string(255)
 #  photo_content_type :string(255)
 #  photo_file_size    :integer(4)

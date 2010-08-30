@@ -1,23 +1,9 @@
 class IndustriesController < SecurityController
   layout 'references'
   
-  # active_scaffold :industry do |config|
-  #   config.columns[:companies].form_ui = :select
-  #   config.list.columns = [:industry_type, :description, :companies]
-  #   config.create.columns = [:industry_type, :description]
-  # end
-
   # GET /industries
   # GET /industries.xml
-  def index
-    @industries = Industry.search(params[:query],params[:page],current_user.page_limit)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.js { render :layout=>false }
-      format.xml  { render :xml => @industries }
-    end
-  end
+  # inherited from SecurityController
 
   # GET /industries/1
   # GET /industries/1.xml

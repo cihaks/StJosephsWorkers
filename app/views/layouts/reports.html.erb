@@ -4,11 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>Clients: <%= controller.action_name %></title>
-  <%= stylesheet_link_tag 'scaffold' %>
+  <title><%= controller.controller_name.titleize %>: <%= controller.action_name %></title>
   <%= stylesheet_link_tag 'stjoesmain2' %>
   <%= javascript_include_tag :defaults %>
-  <%#= active_scaffold_includes %>
 </head>
 <body>
 <div id="wrapper">

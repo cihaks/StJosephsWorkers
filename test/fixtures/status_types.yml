@@ -1,31 +1,97 @@
-# == Schema Information
-# Schema version: 20090924043100
-#
-# Table name: status_types
-#
-#  id          :integer(4)      not null, primary key
-#  name        :string(255)
-#  description :string(255)
-#  created_at  :datetime
-#  updated_at  :datetime
-#
-
-# == Schema Information
-# Schema version: 20090716055901
-#
-# Table name: status_types
-#
-#  id          :integer(4)      not null, primary key
-#  name        :string(255)
-#  description :string(255)
-#  created_at  :datetime
-#  updated_at  :datetime
-#
-
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-# one:
-#   column: value
-#
-# two:
-#   column: value
+--- 
+status_types_003: 
+  name: Parole
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-01 04:41:04
+  creator_id: 
+  id: "11"
+  updater_id: 
+  description: 
+status_types_004: 
+  name: Previously Incarcerated
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-01 04:41:04
+  creator_id: 
+  id: "12"
+  updater_id: 
+  description: 
+status_types_005: 
+  name: Previous Felon
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-01 04:41:04
+  creator_id: 
+  id: "13"
+  updater_id: 
+  description: 
+status_types_006: 
+  name: Probation
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-01 04:41:04
+  creator_id: 
+  id: "14"
+  updater_id: 
+  description: 
+status_types_007: 
+  name: Success Story
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-01 04:41:04
+  creator_id: 
+  id: "15"
+  updater_id: 
+  description: 
+status_types_008: 
+  name: WIRC
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-01 04:41:04
+  creator_id: 
+  id: "16"
+  updater_id: 
+  description: 
+status_types_010: 
+  name: Resource Eligible
+  created_at: 2010-06-01 05:04:47
+  updated_at: 2010-06-01 05:04:47
+  creator_id: "1"
+  id: "18"
+  updater_id: "1"
+  description: ""
+status_types_009: 
+  name: Caution
+  created_at: 2010-06-01 05:04:36
+  updated_at: 2010-06-01 05:04:36
+  creator_id: "1"
+  id: "17"
+  updater_id: "1"
+  description: ""
+status_types_011: 
+  name: Veteren
+  created_at: 2010-06-01 05:05:04
+  updated_at: 2010-06-01 05:05:04
+  creator_id: "1"
+  id: "19"
+  updater_id: "1"
+  description: ""
+status_types_012: 
+  name: Chronic Homelessness
+  created_at: 2010-06-02 06:29:13
+  updated_at: 2010-06-02 06:29:13
+  creator_id: "1"
+  id: "20"
+  updater_id: "1"
+  description: ""
+status_types_001: 
+  name: Follow-Up
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-01 04:41:04
+  creator_id: 
+  id: "9"
+  updater_id: 
+  description: 
+status_types_002: 
+  name: HWP
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-01 04:41:04
+  creator_id: 
+  id: "10"
+  updater_id: 
+  description: 

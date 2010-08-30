@@ -1,22 +1,9 @@
 class ResourceTypesController < SecurityController
   layout 'references'
   
-  # active_scaffold :resource_type do |config|
-  #   config.label = 'Resource Type'
-  #   config.list.columns = [:name, :description]
-  # end
-
   # GET /resource_types
   # GET /resource_types.xml
-  def index
-    @resource_types = ResourceType.search(params[:query],params[:page],current_user.page_limit)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.js { render :layout=>false }
-      format.xml  { render :xml => @resource_types }
-    end
-  end
+  # inherited from SecurityController
 
   # GET /resource_types/1
   # GET /resource_types/1.xml

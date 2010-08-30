@@ -1,29 +1,37 @@
-# == Schema Information
-# Schema version: 20090924043100
-#
-# Table name: prisons
-#
-#  id         :integer(4)      not null, primary key
-#  name       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
-#
-
-# == Schema Information
-# Schema version: 20090716055901
-#
-# Table name: prisons
-#
-#  id         :integer(4)      not null, primary key
-#  name       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
-#
-
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-# one:
-#   column: value
-#
-# two:
-#   column: value
+--- 
+prisons_004: 
+  name: Federal Penitentary
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-01 04:41:04
+  creator_id: 
+  county: 
+  id: "8"
+  updater_id: 
+  out_of_state: 
+prisons_001: 
+  name: County Jail
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-01 04:41:04
+  creator_id: 
+  county: 
+  id: "5"
+  updater_id: 
+  out_of_state: 
+prisons_002: 
+  name: In-State Penitentary
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-01 04:41:04
+  creator_id: 
+  county: 
+  id: "6"
+  updater_id: 
+  out_of_state: 
+prisons_003: 
+  name: Out-of-State Penitentary
+  created_at: 2010-06-01 04:41:04
+  updated_at: 2010-06-01 04:41:04
+  creator_id: 
+  county: 
+  id: "7"
+  updater_id: 
+  out_of_state: 

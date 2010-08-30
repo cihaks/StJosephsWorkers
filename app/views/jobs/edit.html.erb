@@ -1,56 +1,8 @@
 
 <% form_for([@client, @job]) do |f| %>
   <%= f.error_messages %>
+  <%= render :partial=>'jobs/form', :locals=>{ :f => f }%>
   <table>
-  	<tr>
-  	  <td valign="top">
-		  <p>
-		    <%= f.label :job_type_id, 'Job Type' %><br />
-		    <%= f.collection_select(:job_type_id, JobType.all, :id, :name) %>
-		  </p>
-		  <p>
-		    <%= f.label :company_id, 'Company' %><br />
-		    <%= text_field_with_auto_complete :job, :company_name, {}, { :url => formatted_companies_path(:js), :method => :get, :param_name => 'query' } %>
-		  </p>
-		  <p>
-		    <%= f.label :industry_id, 'Industry' %><br />
-		    <%= f.collection_select(:industry_id, Industry.all, :id, :name) %>
-		  </p>
-		  <p>
-		    <%= f.check_box :current %>
-		    <%= f.label :current %>
-		  </p>
-		  <p>
-		    <%= f.label :last_verified_date, "Last Verified Date" %><br />
-		    <%= f.date_select :last_verified_date %>
-		  </p>
-		  <p>
-		    <%= f.label :start_date %><br />
-		    <%= f.date_select :start_date, :include_blank=>true %>
-		  </p>
-		  <p>
-		    <%= f.label :end_date %><br />
-		    <%= f.date_select :end_date, :include_blank=>true %>
-		  </p>
-      </td>
-	  <td width="15"></td>
-	  <td valign="top">
-		  <div id="job_rates">
-			<% f.fields_for :job_rates do |builder| %>
-			  <%= render "job_rate_fields", :f => builder %>
-			<% end %>
-			<div><%= link_to_add_fields "Add a rate", f %></div>
-		  </div>
-		  
-      </td>
-	  <td width="15"></td>
-	  <td valign="top">
-		<p>
-		  <%= f.label :benefits %><br />
-		  <%= f.collection_select(:benefits_type_id,BenefitsType.all,:id,:name) %>
-		</p>
-      </td>
-    </tr>
     <tr>
 	  <td>
 	    <%= f.submit 'Update' unless request.xhr? %>

@@ -1,63 +1,17 @@
+<%= render 'assigned_resources/banner' %>
 
 <% form_for([@client, @assigned_resource]) do |f| %>
   <%= f.error_messages %>
   
+  <%= render :partial=>'assigned_resources/form', :locals=>{:f=>f}%>
+
   <table>
-  	<tr>
-  	  <td valign="top">
-		<table>
-		  <tr>
-			<td>
-			  <%= f.label :resource_date, "Resource Date" %><br />
-			  <%= f.date_select :resource_date %>
-			</td>
-		  </tr>
-		  <tr>
-			<td>
-		      <%= f.label :resource_type, "Resource Type" %><br />
-		      <%= type_select(f, :resource_type_id, ResourceType.all, :id, :name) %>
-			</td>
-			<td width="10"></td>
-			<td valign="top" rowspan="4">
-			  <%= render 'association_fields'%>
-			</td>
-		  </tr>
-		  <tr>
-			<td>
-		      <%= f.label :amount, "Amount" %><br />
-		      <%=h "$" %><%= f.text_field :amount, :size=>"15" %>
-			</td>
-		  </tr>
-		  <tr>
-			<td>
-		      <%= f.label :number, "Quantity" %><br />
-		      <%= f.text_field :number, :size=>"15" %>
-			</td>
-		  </tr>
-		  <tr>
-			<td>
-		      <%= f.label :verified %><br />
-		      <%= f.check_box :verified %>
-			</td>
-		  </tr>
-		</table>
-	  </td>
-	</tr>
 	<tr>
 	  <td>
     	<%= f.submit 'Create' unless request.xhr? %>
-		<%= submit_to_remote 'create_ajax_btn', 'Create', :url=>{:action=>'create'} if request.xhr? %>
+		<%= submit_to_remote 'create_ajax_btn', 'Create', :url=>{:action=>'create'}, :html=>{:onclick=>"if (!check_form()) return;"} if request.xhr? %>
 	  </td>
     </tr>
   </table>
 <% end %>
-
-<script language="javascript">
-  function toggle_elements(value) {
-	<% ResourceType.all.each do |resource_type| %>
-	  Element.hide('<%=h "has_#{resource_type.id}"%>');
-	<% end %>
-	Element.show('has_'+value);
-  }
-</script>
 
