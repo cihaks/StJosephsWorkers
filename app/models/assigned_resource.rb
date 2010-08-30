@@ -20,33 +20,25 @@
 class AssignedResource < ActiveRecord::Base
   
   belongs_to :client
-#  has_and_belongs_to_many :companies
-#  has_and_belongs_to_many :industries
+  belongs_to :resource_type
+  has_one :daily_pass, :dependent=>:destroy
+  has_one :monthly_pass, :dependent=>:destroy
+  has_one :voice_mail, :dependent=>:destroy
+  has_one :clothing, :dependent=>:destroy
+  has_one :hygiene, :dependent=>:destroy
+
+	accepts_nested_attributes_for :daily_pass, :allow_destroy=>true, :reject_if=>lambda { |attrs| attrs[:note].blank? && attrs[:company].blank? && attrs[:interview]=='0' && attrs[:application]=='0' }
+	accepts_nested_attributes_for :monthly_pass, :allow_destroy=>true, :reject_if=>lambda { |attrs| attrs[:note].blank? && attrs[:amount_paid].blank? && attrs[:amount_due].blank? }
+	accepts_nested_attributes_for :voice_mail, :allow_destroy=>true, :reject_if=>lambda { |attrs| attrs[:cvm_number].blank? && attrs[:cvm_password].blank? }
+	accepts_nested_attributes_for :clothing, :allow_destroy=>true, :reject_if=>lambda { |attrs| attrs[:note].blank? }
+	accepts_nested_attributes_for :hygiene, :allow_destroy=>true, :reject_if=>lambda { |attrs| attrs[:note].blank? }
 
 	validates_date :resource_date
 
-	acts_as_domain_based_association do |config|
-		config.domain_type :resource_type #defines the type of the domain
+#	acts_as_domain_based_association do |config|
+#		config.domain_type :resource_type #defines the type of the domain
 		# maybe should loop through ResourceType objects and use ones with values in type_name
-		config.associations :daily_pass, :monthly_pass, :voice_mail, :clothing, :hygiene #defines associations with custom fields
-	end
+#		config.associations :daily_pass, :monthly_pass, :voice_mail, :clothing, :hygiene #defines associations with custom fields
+#	end
   
-	after_create :set_phone 
-	after_update :set_phone
-			
-	def set_phone
-		if voice_mail and !voice_mail.cvm_number.blank?
-			old_phone = voice_mail.cvm_number_changed? ? voice_mail.cvm_number_was : voice_mail.cvm_number
-			new_phone = voice_mail.cvm_number
-		  p = Phone.find_by_phone_number( old_phone )
-		  if p
-			  p.client_id = client_id
-			  p.primary_ind = true
-			  p.phone_number = new_phone
-			  p.save
-			else
-				Phone.create :phone_number => new_phone, :client_id => client_id, :primary_ind => true
-			end
-	  end
-	end
 end

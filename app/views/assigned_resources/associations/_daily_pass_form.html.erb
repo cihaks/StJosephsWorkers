@@ -1,11 +1,8 @@
-<%= subform.label :company %>
-<br />
-<%= subform.text_field_with_auto_complete :company, {}, { :url => companies_path(:ac), :method => :get, :param_name => 'query' } %>
+<%= subform.text_field_with_auto_complete :company, {}, { :url => companies_path(:ac), :method => :get, :param_name => 'query', :tokens => ',' } %>
 <br />
 <br />
-<%= subform.label :note, "Notes" %><br />
-<%= subform.text_area :note, :size=>"30x4" %>
+<%= subform.text_area :note, :size=>"30x4", :label=>"Notes" %>
 <br />
 <br />
-<%= subform.check_box :application %><%= subform.label :application %><br />
-<%= subform.check_box :interview %><%= subform.label :interview %>
+<%= subform.check_box :application %><br />
+<%= subform.check_box :interview %>

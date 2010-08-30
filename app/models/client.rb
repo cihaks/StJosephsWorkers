@@ -27,18 +27,19 @@ class Client < ActiveRecord::Base
   belongs_to :race
   belongs_to :education
   belongs_to :work_history
-  has_many :pictures
-  has_many :addresses, :order => "address_type"
-  has_many :phones, :order => "primary_ind DESC, updated_at DESC, id DESC"
+
+  has_many :pictures, :dependent=>:destroy
+  has_many :addresses, :order => "address_type", :dependent=>:destroy
+  has_many :phones, :order => "primary_ind DESC, updated_at DESC, id DESC", :dependent=>:destroy
   has_many :contacts, :order => "contact_date DESC, id DESC", :dependent=>:destroy
 
-  has_many :assigned_resources, :order => "resource_date DESC, id DESC"
-  has_many :registered_classes, :order => "class_date DESC, updated_at DESC, id DESC"
-  has_many :used_substances, :order => "sober_date DESC"
-  has_many :crime_sentences, :order => "created_at DESC"
-  has_many :assigned_agencies, :order => "updated_at DESC, id DESC"
-  has_many :jobs, :order => "start_date DESC"
-	has_many :app_interviews, :order => "meeting_date DESC"
+  has_many :assigned_resources, :order => "resource_date DESC, id DESC", :dependent=>:destroy
+  has_many :registered_classes, :order => "class_date DESC, updated_at DESC, id DESC", :dependent=>:destroy
+  has_many :used_substances, :order => "sober_date DESC", :dependent=>:destroy
+  has_many :crime_sentences, :order => "created_at DESC", :dependent=>:destroy
+  has_many :assigned_agencies, :order => "updated_at DESC, id DESC", :dependent=>:destroy
+  has_many :jobs, :order => "start_date DESC", :dependent=>:destroy
+	has_many :app_interviews, :order => "meeting_date DESC", :dependent=>:destroy
 
   has_and_belongs_to_many :status_types
 
@@ -47,7 +48,7 @@ class Client < ActiveRecord::Base
   has_many :agencies, :through => :assigned_agencies, :uniq => true
   has_many :courses, :through => :registered_classes, :source => :course, :uniq => true
 
-	accepts_nested_attributes_for :contacts, :allow_destroy=>true, :reject_if=>lambda { |a| a[:note].blank? }, :allow_destroy=>true
+	accepts_nested_attributes_for :contacts, :allow_destroy=>true, :reject_if=>lambda { |a| a[:note].blank? }
 	accepts_nested_attributes_for :registered_classes, :allow_destroy=>true, :reject_if=>lambda { |a| a[:class_date].blank? }
 	accepts_nested_attributes_for :used_substances, :allow_destroy=>true, :reject_if=>lambda { |a| a[:substance_id].blank? }
 	accepts_nested_attributes_for :addresses, :allow_destroy=>true, :reject_if=>lambda { |a| a[:address1].blank? }

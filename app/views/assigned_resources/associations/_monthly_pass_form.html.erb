@@ -1,6 +1,3 @@
-<%= subform.label :amount_paid, "Amount Paid" %><br />
 <%=h "$" %><%= subform.text_field :amount_paid %><br /><br />
-<%= subform.label :amount_due, "Amount Due Next Month" %><br />
-<%=h "$" %><%= subform.text_field :amount_due %><br /><br/>
-<%= subform.label :note, "Notes" %><br />
-<%= subform.text_area :note, :size=>"30x4" %>
+<%=h "$" %><%= subform.text_field :amount_due, :label=>"Amount Due Next Month" %><br /><br/>
+<%= subform.text_area :note, :size=>"30x4", :label=>"Notes" %>

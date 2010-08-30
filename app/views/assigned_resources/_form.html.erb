@@ -1,40 +1,34 @@
 
-
 <table>
 	<tr>
 	  <td valign="top">
 		<table>
 		  <tr>
 			<td>
-			  <%= f.label :resource_date, "Resource Date" %><br />
-			  <%= f.date_select :resource_date %>
+		      <%= type_select(f, :resource_type_id, ResourceType.all, :id, :name, {}) %>
 			</td>
 		  </tr>
 		  <tr>
 			<td>
-		      <%= f.label :resource_type, "Resource Type" %><br />
-		      <%= type_select(f, :resource_type_id, ResourceType.all, :id, :name) %>
+			  <%= f.calendar_date_select :resource_date, :time=>false %>
 			</td>
 			<td width="10"></td>
 			<td valign="top" rowspan="4">
-			  <%= render 'association_fields'%>
+			  <%= render :partial=>'association_fields', :locals=>{:f=>f} %>
 			</td>
 		  </tr>
 		  <tr>
 			<td>
-		      <%= f.label :amount, "Amount" %><br />
 		      <%=h "$" %><%= f.text_field :amount, :size=>"15" %>
 			</td>
 		  </tr>
 		  <tr>
 			<td>
-		      <%= f.label :number, "Quantity" %><br />
 		      <%= f.text_field :number, :size=>"15" %>
 			</td>
 		  </tr>
 		  <tr>
 			<td>
-		      <%= f.label :verified %><br />
 		      <%= f.check_box :verified %>
 			</td>
 		  </tr>

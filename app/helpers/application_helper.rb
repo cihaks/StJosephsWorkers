@@ -3,16 +3,17 @@ module ApplicationHelper
   
 	#  method to add a subelement form to an existing page.
 	#  includes addition of 'remove' link
-	def add_element_link(name, form_builder, association, partial_view=nil)
+	def add_element_link(name, form_builder, association, partial_view=nil, element_name=nil)
 		new_object = form_builder.object.class.reflect_on_association(association).klass.new
 		partial_view = "#{association.to_s}/form" unless partial_view
+		element_tag = "#{association.to_s}-element" unless element_name
     link_to_function name do |page|
       form_builder.fields_for association, new_object, :child_index => 'NEW_RECORD' do |subform|
 				html = "<div class=\"#{association.to_s.singularize}\">"
         html = html + render(:partial => partial_view, :locals => { :f => subform })
 				html = html + remove_element_link(subform, association.to_s.singularize)
 				html = html + "</div>"
-        page << "$('#{association.to_s}-element').insert({ bottom: '#{escape_javascript(html)}'.replace(/NEW_RECORD/g, new Date().getTime()) });"
+        page << "$('#{element_tag}').insert({ bottom: '#{escape_javascript(html)}'.replace(/NEW_RECORD/g, new Date().getTime()) });"
       end
     end
   end

@@ -1,10 +1,18 @@
-class CompaniesController < SecurityController
+class CompaniesController < ApplicationController
   layout 'references'
   
   # GET /companies
   # GET /companies.xml
-  # inherited from SecurityController
+	def index
+	  @companies = Company.search(params[:query],params[:page],20)
 
+    respond_to do |format|
+      format.html # index.html.erb
+      format.js { render :layout=>false }
+			format.ac { render :layout=>false }
+      format.xml  { render :xml => eval("@#{controller_name}") }
+    end
+  end
   # GET /companies/1
   # GET /companies/1.xml
   def show
