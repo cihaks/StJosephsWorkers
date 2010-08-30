@@ -11,5 +11,5 @@ module AssignedResourcesHelper
 		html_options[:onchange] = change_options
 		form.collection_select(method, collection, value_method, text_method, options, html_options)
 	end
-
+	
 end

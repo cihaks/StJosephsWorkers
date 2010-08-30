@@ -1,6 +1,7 @@
 <% ResourceType.all.each do |res_type| %>
 	<% association = res_type.type_name%>
 	<% unless association.nil? or association.blank? %>
+		<% eval("@assigned_resource.build_#{association} if @assigned_resource.#{association}.nil?") %>
 	    <div id="<%="has_#{res_type.id}"%>" <%="style=\"display:none\"" unless @assigned_resource.resource_type.id == res_type.id %> >
 		  <% f.fields_for association do |subform| %>
 			<%= render :partial=>"assigned_resources/associations/#{association.to_s}_form", :locals=>{:subform=>subform} %>
@@ -10,4 +11,4 @@
 <% end %>
 
 
-<% #should do observe_field on resource_type and hide if needed.....  %>
+<% #could do observe_field on resource_type and hide if needed.....  %>
