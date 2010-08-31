@@ -34,29 +34,16 @@
 		    <%= f.radio_button (:gender, "M") %>Male
 		    <%= f.radio_button (:gender, "F") %>Female
 		    <%= f.radio_button (:gender, "O") %>Other
-		  <!-- <br />
-		    <%= f.check_box :caution %>
-		    <%= f.label :caution %><br />
-		  <br />
-		    <%= f.check_box :resource_eligible %>
-		    <%= f.label :resource_eligible %><br />
-		  <br />
-		    <%= f.check_box :veteran %>
-		    <%= f.label :veteran %><br /> -->
-		 <!-- <br />
-		    <%= f.check_box :success_story %>
-		    <%= f.label :success_story %><br />
-  		 -->
           <% unless @client.new_record?%>
           <br />
           <br />
 		    <%= f.label :work_history %><br />
-		    <%= f.collection_select(:work_history_id,WorkHistory.all,:id,:name, {:include_blank=>true}) %>
+		    <%= f.collection_select(:work_history_id, WorkHistory.all, :id, :name, {:include_blank=>true}) %>
 		  <br />
           <br />
           <br />		
 		    <%= f.label :work_note %><br />
-			<%= f.text_area :work_note, :size=>"30x6" %>		
+			<%= f.text_area :work_note, :size=>"30x4" %>		
 			<%end%>
       </td>
 	  <td width="10"></td>

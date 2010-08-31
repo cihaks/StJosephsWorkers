@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20100711050053) do
 
   create_table "activity_logs", :force => true do |t|
     t.integer  "client_id"
@@ -65,6 +65,19 @@ ActiveRecord::Schema.define(:version => 0) do
     t.integer  "updater_id"
   end
 
+  create_table "app_interviews", :force => true do |t|
+    t.integer  "client_id"
+    t.integer  "company_id"
+    t.integer  "industry_id"
+    t.date     "meeting_date"
+    t.boolean  "application"
+    t.boolean  "interview"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "creator_id"
+    t.integer  "updater_id"
+  end
+
   create_table "assigned_agencies", :force => true do |t|
     t.integer  "client_id"
     t.integer  "agency_id"
@@ -87,11 +100,6 @@ ActiveRecord::Schema.define(:version => 0) do
     t.datetime "updated_at"
     t.integer  "creator_id"
     t.integer  "updater_id"
-  end
-
-  create_table "assigned_resources_companies", :id => false, :force => true do |t|
-    t.integer "assigned_resource_id"
-    t.integer "company_id"
   end
 
   create_table "assigned_resources_industries", :id => false, :force => true do |t|
@@ -123,8 +131,9 @@ ActiveRecord::Schema.define(:version => 0) do
     t.integer  "creator_id"
     t.integer  "updater_id"
     t.integer  "education_id"
-    t.integer  "work_history_id"
-    t.string   "work_note",         :limit => 2048
+    t.string   "education_subjects"
+    t.boolean  "deleted"
+    t.string   "work_note",          :limit => 2048
   end
 
   create_table "clients_status_types", :id => false, :force => true do |t|
@@ -156,13 +165,19 @@ ActiveRecord::Schema.define(:version => 0) do
     t.integer  "updater_id"
   end
 
+  create_table "companies_daily_passes", :id => false, :force => true do |t|
+    t.integer "company_id"
+    t.integer "daily_pass_id"
+  end
+
   create_table "contact_types", :force => true do |t|
-    t.string   "name",        :limit => 25
-    t.string   "description", :limit => 500
+    t.string   "name",              :limit => 25
+    t.string   "description",       :limit => 500
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "creator_id"
     t.integer  "updater_id"
+    t.boolean  "default_selection"
   end
 
   create_table "contacts", :force => true do |t|
@@ -203,23 +218,12 @@ ActiveRecord::Schema.define(:version => 0) do
   create_table "crime_sentences", :force => true do |t|
     t.integer  "client_id"
     t.integer  "prison_id"
-    t.date     "start_date"
-    t.date     "end_date"
-    t.date     "release_date"
-    t.boolean  "felony"
-    t.boolean  "violent"
-    t.boolean  "sex_offender"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "creator_id"
     t.integer  "updater_id"
     t.integer  "incarceration_length_id"
     t.boolean  "furlough"
-  end
-
-  create_table "crime_sentences_convictions", :force => true do |t|
-    t.integer "crime_sentences_id"
-    t.integer "convictions_id"
   end
 
   create_table "crime_sentences_crime_types", :id => false, :force => true do |t|
@@ -240,8 +244,22 @@ ActiveRecord::Schema.define(:version => 0) do
     t.integer  "assigned_resource_id"
     t.string   "company"
     t.string   "note",                 :limit => 2048
+    t.boolean  "application"
+    t.boolean  "interview"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "creator_id"
+    t.integer  "updater_id"
+  end
+
+  create_table "educations", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "list_order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "creator_id"
+    t.integer  "updater_id"
   end
 
   create_table "hygienes", :force => true do |t|
@@ -333,9 +351,11 @@ ActiveRecord::Schema.define(:version => 0) do
     t.integer  "assigned_resource_id"
     t.decimal  "amount_paid",                          :precision => 10, :scale => 2
     t.decimal  "amount_due",                           :precision => 10, :scale => 2
+    t.string   "note",                 :limit => 2048
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "note",                 :limit => 2048
+    t.integer  "creator_id"
+    t.integer  "updater_id"
   end
 
   create_table "phones", :force => true do |t|
@@ -346,6 +366,7 @@ ActiveRecord::Schema.define(:version => 0) do
     t.datetime "updated_at"
     t.integer  "creator_id"
     t.integer  "updater_id"
+    t.string   "extension",    :limit => 20
   end
 
   create_table "pictures", :force => true do |t|
@@ -397,6 +418,8 @@ ActiveRecord::Schema.define(:version => 0) do
     t.datetime "updated_at"
     t.integer  "creator_id"
     t.integer  "updater_id"
+    t.string   "type_name"
+    t.integer  "status_type_id"
   end
 
   create_table "roles", :force => true do |t|
@@ -441,6 +464,10 @@ ActiveRecord::Schema.define(:version => 0) do
     t.datetime "updated_at"
     t.integer  "creator_id"
     t.integer  "updater_id"
+    t.string   "icon_file_name"
+    t.string   "icon_content_type"
+    t.integer  "icon_file_size"
+    t.string   "category"
   end
 
   create_table "substances", :force => true do |t|
@@ -454,7 +481,6 @@ ActiveRecord::Schema.define(:version => 0) do
   create_table "used_substances", :force => true do |t|
     t.integer  "client_id"
     t.integer  "substance_id"
-    t.date     "entry_date"
     t.date     "sober_date"
     t.boolean  "treatment_program_ind"
     t.datetime "created_at"
@@ -483,6 +509,15 @@ ActiveRecord::Schema.define(:version => 0) do
     t.integer  "assigned_resource_id"
     t.string   "cvm_number"
     t.string   "cvm_password"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "creator_id"
+    t.integer  "updater_id"
+  end
+
+  create_table "work_histories", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

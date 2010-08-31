@@ -136,6 +136,11 @@ namespace :db do
     Substance.create :name => 'Heroin'
     Substance.create :name => 'Marijuana'
     Substance.create :name => 'Methamphetamine'
+
+		desc "populating work histories"
+		WorkHistory.create :name => 'Stable/Consistent'
+		WorkHistory.create :name => 'Gaps'
+		WorkHistory.create :name => 'Never Employed'
     
   end
 end

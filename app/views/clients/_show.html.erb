@@ -41,7 +41,7 @@
 		      <%=h @client.race.name %>
 		    </td>
 		  </tr>
-		<tr>
+		  <tr>
 		    <td class="fieldLabel">
 		      <b>Education:</b>
 		    </td>
@@ -49,6 +49,28 @@
 		      <%=h @client.education.name unless @client.education.nil? %>
 		    </td>
 		  </tr>
+		  <%  unless @client.education_subjects.nil? or @client.education_subjects.blank? %>
+		  <tr>
+		    <td class="fieldData" colspan="2" style="padding-left:10px;">
+		      <%=h @client.education_subjects %>
+		    </td>
+		  </tr>
+		  <% end %>
+		  <tr>
+		    <td class="fieldLabel">
+		      <b>Work History:</b>
+		    </td>
+		    <td class="fieldData">
+		      <%=h @client.work_history.name unless @client.work_history.nil? %>
+		    </td>
+		  </tr>
+		  <% unless @client.work_note.nil? or @client.work_note.blank? %>
+		  <tr>
+		    <td class="fieldData" colspan="2" style="padding-left:10px;">
+		      <%=h @client.work_note %>
+		    </td>
+		  </tr>
+		  <% end %>
 		</table>
 	</td>
 	<td width="25">
@@ -65,17 +87,4 @@
 	</td>
   </tr>
 </table>
-<table>
-		<td width="64"></td>
-	    <td class="fieldLabel">
-	      <b>Work History:</b>
-	    </td>
-	    <td class="fieldData">
-	      <%=h @client.work_history.name unless @client.work_history.nil? %>
-	    </td>
-		<td width="10"></td>
-	    <td class="fieldData">
-	      <%=h @client.work_note unless @client.work_note.nil? %>
-	    </td>
-<table />
 <% end %>

@@ -178,11 +178,9 @@ namespace :db do
       client.middle_name = ['','','','','',Faker::Name.first_name]
       client.last_name = Faker::Name.last_name
       client.gender = ['M','F']
-      client.caution = [true,false]
-      client.resource_eligible = [true,false]
-      client.veteran = [true,false]
-      client.success_story = [true,false]
       client.birth_date = Date.new(1950,1,1)..Date.new(1990,12,31)
+			client.education_id = Education.all.rand.id
+			client.work_history_id = WorkHistory.all.rand.id
       mydate = 2.years.ago..Time.now
       client.created_at = mydate
       client.updated_at = mydate
