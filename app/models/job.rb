@@ -30,9 +30,9 @@ class Job < ActiveRecord::Base
   has_many :job_rates, :order=>"hourly_rate_date DESC"#, :dependent => :destroy
   accepts_nested_attributes_for :job_rates, :allow_destroy => true, :reject_if => lambda { |a| a[:hourly_rate].blank? }
   
-  validates_date :start_date
-  validates_date :end_date
-  validates_date :last_verified_date
+  validates_date :start_date, :allow_blank=>true
+  validates_date :end_date, :allow_blank=>true
+  validates_date :last_verified_date, :allow_blank=>true
 
 
   # def new_job_rate_attributes=(job_rate_attributes)
