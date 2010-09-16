@@ -4,7 +4,7 @@
     <td>
   	  <div class="photoImage floatLeft">
     	<% unless @client.pictures.empty? %>
-		  <%= image_tag @client.pictures.first.photo.url, :size=>"150x150" %><br />
+		  <%= image_tag @client.pictures.first.photo.url, :width=>"150" %><br />
 		  <b>Last Modified: </b><%=h @client.pictures.first.updated_at.strftime("%m/%d/%y") unless @client.pictures.first.updated_at.nil? %>
 		  <b>Modified By: </b><%=h User.find(@client.pictures.first.updater_id).name unless @client.pictures.first.updater_id.nil? %>
 		<% else %>

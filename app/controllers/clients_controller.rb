@@ -6,7 +6,7 @@ class ClientsController < ApplicationController
   def index
     
     @clients = Client.search(params[:query],params[:page],current_user.page_limit)
-    
+		
     @office_visit = ContactType.find(:first, :conditions => ['name like ?','Office Visit%'])
     
     respond_to do |format|

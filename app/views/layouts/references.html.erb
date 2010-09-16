@@ -50,6 +50,12 @@
 				    <%= render "#{session[:infamy_section]}/index"  %>
 				  </div>
 				</div>
+				<div id="client-report-content">
+				  <%= render :partial=>'shared/client_report_banner', :locals => {:section_key=>:client_report_section, :section_content=>'client-report-content', :sections=>[["job_leads","Job Leads Report"]]} %>
+				  <div id="client-report-element">
+						
+				  </div>
+				</div>
 			<% else %>
 				<%= render 'shared/banner_references' %>
 				<div id="item_list">

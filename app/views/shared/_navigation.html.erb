@@ -40,6 +40,7 @@
 		<li><%= link_to "Reports", reports_path %></li>
 		<% if @reports_flag %>
 			<li class="indent1"><%= link_to 'Jobs Report', :controller=>'reports',:action=>'jobs' %></li>
+			<li class="indent1"><%= link_to 'Job Leads', :controller=>'reports',:action=>'job_leads'%>
 			<% @reports_flag = false %>
 		<% end %>
 	<% end %>

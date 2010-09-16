@@ -1,7 +1,7 @@
 
 <div>
   <% unless @client.pictures.empty? %>
-	<%= image_tag @client.pictures.first.photo.url, :size=>'150x150' %>
+	<%= image_tag @client.pictures.first.photo.url, :width=>'150' %>
   <% else %>
 	<%= image_tag 'defaultphoto.gif', :size=>'150x150' %>
   <% end %>

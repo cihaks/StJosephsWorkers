@@ -1,0 +1,30 @@
+<table cellspacing="5">
+  <tr>
+	<%= "<th>Client</th>" unless @client %>
+	<th>Date</th>
+	<th>Job Developer</th>
+	<th>Company</th>
+	<th>Bus Pass</th>
+	<th>Verified</th>
+	<th>Application</th>
+	<th>Interview</th>
+	<th>Notes</th>
+  </tr>
+  <% @job_leads.sort_by{|lead| [lead[:client_name],lead[:activity_date],lead[:company]]}.each do |resource| %>
+  <tr>
+	<%= "<td>#{resource.client_name}</td>" unless @client %>
+	<td><%= resource.activity_date.strftime("%m/%d/%Y") unless resource.activity_date.nil? %></td>
+	<td><%= resource.job_developer_name %></td>
+	<td><%= resource.company.name %></td>
+	<td><%= check_box_tag :bus_pass,'true',resource.bus_pass,:onclick=>"return false;" %></td>
+	<td><%= check_box_tag :verified,'true',resource.verified,:onclick=>"return false;" %></td>
+	<td><%= check_box_tag :application,'true',resource.application,:onclick=>"return false;" %></td>
+	<td><%= check_box_tag :interview,'true',resource.interview,:onclick=>"return false;" %></td>
+	<td><%= resource.note %></td>
+  </tr>
+  <tr>
+	<td colspan="10"><hr></td>
+  <% end %>
+</table>
+	
+	

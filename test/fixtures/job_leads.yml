@@ -1,0 +1,27 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  client_id: 1
+  client_name: MyString
+  activity_date: 2010-09-11
+  job_developer_id: 1
+  job_developer_name: MyString
+  company: MyString
+  bus_pass: false
+  verified: false
+  application: false
+  interview: false
+  note: MyString
+
+two:
+  client_id: 1
+  client_name: MyString
+  activity_date: 2010-09-11
+  job_developer_id: 1
+  job_developer_name: MyString
+  company: MyString
+  bus_pass: false
+  verified: false
+  application: false
+  interview: false
+  note: MyString

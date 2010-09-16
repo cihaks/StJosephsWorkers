@@ -18,7 +18,7 @@
   	<td>
   	  <div class="photoImage floatLeft">
 		<% if !client.pictures.empty? and client.pictures.first.photo.exists? %>
-			<%= image_tag client.pictures.first.photo.url, :size=>"30x30" %>
+			<%= image_tag client.pictures.first.photo.url, :width=>"30" %>
 		<% else %>
 			<%= image_tag 'defaultphoto.gif', :size=>"30x30" %>
 		<% end %>

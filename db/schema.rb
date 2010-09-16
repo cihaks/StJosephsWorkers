@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100711050053) do
+ActiveRecord::Schema.define(:version => 20100912050644) do
 
   create_table "activity_logs", :force => true do |t|
     t.integer  "client_id"
@@ -121,10 +121,6 @@ ActiveRecord::Schema.define(:version => 20100711050053) do
     t.string   "middle_name"
     t.string   "last_name"
     t.string   "gender"
-    t.boolean  "caution"
-    t.boolean  "resource_eligible"
-    t.boolean  "veteran"
-    t.boolean  "success_story"
     t.date     "birth_date"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -134,6 +130,7 @@ ActiveRecord::Schema.define(:version => 20100711050053) do
     t.string   "education_subjects"
     t.boolean  "deleted"
     t.string   "work_note",          :limit => 2048
+    t.integer  "work_history_id"
   end
 
   create_table "clients_status_types", :id => false, :force => true do |t|
@@ -309,6 +306,22 @@ ActiveRecord::Schema.define(:version => 20100711050053) do
     t.datetime "updated_at"
     t.integer  "creator_id"
     t.integer  "updater_id"
+  end
+
+  create_table "job_leads", :force => true do |t|
+    t.integer  "client_id"
+    t.string   "client_name"
+    t.date     "activity_date"
+    t.integer  "job_developer_id"
+    t.string   "job_developer_name"
+    t.string   "company"
+    t.boolean  "bus_pass"
+    t.boolean  "verified"
+    t.boolean  "application"
+    t.boolean  "interview"
+    t.string   "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "job_rates", :force => true do |t|

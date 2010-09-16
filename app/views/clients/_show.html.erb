@@ -1,15 +1,4 @@
-<div class="photoImage floatLeft">
-	<div id="client-image">
-		<% unless @client.pictures.empty? %>
-			<% image_url=@client.pictures.first.photo.url %>
-			<% link_url = edit_client_picture_path(@client,@client.pictures.first) %>
-		<% else %>
-			<% image_url='defaultphoto.gif' %>
-			<% link_url = new_client_picture_path(@client) %>
-		<% end %>
-		<%= link_to_remote image_tag(image_url, :size=>"50x50"), :url=>link_url, :update=>'contacts-content', :method=>:get %>
-	</div>
-</div>
+<%= render 'clients/thumbnail_image' %>
 
 <% fields_for @client do |f| %>
 <table>
