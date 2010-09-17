@@ -1,0 +1,2 @@
+module Reports::JobLeadHelper
+end

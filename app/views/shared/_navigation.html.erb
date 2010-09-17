@@ -36,11 +36,11 @@
 		</div>
 	<% end %>
 	<ul>
-	<% if authorized_for? :index, :reports %>
-		<li><%= link_to "Reports", reports_path %></li>
+	<% if authorized_for? :index, 'reports/reports' %>
+		<li><%= link_to "Reports", report_path %></li>
 		<% if @reports_flag %>
-			<li class="indent1"><%= link_to 'Jobs Report', :controller=>'reports',:action=>'jobs' %></li>
-			<li class="indent1"><%= link_to 'Job Leads', :controller=>'reports',:action=>'job_leads'%>
+			<li class="indent1"><%= link_to 'Jobs Report', :controller=>'reports/jobs' %></li>
+			<li class="indent1"><%= link_to 'Job Leads', :controller=>'reports/job_leads'%>
 			<% @reports_flag = false %>
 		<% end %>
 	<% end %>
@@ -50,7 +50,7 @@
 	<% unless @client.nil? %>
 		<li>
 		  <div style="float:right;">
-			  <form action="<%= url_for :controller=>'clients', :action=>'index' %>">
+			  <form action="<%= url_for :controller=>'/clients', :action=>'index' %>">
 				<%= text_field_tag("query", params['query'], :size => 10 ) %>
 				<%= submit_tag 'Search' %>
 			</form>

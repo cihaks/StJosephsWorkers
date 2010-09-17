@@ -2,7 +2,7 @@
 
 <%
 # The xml is obtained as a string from builder template.
-str_xml = render "reports/jobs_data.xml.builder"
+str_xml = render "/reports/jobs/jobs_data.xml.builder"
 #Create the chart - Column 3D Chart with data from strXML
 render_chart '/charts/FCF_MSColumn3D.swf' , '' , str_xml , 'JobChart' ,  750 ,  400 ,  false ,  false do %>
 

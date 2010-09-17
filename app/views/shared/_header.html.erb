@@ -11,6 +11,8 @@
 	<div class="headerEmploymentStatement">
 		<% if controller.controller_name == "sessions" %>
 		  Log In&nbsp;-
+		<% elsif controller.class.to_s.split("::").first.downcase == "reports" %>
+		  <%= @title.nil? ? controller.controller_name.singularize.titleize+" Report" : @title %>&nbsp;-
 		<% else %>
 		  <% unless controller.controller_name == "home" %>
 		    <%= controller.controller_name.singularize.titleize %> List&nbsp;-

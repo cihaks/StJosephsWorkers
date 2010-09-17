@@ -43,8 +43,12 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :job_rates  #add to jobs route....
 
-  
-  map.reports 'reports', :controller => 'reports'
+	map.report 'report', :controller=>'reports/reports'
+	
+	map.namespace :reports do |reports|
+		reports.resources :job_leads
+		reports.resources :jobs
+	end
 
 	map.delete_clients 'delete_clients', :controller => 'delete_clients'
 
