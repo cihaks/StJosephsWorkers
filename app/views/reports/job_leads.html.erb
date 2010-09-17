@@ -10,7 +10,7 @@
 	<th>Interview</th>
 	<th>Notes</th>
   </tr>
-  <% @job_leads.sort_by{|lead| [lead[:client_name],lead[:activity_date],lead[:company]]}.each do |resource| %>
+  <% @job_leads.sort_by{|lead| [lead[:client_name],lead[:activity_date]]}.each do |resource| %>
   <tr>
 	<%= "<td>#{resource.client_name}</td>" unless @client %>
 	<td><%= resource.activity_date.strftime("%m/%d/%Y") unless resource.activity_date.nil? %></td>
