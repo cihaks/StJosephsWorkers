@@ -1,22 +1,17 @@
 <h1>Editing job_rate</h1>
 
 <% form_for(@job_rate) do |f| %>
-  <%= f.error_messages %>
 
   <p>
-    <%= f.label :client_id %><br />
     <%= f.text_field :client_id %>
   </p>
   <p>
-    <%= f.label :job_id %><br />
     <%= f.text_field :job_id %>
   </p>
   <p>
-    <%= f.label :hourly_rate %><br />
     <%= f.text_field :hourly_rate %>
   </p>
   <p>
-    <%= f.label :hourly_rate_date %><br />
     <%= f.date_select :hourly_rate_date %>
   </p>
   <p>

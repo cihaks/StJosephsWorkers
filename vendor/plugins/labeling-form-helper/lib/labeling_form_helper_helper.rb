@@ -2,7 +2,8 @@ module LabelingFormHelperHelper #:nodoc:
 private
   # return label and tag according to custom options
   def render_label_and_tag(label, unlabeled_tag, template = self)
-		error_id = label[:error].nil? ? "noerror" : label[:error]+"-error"
+		error_id = label[:error_id].nil? ? "noerror" : label[:error_id]+"-error"
+		error_name = label[:error_name].nil? ? "noname" : label[:error_name]
     label_html = extract_label_html! label
 
 		# Default behavior for a wrapped tag is inline
@@ -13,14 +14,14 @@ private
         [label[:text], unlabeled_tag]
       end.join("\n")
       
-      template.content_tag(:label, label_and_tag, label_html) + template.content_tag(:span, "", :id=>error_id, :class=>"field_error")
+      template.content_tag(:label, label_and_tag, label_html) + template.content_tag(:span, "", :id=>error_id, :class=>"field_error", :name=>error_name)
 			
     # Default behavior for label is line break between  
     elsif label[:after]
-      unlabeled_tag + template.tag("br") + template.content_tag(:label, label[:text], label_html) + template.content_tag(:span, "", :id=>error_id, :class=>"field_error")
+      unlabeled_tag + template.tag("br") + template.content_tag(:label, label[:text], label_html) + template.content_tag(:span, "", :id=>error_id, :class=>"field_error", :name=>error_name)
       
     else
-      template.content_tag(:label, label[:text], label_html) + template.tag("br") + unlabeled_tag + template.content_tag(:span, "", :id=>error_id, :class=>"field_error")
+      template.content_tag(:label, label[:text], label_html) + template.tag("br") + unlabeled_tag + template.content_tag(:span, "", :id=>error_id, :class=>"field_error", :name=>error_name)
     end
   end
   

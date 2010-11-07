@@ -1,16 +1,14 @@
 
 <% form_for(@agency) do |f| %>
-  <%= f.error_messages %>
 
   <p>
-    <%= f.label :name %><br />
     <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.label :agency_type_id, "Agency Type" %><br />
-    <%= f.collection_select(:agency_type_id,AgencyType.all,:id,:name) %>
+    <%= f.collection_select(:agency_type_id,AgencyType.all,:id,:name, :label=>"Agency Type") %>
   </p>
   <p>
     <%= f.submit 'Create' %>
+	<%= submit_to_remote 'update_ajax_btn', 'Ajax Create', :url=>{:action=>'create'} %>
   </p>
 <% end %>

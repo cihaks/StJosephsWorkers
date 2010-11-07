@@ -1,22 +1,20 @@
 <table>
   <tr>
 	<td valign="top">
-  	  <%= f.label :course_id, 'Class' %><br />
-  	  <%= f.collection_select(:course_id, Course.all, :id, :name, { :prompt => true }) %>
+  	  <%= f.collection_select(:course_id, Course.all, :id, :name, { :prompt => true, :label=>"Class" }) %>
 	</td>
 	<td width="10"></td>
 	<td valign="top">
-  	  <%= f.label :class_date, 'Class Date' %><br />
-  	  <%= f.calendar_date_select :class_date, :size=>"13" %>
+  	  <%= f.calendar_date_select :class_date, :size=>"13", :label=>"Class Date" %>
 	</td>
 	<% unless @registered_class and @registered_class.new_record? %>
 	<td width="10"></td>
 	<td valign="top">
       <%= f.label :completed, "Completed?" %><br />
-	  <%= f.radio_button :completed, "0" %>Completed<br />
-	  <%= f.radio_button :completed, "1" %>Waived<br />
-	  <%= f.radio_button :completed, "2" %>No Show<br />
-	  <%= f.radio_button :completed, "-1"%>Clear
+	  <%= f.radio_button :completed, "0", :label=>false %>Completed<br />
+	  <%= f.radio_button :completed, "1", :label=>false %>Waived<br />
+	  <%= f.radio_button :completed, "2", :label=>false %>No Show<br />
+	  <%= f.radio_button :completed, "-1", :label=>false %>Clear
 	</td>
 	<% end %>
   </tr>

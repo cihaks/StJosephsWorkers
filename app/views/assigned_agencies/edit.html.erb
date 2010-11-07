@@ -1,6 +1,5 @@
 
 <% form_for([@client,@assigned_agency]) do |f| %>
-  <%= f.error_messages %>
 
   <%= render :partial => 'assigned_agencies/form', :locals => { :f => f } %>
   <p>

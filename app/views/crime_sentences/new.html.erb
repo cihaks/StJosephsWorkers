@@ -1,6 +1,5 @@
 
 <% form_for([@client,@crime_sentence]) do |f| %>
-  <%= f.error_messages %>
 
   <%= render :partial=>'crime_sentences/form', :locals=>{ :f => f } %>
   <p>

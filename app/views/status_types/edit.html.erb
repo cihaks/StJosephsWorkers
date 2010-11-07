@@ -1,6 +1,5 @@
 
 <% form_for(@status_type,:html => { :multipart => true }) do |f| %>
-  <%= f.error_messages %>
 
   <%= render :partial=>'status_types/form', :locals=>{:f=>f} %>
   <p>

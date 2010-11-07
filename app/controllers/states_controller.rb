@@ -51,7 +51,7 @@ class StatesController < SecurityController
     respond_to do |format|
       if @state.save
         flash[:notice] = 'State was successfully created.'
-        format.html { redirect_to(@state) }
+        format.html { redirect_to(states_url) }
         format.xml  { render :xml => @state, :status => :created, :location => @state }
       else
         format.html { render :action => "new" }
@@ -68,7 +68,7 @@ class StatesController < SecurityController
     respond_to do |format|
       if @state.update_attributes(params[:state])
         flash[:notice] = 'State was successfully updated.'
-        format.html { redirect_to(@state) }
+        format.html { redirect_to(states_url) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

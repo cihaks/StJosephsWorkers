@@ -2,4 +2,79 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    models:
+      job_rate:
+        one: Job Rate
+        other: Job Rates
+      course:
+        one: Class
+        other: Classes
+      contact_type:
+        one: Contact Type
+        other: Contact Types
+    attributes:
+      app_interview:
+        company_name: Company
+        meeting_date: Meeting Date
+      assigned_agency:
+        staff_contact: Staff Contact
+      assigned_resource:
+        resource_date: Resource Date
+      clothing:
+        note: Notes
+      daily_pass:
+        note: Notes
+      hygiene:
+        note: Notes
+      monthly_pass:
+        amount_due: Amount Due Next Month
+        note: Notes
+        amount_paid: Amount Paid
+      voice_mail:
+        cvm_number: Number
+        cvm_password: Password
+      client:
+        first_name: First Name
+        middle_name: Middle Name
+        last_name: Last Name
+        birth_date: Birth Date
+        education_subjects: Subjects Studied
+      contact_type:
+        default_selection: New Client Default
+      contact:
+        contact_type: Type
+        contact_date: Date
+        contact_negative: Negative
+      crime_sentence:
+        prison: Facility
+        incarceration_length: Incarceration Length
+        furlough: Work Furlough/Work Release
+        crime_types: Crime Type(s)
+        convictions: Conviction(s)
+      education:
+        list_order: List Order
+      incarceration_length:
+        list_order: List Order
+      job_rate:
+        hourly_rate: Pay Rate per Hour
+        hourly_rate_date: Pay Rate Start Date
+      job:
+        company_name: Company
+        last_verified_date: Last Verified Date
+        start_date: Start Date
+        end_date: End Date
+        benefits_types: Benefits
+      phone:
+        phone_number: Phone Number
+        primary_ind: Primary
+      prison:
+        out_of_state: Out of State
+      registered_class:
+        course: Class
+        class_date: Class Date
+      resource_type:
+        type_name: Internal Type Name
+        status_type: Associated Status Type
+      used_substance:
+        sober_date: Sober Since

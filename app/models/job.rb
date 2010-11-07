@@ -27,30 +27,12 @@ class Job < ActiveRecord::Base
   belongs_to :company
   belongs_to :industry
   belongs_to :benefits_type
-  has_many :job_rates, :order=>"hourly_rate_date DESC"#, :dependent => :destroy
+  has_many :job_rates, :order=>"hourly_rate_date DESC", :dependent => :destroy
   accepts_nested_attributes_for :job_rates, :allow_destroy => true, :reject_if => lambda { |a| a[:hourly_rate].blank? }
   
   validates_date :start_date, :allow_blank=>true
   validates_date :end_date, :allow_blank=>true
   validates_date :last_verified_date, :allow_blank=>true
-
-
-  # def new_job_rate_attributes=(job_rate_attributes)
-  #     job_rate_attributes.each do |attributes|
-  #       job_rates.build(attributes)
-  #     end
-  #   end
-  #   
-  #   def existing_job_rate_attributes=(job_rate_attributes)
-  #     job_rates.reject(&:new_record?).each do |job_rate|
-  #       attributes = job_rate_attributes[job_rate.id.to_s]
-  #       if attributes
-  #         job_rate.attributes = attributes
-  #       else
-  #         job_rates.delete(job_rate)
-  #       end
-  #     end
-  #   end
 
   def company_name
 	  company.name if company

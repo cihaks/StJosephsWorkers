@@ -17,13 +17,17 @@ class ApplicationController < ActionController::Base
   #set default layout for non-ajax calls
   layout proc{ |c| c.request.xhr? ? false : "references" }
   
-  before_filter :check_session, :no_cache
+  before_filter :check_session, :no_cache, :set_locale
   after_filter :store_location, :only => [:index, :new, :show, :edit]
   # after_filter :update_activity_list, :only => [:create, :update, :destroy]
   
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
-    
+  
+	def set_locale
+	  I18n.locale = params[:locale]
+	end
+
   def toggle_admin
     session[:show_admin].nil? ? session[:show_admin] = true : session[:show_admin] = !session[:show_admin]
     render :update do |page|

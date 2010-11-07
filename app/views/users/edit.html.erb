@@ -1,15 +1,15 @@
-<% @user.password = @user.password_confirmation = nil %>
+<% @user_obj.password = @user_obj.password_confirmation = nil %>
 
-<%= error_messages_for :user %>
+<%= error_messages_for :user_obj %>
 
-<% form_for(@user) do |f| -%>
+<% form_for(@user_obj) do |f| -%>
 
-<%= render :partial=>"form", :locals=>{:form=>f} %>
+<%= render :partial=>"form", :locals=>{:f=>f} %>
 <% if current_user.has_role?("admin") %>
 <p><%= label_tag 'role_ids', 'Role'%><br/>
 <% for role in Role.find(:all, :order=>"name asc") %>
-		<%= check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role) %>
-		<%= role.name %><br/>
+		<%= check_box_tag "user[role_ids][]", role.id, @user_obj.roles.include?(role), :label=>{:text=>role.name, :wrap=>:after} %>
+		<br/>
 <% end %>
 </p>
 <% end %>

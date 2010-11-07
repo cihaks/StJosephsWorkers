@@ -1,21 +1,16 @@
 
 <p>
-  <%= f.label :company_id %><br />
-  <%= f.text_field_with_auto_complete :company_name, {}, { :url => companies_path(:ac), :method => :get, :param_name => 'query' } %>
+  <%= f.text_field_with_auto_complete :company_name, { :label=>"Company"}, { :url => companies_path(:ac), :method => :get, :param_name => 'query' } %>
 </p>
 <p>
-  <%= f.label :industry_id %><br />
-  <%= f.collection_select(:industry_id, Industry.all, :id, :name) %>
+  <%= f.collection_select(:industry_id, Industry.all, :id, :name, :label=>"Industry") %>
 </p>
 <p>
-  <%= f.label :meeting_date %><br />
-  <%= f.calendar_date_select :meeting_date %>
+  <%= f.calendar_date_select :meeting_date, :label=>"Meeting Date" %>
 </p>
 <p>
   <%= f.check_box :application %>
-  <%= f.label :application %>
 </p>
 <p>
   <%= f.check_box :interview %>
-  <%= f.label :interview %>
 </p>

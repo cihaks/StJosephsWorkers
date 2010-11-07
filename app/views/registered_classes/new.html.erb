@@ -1,6 +1,5 @@
 
 <% form_for([@client, @registered_class]) do |f| %>
-  <%= f.error_messages %>
   
   <%= render :partial => 'registered_classes/form', :locals => { :f => f } %>
   <p>

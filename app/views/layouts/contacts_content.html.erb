@@ -1,5 +1,6 @@
 
 <%= render :partial=>'shared/section_banner', :locals => {:section_key=>:contacts_section, :section_content=>'contacts-content', :sections=>[["contacts","Encounters"],["addresses","Addresses"],["phones","Phones"],["pictures","Picture"]] } %>
 <div id="contacts-element">
-<%= yield %>
+	<%= yield %>
 </div>
+<div id="contacts-element-errors"></div>

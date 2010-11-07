@@ -40,7 +40,7 @@ class RolesController < SecurityController
     respond_to do |format|
       if @role.save
         flash[:notice] = 'Role was successfully created.'
-        format.html { redirect_to(@role) }
+        format.html { redirect_to(roles_url) }
         format.xml  { render :xml => @role, :status => :created, :location => @role }
       else
         format.html { render :action => "new" }
@@ -57,7 +57,7 @@ class RolesController < SecurityController
     respond_to do |format|
       if @role.update_attributes(params[:role])
         flash[:notice] = 'Role was successfully updated.'
-        format.html { redirect_to(@role) }
+        format.html { redirect_to(roles_url) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

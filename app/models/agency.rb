@@ -23,5 +23,11 @@ class Agency < ActiveRecord::Base
              :conditions => ["name LIKE ? ", "%#{search}%"],
              :order => 'name'
   end
-
+	
+	before_create :fake_error
+	
+	def fake_error
+		errors.add(:name)
+		false
+	end
 end

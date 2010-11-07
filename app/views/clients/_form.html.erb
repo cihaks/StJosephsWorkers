@@ -1,54 +1,44 @@
 <table>
 	<tr>
 		<td valign="top">
-		    <%= f.label :first_name %><br />
 		    <%= f.text_field :first_name %>
 		  <br />
 		  <br />
-		    <%= f.label :middle_name %><br />
 		    <%= f.text_field :middle_name %>
 		  <br />
 		  <br />
-		    <%= f.label :last_name %><br />
 		    <%= f.text_field :last_name %>
 		  <br />
 		  <br />
-		    <%= f.label :birth_date %><br />
 		    <%= f.calendar_date_select :birth_date, :year_range=>1901..Time.now.year, :valid_date_check => "date < (new Date()).stripTime()", :buttons=>false %>
 		</td>
 		<td width="10"></td>
 		<td valign="top">
-		    <%= f.label :race %><br />
 		    <%= f.collection_select(:race_id,Race.all,:id,:name) %>
 		  <br />
 		  <br />
-		    <%= f.label :education %><br />
 		    <%= f.collection_select(:education_id,Education.all,:id,:name, {:include_blank=>true}) %>
 		  <br />
 		  <br />
-			<%= f.label :education_subjects, "Subjects Studied" %><br />
-			<%= f.text_field :education_subjects %>
+			<%= f.text_field :education_subjects, :label=>"Subjects Studied" %>
 		  <br />
 		  <br />
 		    <%= f.label :gender %><br />
-		    <%= f.radio_button (:gender, "M") %>Male
-		    <%= f.radio_button (:gender, "F") %>Female
-		    <%= f.radio_button (:gender, "O") %>Other
+		    <%= f.radio_button (:gender, "M", :label=>false) %>Male
+		    <%= f.radio_button (:gender, "F", :label=>false) %>Female
+		    <%= f.radio_button (:gender, "O", :label=>false) %>Other
           <% unless @client.new_record?%>
-          <br />
-          <br />
-		    <%= f.label :work_history %><br />
+            <br />
+            <br />
 		    <%= f.collection_select(:work_history_id, WorkHistory.all, :id, :name, {:include_blank=>true}) %>
-		  <br />
-          <br />
-          <br />		
-		    <%= f.label :work_note %><br />
+		    <br />
+            <br />		
 			<%= f.text_area :work_note, :size=>"30x4" %>		
-			<%end%>
+		  <%end%>
       </td>
 	  <td width="10"></td>
 	  <td valign="top">
-		<%= f.label :status_types %><br/>
+		<%= f.label :status_types, "Status" %><br/>
 		<div class="scrollable">
 		  <% StatusType.find(:all,:order=>:name).each do |status_type| %>
 			<%= check_box_tag "client[status_type_ids][]", status_type.id, @client.status_types.include?(status_type) %>

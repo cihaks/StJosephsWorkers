@@ -24,4 +24,5 @@ class Reports::JobsController < Reports::ReportsController
     js = Job.find(:all,:conditions=>"end_date is not null")
     @jobs[:all_lost]=js.size
   end
+
 end

@@ -1,4 +1,6 @@
 class ActivityLogsController < ApplicationController
+	layout 'references'
+	
   # GET /activity_logs
   # GET /activity_logs.xml
   def index

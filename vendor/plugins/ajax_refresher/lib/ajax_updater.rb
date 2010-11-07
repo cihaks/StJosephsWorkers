@@ -26,7 +26,9 @@ module AjaxUpdater
       
       def refresh_element(element = '')
         self.configuration[:elements] << { :element => element, :partial => eval("'#{controller_name}/index'") }
+				self.configuration[:elements] << { :element => element+"-errors", :partial => '/shared/errors_index' }
 				self.configuration[:error_element] = element+"-errors"
+				self.configuration[:refresh_element] = element
       end
       
       def section(section = '')
@@ -130,17 +132,26 @@ module AjaxUpdater
             end
           end
         else
-					errors = eval("@#{controller_name.singularize}.errors")
-					flash[:errors] = eval("@#{controller_name.singularize}.errors")
+					error_div = get_error_section
+					@errors = eval("@#{controller_name.singularize}.errors")
           format.html { render :action => "new" }
-          format.xml  { render :xml => eval("@#{controller_name.singularize}.errors"), :status => :unprocessable_entity }
-					# format.js do
-					# 	render :update do |page|
-					# 		errors.collect do |e, m|
-					#       page.replace_html e+"-error", :text=>"  "+m unless e.nil? or m.nil?
-					#     end
-					# 	end
-					# end
+          format.xml  { render :xml => @errors, :status => :unprocessable_entity }
+					format.js do
+						render :update do |page|
+							# page.select('span.field_error').each do |item|
+							# 	page.replace_html item, :text=>" "
+							# end
+							# errors.each do |e, m|
+							# 	name = e.split(".").last
+							# 	page.select("[name=#{name}]").each do |item|
+							# 		page.replace_html item, :text=>" "+m
+							# 	end
+							# 					    end
+							page.hide error_div
+							page.replace_html error_div, :partial=>'/shared/errors_index'
+							page.visual_effect :appear, error_div, :duration=>2
+						end
+					end
         end
       end
     end
@@ -175,8 +186,26 @@ module AjaxUpdater
             end
           end
         else
+					error_div = get_error_section
+					@errors = eval("@#{controller_name.singularize}.errors")
           format.html { render :action => "edit" }
-          format.xml  { render :xml => eval("@#{controller_name.singularize}.errors"), :status => :unprocessable_entity }
+          format.xml  { render :xml => @errors, :status => :unprocessable_entity }
+					format.js do
+						render :update do |page|
+							# page.select('span.field_error').each do |item|
+							# 	page.replace_html item, :text=>" "
+							# end
+							# errors.each do |e, m|
+							# 	name = e.split(".").last
+							# 	page.select("[name=#{name}]").each do |item|
+							# 		page.replace_html item, :text=>" "+m
+							# 	end
+							# 					    end
+							page.hide error_div
+							page.replace_html error_div, :partial=>'/shared/errors_index'
+							page.visual_effect :appear, error_div, :duration=>2
+						end
+					end
         end
       end
     end
@@ -193,6 +222,8 @@ module AjaxUpdater
   
       destroy_callback_after
   
+			# TODO - manage error on delete
+
       respond_to do |format|
         format.html { redirect_to(@client) }
         format.xml  { head :ok }
@@ -244,22 +275,22 @@ module AjaxUpdater
 		configuration[:error_element]
 	end
 	
-	def get_error_message(errors, message = 'There were some problems with your submission:')
-	  flash_to_display = message
-	  if errors.instance_of? ActiveRecord::Errors
-	    flash_to_display << activerecord_error_list(errors)
-	  else
-	    flash_to_display = errors
-	  end
-		flash_to_display
-  end
-
-  def activerecord_error_list(errors)
-    error_list = '<ul class="error_list">'
-    error_list << errors.collect do |e, m|
-      "<li>#{e.humanize unless e == "base"} #{m}</li>"
-    end.to_s << '</ul>'
-    error_list
-  end
+	# def get_error_message(errors, message = 'There were some problems with your submission:')
+	#   flash_to_display = message
+	#   if errors.instance_of? ActiveRecord::Errors
+	#     flash_to_display << activerecord_error_list(errors)
+	#   else
+	#     flash_to_display = errors
+	#   end
+	# 	flash_to_display
+	#   end
+	# 
+	#   def activerecord_error_list(errors)
+	#     error_list = '<ul class="error_list">'
+	#     error_list << errors.collect do |e, m|
+	#       "<li>#{e.humanize unless e == "base"} #{m}</li>"
+	#     end.to_s << '</ul>'
+	#     error_list
+	#   end
   
 end

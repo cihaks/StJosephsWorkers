@@ -1,6 +1,5 @@
 
 <% form_for([@client,@app_interview]) do |f| %>
-  <%= f.error_messages %>
 
   <%= render :partial=>'app_interviews/form', :locals=>{ :f => f } %>
 

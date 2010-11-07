@@ -5,12 +5,12 @@
 		<table>
 		  <tr>
 			<td>
-		      <%= type_select(f, :resource_type_id, ResourceType.all, :id, :name, {}) %>
+		      <%= type_select(f, :resource_type_id, ResourceType.all, :id, :name, {:label=>"Resource Type"}) %>
 			</td>
 		  </tr>
 		  <tr>
 			<td>
-			  <%= f.calendar_date_select :resource_date, :time=>false %>
+			  <%= f.calendar_date_select :resource_date, :time=>false, :label=>"Resource Date" %>
 			</td>
 			<td width="10"></td>
 			<td valign="top" rowspan="4">

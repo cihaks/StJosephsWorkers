@@ -1,12 +1,10 @@
 
 <% form_for(@picture, :url => client_picture_path(@client, :format=>'js'), :html=>{:method=>:put, :multipart=>true, :target=>'upload_frame'}) do |f| %>
-  <%= f.error_messages %>
   
   <p>
 	<%= image_tag @picture.photo.url, :width=>'150' %>
   </p>
   <p>
-    <%= f.label 'Photo' %><br />
     <%= f.file_field :photo %>
   </p>
   <p>

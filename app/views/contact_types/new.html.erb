@@ -1,14 +1,11 @@
 
 <% form_for(@contact_type) do |f| %>
-  <%= f.error_messages %>
 
   <p>
-    <%= f.label :name %><br />
     <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.label :default_selection, "New Client Default" %><br />
-    <%= f.check_box :default_selection %>
+    <%= f.check_box :default_selection, :label=>"New Client Default" %>
   </p>
   <p>
     <%= f.submit 'Create' %>

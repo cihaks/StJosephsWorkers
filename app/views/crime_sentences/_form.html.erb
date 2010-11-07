@@ -1,16 +1,13 @@
 <table>
   <tr>
 	<td valign="top">
-  	  <%= f.label :prison, "Facility" %><br />
-  	  <%= f.collection_select(:prison_id,Prison.all,:id,:name,{:prompt=>true}) %>
+  	  <%= f.collection_select(:prison_id,Prison.all,:id,:name,{:prompt=>true, :label=>"Facility"}) %>
 	  <br />
 	  <br />
-  	  <%= f.label :incarceration_length, "Incarceration Length" %><br />
   	  <%= f.collection_select(:incarceration_length_id,IncarcerationLength.all,:id,:name,{:prompt=>true}) %>
 	  <br />
 	  <br />
-  	  <%= check_box_tag :furlough %>
-  	  <%= f.label :furlough, "Work Furlough/Work Release" %> 
+  	  <%= f.check_box :furlough, :label=>"Work Furlough/Work Release" %>
 	</td>
 	<td width="10"></td>
 	<td valign="top">

@@ -62,7 +62,7 @@ class WorkHistoriesController < ApplicationController
 
     respond_to do |format|
       if @work_history.update_attributes(params[:work_history])
-        format.html { redirect_to(@work_history, :notice => 'WorkHistory was successfully updated.') }
+        format.html { redirect_to(work_histories_url, :notice => 'WorkHistory was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

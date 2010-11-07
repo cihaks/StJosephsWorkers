@@ -1,6 +1,5 @@
 
 <% form_for([@client,@used_substance]) do |f| %>
-  <%= f.error_messages %>
 
   <%= render :partial=>'used_substances/form', :locals => { :f => f }%>
   <p>

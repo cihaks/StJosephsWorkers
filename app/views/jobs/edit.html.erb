@@ -1,6 +1,5 @@
 
 <% form_for([@client, @job]) do |f| %>
-  <%= f.error_messages %>
   <%= render :partial=>'jobs/form', :locals=>{ :f => f }%>
   <table>
     <tr>

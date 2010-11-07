@@ -11,6 +11,14 @@ color:#FFFFFF;
 .red {
 color:#86052A;
 }
+.field_error {
+font-weight: bold;
+font-size: 11pt;
+color:#86052A;
+font-family:Monotype Corsiva;
+font-style:italic;
+background-color:#FFF2E6;
+}
 body {
 background-color:#FFFFFF;
 font-family:Verdana,Arial,Helvetica,sans-serif;

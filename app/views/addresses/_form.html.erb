@@ -8,15 +8,15 @@
 </tr>
 <tr>
   <td style="line-height: .8em;">
-	<%= f.text_field :address1, :size=>'30', :height=>'20pt' %>&nbsp;<br/>
-	<%= f.text_field :address2, :size=>'30' %>&nbsp;<br/>
-	<%= f.text_field :city, :size=>'10' %>,&nbsp; 
-	<%= f.collection_select(:state_id,State.find(:all,:order=>"description"),:id,:code) %>,&nbsp;
-	<%= f.text_field :zip_code, :maxlength=>'5', :size=>'5' %>
+	<%= f.text_field :address1, :size=>'30', :height=>'20pt', :label=>false %>&nbsp;<br/>
+	<%= f.text_field :address2, :size=>'30', :label=>false %>&nbsp;<br/>
+	<%= f.text_field :city, :size=>'10', :label=>false %>,&nbsp; 
+	<%= f.collection_select(:state_id,State.find(:all,:order=>"description"),:id,:code, :label=>false) %>,&nbsp;
+	<%= f.text_field :zip_code, :maxlength=>'5', :size=>'5', :label=>false %>
   </td>
   <td width="10"></td>
-  <td valign="top"><%= f.collection_select(:address_type_id,AddressType.all,:id,:name) %></td>
+  <td valign="top"><%= f.collection_select(:address_type_id,AddressType.all,:id,:name, :label=>false) %></td>
   <td width="10"></td>
-  <td valign="top"><%= f.collection_select(:shelter_id,Shelter.all,:id,:name, { :include_blank => :true }) %></td>
+  <td valign="top"><%= f.collection_select(:shelter_id,Shelter.all,:id,:name, { :include_blank => :true, :label=>false }) %></td>
 </tr>
 </table>

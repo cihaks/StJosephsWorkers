@@ -1,16 +1,12 @@
 <p>
-  <%= f.label :name %><br />
   <%= f.text_field :name %>
 </p>
 <p>
-  <%= f.label :description %><br />
   <%= f.text_field :description %>
 </p>
 <p>
-  <%= f.label :type_name, "Internal Type Name" %><br />
-  <%= f.text_field :type_name %>
+  <%= f.text_field :type_name, :label=>"Internal Type Name" %>
 </p>
 <p>
-  <%= f.label :status_type, "Associated Status Type" %><br/>
-  <%= f.collection_select :status_type_id, StatusType.find_all_by_category('Resource'), :id, :name, :include_blank=>true %>
+  <%= f.collection_select :status_type_id, StatusType.find_all_by_category('Resource'), :id, :name, :include_blank=>true, :label=>"Associated Status Type" %>
 </p>
