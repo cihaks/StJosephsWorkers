@@ -48,6 +48,15 @@ ActionController::Routing::Routes.draw do |map|
 	map.namespace :reports do |reports|
 		reports.resources :job_leads
 		reports.resources :jobs
+		reports.resources :incarcerations
+		reports.resources :clientcontact				
+		reports.resources :distinctclientcontact				
+		reports.resources :workshopcomplete
+		reports.resources :successes
+		reports.resources :wirc_intake
+		reports.resources :hwp_intake
+		reports.resources :overfill_class
+		reports.resources :new_hires
 	end
 
 	map.delete_clients 'delete_clients', :controller => 'delete_clients'

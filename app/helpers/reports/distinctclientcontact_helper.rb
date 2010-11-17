@@ -1,0 +1,3 @@
+module Reports::DistinctclientcontactHelper
+
+end

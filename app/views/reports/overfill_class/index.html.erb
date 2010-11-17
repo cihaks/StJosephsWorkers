@@ -1,0 +1,17 @@
+<table cellspacing="2">
+  <tr>
+<%#	<%= "<th>Filled Classes</th>" unless @overfill %> 
+
+	<th>Class_Date</th>
+	<th>Class_Count</th>
+  </tr>
+
+  <% @overfill.each do |overf| %>
+  <tr>
+	<td><%= overf.class_date %></td>
+	<td><%= overf.class_count %></td>
+  </tr>
+	<td colspan="10"><hr></td>
+  <% end %>
+</table>
+	

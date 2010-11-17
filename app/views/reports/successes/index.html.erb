@@ -1,0 +1,17 @@
+<table cellspacing="2">
+  <tr>
+<%#	<%= "<th>Client Successes</th>" unless @client %> 
+
+	<th>First_Name</th>
+	<th>Last_Name</th>
+  </tr>
+
+  <% @success.sort_by{|lead| [lead[:first_name],lead[:last_name]]}.each do |resource| %>
+  <tr>
+	<td><%= resource.first_name %></td>
+	<td><%= resource.last_name %></td>
+  </tr>
+	<td colspan="10"><hr></td>
+  <% end %>
+</table>
+	

@@ -1,0 +1,25 @@
+<table cellspacing="2">
+  <tr> 
+<%#	<%= "<th>New Hires</th>" unless @client %> 
+
+	<th>Start_Date</th>
+	<th>Name</th>
+	<th>Company</th>	
+	<th>Job_Type</th>
+	<th>Pay_Scale_Low</th>		
+	<th>Pay_Scale_High</th>			
+  </tr>
+
+  <% @new_hires.each do |resource| %>
+  <tr>
+	<td><%= resource.start_date.strftime("%m/%d/%Y") unless resource.start_date.nil? %></td>
+	<td><%= resource.client.name %></td>
+	<td><%= resource.company_name %></td>	
+	<td><%= resource.job_type.name %></td>
+	<td><%= resource.pay_scale_low %></td>		
+	<td><%= resource.pay_scale_high %></td>			
+  </tr>
+	<td colspan="10"><hr></td>
+  <% end %>
+</table>
+	
