@@ -1,3 +1,9 @@
+<% form_for @test_model, :url=>reports_new_hires_path, :method=>:get do |f| %>
+	<%=f.calendar_date_select :start_date %><br/>
+	<%=f.calendar_date_select :end_date %><br/>
+	<%=f.submit "Get Report" %>
+<% end %>
+
 <table cellspacing="2">
   <tr> 
 <%#	<%= "<th>New Hires</th>" unless @client %> 
