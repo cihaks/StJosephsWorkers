@@ -1,0 +1,3 @@
+module Reports::ClientcontactHelper
+
+end

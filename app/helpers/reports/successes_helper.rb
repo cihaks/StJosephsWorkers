@@ -1,0 +1,3 @@
+module Reports::SuccessesHelper
+
+end

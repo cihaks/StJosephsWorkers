@@ -1,2 +1,3 @@
 module Reports::JobsHelper
+
 end

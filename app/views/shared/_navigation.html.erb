@@ -38,11 +38,6 @@
 	<ul>
 	<% if authorized_for? :index, 'reports/reports' %>
 		<li><%= link_to "Reports", report_path %></li>
-		<% if @reports_flag %>
-			<li class="indent1"><%= link_to 'Jobs Report', :controller=>'reports/jobs' %></li>
-			<li class="indent1"><%= link_to 'Job Leads', :controller=>'reports/job_leads'%>
-			<% @reports_flag = false %>
-		<% end %>
 	<% end %>
 	
   	<li><%= link_to "Home", home_path %></li>
