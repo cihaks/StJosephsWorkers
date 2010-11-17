@@ -1,3 +1,17 @@
+# == Schema Information
+# Schema version: 20100912050644
+#
+# Table name: companies
+#
+#  id          :integer(4)      not null, primary key
+#  name        :string(255)
+#  description :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#  creator_id  :integer(4)
+#  updater_id  :integer(4)
+#
+
 --- 
 companies_008: 
   name: Fred's Garage

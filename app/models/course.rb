@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20100604003228
+# Schema version: 20100912050644
 #
 # Table name: courses
 #
@@ -15,6 +15,8 @@ class Course < ActiveRecord::Base
   has_many :registered_classes
   has_many :clients, :through => :registered_classes, :source => :client
 
+	validates_uniqueness_of :name, :case_sensitive=>true, :allow_blank=>false
+	
   def self.search(search, page, page_limit)
     paginate :per_page=>page_limit, :page=>page,
              :conditions => ["name LIKE ? ", "%#{search}%"],

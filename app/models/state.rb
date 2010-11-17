@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20100604003228
+# Schema version: 20100912050644
 #
 # Table name: states
 #
@@ -16,4 +16,7 @@
 class State < ActiveRecord::Base
   has_many :addresses
   has_many :clients, :through => :addresses, :uniq => true
+
+	validates_uniqueness_of :code, :case_sensitive=>true, :allow_blank=>false, :scope=>:country
+	
 end

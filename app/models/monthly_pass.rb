@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20100604003228
+# Schema version: 20100912050644
 #
 # Table name: monthly_passes
 #
@@ -7,9 +7,11 @@
 #  assigned_resource_id :integer(4)
 #  amount_paid          :decimal(10, 2)
 #  amount_due           :decimal(10, 2)
+#  note                 :string(2048)
 #  created_at           :datetime
 #  updated_at           :datetime
-#  note                 :string(2048)
+#  creator_id           :integer(4)
+#  updater_id           :integer(4)
 #
 
 class MonthlyPass < ActiveRecord::Base

@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20100604003228
+# Schema version: 20100912050644
 #
 # Table name: roles
 #
@@ -13,6 +13,8 @@
 
 class Role < ActiveRecord::Base
   
+	validates_uniqueness_of :name, :case_sensitive=>true, :allow_blank=>false
+	
   def self.search(search, page, page_limit)
     paginate :per_page=>page_limit, :page=>page,
              :conditions => ["name LIKE ? ", "%#{search}%"],

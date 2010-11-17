@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20100604003228
+# Schema version: 20100912050644
 #
 # Table name: address_types
 #
@@ -14,6 +14,8 @@
 class AddressType < ActiveRecord::Base
   has_many :addresses
   
+	validates_presence_of :name
+
   def self.search(search, page, page_limit)
     paginate :per_page=>page_limit, :page=>page,
              :conditions => ["name LIKE ? ", "%#{search}%"],

@@ -1,12 +1,12 @@
 # == Schema Information
-# Schema version: 20100604003228
+# Schema version: 20100912050644
 #
 # Table name: used_substances
 #
 #  id                    :integer(4)      not null, primary key
 #  client_id             :integer(4)
 #  substance_id          :integer(4)
-#  entry_date            :date
+#  sober_date            :date
 #  treatment_program_ind :boolean(1)
 #  created_at            :datetime
 #  updated_at            :datetime

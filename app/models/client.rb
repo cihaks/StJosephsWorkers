@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20100604003228
+# Schema version: 20100912050644
 #
 # Table name: clients
 #
@@ -9,10 +9,6 @@
 #  middle_name        :string(255)
 #  last_name          :string(255)
 #  gender             :string(255)
-#  caution            :boolean(1)
-#  resource_eligible  :boolean(1)
-#  veteran            :boolean(1)
-#  success_story      :boolean(1)
 #  birth_date         :date
 #  created_at         :datetime
 #  updated_at         :datetime
@@ -20,6 +16,9 @@
 #  updater_id         :integer(4)
 #  education_id       :integer(4)
 #  education_subjects :string(255)
+#  deleted            :boolean(1)
+#  work_note          :string(2048)
+#  work_history_id    :integer(4)
 #
 
 

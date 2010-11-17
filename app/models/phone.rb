@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20100604003228
+# Schema version: 20100912050644
 #
 # Table name: phones
 #
@@ -16,6 +16,8 @@
 
 class Phone < ActiveRecord::Base
   belongs_to :client
+
+	validates_presence_of :phone_number
   
   def is_primary?
     self.primary_ind

@@ -1,22 +1,25 @@
 # == Schema Information
-# Schema version: 20100604003228
+# Schema version: 20100912050644
 #
 # Table name: resource_types
 #
-#  id          :integer(4)      not null, primary key
-#  name        :string(255)
-#  description :string(255)
-#  created_at  :datetime
-#  updated_at  :datetime
-#  creator_id  :integer(4)
-#  updater_id  :integer(4)
-#  type_name   :string(255)
+#  id             :integer(4)      not null, primary key
+#  name           :string(255)
+#  description    :string(255)
+#  created_at     :datetime
+#  updated_at     :datetime
+#  creator_id     :integer(4)
+#  updater_id     :integer(4)
+#  type_name      :string(255)
+#  status_type_id :integer(4)
 #
 
 class ResourceType < ActiveRecord::Base
   has_many :assigned_resources
   belongs_to :status_type # 1 to 0 or more association
 
+	validates_uniqueness_of :name, :case_sensitive=>true, :allow_blank=>false
+	
   def self.search(search, page, page_limit)
     paginate :per_page=>page_limit, :page=>page,
              :conditions => ["name LIKE ? ", "%#{search}%"],

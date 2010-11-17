@@ -1,3 +1,21 @@
+# == Schema Information
+# Schema version: 20100912050644
+#
+# Table name: app_interviews
+#
+#  id           :integer(4)      not null, primary key
+#  client_id    :integer(4)
+#  company_id   :integer(4)
+#  industry_id  :integer(4)
+#  meeting_date :date
+#  application  :boolean(1)
+#  interview    :boolean(1)
+#  created_at   :datetime
+#  updated_at   :datetime
+#  creator_id   :integer(4)
+#  updater_id   :integer(4)
+#
+
 class AppInterview < ActiveRecord::Base
   belongs_to :client
   belongs_to :company

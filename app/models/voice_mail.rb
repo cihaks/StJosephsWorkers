@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20100604003228
+# Schema version: 20100912050644
 #
 # Table name: voice_mails
 #
@@ -9,6 +9,8 @@
 #  cvm_password         :string(255)
 #  created_at           :datetime
 #  updated_at           :datetime
+#  creator_id           :integer(4)
+#  updater_id           :integer(4)
 #
 
 class VoiceMail < ActiveRecord::Base

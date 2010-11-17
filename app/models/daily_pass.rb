@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20100604003228
+# Schema version: 20100912050644
 #
 # Table name: daily_passes
 #
@@ -7,8 +7,12 @@
 #  assigned_resource_id :integer(4)
 #  company              :string(255)
 #  note                 :string(2048)
+#  application          :boolean(1)
+#  interview            :boolean(1)
 #  created_at           :datetime
 #  updated_at           :datetime
+#  creator_id           :integer(4)
+#  updater_id           :integer(4)
 #
 
 class DailyPass < ActiveRecord::Base

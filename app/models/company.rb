@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20100604003228
+# Schema version: 20100912050644
 #
 # Table name: companies
 #
@@ -16,6 +16,8 @@ class Company < ActiveRecord::Base
   has_many :app_interviews
   has_many :jobs
   
+	validates_uniqueness_of :name, :case_sensitive=>true, :allow_blank=>false
+	
   def to_label
     name
   end
