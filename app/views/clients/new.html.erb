@@ -49,12 +49,10 @@
         <table> 
 	    <tr>
 		<td> 
-		    <%= f.label :work_history %><br />
 		    <%= f.collection_select(:work_history_id,WorkHistory.all,:id,:name, {:include_blank=>true}) %>
 		<td/>
 		<td width="20"></td>
 		<td>
-			  <%= f.label :work_note %><br />
 			  <%= f.text_area :work_note, :size=>"60x4" %>
 		<td />
 		<tr />	

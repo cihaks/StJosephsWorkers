@@ -29,17 +29,29 @@ class Job < ActiveRecord::Base
   belongs_to :benefits_type
   has_many :job_rates, :order=>"hourly_rate_date DESC", :dependent => :destroy
   accepts_nested_attributes_for :job_rates, :allow_destroy => true, :reject_if => lambda { |a| a[:hourly_rate].blank? }
+
+	attr_writer :company_name
+	before_save :assign_company
   
   validates_date :start_date, :allow_blank=>true
   validates_date :end_date, :allow_blank=>true
   validates_date :last_verified_date, :allow_blank=>true
 
   def company_name
-	  company.name if company
+	  if company
+			company.name
+		else
+			@company_name
+		end
 	end
 	
-	def company_name=(name)
-		self.company = Company.find_or_create_by_name(name) unless name.blank?
+	private
+	
+	def assign_company
+		if @company_name
+		  company = Company.find_or_create_by_name(@company_name)
+			self.company = company
+	  end
 	end
 
 end

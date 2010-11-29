@@ -5,7 +5,7 @@
 	<tr>
 		<td>
 		    <%= f.submit 'Update' unless request.xhr? %>
-			<%= submit_to_remote 'update_ajax_btn', 'Update', :url=>{:action=>'update'}, :update=>'client-content' if request.xhr? %>
+			<%= submit_to_remote 'update_ajax_btn', 'Update', :url=>{:action=>'update'} if request.xhr? %>
 		</td>
 	</tr>
   </table>

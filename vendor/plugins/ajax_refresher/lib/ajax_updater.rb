@@ -192,15 +192,6 @@ module AjaxUpdater
           format.xml  { render :xml => @errors, :status => :unprocessable_entity }
 					format.js do
 						render :update do |page|
-							# page.select('span.field_error').each do |item|
-							# 	page.replace_html item, :text=>" "
-							# end
-							# errors.each do |e, m|
-							# 	name = e.split(".").last
-							# 	page.select("[name=#{name}]").each do |item|
-							# 		page.replace_html item, :text=>" "+m
-							# 	end
-							# 					    end
 							page.hide error_div
 							page.replace_html error_div, :partial=>'/shared/errors_index'
 							page.visual_effect :appear, error_div, :duration=>2

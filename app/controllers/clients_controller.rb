@@ -89,15 +89,30 @@ class ClientsController < ApplicationController
     
     @client = Client.find(params[:id])
 
+		
+
     respond_to do |format|
       if @client.update_attributes(params[:client])
         flash[:notice] = 'Client was successfully updated.'
         format.html { redirect_to(@client) }
         format.xml  { head :ok }
-        format.js { render 'show', :layout=>'client_content'}
+        format.js do
+          render :update do |page|
+            page.replace_html "client-element", :partial=>'/clients/show'
+          end
+        end
       else
+				@errors = @client.errors
+				error_div = "client-element-errors"
         format.html { render :action => "edit" }
         format.xml  { render :xml => @client.errors, :status => :unprocessable_entity }
+				format.js do
+					render :update do |page|
+						page.hide error_div
+						page.replace_html error_div, :partial=>'/shared/errors_index'
+						page.visual_effect :appear, error_div, :duration=>2
+					end
+				end
       end
     end
   end
