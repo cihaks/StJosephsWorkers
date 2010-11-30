@@ -46,6 +46,10 @@ en:
         contact_type: Type
         contact_date: Date
         contact_negative: Negative
+      course_search:
+        from_date: From Date
+        to_date: To Date
+        course: Class
       crime_sentence:
         prison: Facility
         incarceration_length: Incarceration Length

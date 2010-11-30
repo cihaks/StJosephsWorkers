@@ -23,37 +23,40 @@ class CourseSearch < ActiveRecord::Base
 	
 	# attr_accessor :course_id, :from_date, :to_date
 	
-	def from_date_string
-	  from_date.strftime("%m/%d/%Y") unless from_date.nil?
-	end
-
-	def from_date_string=(dt_str)
-		begin
-	    self.from_date = Date.parse(dt_str) 
-	  rescue 
-		  @from_date_invalid = true
-		end
-	end
-
-	def to_date_string
-	  to_date.strftime("%m/%d/%Y") unless to_date.nil?
-	end
-
-	def to_date_string=(dt_str)
-		begin
-	    self.to_date = Date.parse(dt_str) 
-	  rescue 
-		  @to_date_invalid = true
-		end
-	end
+	validates_date :from_date, :allow_blank=>true
+	validates_date :to_date, :allow_blank=>true
 	
-	def validate
-	  errors.add(:from_date, "From Date is invalid") if @from_date_invalid
-		errors.add(:to_date, "To Date is invalid") if @to_date_invalid
-		unless from_date.nil? or to_date.nil? or @from_date_invalid or @to_date_invalid
-		  errors.add(:from_date, "is after To Date") if from_date > to_date
-	  end
-	end
+	# def from_date_string
+	#   from_date.strftime("%m/%d/%Y") unless from_date.nil?
+	# end
+	# 
+	# def from_date_string=(dt_str)
+	# 	begin
+	#     self.from_date = Date.parse(dt_str) 
+	#   rescue 
+	# 	  @from_date_invalid = true
+	# 	end
+	# end
+	# 
+	# def to_date_string
+	#   to_date.strftime("%m/%d/%Y") unless to_date.nil?
+	# end
+	# 
+	# def to_date_string=(dt_str)
+	# 	begin
+	#     self.to_date = Date.parse(dt_str) 
+	#   rescue 
+	# 	  @to_date_invalid = true
+	# 	end
+	# end
+	
+	# def validate
+		# 	  errors.add(:from_date, "From Date is invalid") if @from_date_invalid
+		# errors.add(:to_date, "To Date is invalid") if @to_date_invalid
+		# unless from_date.nil? or to_date.nil? or @from_date_invalid or @to_date_invalid
+		#   errors.add(:from_date, "is after To Date") if from_date > to_date
+		# 	  end
+	# end
 	
 	# def self.build(fields = {})
 	# 	me = CourseSearch.new
