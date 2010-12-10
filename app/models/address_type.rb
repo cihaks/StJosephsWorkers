@@ -14,6 +14,7 @@
 class AddressType < ActiveRecord::Base
   has_many :addresses
   
+	validates_uniqueness_of :name, :case_sensitive=>false, :allow_blank=>false
 	validates_presence_of :name
 
   def self.search(search, page, page_limit)

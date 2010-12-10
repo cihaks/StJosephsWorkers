@@ -71,14 +71,14 @@ class SecurityController < ApplicationController
 				# 					end
 				# 				end
       else
+				@errors = eval("@#{controller_name.singularize}.errors")
 				create_callback_after_error
-				errors = eval("@#{controller_name.singularize}.errors")
-				flash[:errors] = eval("@#{controller_name.singularize}.errors")
+				flash[:errors] = @errors
         format.html { render :action => "new" }
-        format.xml  { render :xml => eval("@#{controller_name.singularize}.errors"), :status => :unprocessable_entity }
+        format.xml  { render :xml => @errors, :status => :unprocessable_entity }
 				format.js do
 					render :update do |page|
-						errors.collect do |e, m|
+						@errors.collect do |e, m|
 				      page.replace_html "#{controller_name.singularize}.#{e}-error", :text=>"  "+m unless e.nil? or m.nil?
 				    end
 					end
@@ -101,14 +101,14 @@ class SecurityController < ApplicationController
         format.html { redirect_to( eval("#{controller_name}_url") ) }
         format.xml  { head :ok }
       else
+				@errors = eval("@#{controller_name.singularize}.errors")
 				update_callback_after_error
-				errors = eval("@#{controller_name.singularize}.errors")
-				flash[:errors] = eval("@#{controller_name.singularize}.errors")
+				flash[:errors] = @errors
         format.html { render :action => "edit" }
-        format.xml  { render :xml => eval("@#{controller_name.singularize}.errors"), :status => :unprocessable_entity }
+        format.xml  { render :xml => @errors, :status => :unprocessable_entity }
 				format.js do
 					render :update do |page|
-						errors.collect do |e, m|
+						@errors.collect do |e, m|
 				      page.replace_html e+"-error", :text=>"  "+m unless e.nil? or m.nil?
 				    end
 					end

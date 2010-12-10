@@ -16,7 +16,8 @@
 class Prison < ActiveRecord::Base
   has_many :crime_sentences
 
-	validates_uniqueness_of :name, :case_sensitive=>true, :allow_blank=>false
+	validates_uniqueness_of :name, :case_sensitive=>false, :allow_blank=>false
+	validates_presence_of :name
 	
   def self.search(search, page, page_limit)
     paginate :per_page=>page_limit, :page=>page,

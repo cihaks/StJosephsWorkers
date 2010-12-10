@@ -18,6 +18,6 @@ class UsedSubstance < ActiveRecord::Base
   belongs_to :substance
   belongs_to :client
 
-	validates_date :sober_date
+	validates_date :sober_date, :allow_blank=>true
 	validates_presence_of :substance_id
 end

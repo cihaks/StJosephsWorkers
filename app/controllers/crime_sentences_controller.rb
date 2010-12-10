@@ -8,8 +8,10 @@ class CrimeSentencesController < ApplicationController
   before_filter :get_client, :set_section
 
   def update_callback_before_object
-    params[:crime_sentence][:crime_type_ids] ||= []
-    params[:crime_sentence][:conviction_ids] ||= []
+		if params[:crime_sentence].size > 1
+	    params[:crime_sentence][:crime_type_ids] ||= []
+	    params[:crime_sentence][:conviction_ids] ||= []
+    end
   end
   
   def set_section

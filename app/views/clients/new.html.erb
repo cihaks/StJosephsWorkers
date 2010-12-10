@@ -56,7 +56,7 @@
         <table> 
 	    <tr>
 		<td> 
-		    <%= f.collection_select(:work_history_id,WorkHistory.all,:id,:name, {:include_blank=>true}) %>
+		    <%= f.collection_select(:work_history_id,WorkHistory.all,:id,:name, {:include_blank=>"Please select"}) %>
 		<td/>
 		<td width="20"></td>
 		<td>

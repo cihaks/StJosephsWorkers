@@ -17,6 +17,8 @@ class State < ActiveRecord::Base
   has_many :addresses
   has_many :clients, :through => :addresses, :uniq => true
 
-	validates_uniqueness_of :code, :case_sensitive=>true, :allow_blank=>false, :scope=>:country
+	validates_uniqueness_of :code, :case_sensitive=>false, :allow_blank=>false, :scope=>:country
+	validates_presence_of :name
+	
 	
 end
