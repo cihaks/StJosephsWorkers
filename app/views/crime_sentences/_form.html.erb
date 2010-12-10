@@ -12,9 +12,12 @@
 	<td width="10"></td>
 	<td valign="top">
   	  <%= f.label :crime_types, "Crime Type(s)" %><br/>
+	  <!-- <%= f.object_name %>
+	  <%= f.methods.sort.collect {|method_name| "<li>#{method_name}</li>"} %> -->
 	  <div class="scrollable">
 		  <% CrimeType.all.sort!{|c1,c2| c1.name<=>c2.name}.each do |crime_type| %>
-			<%= check_box_tag "crime_sentence[crime_type_ids][]", crime_type.id, @crime_sentence.crime_types.include?(crime_type) %>
+			<% check_me = @crime_sentence ? @crime_sentence.crime_types.include?(crime_type) : false %>
+			<%= check_box_tag f.object_name+"[crime_type_ids][]", crime_type.id, check_me %>
 			<%=h crime_type.name %>
 			<br/>
 		  <% end %>
@@ -25,7 +28,8 @@
 	  <%= f.label :convictions, "Conviction(s)" %><br/>
 	  <div class="scrollable">
 		  <% Conviction.all.sort!{|c1,c2| c1.name<=>c2.name}.each do |conviction| %>
-			<%= check_box_tag "crime_sentence[conviction_ids][]", conviction.id, @crime_sentence.convictions.include?(conviction) %>
+			<% check_me = @crime_sentence ? @crime_sentence.convictions.include?(conviction) : false %>
+			<%= check_box_tag f.object_name+"[conviction_ids][]", conviction.id, check_me %>
 			<%=h conviction.name %>
 			<br/>
 		  <% end %>

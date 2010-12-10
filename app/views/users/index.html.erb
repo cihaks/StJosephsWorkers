@@ -4,12 +4,16 @@
   <tr>
     <th>Login</th>
 	<th width="10"></th>
+	<th>Name</th>
+	<th width="10"></th>
 	<th>Roles</th>
   </tr>
 
 <% @users.each do |user| %>
   <tr>
     <td><%=h user.login %></td>
+	<td width="10"></td>
+    <td><%=h user.name %></td>
 	<td width="10"></td>
 	<td>
 	  <% user.roles.each do |role| %>

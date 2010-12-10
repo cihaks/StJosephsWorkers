@@ -35,6 +35,7 @@
 					<div id="contacts-element">
 					  <%= render "#{session[:contacts_section]}/index" %>
 					</div>
+					<div id="contacts-element-errors"></div>
 				</div>
 			    <br/>
 				<div id="jobs-content">
@@ -42,6 +43,7 @@
 				  <div id="jobs-element">
 				    <%= render "#{session[:jobs_section]}/index"  %>
 				  </div>
+				  <div id="jobs-element-errors"></div>
 				</div>
 			    <br/>
 				<div id="infamy-content">
@@ -49,12 +51,14 @@
 				  <div id="infamy-element">
 				    <%= render "#{session[:infamy_section]}/index"  %>
 				  </div>
+				  <div id="infamy-element-errors"></div>
 				</div>
 				<div id="client-report-content">
 				  <%= render :partial=>'shared/client_report_banner', :locals => {:section_key=>:client_report_section, :section_content=>'client-report-content', :sections=>[["job_leads","Job Leads Report"]]} %>
 				  <div id="client-report-element">
 						
 				  </div>
+				  <div id="client-report-element-errors"></div>
 				</div>
 			<% else %>
 				<%= render 'shared/banner_references' %>

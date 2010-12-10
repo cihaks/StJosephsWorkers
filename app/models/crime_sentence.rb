@@ -21,4 +21,7 @@ class CrimeSentence < ActiveRecord::Base
   
   has_and_belongs_to_many :crime_types
   has_and_belongs_to_many :convictions
+	
+	accepts_nested_attributes_for :crime_types
+	accepts_nested_attributes_for :convictions
 end

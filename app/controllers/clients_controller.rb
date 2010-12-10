@@ -46,7 +46,7 @@ class ClientsController < ApplicationController
 		@client.addresses.build
 		@client.phones.build
 		@client.assigned_agencies.build
-		@crime_sentence = @client.crime_sentences.build
+		@client.crime_sentences.build
 		@client.registered_classes.build
 		@client.used_substances.build
 
@@ -76,6 +76,8 @@ class ClientsController < ApplicationController
         format.html { redirect_to(client_url(@client)) }
         format.xml  { render :xml => @client, :status => :created, :location => @client }
       else
+				@crime_sentence = @client.crime_sentences.first
+				@errors = @client.errors
         format.html { render :action => "new" }
         format.xml  { render :xml => @client.errors, :status => :unprocessable_entity }
       end
@@ -88,8 +90,6 @@ class ClientsController < ApplicationController
     params[:client][:status_type_ids] ||= []
     
     @client = Client.find(params[:id])
-
-		
 
     respond_to do |format|
       if @client.update_attributes(params[:client])
@@ -138,5 +138,4 @@ class ClientsController < ApplicationController
       end
     end
   end
-	
 end

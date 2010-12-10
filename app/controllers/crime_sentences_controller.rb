@@ -9,6 +9,7 @@ class CrimeSentencesController < ApplicationController
 
   def update_callback_before_object
     params[:crime_sentence][:crime_type_ids] ||= []
+    params[:crime_sentence][:conviction_ids] ||= []
   end
   
   def set_section

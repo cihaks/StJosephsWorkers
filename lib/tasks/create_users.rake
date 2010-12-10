@@ -46,13 +46,25 @@ namespace :db do
     
     Role.populate 1 do |roleOffice|
       roleOffice.name = 'office'
-      User.populate 1 do |user|
-        user.name = 'Joe Employee'
-        user.login = 'guest'
-        user.salt = make_token
-        user.crypted_password = password_digest('password',user.salt)
-        ActiveRecord::Base.connection.execute("INSERT INTO roles_users (role_id,user_id) VALUES (#{roleOffice.id}, #{user.id})")
-      end
+			users = [{:name=>'Lisa Neldon', :login=>'lneldon'},
+			{:name=>'Greg Johnson', :login=>'gjohnson'},
+			{:name=>'Dianna Jackson', :login=>'djackson'},
+			{:name=>'Molly Pino', :login=>'mpino'},
+			{:name=>'Blue Swadener', :login=>'bswadener'},
+			{:name=>'Beth Gaffney', :login=>'bgaffney'},
+			{:name=>'Laura Fischer', :login=>'lfischer'}]
+			
+			users.each do |u|
+	      User.populate 1 do |user|
+	        user.name = u[:name]
+	        user.login = u[:login]
+	        user.salt = make_token
+	        user.crypted_password = password_digest('password',user.salt)
+	        ActiveRecord::Base.connection.execute("INSERT INTO roles_users (role_id,user_id) VALUES (#{roleOffice.id}, #{user.id})")
+	      end
+			end
+			
+			
       # User.populate 4..8 do |user|
       #   fname = Faker::Name.first_name
       #   lname = Faker::Name.last_name

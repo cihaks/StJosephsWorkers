@@ -1,7 +1,8 @@
 module Authentication
   mattr_accessor :login_regex, :bad_login_message, 
     :name_regex, :bad_name_message,
-    :email_name_regex, :domain_head_regex, :domain_tld_regex, :email_regex, :bad_email_message
+    :email_name_regex, :domain_head_regex, :domain_tld_regex, :email_regex, :bad_email_message,
+		:password_regex, :bad_password_message
 
   self.login_regex       = /\A\w[\w\.\-_@]+\z/                     # ASCII, strict
   # self.login_regex       = /\A[[:alnum:]][[:alnum:]\.\-_@]+\z/     # Unicode, strict
@@ -17,6 +18,9 @@ module Authentication
   self.domain_tld_regex  = '(?:[A-Z]{2}|com|org|net|edu|gov|mil|biz|info|mobi|name|aero|jobs|museum)'.freeze
   self.email_regex       = /\A#{email_name_regex}@#{domain_head_regex}#{domain_tld_regex}\z/i
   self.bad_email_message = "should look like an email address.".freeze
+
+	self.password_regex    = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,40}$/
+	self.bad_password_message = "must be at least 6 characters, no more than 40 characters, and must include at least one upper case letter, one lower case letter, and one numeric digit"
 
   def self.included(recipient)
     recipient.extend(ModelClassMethods)

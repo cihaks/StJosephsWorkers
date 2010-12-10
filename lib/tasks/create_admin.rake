@@ -18,16 +18,6 @@ namespace :db do
     Agency.create :name => 'Community Bridges'
     Agency.create :name => 'Healthcare for the Homeless'
 
-    desc "populating shelters"
-    Shelter.create :name => 'Andre House'
-    Shelter.create :name => 'CASS'
-    Shelter.create :name => 'EVMC'
-    Shelter.create :name => 'Friend/Family'
-    Shelter.create :name => 'MOS'
-    Shelter.create :name => 'Phoenix Resource Mission'
-    Shelter.create :name => 'UMOM'
-    Shelter.create :name => 'WOF'
-
     desc "populating benefit types"
     BenefitsType.create :name => 'After Probation Period'
     BenefitsType.create :name => 'Immediately'
@@ -55,6 +45,7 @@ namespace :db do
     CrimeType.create :name => 'Felony'
     CrimeType.create :name => 'Sex Offense'
     CrimeType.create :name => 'Violent'
+		CrimeType.create :name => 'Misdemeanor'
 
 		desc "populating education"
 		Education.create :name => 'No High School/GED', :list_order => 1
@@ -118,7 +109,17 @@ namespace :db do
     ResourceType.create :name => 'Hygiene', :type_name => 'hygiene'
     ResourceType.create :name => 'Shoes'
     ResourceType.create :name => 'Work Boots'
-    
+		
+    desc "populating shelters"
+    Shelter.create :name => 'Andre House'
+    Shelter.create :name => 'CASS'
+    Shelter.create :name => 'EVMC'
+    Shelter.create :name => 'Friend/Family'
+    Shelter.create :name => 'MOS'
+    Shelter.create :name => 'Phoenix Resource Mission'
+    Shelter.create :name => 'UMOM'
+    Shelter.create :name => 'WOF'
+		
     desc "populating status types"
     StatusType.create :name => 'Follow-Up'
     StatusType.create :name => 'HWP'

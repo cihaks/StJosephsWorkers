@@ -12,6 +12,7 @@ module Authentication
         validates_presence_of     :password_confirmation,      :if => :password_required?
         validates_confirmation_of :password,                   :if => :password_required?
         validates_length_of       :password, :within => 6..40, :if => :password_required?
+				validates_format_of				:password, :with => Authentication.password_regex, :message => Authentication.bad_password_message, :if=>:password_required?
         before_save :encrypt_password
       end
     end # #included directives

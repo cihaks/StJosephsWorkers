@@ -66,6 +66,8 @@ class User < ActiveRecord::Base
   validates_format_of       :name,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => true
   validates_length_of       :name,     :maximum => 100
 
+	
+
 #  validates_presence_of     :email
 #  validates_length_of       :email,    :within => 6..100 #r@a.wk
 #  validates_uniqueness_of   :email
@@ -80,7 +82,7 @@ class User < ActiveRecord::Base
 
   def self.search(search, page, page_limit)
     paginate :per_page=>page_limit, :page=>page,
-             :conditions => ["name LIKE ? ", "%#{search}%"],
+             :conditions => ["name LIKE ? or login LIKE ?", "%#{search}%", "%#{search}%"],
              :order => 'name'
   end
 
