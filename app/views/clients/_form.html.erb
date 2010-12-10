@@ -14,10 +14,10 @@
 		</td>
 		<td width="10"></td>
 		<td valign="top">
-		    <%= f.collection_select(:race_id,Race.all,:id,:name, {:include_blank=>"Please select..."}) %>
+		    <%= f.collection_select(:race_id,Race.all,:id,:name, {:include_blank=>"Please select"}) %>
 		  <br />
 		  <br />
-		    <%= f.collection_select(:education_id,Education.all,:id,:name, {:include_blank=>"Please select..."}) %>
+		    <%= f.collection_select(:education_id,Education.all,:id,:name, {:include_blank=>"Please select"}) %>
 		  <br />
 		  <br />
 			<%= f.text_field :education_subjects, :label=>"Subjects Studied" %>
