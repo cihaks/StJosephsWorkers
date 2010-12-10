@@ -98,10 +98,8 @@
 	<div id="crime_sentences-content">
 	  <div class="banner"><div class="caption">Crime Sentences</div></div>
 	  <div id="crime_sentences-element">
-		<% unless @crime_sentence.nil? %>
-			<% f.fields_for :crime_sentences do |crime_sentences_fields| %>
-			  <%= render :partial=>'crime_sentences/form', :locals => { :f => crime_sentences_fields } %>
-			<% end %>
+		<% f.fields_for :crime_sentences do |crime_sentences_fields| %>
+		  <%= render :partial=>'crime_sentences/form', :locals => { :f => crime_sentences_fields } %>
 		<% end %>
 	  </div>
 	</div>
