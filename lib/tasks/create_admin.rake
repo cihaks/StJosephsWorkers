@@ -7,10 +7,10 @@ namespace :db do
     [AddressType, AgencyType, Agency, BenefitsType, Industry, Company, CrimeType, IncarcerationLength].each(&:delete_all)
     [JobType, Prison, ResourceType, StatusType, Substance, ContactType, Course, Race].each(&:delete_all)
     
-		AddressType.create :name = "Primary Residence"
-		AddressType.create :name = "Work"
-		AddressType.create :name = "Mailing"
-		AddressType.create :name = "Other"
+		AddressType.create :name => "Primary Residence"
+		AddressType.create :name => "Work"
+		AddressType.create :name => "Mailing"
+		AddressType.create :name => "Other"
 		
     desc "populating agency types"
     AgencyType.create :name => 'Mental Health'
