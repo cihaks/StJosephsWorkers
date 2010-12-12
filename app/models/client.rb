@@ -28,7 +28,7 @@ class Client < ActiveRecord::Base
   belongs_to :work_history
 
   has_many :pictures, :dependent=>:destroy
-  has_many :addresses, :order => "address_type", :dependent=>:destroy
+  has_many :addresses, :order => "address_type_id", :dependent=>:destroy
   has_many :phones, :order => "primary_ind DESC, updated_at DESC, id DESC", :dependent=>:destroy
   has_many :contacts, :order => "contact_date DESC, id DESC", :dependent=>:destroy
 
