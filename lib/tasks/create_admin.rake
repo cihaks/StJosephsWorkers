@@ -4,9 +4,14 @@ namespace :db do
     
     desc "Clear existing data"
     
-    [AgencyType, Agency, BenefitsType, Industry, Company, CrimeType, IncarcerationLength].each(&:delete_all)
+    [AddressType, AgencyType, Agency, BenefitsType, Industry, Company, CrimeType, IncarcerationLength].each(&:delete_all)
     [JobType, Prison, ResourceType, StatusType, Substance, ContactType, Course, Race].each(&:delete_all)
     
+		AddressType.create :name = "Primary Residence"
+		AddressType.create :name = "Work"
+		AddressType.create :name = "Mailing"
+		AddressType.create :name = "Other"
+		
     desc "populating agency types"
     AgencyType.create :name => 'Mental Health'
     agency_type = AgencyType.create :name => 'Shelter'
@@ -100,15 +105,15 @@ namespace :db do
     Race.create :name => 'Other'
     
     desc "populating resource types"
-    ResourceType.create :name => 'Bus - Daily Pass', :type_name => 'daily_pass'
-    ResourceType.create :name => 'Bus - Monthly Pass', :type_name => 'monthly_pass'
-    ResourceType.create :name => 'Clothing', :type_name => 'clothing'
+    dailypass = ResourceType.create :name => 'Bus - Daily Pass', :type_name => 'daily_pass'
+    monthlypass = ResourceType.create :name => 'Bus - Monthly Pass', :type_name => 'monthly_pass'
+    clothing = ResourceType.create :name => 'Clothing', :type_name => 'clothing'
     ResourceType.create :name => 'CVM - Community Voice Mail', :type_name => 'voice_mail'
-    ResourceType.create :name => 'Financial Assist: Housing Related'
-    ResourceType.create :name => 'Financial Assist: Work Essentials'
+    housing = ResourceType.create :name => 'Financial Assist: Housing Related'
+    work = ResourceType.create :name => 'Financial Assist: Work Essentials'
     ResourceType.create :name => 'Hygiene', :type_name => 'hygiene'
-    ResourceType.create :name => 'Shoes'
-    ResourceType.create :name => 'Work Boots'
+    shoes = ResourceType.create :name => 'Shoes'
+    boots = ResourceType.create :name => 'Work Boots'
 		
     desc "populating shelters"
     Shelter.create :name => 'Andre House'
@@ -121,15 +126,37 @@ namespace :db do
     Shelter.create :name => 'WOF'
 		
     desc "populating status types"
-    StatusType.create :name => 'Follow-Up'
-    StatusType.create :name => 'HWP'
-    StatusType.create :name => 'Parole'
-    StatusType.create :name => 'Previously Incarcerated'
-    StatusType.create :name => 'Previous Felon'
-    StatusType.create :name => 'Probation'
-    StatusType.create :name => 'Success Story'
-    StatusType.create :name => 'WIRC'
-    
+		StatusType.create :name => 'Follow-Up' #dup
+		StatusType.create :name => 'HWP' #dup
+		StatusType.create :name => 'Parole' #dup
+		StatusType.create :name => 'Previous Felon' #dup
+		StatusType.create :name => 'Previously Incarcerated' #dup
+		StatusType.create :name => 'Probation' #dup
+		StatusType.create :name => 'Success Story' #dup
+		StatusType.create :name => 'WIRC' #dup
+		StatusType.create :name => 'Caution' #new
+		StatusType.create :name => 'Chronic Homelessness' #new
+		StatusType.create :name => 'Resource Eligible' #new
+		res_clothing = StatusType.create :name => 'Restrict Clothing',:category=>'Resource' #new
+		res_financial = StatusType.create :name => 'Restrict Financial',:category=>'Resource' #new
+		res_trans = StatusType.create :name => 'Restrict Transportation',:category=>'Resource' #new
+		StatusType.create :name => 'Veteran' #new
+		
+		desc "update resource types"
+		dailypass.status_type = res_trans
+		dailypass.save
+		monthlypass.status_type = res_trans
+		monthlypass.save
+		clothing.status_type = res_clothing
+		clothing.save
+		housing.status_type = res_financial
+		housing.save
+		work.status_type = res_financial
+		work.save
+		shoes.status_type = res_clothing
+		shoes.save
+		
+		
     desc "populating substances"
     Substance.create :name => 'Alcohol'
     Substance.create :name => 'Cocaine'
