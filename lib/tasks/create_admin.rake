@@ -4,7 +4,7 @@ namespace :db do
     
     desc "Clear existing data"
     
-    [AddressType, AgencyType, Agency, BenefitsType, Industry, Company, CrimeType, IncarcerationLength].each(&:delete_all)
+    [AddressType, AgencyType, Agency, BenefitsType, Industry, Company, Conviction, CrimeType, IncarcerationLength].each(&:delete_all)
     [JobType, Prison, ResourceType, StatusType, Substance, ContactType, Course, Race].each(&:delete_all)
     
 		AddressType.create :name => "Primary Residence"
@@ -13,15 +13,15 @@ namespace :db do
 		AddressType.create :name => "Other"
 		
     desc "populating agency types"
-    AgencyType.create :name => 'Mental Health'
-    agency_type = AgencyType.create :name => 'Shelter'
-    AgencyType.create :name => 'Substance Abuse'
+    agy_mental = AgencyType.create :name => 'Mental Health'
+    agy_shelter = AgencyType.create :name => 'Shelter'
+    agy_substance = AgencyType.create :name => 'Substance Abuse'
     
     desc "populating agencies"
-    Agency.create :name => 'SW Behavioral'
-    Agency.create :name => 'Magellan / People of Color'
-    Agency.create :name => 'Community Bridges'
-    Agency.create :name => 'Healthcare for the Homeless'
+    Agency.create :name => 'SW Behavioral', :agency_type => agy_mental
+    Agency.create :name => 'Magellan / People of Color', :agency_type => agy_shelter
+    Agency.create :name => 'Community Bridges', :agency_type => agy_mental
+    Agency.create :name => 'Healthcare for the Homeless', :agency_type => agy_mental
 
     desc "populating benefit types"
     BenefitsType.create :name => 'After Probation Period'
@@ -41,6 +41,17 @@ namespace :db do
     ContactType.create :name => 'Client Contact'
     ContactType.create :name => 'Office Visit Only', :default_selection => false
 		ContactType.create :name => 'Intake'
+		
+		desc "populating convictions"
+		Conviction.create :name => 'Murder/Attempted Murder'
+		Conviction.create :name => 'Robbery/Armed Robbery'
+		Conviction.create :name => 'Theft/Burglary'
+		Conviction.create :name => 'DUI'
+		Conviction.create :name => 'Possession/Sales'
+		Conviction.create :name => 'Domestic Violence'
+		Conviction.create :name => 'Assault'
+		Conviction.create :name => 'Sex Offense'
+		Conviction.create :name => 'Forgery'
     
     desc "populating courses"
     Course.create :name => 'Job Readiness Workshop'
