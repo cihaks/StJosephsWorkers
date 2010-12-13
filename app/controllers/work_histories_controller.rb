@@ -1,4 +1,4 @@
-class WorkHistoriesController < ApplicationController
+class WorkHistoriesController < SecurityController
   # layout 'references'
   # # GET /work_histories
   # # GET /work_histories.xml
