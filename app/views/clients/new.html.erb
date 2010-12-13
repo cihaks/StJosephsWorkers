@@ -1,10 +1,4 @@
-<% unless @errors.nil? %>
-	<ul  class="field_error" style="margin: 0px; padding-top: 6px; padding-bottom: 5px">
-	<% @errors.full_messages.each do |msg| %>  
-	  <li class="field_error"><%= msg %></li>  
-	<% end %>  
-	</ul>
-<% end %>
+
 <% form_for(@client) do |f| %>
 	<div id="client-content">
 	  <div class="banner"><div class="caption">New Client</div></div>
