@@ -9,7 +9,7 @@ class CompaniesController < SecurityController
 	#     respond_to do |format|
 	#       format.html # index.html.erb
 	#       format.js { render :layout=>false }
-	# 		format.ac { render :layout=>false }
+	# 		  format.ac { render :layout=>false }
 	#       format.xml  { render :xml => eval("@#{controller_name}") }
 	#     end
 	#   end
