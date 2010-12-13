@@ -1,48 +1,45 @@
 <table>
-	<tr>
-	  <td valign="top">
-		  <p>
-		    <%= f.collection_select(:job_type_id, JobType.all, :id, :name) %>
-		  </p>
-		  <p>
-		    <%= f.text_field_with_auto_complete :company_name, {:label=>"Company"}, { :url => companies_path(:ac), :method => :get, :param_name => 'query' } %>
-		  </p>
-		  <p>
-		    <%= f.collection_select(:industry_id, Industry.all, :id, :name, :label=>"Industry") %>
-		  </p>
-		  <p>
-		    <%= f.check_box :current %>
-		  </p>
-		  <p>
-		    <%= f.calendar_date_select :last_verified_date %>
-		  </p>
-		  <p>
-		    <%= f.calendar_date_select :start_date %>
-		  </p>
-		  <p>
-		    <%= f.calendar_date_select :end_date %>
-		  </p>
+  <tr>
+	<td valign="top">
+      <%= f.collection_select(:job_type_id, JobType.all, :id, :name) %>
+	  <br />
+	  <br />
+      <%= f.text_field_with_auto_complete :company_name, {:label=>"Company"}, { :url => companies_path(:ac), :method => :get, :param_name => 'query' } %>
+	  <br />
+	  <br />
+      <%= f.collection_select(:industry_id, Industry.all, :id, :name, :label=>"Industry") %>
+	  <br />
+	  <br />
+      <%= f.check_box :current %>
+	  <br />
+	  <br />
+      <%= f.calendar_date_select :last_verified_date %>
+	  <br />
+	  <br />
+      <%= f.calendar_date_select :start_date %>
+	  <br />
+	  <br />
+      <%= f.calendar_date_select :end_date %>
     </td>
-	  <td width="15"></td>
-	  <td valign="top">
-		
-		  <div id="job_rates-element">
-			
-			<% f.fields_for :job_rates do |job_rate_fields| %>
-			  <div class="job_rate">
-			    <%= render "job_rates/form", :f => job_rate_fields %>
-			    <%= remove_element_link job_rate_fields, "job_rate" %>
-			  </div>
-			<% end %>
+
+    <td width="15"></td>
+
+    <td valign="top">
+	  <div id="job_rates-element">
+		<% f.fields_for :job_rates do |job_rate_fields| %>
+		  <div class="job_rate">
+		    <%= render "job_rates/form", :f => job_rate_fields %>
+		    <%= remove_element_link job_rate_fields, "job_rate" %>
 		  </div>
-		  <div><%= add_element_link "Add a rate", f, :job_rates %></div>
-		  
-      </td>
-	  <td width="15"></td>
-	  <td valign="top">
-		<p>
-		  <%= f.collection_select(:benefits_type_id,BenefitsType.all,:id,:name, :label=>"Benefits") %>
-		</p>
+		<% end %>
+	  </div>
+	  <div><%= add_element_link "Add a rate", f, :job_rates %></div>
+    </td>
+
+    <td width="15"></td>
+
+    <td valign="top">
+	  <%= f.collection_select(:benefits_type_id,BenefitsType.all,:id,:name, :label=>"Benefits") %>
     </td>
   </tr>
 </table>
