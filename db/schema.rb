@@ -319,7 +319,7 @@ ActiveRecord::Schema.define(:version => 20100912050644) do
     t.integer  "industry_id"
     t.integer  "benefits_type_id"
     t.boolean  "current"
-    t.string   "company"
+    t.integer  "company_id"
     t.date     "start_date"
     t.date     "end_date"
     t.date     "last_verified_date"
