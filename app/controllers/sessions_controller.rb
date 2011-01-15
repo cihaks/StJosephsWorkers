@@ -1,6 +1,9 @@
 # This controller handles the login/logout function of the site.  
 class SessionsController < ApplicationController
   layout 'references'
+
+	ssl_required :new, :create, :destroy
+	
   
   # render new.rhtml
   def new
