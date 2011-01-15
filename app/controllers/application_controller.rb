@@ -11,16 +11,23 @@ class ApplicationController < ActionController::Base
   # Adds user names on create and delete for models that have t.userstamps included in migration
   include Userstamp
 
+  # check for authentication
+	before_filter :check_session, :no_cache, :set_locale
+
 	# Add SSL capabilities
 	include SslRequirement
-
+	
+	# force ssl on everything in app
+	def ssl_required?
+		true
+	end
+	
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
   
   #set default layout for non-ajax calls
   layout proc{ |c| c.request.xhr? ? false : "references" }
   
-  before_filter :check_session, :no_cache, :set_locale
   after_filter :store_location, :only => [:index, :new, :show, :edit]
   # after_filter :update_activity_list, :only => [:create, :update, :destroy]
   

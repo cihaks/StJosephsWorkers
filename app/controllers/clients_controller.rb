@@ -1,8 +1,6 @@
 class ClientsController < ApplicationController
   layout 'references'
 
-	ssl_required :index, :clear, :show, :new, :edit, :create, :update, :destroy
-  
   # GET /clients
   # GET /clients.xml
   def index
