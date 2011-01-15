@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 	
 	# force ssl on everything in app
 	def ssl_required?
-		true
+		USE_SSL
 	end
 	
   helper :all # include all helpers, all the time

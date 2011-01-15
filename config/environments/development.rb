@@ -31,7 +31,8 @@ CalendarDateSelect.default_options.update(
 #     :month_year => "label",
 #     :image => "custom_calendar_picker.png"
 	:size=>"13"
-  )
+)
 
-
+# force ssl in entire app
+USE_SSL = false
 
