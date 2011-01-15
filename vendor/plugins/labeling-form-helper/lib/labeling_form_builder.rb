@@ -18,7 +18,6 @@ class LabelingFormBuilder < ActionView::Helpers::FormBuilder
       return unlabeled_tag if false == label
 
 			if @object_name.to_s.match(/\[[\w\-]+attributes\]/)
-				puts @object_name
 				obj_names = []
 				obj_matches = @object_name.to_s.scan(/\[[\w\-]+\]/)
 				obj_matches.each do |m|

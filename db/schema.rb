@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20100912050644) do
     t.integer  "client_id"
     t.integer  "state_id"
     t.integer  "address_type_id"
+    t.integer  "shelter_id"
     t.string   "address1"
     t.string   "address2"
     t.string   "city"

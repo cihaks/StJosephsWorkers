@@ -11,6 +11,9 @@ class ApplicationController < ActionController::Base
   # Adds user names on create and delete for models that have t.userstamps included in migration
   include Userstamp
 
+	# Add SSL capabilities
+	include SslRequirement
+
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
   

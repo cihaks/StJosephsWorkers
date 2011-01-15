@@ -12,9 +12,6 @@ var BusyAjaxClass = Class.create({
       },
       onComplete: function() {
         if(Ajax.activeRequestCount==0) self.hide_spinner();
-      },
-			onFailure: function() {
-        self.hide_spinner();
       }
     });
     document.observe("dom:loaded", function() {
@@ -24,18 +21,15 @@ var BusyAjaxClass = Class.create({
   enable: function() {
     if (!this.is_on) {
       try {
-        var busydiv = document.getElementById(this.busy_div_name)
-				if (busydiv != null) {
-					busydiv = new Element('div', {id: this.busy_div_name});
-	        busydiv.setStyle({display:'none', position: 'absolute', zIndex: '32000'});
-	        spinimg = new Element('img', {src: this.spinner_url});
-	        busydiv.appendChild(spinimg);
-	        document.body.appendChild(busydiv);
-	        var self = this;
-	        document.observe('mousemove', function(e){
-	          self.follow(e);
-	        });
-				}
+        busydiv = new Element('div', {id: this.busy_div_name});
+        busydiv.setStyle({display:'none', position: 'absolute', zIndex: '32000'});
+        spinimg = new Element('img', {src: this.spinner_url});
+        busydiv.appendChild(spinimg);
+        document.body.appendChild(busydiv);
+        var self = this;
+        document.observe('mousemove', function(e){
+          self.follow(e);
+        });
         this.is_on = true;
       } catch (e) { alert('error; could not insert busy div:\n\n' + e.toString()); throw e }
     }
@@ -78,12 +72,12 @@ var BusyAjaxClass = Class.create({
   show_spinner: function() {
     var busy_div = $(this.busy_div_name);
     if (busy_div)
-      busy_div.appear({duration:0.3});
+      busy_div.appear({duration:0.5});
   },
   hide_spinner: function() {
     var busy_div = $(this.busy_div_name);
     if (busy_div)
-      busy_div.fade({duration:0.3});
+      busy_div.fade({duration:0.5});
   }
 });
 
