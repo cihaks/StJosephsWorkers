@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
 
   # render new.rhtml
   def new
-	  puts ssl?
     redirect_to home_path if logged_in?
   end
 
