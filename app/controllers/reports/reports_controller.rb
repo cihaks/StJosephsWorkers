@@ -2,8 +2,6 @@ class Reports::ReportsController < ApplicationController
   layout 'reports'
 
   before_filter :set_reports, :set_section
-  
-  require_role :admin
     
 	def index
 	end

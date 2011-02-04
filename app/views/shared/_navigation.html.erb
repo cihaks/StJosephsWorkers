@@ -6,41 +6,38 @@
 		<li>
 			<%= link_to_remote( 'Admin', :url=>{:action=>'toggle_admin'} )%>
 		</li>
-		</ul>
+      </ul>
 		<div id="adminlinks" style="<%= 'display:none' if session[:show_admin] != true %>">
-		<ul>
-		<li class="indent1"><%= link_to "Address Types", address_types_path %></li>
-		<li class="indent1"><%= link_to "Agencies", agencies_path %></li>
-		<li class="indent1"><%= link_to "Agency Types", agency_types_path %></li>
-		<li class="indent1"><%= link_to "Benefits Types", benefits_types_path %></li>
-		<li class="indent1"><%= link_to "Companies", companies_path %></li>
-		<li class="indent1"><%= link_to "Contact Types", contact_types_path %></li>
-		<li class="indent1"><%= link_to "Convictions", convictions_path %></li>
-		<li class="indent1"><%= link_to "Courses", courses_path %></li>
-		<li class="indent1"><%= link_to "Crime Types", crime_types_path %></li>
-		<li class="indent1"><%= link_to "Education", educations_path %></li>
-		<li class="indent1"><%= link_to "Incarceration Lengths", incarceration_lengths_path %></li>
-		<li class="indent1"><%= link_to "Industries", industries_path %></li>
-		<li class="indent1"><%= link_to "Job Types", job_types_path %></li>
-		<li class="indent1"><%= link_to "Prisons", prisons_path %></li>
-		<li class="indent1"><%= link_to "Races", races_path %></li>
-		<li class="indent1"><%= link_to "Resource Types", resource_types_path %></li>
-		<li class="indent1"><%= link_to "Shelters", shelters_path %></li>
-		<li class="indent1"><%= link_to "Status Types", status_types_path %></li>
-		<li class="indent1"><%= link_to "Substances", substances_path %></li>
-		<li class="indent1"><%= link_to "Work Histories", work_histories_path %></li>		
-		<li class="indent1"><%= link_to "User Accounts", users_path %></li>
-		<li class="indent1"><%= link_to "Roles", roles_path %></li>
-		<li class="indent1"><%= link_to "Delete Clients", delete_clients_url %></li>
-		</ul>
+			<ul>
+				<li class="indent1"><%= link_to "Address Types", address_types_path %></li>
+				<li class="indent1"><%= link_to "Agencies", agencies_path %></li>
+				<li class="indent1"><%= link_to "Agency Types", agency_types_path %></li>
+				<li class="indent1"><%= link_to "Benefits Types", benefits_types_path %></li>
+				<li class="indent1"><%= link_to "Companies", companies_path %></li>
+				<li class="indent1"><%= link_to "Contact Types", contact_types_path %></li>
+				<li class="indent1"><%= link_to "Convictions", convictions_path %></li>
+				<li class="indent1"><%= link_to "Courses", courses_path %></li>
+				<li class="indent1"><%= link_to "Crime Types", crime_types_path %></li>
+				<li class="indent1"><%= link_to "Education", educations_path %></li>
+				<li class="indent1"><%= link_to "Incarceration Lengths", incarceration_lengths_path %></li>
+				<li class="indent1"><%= link_to "Industries", industries_path %></li>
+				<li class="indent1"><%= link_to "Job Types", job_types_path %></li>
+				<li class="indent1"><%= link_to "Prisons", prisons_path %></li>
+				<li class="indent1"><%= link_to "Races", races_path %></li>
+				<li class="indent1"><%= link_to "Resource Types", resource_types_path %></li>
+				<li class="indent1"><%= link_to "Shelters", shelters_path %></li>
+				<li class="indent1"><%= link_to "Status Types", status_types_path %></li>
+				<li class="indent1"><%= link_to "Substances", substances_path %></li>
+				<li class="indent1"><%= link_to "Work Histories", work_histories_path %></li>		
+				<li class="indent1"><%= link_to "User Accounts", users_path %></li>
+				<li class="indent1"><%= link_to "Roles", roles_path %></li>
+				<li class="indent1"><%= link_to "Delete Clients", delete_clients_url %></li>
+			</ul>
 		</div>
+	  <ul>
 	<% end %>
-	<ul>
-	<% if authorized_for? :index, 'reports/reports' %>
-		<li><%= link_to "Reports", report_path %></li>
-	<% end %>
-	
-  	<li><%= link_to "Home", home_path %></li>
+	<li><%= link_to "Home", home_path %></li>
+	<li><%= link_to "Reports", report_path %></li>
 	<li><%= link_to "Add Client", new_client_path %></li>
 	<% unless @client.nil? %>
 		<li>
