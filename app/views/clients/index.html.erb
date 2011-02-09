@@ -6,7 +6,7 @@
   	<td></td>
     <td class="fieldLabel">Name</td>
 	<td width="5"></td>
-    <td class="fieldLabel">Birth date</td>
+    <td class="fieldLabel">Birth Date</td>
 	<td width="5"></td>
 	<td class="fieldLabel">Date Added</td>
 	<td width="5"></td>
@@ -38,7 +38,7 @@
 	<td valign="top"><%= link_to 'Details', client %></td>
     <td valign="top"><%= link_to 'Edit', edit_client_path(client) %></td>
     <td valign="top"><%= link_to_remote 'Delete', :url=>client, :confirm => 'Are you sure?', :method => :delete %></td>
-	<td valign="top"><%= link_to_remote 'Office Visit', :url=>client_contacts_path(client), :with => "'contact[client_id]="+client.id.to_s+"&contact[contact_type_id]="+@office_visit.id.to_s+"&contact[contact_date]="+Time.now.strftime("%m/%d/%Y")+"&page_update=false'" , :method => :post %></td>
+	<td valign="top"><%= link_to_remote 'Office Visit', :url=>client_contacts_path(client), :with => "'contact[client_id]="+client.id.to_s+"&contact[contact_type_id]="+@office_visit.id.to_s+"&contact[contact_date]='+$('office_visit_date').getValue()+'&page_update=false'" , :method => :post %></td>
   </tr>
   <tr id="<%=client.id%>_line">
 	<td colspan="15"><hr/></td>
