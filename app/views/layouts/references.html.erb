@@ -65,7 +65,7 @@
 				<%= render 'shared/banner_references' %>
 				<%= render 'shared/errors_index' %>
 				<div id="office_visit_date_section" class="floatRight">Office Visit Date: <%=calendar_date_select_tag :office_visit_date, Time.now %></div>
-				<div id="item_list">
+				<div id="item_list" style="clear:right;">
 				  <%= yield %>
 				</div>
 			<% end %>
