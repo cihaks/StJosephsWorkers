@@ -9,9 +9,8 @@ class CourseAttendancesController < ApplicationController
 		# this should allow for addition to course, not just display what is there
 		get_attendances
 		respond_to do |format|
-      format.js # { render :layout=>false }  # need to have option to not use layout contacts?
-      format.html { render :action => :index } 
-      format.xml  { render :xml => @contacts }
+      format.html { render :action => "index" } 
+      format.xml  { render :xml => @attendances }
     end
 	end
 		

@@ -6,7 +6,7 @@
   <div style="width: 300px;">
 	<%= @output %>
 	
-	<% form_for @course_search, :url=>course_attendances_path do |f| %>
+	<% form_for @course_search, :url=>{:controller=>:course_attendances, :action=>:index} do |f| %>
 	<%= f.collection_select :course_id, Course.all, :id, :name, :label=>"Class" %><br/>
 	<%= f.calendar_date_select :from_date, :size=>10 %><%= @course_search.errors.on(:from_date) %><br/>
 	<%= f.calendar_date_select :to_date, :size=>10 %><%= @course_search.errors.on(:to_date) %><br/>
