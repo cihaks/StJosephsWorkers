@@ -13,6 +13,6 @@ xml.graph(options) do
   @disclientcontact_months.each do |month, clicon|
 #      total_count = total_count + clicon.length
       total_count = clicon.length
-      xml.set(:name=>month.strftime("%B"), :value=>total_count)
+      xml.set(:name=>month, :value=>total_count)
   end
 end
