@@ -24,7 +24,7 @@
 	  <%=h assigned_resource.resource_type.name unless assigned_resource.resource_type.nil? %>
 	</td>
 	<td width="10"></td>
-    <td class="fieldData" align="right"><%=h number_to_currency(assigned_resource.amount, :precision=>0) %></td>
+    <td class="fieldData" align="right"><%=h number_to_currency(assigned_resource.amount, :precision=>2) %></td>
 	<td width="10"></td>
     <td class="fieldData" align="right"><%=h number_with_delimiter(assigned_resource.number) %></td>
 	<td width="10"></td>

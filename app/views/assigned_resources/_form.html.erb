@@ -19,7 +19,7 @@
 		  </tr>
 		  <tr>
 			<td>
-		      <%=h "$" %><%= f.text_field :amount, :size=>"15" %>
+		      <%=h "$" %><%= f.text_field :amount, :size=>"15", :value=>number_with_precision(f.object.amount, :precision=>2) %>
 			</td>
 		  </tr>
 		  <tr>
