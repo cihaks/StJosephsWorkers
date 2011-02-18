@@ -58,7 +58,7 @@ module AjaxUpdater
       respond_to do |format|
         format.js # { render :layout=>false }  # need to have option to not use layout contacts?
         format.html # index.html.erb
-        format.xml  { render :xml => @contacts }
+        format.xml  { render :xml => eval("@#{controller_name}") }
       end
     end
     
@@ -71,7 +71,7 @@ module AjaxUpdater
 
       respond_to do |format|
         format.html # show.html.erb
-        format.xml  { render :xml => @contact }
+        format.xml  { render :xml => eval("@#{controller_name.singularize}") }
       end
     end
 
@@ -84,7 +84,7 @@ module AjaxUpdater
       
       respond_to do |format|
         format.html # new.html.erb
-        format.xml  { render :xml => @contact }
+        format.xml  { render :xml => eval("@#{controller_name.singularize}") }
       end
     end
 
@@ -96,7 +96,7 @@ module AjaxUpdater
       
       respond_to do |format|
         format.html # edit.html.erb
-        format.xml  { render :xml => @contact }
+        format.xml  { render :xml => eval("@#{controller_name.singularize}") }
       end
     end
     
