@@ -23,7 +23,7 @@ class ProfilesController < ApplicationController
 	      format.xml  { head :ok }
 	    else
 				@errors = @profile.errors
-	      format.html { render :action => "edit" }
+	      format.html { render :template => "users/profile" }
 	      format.xml  { render :xml => @errors, :status => :unprocessable_entity }
 				format.js do
 					render :update do |page|
