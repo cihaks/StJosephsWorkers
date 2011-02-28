@@ -41,4 +41,4 @@ CalendarDateSelect.default_options.update(
 )
 
 # force ssl in entire app
-USE_SSL = true
+USE_SSL = false
