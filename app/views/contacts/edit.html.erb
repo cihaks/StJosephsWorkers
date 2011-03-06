@@ -7,3 +7,7 @@
 	<%= submit_to_remote 'update_ajax_btn', 'Update', :url=>{:action=>'update'} if request.xhr?%>
   </p>
 <% end %>
+
+
+<!-- show all contacts/encounters even if currently being edited -->
+<%= render :partial=>'contacts/index' %>

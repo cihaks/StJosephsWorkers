@@ -6,3 +6,6 @@
 	<%= submit_to_remote 'update_ajax_btn', 'Create', :url=>{:action=>'create'} if request.xhr? %>
   </p>
 <% end %>
+
+<!-- show all contacts/encounters -->
+<%= render :partial=>'contacts/index' %>
