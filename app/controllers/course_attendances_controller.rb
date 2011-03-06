@@ -28,11 +28,18 @@ class CourseAttendancesController < ApplicationController
         format.js do
           render :update do |page|
 	          page.replace_html 'attendance-'+@object_to_update.id.to_s, :partial=>'course_attendances/attendance', :object => @object_to_update
+						page.alert("Course attendance successfully updated.")
           end
         end
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @object_to_update.errors, :status => :unprocessable_entity }
+        format.js do
+          render :update do |page|
+	          page.replace_html 'attendance-'+@object_to_update.id.to_s, :partial=>'course_attendances/attendance', :object => @object_to_update
+						page.alert("Course attendance updated failed.")
+          end
+        end
       end
     end
   end
