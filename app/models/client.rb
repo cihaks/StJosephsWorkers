@@ -48,7 +48,7 @@ class Client < ActiveRecord::Base
   has_many :courses, :through => :registered_classes, :source => :course, :uniq => true
 
 	accepts_nested_attributes_for :contacts, :allow_destroy=>true, :reject_if=>lambda { |a| a[:note].blank? }
-	accepts_nested_attributes_for :registered_classes, :allow_destroy=>true, :reject_if=>lambda { |a| a[:class_date].blank? }
+	accepts_nested_attributes_for :registered_classes, :allow_destroy=>true, :reject_if=>lambda { |a| a[:class_date].blank? or a[:course_id].blank? }
 	accepts_nested_attributes_for :used_substances, :allow_destroy=>true, :reject_if=>lambda { |a| a[:substance_id].blank? }
 	accepts_nested_attributes_for :addresses, :allow_destroy=>true, :reject_if=>lambda { |a| a[:address1].blank? }
 	accepts_nested_attributes_for :phones, :allow_destroy=>true, :reject_if=>lambda { |a| a[:phone_number].blank? }

@@ -15,7 +15,7 @@
 
 <% @client.registered_classes.each do |registered_class| %>
   <tr>
-    <td><%=h registered_class.course.name %></td>
+    <td><%=h registered_class.course.name unless registered_class.course.nil? %></td>
 	<td width="10"></td>
     <td><%=h registered_class.class_date.strftime("%m/%d/%Y") unless registered_class.class_date.nil? %></td>
 	<td width="10"></td>

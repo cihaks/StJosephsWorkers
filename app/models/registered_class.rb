@@ -19,6 +19,7 @@ class RegisteredClass < ActiveRecord::Base
   belongs_to :client
 
 	validates_date :class_date
+	validates_presence_of :course
   
   def completed_value
     if completed == '0'
