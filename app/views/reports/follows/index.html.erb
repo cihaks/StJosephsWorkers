@@ -1,0 +1,20 @@
+<table cellspacing="2">
+  <tr>
+<%#	<%= "<th>Contact Information</th>" unless @follows %> 
+
+	<th>Contact Date &nbsp &nbsp &nbsp</th>
+	<th>Total Contacts &nbsp &nbsp &nbsp </th>
+	<th>Follow-Up Contacts &nbsp &nbsp &nbsp</th>
+	<th>Previously Incarcerated Contacts</th>	 
+ </tr>
+
+  <% @follows.each do |fl| %>
+  <tr>
+	<td><%= fl.contact_date %></td>
+	<td><%= fl.all_contacts %></td>
+	<td><%= fl.follow_contacts%></td>
+	<td><%= fl.incar_contacts%></td>		
+  </tr>
+	<td colspan="10"><hr></td>
+  <% end %>
+</table>
