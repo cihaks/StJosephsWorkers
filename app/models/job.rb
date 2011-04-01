@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20100912050644
+# Schema version: 20110331225232
 #
 # Table name: jobs
 #
@@ -18,7 +18,7 @@
 #  creator_id         :integer(4)
 #  updater_id         :integer(4)
 #  benefits_type_id   :integer(4)
-#  company            :string(255)
+#  company_id         :integer(4)
 #
 
 class Job < ActiveRecord::Base

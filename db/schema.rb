@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110218040103) do
+ActiveRecord::Schema.define(:version => 20110401053159) do
 
   create_table "activity_logs", :force => true do |t|
     t.integer  "client_id"
@@ -413,14 +413,13 @@ ActiveRecord::Schema.define(:version => 20110218040103) do
   end
 
   create_table "registered_classes", :force => true do |t|
-    t.date     "class_date"
     t.integer  "client_id"
-    t.integer  "course_id"
     t.string   "completed"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "creator_id"
     t.integer  "updater_id"
+    t.integer  "scheduled_course_id"
   end
 
   create_table "resource_types", :force => true do |t|
@@ -449,6 +448,16 @@ ActiveRecord::Schema.define(:version => 20110218040103) do
 
   add_index "roles_users", ["role_id"], :name => "index_roles_users_on_role_id"
   add_index "roles_users", ["user_id"], :name => "index_roles_users_on_user_id"
+
+  create_table "scheduled_courses", :force => true do |t|
+    t.integer  "course_id"
+    t.integer  "capacity"
+    t.datetime "course_date"
+    t.string   "teacher"
+    t.string   "location"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "shelters", :force => true do |t|
     t.string   "name"

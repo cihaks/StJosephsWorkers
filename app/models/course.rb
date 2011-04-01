@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20100912050644
+# Schema version: 20110331225232
 #
 # Table name: courses
 #
@@ -13,6 +13,7 @@
 
 class Course < ActiveRecord::Base
   has_many :registered_classes
+	has_many :scheduled_courses
   has_many :clients, :through => :registered_classes, :source => :client
 
 	validates_uniqueness_of :name, :case_sensitive=>false, :allow_blank=>false

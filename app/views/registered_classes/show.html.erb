@@ -1,17 +1,12 @@
 
 <p>
   <b>Class:</b>
-  <%=h @registered_class.course.name %>
+  <%=h @registered_class.scheduled_course.course_name if @registered_class.scheduled_course %>
 </p>
 
 <p>
   <b>Class Date:</b>
-  <%=h @registered_class.class_date.strftime("%m/%d/%Y") unless @registered_class.class_date.nil? %>
-</p>
-
-<p>
-  <b>Waive Date:</b>
-  <%=h @registered_class.waive_date.strftime("%m/%d/%Y") unless @registered_class.waive_date.nil? %>
+  <%=h @registered_class.scheduled_course.course_date_str if @registered_class.scheduled_course%>
 </p>
 
 <p>
@@ -20,7 +15,12 @@
 </p>
 
 <p>
-  <b>Modified By:</b>
+  <b>Last Modified Date:</b>
+  <%=h @registered_class.updated_at.strftime("%m/%d/%Y") %>
+</p>
+
+<p>
+  <b>Last Modified By:</b>
   <%=h User.find(@registered_class.updater_id).name unless @registered_class.updater_id.nil? %>
 </p>
 

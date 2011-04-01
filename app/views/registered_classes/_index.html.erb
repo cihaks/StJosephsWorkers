@@ -13,11 +13,11 @@
 	<td width="10"></td>
   </tr>
 
-<% @client.registered_classes.each do |registered_class| %>
+<% @client.registered_classes.all(:include => :scheduled_course, :order => "scheduled_courses.course_date DESC").each do |registered_class| %>
   <tr>
-    <td><%=h registered_class.course.name unless registered_class.course.nil? %></td>
+    <td><%=h registered_class.scheduled_course.course_name if registered_class.scheduled_course %></td>
 	<td width="10"></td>
-    <td><%=h registered_class.class_date.strftime("%m/%d/%Y") unless registered_class.class_date.nil? %></td>
+    <td><%=h registered_class.scheduled_course.course_date_str if registered_class.scheduled_course %></td>
 	<td width="10"></td>
     <td align="center"><%=h registered_class.completed_value %></td>
 	<td width="10"></td>

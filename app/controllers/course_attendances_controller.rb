@@ -58,18 +58,18 @@ class CourseAttendancesController < ApplicationController
 	  end
 		
 		if from_date and to_date
-			conditions = ["course_id = ? and class_date between ? and ?", @course_search.course_id, from_date, to_date]
+			conditions = ["course_id = ? and course_date between ? and ?", @course_search.course_id, from_date, to_date]
 		else
 			if from_date
-				conditions = ["course_id = ? and class_date >= ?", @course_search.course_id, from_date]
+				conditions = ["course_id = ? and course_date >= ?", @course_search.course_id, from_date]
 			elsif to_date
-				conditions = ["course_id = ? and class_date <= ?", @course_search.course_id, to_date]
+				conditions = ["course_id = ? and course_date <= ?", @course_search.course_id, to_date]
 			else
 				conditions = ["course_id = ?", @course_search.course_id]
 			end
 		end
 		
-		@attendances = RegisteredClass.find(:all, :conditions=>conditions )
+		@attendances = ScheduledCourse.find(:all, :conditions=>conditions, :order=>"course_date desc" )
 	end
 	
 	

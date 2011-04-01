@@ -1,12 +1,12 @@
 # == Schema Information
-# Schema version: 20100912050644
+# Schema version: 20110331225232
 #
 # Table name: assigned_resources
 #
 #  id                    :integer(4)      not null, primary key
 #  client_id             :integer(4)
 #  resource_type_id      :integer(4)
-#  amount                :integer(4)
+#  amount                :float
 #  number                :integer(4)
 #  verified              :boolean(1)
 #  required_verification :boolean(1)

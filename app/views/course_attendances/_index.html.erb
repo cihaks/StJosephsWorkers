@@ -15,19 +15,23 @@
   </div>
   <br/>
   <table>
-    <tr>
-	  <td class="fieldlabel"><b>Class Date</b></td>
-	  <td width="10"></td>
-	  <td class="fieldLabel"><b>Class Name</b></td>
-	  <td width="10"></td>
-	  <td class="fieldLabel"><b>Client</b></td>
-	  <td width="10"></td>
-	  <td class="fieldLabel"><b>Status</b></td>
-	</tr>
 	<% @attendances.each do |attendance| %>
-	  <tr id="attendance-<%= attendance.id %>">
-		<%= render :partial=>'course_attendances/attendance', :object => attendance %>
+	  <tr>
+		<td class="fieldLabel"><%=h attendance.course_date_str %></td>
+		<td class="fieldData">Attendees: <%=h attendance.registered_classes.size %></td>
 	  </tr>
+	  <tr>
+		<td colspan="10">
+			<table width="100%">
+				<% attendance.registered_classes.each do |registrant| %>
+					<tr id="attendance-<%= registrant.id %>">
+						<%= render :partial=>'/course_attendances/attendance', :object => registrant %>
+					</tr>
+				<% end %>
+			</table>
+		</td>
+	  </tr>
+	  <tr><td colspan="10" height="20"><hr></td></tr>
 	<% end %>
   </table>
 </div>
