@@ -1,0 +1,43 @@
+<br />
+<%= will_paginate @scheduled_courses, :remote => {:method=>:get, :update => 'item_list'} %>
+<table>
+  <tr>
+    <td class="fieldLabel">Course</td>
+	<td width="10"></td>
+    <td class="fieldLabel">Date<br/>Time</td>
+	<td width="10"></td>
+    <td class="fieldLabel">Teacher</td>
+	<td width="10"></td>
+    <td class="fieldLabel">Location</td>
+	<td width="10"></td>
+    <td class="fieldLabel">Capacity</td>
+	<td width="10"></td>
+	<td class="fieldLabel">Current<br/>Size</td>
+  </tr>
+
+<% @scheduled_courses.each do |scheduled_course| %>
+  <tr>
+    <td><%=h scheduled_course.course_name %></td>
+	<td width="10"></td>
+    <td width="115"><%=h scheduled_course.course_date.strftime("%a %m/%d/%Y %I:%M %p") if scheduled_course.course_date %></td>
+	<td width="10"></td>
+    <td><%=h scheduled_course.teacher %></td>
+	<td width="10"></td>
+    <td><%=h scheduled_course.location %></td>
+	<td width="10"></td>
+    <td><%=h scheduled_course.capacity %></td>
+	<td width="10"></td>
+	<td><%=h scheduled_course.registered_classes.size if scheduled_course.registered_classes%>
+	<td width="10"></td>
+    <td><%= link_to 'Show', scheduled_course %></td>
+    <td><%= link_to 'Edit', edit_scheduled_course_path(scheduled_course) %></td>
+    <td><%= link_to 'Destroy', scheduled_course, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+  <tr><td colspan="20"><hr></td></tr>
+<% end %>
+
+</table>
+<%= will_paginate @scheduled_courses, :remote => {:method=>:get, :update => 'item_list'} %>
+<br />
+
+<br />

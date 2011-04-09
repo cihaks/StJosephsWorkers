@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20100912050644
+# Schema version: 20110331225232
 #
 # Table name: address_types
 #

@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20100912050644
+# Schema version: 20110331225232
 #
 # Table name: clients
 #
@@ -33,7 +33,7 @@ class Client < ActiveRecord::Base
   has_many :contacts, :order => "contact_date DESC, id DESC", :dependent=>:destroy
 
   has_many :assigned_resources, :order => "resource_date DESC, id DESC", :dependent=>:destroy
-  has_many :registered_classes, :order => "class_date DESC, updated_at DESC, id DESC", :dependent=>:destroy
+  has_many :registered_classes, :dependent=>:destroy #TODO: determine order
   has_many :used_substances, :order => "sober_date DESC", :dependent=>:destroy
   has_many :crime_sentences, :order => "created_at DESC", :dependent=>:destroy
   has_many :assigned_agencies, :order => "updated_at DESC, id DESC", :dependent=>:destroy
@@ -45,7 +45,7 @@ class Client < ActiveRecord::Base
   has_many :resource_types, :through => :assigned_resources, :uniq => true
   has_many :substances, :through => :used_substances, :uniq => true
   has_many :agencies, :through => :assigned_agencies, :uniq => true
-  has_many :courses, :through => :registered_classes, :source => :course, :uniq => true
+  has_many :scheduled_courses, :through => :registered_classes, :source => :scheduled_course, :uniq => true
 
 	accepts_nested_attributes_for :contacts, :allow_destroy=>true, :reject_if=>lambda { |a| a[:note].blank? }
 	accepts_nested_attributes_for :registered_classes, :allow_destroy=>true, :reject_if=>lambda { |a| a[:class_date].blank? or a[:course_id].blank? }

@@ -1,0 +1,15 @@
+<p>
+  <%= f.collection_select(:course_id,Course.all,:id,:name, :label=>"Course") %>
+</p>
+<p>
+  <%= f.text_field :capacity, :label=>"Number of Seats", :size=>10 %>
+</p>
+<p>
+  <%= f.calendar_date_select :course_date, :label=>"Course Date/Time", :time=>true, :size=>30 %>
+</p>
+<p>
+  <%= f.text_field :teacher %>
+</p>
+<p>
+  <%= f.text_field :location %>
+</p>

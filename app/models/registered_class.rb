@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20100912050644
+# Schema version: 20110331225232
 #
 # Table name: registered_classes
 #
@@ -15,11 +15,10 @@
 #
 
 class RegisteredClass < ActiveRecord::Base
-  belongs_to :course
+  belongs_to :scheduled_course
   belongs_to :client
 
-	validates_date :class_date
-	validates_presence_of :course
+	validates_presence_of :scheduled_course, :client
   
   def completed_value
     if completed == '0'

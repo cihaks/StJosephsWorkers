@@ -1,0 +1,31 @@
+<p>
+  <b>Course:</b>
+  <%=h @scheduled_course.course.name if @scheduled_course.course %>
+</p>
+
+<p>
+  <b>Course date:</b>
+  <%=h @scheduled_course.course_date.strftime("%A %B %d, %Y at %I:%M %p") if @scheduled_course.course_date %>
+</p>
+
+<p>
+  <b>Teacher:</b>
+  <%=h @scheduled_course.teacher %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%=h @scheduled_course.location %>
+</p>
+
+<p>
+  <b>Capacity:</b>
+  <%=h @scheduled_course.capacity %>
+</p>
+
+<p>
+  <b>Current Size:</b>
+  <%=h @scheduled_course.registered_classes.size %>
+</p>
+
+<br/>

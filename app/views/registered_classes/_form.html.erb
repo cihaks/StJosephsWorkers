@@ -1,12 +1,9 @@
 <table>
   <tr>
 	<td valign="top">
-  	  <%= f.collection_select(:course_id, Course.all, :id, :name, { :prompt => true, :label=>"Class" }) %>
+  	  <%= f.collection_select(:scheduled_course_id, ScheduledCourse.find(:all, :order=>"course_date desc"), :id, :full_name, { :prompt => true, :label=>"Class" }) %>
 	</td>
 	<td width="10"></td>
-	<td valign="top">
-  	  <%= f.calendar_date_select :class_date, :size=>"13", :label=>"Class Date" %>
-	</td>
 	<% unless @registered_class and @registered_class.new_record? %>
 	<td width="10"></td>
 	<td valign="top">

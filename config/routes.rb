@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  
 
 
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
@@ -30,6 +31,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :races
   map.resources :resource_types
   map.resources :prisons
+	map.resources :scheduled_courses
   map.resources :shelters
   map.resources :states
   map.resources :status_types

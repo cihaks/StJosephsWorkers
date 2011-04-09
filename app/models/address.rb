@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20100912050644
+# Schema version: 20110331225232
 #
 # Table name: addresses
 #
@@ -10,7 +10,6 @@
 #  address1        :string(255)
 #  address2        :string(255)
 #  city            :string(255)
-#  address_type    :string(255)
 #  zip_code        :integer(8)
 #  primary_ind     :boolean(1)
 #  current_ind     :boolean(1)

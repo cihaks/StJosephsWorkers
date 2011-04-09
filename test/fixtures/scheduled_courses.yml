@@ -1,0 +1,30 @@
+# == Schema Information
+# Schema version: 20110331225232
+#
+# Table name: scheduled_courses
+#
+#  id          :integer(4)      not null, primary key
+#  course_id   :integer(4)
+#  capacity    :integer(4)
+#  course_date :date
+#  teacher     :string(255)
+#  location    :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  course_id: 1
+  capacity: 1
+  course_date: 2011-03-31
+  teacher: MyString
+  location: MyString
+
+two:
+  course_id: 1
+  capacity: 1
+  course_date: 2011-03-31
+  teacher: MyString
+  location: MyString
