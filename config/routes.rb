@@ -60,6 +60,7 @@ ActionController::Routing::Routes.draw do |map|
 		reports.resources :overfill_class
 		reports.resources :new_hires
 		reports.resources :follows
+		reports.resources :distinct_detail
 	end
 
 	map.delete_clients 'delete_clients', :controller => 'delete_clients'

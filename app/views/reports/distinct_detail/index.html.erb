@@ -1,0 +1,17 @@
+<table cellspacing="2">
+  <tr> 
+<%#	<%= "<th>Distinct Client Contacts by Month</th>" unless @client %> 
+
+	<th>Month</th>
+	<th>Name</th>	
+  </tr>
+
+  <% @disclientdetail.each do |resource| %>
+  <tr>
+	<td><%= resource.created_at1 %></td>
+	<td><%= resource.client.name %></td>
+  </tr>
+	<td colspan="10"><hr></td>
+  <% end %>
+</table>
+

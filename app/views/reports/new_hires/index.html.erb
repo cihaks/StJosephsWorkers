@@ -12,8 +12,6 @@
 	<th>Name</th>
 	<th>Company</th>	
 	<th>Job_Type</th>
-	<th>Pay_Scale_Low</th>		
-	<th>Pay_Scale_High</th>			
   </tr>
 
   <% @new_hires.each do |resource| %>
@@ -22,8 +20,6 @@
 	<td><%= resource.client.name %></td>
 	<td><%= resource.company_name %></td>	
 	<td><%= resource.job_type.name %></td>
-	<td><%= resource.pay_scale_low %></td>		
-	<td><%= resource.pay_scale_high %></td>			
   </tr>
 	<td colspan="10"><hr></td>
   <% end %>
