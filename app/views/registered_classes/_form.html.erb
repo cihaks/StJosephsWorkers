@@ -1,7 +1,7 @@
 <table>
   <tr>
 	<td valign="top">
-  	  <%= f.collection_select(:scheduled_course_id, ScheduledCourse.find(:all, :order=>"course_date desc"), :id, :full_name, { :prompt => true, :label=>"Class" }) %>
+  	  <%= f.collection_select(:scheduled_course_id, ScheduledCourse.find(:all, :conditions=>["course_date > ?", Time.now - 1.week], :order=>"course_date desc"), :id, :full_name, { :prompt => true, :label=>"Class" }) %>
 	</td>
 	<td width="10"></td>
 	<% unless @registered_class and @registered_class.new_record? %>
