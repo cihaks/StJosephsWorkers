@@ -33,9 +33,10 @@ class ScheduledCourse < ActiveRecord::Base
 		begin
 			conditions = ["course_date >= ? ", DateTime.strptime("#{search}", "%m/%d/%Y")]
 		rescue
-			conditions = []
+			conditions = ["courses.name like ? ", "%#{search}%"]
 		end
     paginate :per_page=>page_limit, :page=>page,
+						 :include=>:course,
              :conditions => conditions,
              :order => 'course_date desc'
   end
