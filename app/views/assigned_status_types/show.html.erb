@@ -1,0 +1,23 @@
+<p>
+  <b>Status type:</b>
+  <%=h @assigned_status_type.status_type_id %>
+</p>
+
+<p>
+  <b>Client:</b>
+  <%=h @assigned_status_type.client_id %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%=h @assigned_status_type.start_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%=h @assigned_status_type.end_date %>
+</p>
+
+
+<%= link_to 'Edit', edit_assigned_status_type_path(@assigned_status_type) %> |
+<%= link_to 'Back', assigned_status_types_path %>

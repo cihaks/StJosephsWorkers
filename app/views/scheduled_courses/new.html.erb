@@ -1,12 +1,87 @@
 
 <% form_for(@scheduled_course) do |f| %>
   <%= f.error_messages %>
-
-  <%= render :partial=>"/scheduled_courses/form", :locals=>{ :f => f } %>
-
+	
+	<p>Courses are set up as recurring, please enter the start date, the frequency, and the number of occurrences</p>
+	
+	<p>
+		<%= label_tag "Start Date"%><br />
+	  <%= calendar_date_select_tag :start_date %>
+	</p>
+	
+	<p>
+		<%= label_tag "Frequency" %><br />
+		<%= select_tag "frequency", "<option>weekly</option><option>biweekly</option><option>monthly</option>" %>
+	</p>
+	
+	<div id="weekly">
+		<p>
+			<%= label_tag "Schedule on" %><br />
+		  <%= radio_button_tag "weekly_on", "Sunday" %> Sunday<br />
+			<%= radio_button_tag "weekly_on", "Monday" %> Monday<br />
+			<%= radio_button_tag "weekly_on", "Tuesday" %> Tuesday<br />
+			<%= radio_button_tag "weekly_on", "Wednesday" %> Wednesday<br />
+			<%= radio_button_tag "weekly_on", "Thursday" %> Thursday<br />
+			<%= radio_button_tag "weekly_on", "Friday" %> Friday<br />
+			<%= radio_button_tag "weekly_on", "Saturday" %> Saturday
+		</p>
+	</div>
+	<div id="biweekly" style="display: none;">
+		<p>
+			<%= label_tag "Schedule on" %><br />
+		  <%= radio_button_tag "biweekly_on", "Sunday" %> Sunday<br />
+			<%= radio_button_tag "biweekly_on", "Monday" %> Monday<br />
+			<%= radio_button_tag "biweekly_on", "Tuesday" %> Tuesday<br />
+			<%= radio_button_tag "biweekly_on", "Wednesday" %> Wednesday<br />
+			<%= radio_button_tag "biweekly_on", "Thursday" %> Thursday<br />
+			<%= radio_button_tag "biweekly_on", "Friday" %> Friday<br />
+			<%= radio_button_tag "biweekly_on", "Saturday" %> Saturday
+		</p>
+	</div>
+	<div id="monthly" style="display: none;">
+		<p>
+			<%= label_tag "Schedule on day of the month" %><br />
+		  <%= select_tag "monthly_on", options_for_select((1..31).to_a ) %><br />
+		</p>
+	</div>
+	
+	<p>
+		<%= label_tag "Number of Occurrences" %><br />
+		<%= text_field_tag "occurrences" %>
+	</p>
+	
+	<p>
+		<%= label_tag "Start Time" %><br />
+		<%= select_time 12.hours, :prompt=>true, :prefix=>"start_time" %>
+	</p>
+	
+	<p>
+	  <%= f.collection_select(:course_id,Course.all,:id,:name, :label=>"Course") %>
+	</p>
+	
+	<p>
+	  <%= f.text_field :capacity, :label=>"Number of Seats", :size=>10 %>
+	</p>
+	
+	<p>
+	  <%= f.text_field :teacher %>
+	</p>
+	
+	<p>
+	  <%= f.text_field :location %>
+	</p>
+	
   <p>
     <%= f.submit 'Create' %>
   </p>
 <% end %>
 
 <br/>
+<script type="text/javascript">
+	$('frequency').observe('change', function(event){
+		$('weekly').hide();
+		$('biweekly').hide();
+		$('monthly').hide();
+		$(this.value).show();
+	});
+</script>

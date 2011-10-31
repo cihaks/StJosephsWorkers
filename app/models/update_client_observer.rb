@@ -1,6 +1,6 @@
 class UpdateClientObserver < ActiveRecord::Observer
   
-  observe :address,:picture,:phone,:contact,:assigned_resource,:registered_class,:used_substance,:crime_sentence,:assigned_agency,:job,:app_interview
+  observe :address,:picture,:phone,:contact,:assigned_resource,:assigned_status_type,:registered_class,:used_substance,:crime_sentence,:assigned_agency,:job,:app_interview
   
   def before_save(record)
     if record.new_record?
@@ -15,7 +15,7 @@ class UpdateClientObserver < ActiveRecord::Observer
   end
   
   def after_save(record)
-    if !record.client.nil?
+		if !record.client.nil?
       record.client.updated_at = Time.now
       record.client.save
       generate_log(record)
@@ -31,4 +31,5 @@ class UpdateClientObserver < ActiveRecord::Observer
   def generate_log(record)
     ActivityLog.create :action=>@action, :model_name=>record.class.name, :client_id => record.client_id, :model_id => record.id
   end
+
 end

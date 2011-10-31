@@ -17,16 +17,19 @@
 #
 
 class StatusType < ActiveRecord::Base
-  has_and_belongs_to_many :clients
+  has_many :assigned_status_types
   has_many :resource_types  # 1 to 0 or more association
   has_attached_file :icon
   
 	validates_uniqueness_of :name, :case_sensitive=>false, :allow_blank=>false
 	validates_presence_of :name
 	
+	accepts_nested_attributes_for :assigned_status_types
+	
   def self.search(search, page, page_limit)
     paginate :per_page=>page_limit, :page=>page,
-             :conditions => ["name LIKE ? ", "%#{search}%"],
-             :order => 'name'
+             :conditions => ["name LIKE ?", "%#{search}%"],
+             :order => 'name, inactive'
   end
+
 end

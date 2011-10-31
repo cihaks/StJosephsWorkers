@@ -37,21 +37,29 @@ class ScheduledCoursesController < SecurityController
   #   @scheduled_course = ScheduledCourse.find(params[:id])
   # end
   # 
-  # # POST /scheduled_courses
-  # # POST /scheduled_courses.xml
-  # def create
-  #   @scheduled_course = ScheduledCourse.new(params[:scheduled_course])
-  # 
-  #   respond_to do |format|
-  #     if @scheduled_course.save
-  #       format.html { redirect_to(@scheduled_course, :notice => 'ScheduledCourse was successfully created.') }
-  #       format.xml  { render :xml => @scheduled_course, :status => :created, :location => @scheduled_course }
-  #     else
-  #       format.html { render :action => "new" }
-  #       format.xml  { render :xml => @scheduled_course.errors, :status => :unprocessable_entity }
-  #     end
-  #   end
-  # end
+  # POST /scheduled_courses
+  # POST /scheduled_courses.xml
+  def create
+		
+		puts params
+		{"occurrences"=>"4", 
+			"scheduled_course"=>{"location"=>"", "teacher"=>"", "course_date"=>"08/01/2011 9:13 AM", "capacity"=>"10", "course_id"=>"3"}, 
+			"weekly_on"=>"Tuesday", 
+			"frequency"=>"weekly", 
+			"monthly_on"=>"1"}
+		
+    # @scheduled_course = ScheduledCourse.new(params[:scheduled_course])
+    #   
+    # respond_to do |format|
+    #   if @scheduled_course.save
+    #     format.html { redirect_to(@scheduled_course, :notice => 'ScheduledCourse was successfully created.') }
+    #     format.xml  { render :xml => @scheduled_course, :status => :created, :location => @scheduled_course }
+    #   else
+    #     format.html { render :action => "new" }
+    #     format.xml  { render :xml => @scheduled_course.errors, :status => :unprocessable_entity }
+    #   end
+    # end
+  end
   # 
   # # PUT /scheduled_courses/1
   # # PUT /scheduled_courses/1.xml

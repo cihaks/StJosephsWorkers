@@ -3,28 +3,32 @@
 <table>
   <tr>
     <td class="fieldLabel">Name</td>
-	<td width="10"></td>
+		<td width="10"></td>
     <td class="fieldLabel">Description</td>
-	<td width="10"></td>
+		<td width="10"></td>
     <td class="fieldLabel">Category</td>
-	<td width="10"></td>
+		<td width="10"></td>
     <td class="fieldLabel">Icon</td>
-	<td width="10"></td>
+		<td width="10"></td>
+    <td class="fieldLabel">Inactive</td>
+		<td width="10"></td>
   </tr>
 
 <% @status_types.each do |status_type| %>
   <tr>
     <td><%=h status_type.name %></td>
-	<td width="10"></td>
+		<td width="10"></td>
     <td><%=h status_type.description %></td>
-	<td width="10"></td>
+		<td width="10"></td>
     <td><%=h status_type.category %></td>
-	<td width="10"></td>
+		<td width="10"></td>
     <td><%= image_tag status_type.icon.url, :size=>"24x24" unless status_type.icon_file_name.blank? %></td>
-	<td width="10"></td>
+		<td width="10"></td>
+    <td><%= check_box_tag :inactive, 'true', status_type.inactive, :onclick=>"return false;" %></td>
+		<td width="10"></td>
     <td><%= link_to 'Show', status_type %></td>
     <td><%= link_to 'Edit', edit_status_type_path(status_type) %></td>
-    <td><%= link_to 'Delete', status_type, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Disable', status_type, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

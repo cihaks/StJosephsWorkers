@@ -1,0 +1,26 @@
+<h1>Listing assigned_status_types</h1>
+
+<table>
+  <tr>
+    <th>Status type</th>
+    <th>Client</th>
+    <th>Start date</th>
+    <th>End date</th>
+  </tr>
+
+<% @assigned_status_types.each do |assigned_status_type| %>
+  <tr>
+    <td><%=h assigned_status_type.status_type_id %></td>
+    <td><%=h assigned_status_type.client_id %></td>
+    <td><%=h assigned_status_type.start_date %></td>
+    <td><%=h assigned_status_type.end_date %></td>
+    <td><%= link_to 'Show', assigned_status_type %></td>
+    <td><%= link_to 'Edit', edit_assigned_status_type_path(assigned_status_type) %></td>
+    <td><%= link_to 'Destroy', assigned_status_type, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New assigned_status_type', new_assigned_status_type_path %>
