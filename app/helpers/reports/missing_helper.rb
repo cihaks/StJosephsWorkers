@@ -1,0 +1,2 @@
+module Reports::MissingHelper
+end

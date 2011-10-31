@@ -1,0 +1,85 @@
+
+
+<br>&nbsp</br>
+<br>&nbsp</br>
+<a href="#30Days">30 Days Section</a>
+<br>&nbsp</br>
+<br>&nbsp</br>
+<a href="#60Days">60 Days Section</a>
+<br>&nbsp</br>
+<br>&nbsp</br>
+<br>&nbsp</br>
+<br>&nbsp</br>
+
+
+<table cellspacing="2">
+  <tr> 
+<%#	<%= "<th>Missing Clients</th>" %> 
+
+<th> <a name="30Days">No Contact for 30 Days</a> </th>
+
+  </tr>
+  <tr> 
+	<th></th>
+	<th>Name</th>	
+	<th>Birth Date</th>		
+	<th>Date Added</th>		
+    <th>Updated At</th>	
+ </tr>
+
+  <% @missing.each do |resource| %>
+  <tr>
+  	<td>
+  	</td>
+	<td><%= resource.client.name %></td> 
+<!--    <td><%= link_to_remote resource.client.name, :url=>client_path(resource.client),:method=> 'get' %> </td> -->
+	<td><%= resource.client.birth_date %></td>
+ 	<td><%= resource.client.created_at.strftime("%m/%d/%Y") %></td>
+ 	<td><%= resource.client.updated_at.strftime("%m/%d/%Y") %></td>
+ </tr>
+	<td colspan="10"><hr></td>
+  <% end %>
+ 
+</table>
+
+<br>&nbsp</br>
+<br>&nbsp</br>
+<br>&nbsp</br>
+<br>&nbsp</br>
+<br>&nbsp</br>
+<br>&nbsp</br>
+<br>&nbsp</br>
+
+<table cellspacing="2">
+  <tr> 
+<%#	<%= "<th>Missing Clients</th>" %> 
+
+<th> <a name="60Days">No Contact for 60 Days</a> </th>
+
+  </tr>
+  <tr> 
+	<th></th>
+	<th>Name</th>	
+	<th>Birth Date</th>		
+	<th>Date Added</th>
+	<th>Updated At</th>					
+ </tr>
+
+  <% @missing6.each do |resource| %>
+  <tr>
+  	<td>
+  	</td>	
+	<td><%= resource.client.name %></td>
+	<td><%= resource.client.birth_date %></td>
+ 	<td><%= resource.client.created_at.strftime("%m/%d/%Y") %></td>
+    <td><%= resource.client.updated_at.strftime("%m/%d/%Y") %></td>
+ </tr>
+	<td colspan="10"><hr></td>
+  <% end %>
+</table>
+
+
+
+<%= @outstring %>
+<%= @outstringa %>
+<%= @outstringb %>

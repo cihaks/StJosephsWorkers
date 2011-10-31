@@ -57,6 +57,7 @@ ActionController::Routing::Routes.draw do |map|
 		reports.resources :distinctclientcontact				
 		reports.resources :workshopcomplete
 		reports.resources :successes
+		reports.resources :missing
 		reports.resources :wirc_intake
 		reports.resources :hwp_intake
 		reports.resources :overfill_class
