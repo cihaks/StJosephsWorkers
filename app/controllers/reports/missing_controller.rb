@@ -26,13 +26,13 @@ class Reports::MissingController < ApplicationController
 
 
 
-          @missingclients=Contact.find_by_sql("select distinct client_id from contacts where contact_type_id in (4,6) and contact_date <> '2011-01-16' and contact_date > date_sub(curdate(),interval 365 day) and client_id not in
-          (select distinct client_id from contacts where contact_type_id in (4,6) and contact_date <> '2011-01-16' and contact_date >= date_sub(curdate(),interval 30 day))")
+          @missingclients=Contact.find_by_sql("select distinct client_id from contacts where contact_type_id in (4,6) and contact_date > '2011-01-16' and contact_date > date_sub(curdate(),interval 365 day) and client_id not in
+          (select distinct client_id from contacts where contact_type_id in (4,6) and contact_date >= date_sub(curdate(),interval 30 day))")
          
           @missing=@missingclients.sort_by { |n| [n.client.name]}
 
-          @missingclients6=Contact.find_by_sql("select distinct client_id from contacts where contact_type_id in (4,6) and contact_date <> '2011-01-16' and contact_date > date_sub(curdate(),interval 365 day) and client_id not in
-          (select distinct client_id from contacts where contact_type_id in (4,6) and contact_date <> '2011-01-16' and contact_date >= date_sub(curdate(),interval 60 day))")
+          @missingclients6=Contact.find_by_sql("select distinct client_id from contacts where contact_type_id in (4,6) and contact_date > '2011-01-16' and contact_date > date_sub(curdate(),interval 365 day) and client_id not in
+          (select distinct client_id from contacts where contact_type_id in (4,6) and contact_date >= date_sub(curdate(),interval 60 day))")
          
           @missing6=@missingclients6.sort_by { |m| [m.client.name]}
 
