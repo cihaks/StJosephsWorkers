@@ -38,12 +38,13 @@
       </td>
 	  <td width="10"></td>
 	  <td valign="top">
-		<%= f.label :status_types, "Status" %><br/>
+		<%= f.label :assigned_status_types, "Status" %><br/>
 		<div class="scrollable">
-		  <% StatusType.find(:all,:order=>:name).each do |status_type| %>
-			<%= check_box_tag "client[status_type_ids][]", status_type.id, @client.status_types.include?(status_type) %>
-			<%= status_type.name %>
-			<br/>
+			<% active_statuses = @client.active_status_types %>
+		  <% StatusType.find(:all,:conditions=>["inactive = false"],:order=>:name).each do |status_type| %>
+				<%= check_box_tag "client[new_status_type_ids][]", status_type.id, active_statuses.include?(status_type) %>
+				<%= status_type.name %>
+				<br/>
 		  <% end %>
 		</div>
 	  </td>

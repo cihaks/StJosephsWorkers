@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110401053159) do
+ActiveRecord::Schema.define(:version => 20110913065732) do
 
   create_table "activity_logs", :force => true do |t|
     t.integer  "client_id"
@@ -104,6 +104,17 @@ ActiveRecord::Schema.define(:version => 20110401053159) do
   create_table "assigned_resources_industries", :id => false, :force => true do |t|
     t.integer "assigned_resource_id"
     t.integer "industry_id"
+  end
+
+  create_table "assigned_status_types", :force => true do |t|
+    t.integer  "status_type_id"
+    t.integer  "client_id"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "creator_id"
+    t.integer  "updater_id"
   end
 
   create_table "benefits_types", :force => true do |t|
@@ -489,6 +500,7 @@ ActiveRecord::Schema.define(:version => 20110401053159) do
     t.string   "icon_content_type"
     t.integer  "icon_file_size"
     t.string   "category"
+    t.boolean  "inactive",          :default => false
   end
 
   create_table "substances", :force => true do |t|

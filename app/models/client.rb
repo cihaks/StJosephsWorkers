@@ -40,9 +40,13 @@ class Client < ActiveRecord::Base
   has_many :jobs, :order => "start_date DESC", :dependent=>:destroy
 	has_many :app_interviews, :order => "meeting_date DESC", :dependent=>:destroy
 
-  has_and_belongs_to_many :status_types
+  #has_and_belongs_to_many :status_types
+  has_many :assigned_status_types, :dependent=>:destroy
+  has_many :status_types, :through => :assigned_status_types, :uniq => false
+  has_many :active_status_types, :through => :assigned_status_types, 
+							:source => :status_type, :conditions => ['end_date is null and start_date <= ?', Date.today], :uniq => true
 
-  has_many :resource_types, :through => :assigned_resources, :uniq => true
+	has_many :resource_types, :through => :assigned_resources, :uniq => true
   has_many :substances, :through => :used_substances, :uniq => true
   has_many :agencies, :through => :assigned_agencies, :uniq => true
   has_many :scheduled_courses, :through => :registered_classes, :source => :scheduled_course, :uniq => true

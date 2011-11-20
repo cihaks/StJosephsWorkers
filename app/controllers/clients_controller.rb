@@ -87,18 +87,37 @@ class ClientsController < ApplicationController
   # PUT /clients/1
   # PUT /clients/1.xml
   def update
-    params[:client][:status_type_ids] ||= []
+    #params[:client][:assigned_status_types] ||= ["1"=>{"status_type_id"}]
     
     @client = Client.find(params[:id])
 
+		new_types = params[:client][:new_status_type_ids]
+		new_types ||= []
+		
+		params[:client].delete :new_status_type_ids
+
     respond_to do |format|
       if @client.update_attributes(params[:client])
+				new_types.each do |type_id|
+					status = StatusType.find(type_id)
+					@client.assigned_status_types << AssignedStatusType.new(:start_date => Time.now, :status_type=>status) unless @client.active_status_types.include?(status)
+				end
+				
+				@client.assigned_status_types.each do |old_status_type|
+					if old_status_type.end_date.nil?
+						old_status_type.deassign unless new_types.include?(old_status_type.status_type_id.to_s)
+					end
+				end
+				@client.save
+				
         flash[:notice] = 'Client was successfully updated.'
         format.html { redirect_to(@client) }
         format.xml  { head :ok }
         format.js do
           render :update do |page|
             page.replace_html "client-element", :partial=>'/clients/show'
+						#replace client header as well
+						page.replace 'client-header', :partial=>'/shared/banner_client'
           end
         end
       else

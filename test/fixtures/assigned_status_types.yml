@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  status_type_id: 1
+  client_id: 1
+  start_date: 2011-08-25
+  end_date: 2011-08-25
+
+two:
+  status_type_id: 1
+  client_id: 1
+  start_date: 2011-08-25
+  end_date: 2011-08-25

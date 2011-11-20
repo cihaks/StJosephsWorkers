@@ -7,7 +7,7 @@
 		<%= render :partial=>'clients/client_icons', :locals=>{:client=>@client} %>
 	</div>
 	<div class="icons" style="float:right;" id="client_status">
-		<% @client.status_types.each do |status_type| %>
+		<% @client.active_status_types.each do |status_type| %>
 		  <%= status_type.name if status_type.icon_file_name.blank? %>
 		<% end %>
 	</div>
