@@ -1,0 +1,2 @@
+module Reports::ClientsByStatusHelper
+end

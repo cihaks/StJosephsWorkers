@@ -8,6 +8,7 @@
   <%= stylesheet_link_tag 'stjoesmain2' %>
   <%= javascript_include_tag :defaults %>
   <%= javascript_include_tag 'busy_ajax' %>
+  <%= javascript_include_tag "fusioncharts"%>
   <%= calendar_date_select_includes :red %>
 </head>
 <body>
@@ -16,8 +17,9 @@
 	<%= render 'shared/navigation' %>
 	
 	<div id="content">
-		<%= "<h1>#{@title}</h1><br/>" if @title %>
-		<%= yield %>
+		<div id="item_list" style="clear:right;">
+			<%= yield %>
+		</div>
 	</div>
 	
 	<div class="close"></div>

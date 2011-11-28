@@ -1,5 +1,44 @@
+<div>
+	<% form_tag url_for(:controller=>"/reports/distinct_detail/index") do |f| %>
+		<table>
+			<tr>
+				<td>
+					<table>
+						<tr>
+							<td>From Date:</td>
+							<td><%= calendar_date_select_tag :from_date, params[:from_date], :valid_date_check => "date > (new Date('1/16/2011'))" %></td>
+							
+						</tr>
+						<tr>
+							<td>To Date:</td>
+							<td><%= calendar_date_select_tag :to_date, params[:to_date], :valid_date_check => "date.stripTime() >= (new Date($('from_date').value)).stripTime()" %></td>
+						</tr>
+					</table>
+				</td>
+				<td>Contact Types:
+					<table>
+						<tr>
+							<% ContactType.all.each do |c_type| %>
+							<td>
+								<% is_checked = params["contact_types"].nil? ? true : params["contact_types"].include?(c_type.id.to_s) %>
+								<%= check_box_tag "contact_types[]", c_type.id, is_checked %><%= c_type.name %>
+							</td>
+							<% end %>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<table width="650px">
+			<tr>
+				<td colspan="2">
+					<%= submit_tag "Search" %>
+				</td>
+			</tr>
+		</table>
+	<% end %>
+</div>
 
-<%= javascript_include_tag "fusioncharts"%>
 
 <%
 # The xml is obtained as a string from builder template.

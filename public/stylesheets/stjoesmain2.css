@@ -370,3 +370,6 @@ vertical-align:top;
 td.userStamp {
 font-size:8pt;
 }
+.padRight8 {
+	padding-right: 8px;
+}

@@ -2,18 +2,17 @@ class Reports::SuccessesController < ApplicationController
     layout 'reports'
 
     def index
-#      @clients=Client.find_by_sql("select first_name, last_name from clients a, clients_status_types b where a.id=b.client_id
-#      and b.status_type_id=15")
-
-      @clients=StatusType.find(15).clients.paginate :per_page=>current_user.page_limit, :page=>params[:page], :order => 'last_name, first_name, middle_name'		
-      @office_visit = ContactType.find(:first, :conditions => ['name like ?','Office Visit%'])
-
       
+			status_type = StatusType.find(:first, :conditions=>['name like ?','%ucces%'])
+					
+      @clients=Client.search_status(status_type, params[:page], current_user.page_limit)
+			
+			@office_visit = ContactType.find(:first, :conditions => ['name like ?','Office Visit%'])
 
       respond_to do |format|
-#         format.html   
-        format.html {render 'clients/index'}
-        format.xml
+        format.html { render 'clients/index' }
+				format.js { render 'clients/index', :layout=>false }
+        format.xml 
       end
     end
 

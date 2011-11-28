@@ -14,6 +14,8 @@ class CrimeSentencesController < ApplicationController
     end
   end
   
+	#TODO need to update status if not marked as previously incarcerated...
+
   def set_section
     session[:infamy_section] = controller_name
   end

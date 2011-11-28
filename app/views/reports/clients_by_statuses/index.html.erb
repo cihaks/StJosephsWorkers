@@ -1,6 +1,5 @@
-<% # the client is never reaches this page %>
 <div>
-	<% form_tag url_for(:controller=>"/reports/successes") do |f| %>
+	<% form_tag url_for(:controller=>"/reports/clients_by_statuses/index") do |f| %>
 		<table>
 			<tr>
 				<td>
@@ -67,4 +66,19 @@
 		<% end %>
 <% end %>
 <br/>
+<% if @tabular == 'chart' then %>
+	<div style="clear:left;">
+	
+	<%
+	# The xml is obtained as a string from builder template.
+	str_xml = render "/reports/clients_by_statuses/index.xml.builder"
+	%>
+	
+	<% #Create the chart 
+	render_chart '/charts/FCF_MSColumn2D.swf' , '' , str_xml , 'ClientContact' ,  750 ,  400 ,  false, false do %>
 
+	<%  end %>
+
+	</div>
+<% end %>
+<br/>

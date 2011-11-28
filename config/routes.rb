@@ -1,8 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :assigned_status_types
-
-  
-
 
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new', :conditions => { :method => :get }
@@ -43,7 +39,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :clients, :has_many => [:addresses,:phones,:pictures,
                                         :assigned_agencies,:used_substances,
                                         :jobs, :app_interviews, :assigned_resources,
-                                        :contacts,:registered_classes,:crime_sentences]
+                                        :contacts,:registered_classes,:crime_sentences,
+																				:assigned_status_types]
 
   map.resources :job_rates  #add to jobs route....
 
@@ -64,6 +61,7 @@ ActionController::Routing::Routes.draw do |map|
 		reports.resources :new_hires
 		reports.resources :follows
 		reports.resources :distinct_detail
+		reports.resources :clients_by_statuses
 	end
 
 	map.delete_clients 'delete_clients', :controller => 'delete_clients'

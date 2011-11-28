@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110913065732) do
+ActiveRecord::Schema.define(:version => 20110913070044) do
 
   create_table "activity_logs", :force => true do |t|
     t.integer  "client_id"
@@ -141,17 +141,6 @@ ActiveRecord::Schema.define(:version => 20110913065732) do
     t.boolean  "deleted"
     t.string   "work_note",          :limit => 2048
     t.integer  "work_history_id"
-  end
-
-  create_table "clients_status_types", :id => false, :force => true do |t|
-    t.integer  "client_id"
-    t.integer  "status_type_id"
-    t.date     "start_date"
-    t.date     "end_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "creator_id"
-    t.integer  "updater_id"
   end
 
   create_table "clothings", :force => true do |t|

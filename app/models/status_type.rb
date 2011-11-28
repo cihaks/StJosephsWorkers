@@ -31,5 +31,8 @@ class StatusType < ActiveRecord::Base
              :conditions => ["name LIKE ?", "%#{search}%"],
              :order => 'name, inactive'
   end
-
+	
+	def <=>(other)
+		name <=> other.name
+	end
 end

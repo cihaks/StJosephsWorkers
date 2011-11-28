@@ -121,4 +121,21 @@ class Client < ActiveRecord::Base
              :conditions => [search_condition, search_values],
              :order => 'last_name, first_name, middle_name'
   end
+
+	def self.search_status(status, page, page_limit, active_date = Date.today, admin = false)
+    search_condition = "(assigned_status_types.status_type_id = :status_id and assigned_status_types.start_date <= :active_date and (assigned_status_types.end_date is null or assigned_status_types.end_date >= :active_date))"
+    search_values = {:status_id=>status.id, :active_date => active_date}
+    
+		unless admin
+			search_condition = search_condition + " and (deleted = false or deleted is null)"
+		else
+			search_condition = search_condition + " and deleted = true"
+		end
+		
+    paginate :per_page=>page_limit, :page=>page,
+						 :select => 'clients.*',
+						 :include=>:assigned_status_types,
+             :conditions => [search_condition, search_values],
+             :order => 'last_name, first_name, middle_name'
+  end
 end

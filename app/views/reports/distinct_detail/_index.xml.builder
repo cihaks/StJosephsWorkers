@@ -10,9 +10,7 @@ options = {
 }
 
 xml.graph(options) do
-  @disclientcontact_months.each do |month, clicon|
-#      total_count = total_count + clicon.length
-      total_count = clicon.length
-      xml.set(:name=>month, :value=>total_count)
-  end
+	@disclientdetail.group_by{ |r| r.contact_date.beginning_of_month }.sort.each do |contact_month, clients|
+		xml.set(:name=>contact_month.strftime("%b %Y"), :value=>clients.size)
+	end
 end

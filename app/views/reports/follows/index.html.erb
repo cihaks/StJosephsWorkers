@@ -1,20 +1,107 @@
-<table cellspacing="2">
-  <tr>
-<%#	<%= "<th>Contact Information</th>" unless @follows %> 
+<div>
+	<% form_tag url_for(:controller=>"/reports/follows/index") do |f| %>
+		<table>
+			<tr>
+				<td>
+					<table>
+						<tr>
+							<td>From Date:</td>
+							<td><%= calendar_date_select_tag :from_date, params[:from_date], :valid_date_check => "date > (new Date('1/16/2011'))" %></td>
+						</tr>
+						<tr>
+							<td>To Date:</td>
+							<td><%= calendar_date_select_tag :to_date, params[:to_date], :valid_date_check => "date.stripTime() >= (new Date($('from_date').value)).stripTime()" %></td>
+						</tr>
+					</table>
+				</td>
+				<td>Contact Types:
+					<table>
+						<tr>
+							<% ContactType.all.each do |c_type| %>
+							<td>
+								<% (c_type.name.downcase.index("client") || c_type.name.downcase.index("intake")).to_s %>
+								<% is_checked = params["contact_types"].nil? ? false : params["contact_types"].include?(c_type.id.to_s) %>
+								<%= check_box_tag "contact_types[]", c_type.id, is_checked %><%= c_type.name %>
+							</td>
+							<% end %>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<table width="650px">
+			<tr>
+				<td>Status Types
+					<table>
+						<tr>
+							<td>
+								<% i = 0 %>
+					    	<% StatusType.all.sort.each do |s_type| %>
+									<% if i % 4 == 0 then %>
+										</td><td>
+									<% end %>
+						    	<% is_checked = params["status_types"].nil? ? false : params["status_types"].include?(s_type.id.to_s) %>
+						    	<%= check_box_tag "status_types[]", s_type.id, is_checked %>&nbsp;<%= s_type.name %><br>
+									<% i = i + 1 %>
+					    	<% end %>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					Format: <%= radio_button_tag "tabular", 'table', params["tabular"] == 'table' %>&nbsp;Tabular Report&nbsp;&nbsp;&nbsp;
+					<%= radio_button_tag "tabular", 'chart', params["tabular"] == 'chart' %>&nbsp;Chart Report&nbsp;&nbsp;&nbsp;
+					<%= submit_tag "Search" %>
+				</td>
+			</tr>
+		</table>
+	<% end %>
+</div>
+<br/>
 
-	<th>Contact Date &nbsp &nbsp &nbsp</th>
-	<th>Total Contacts &nbsp &nbsp &nbsp </th>
-	<th>Follow-Up Contacts &nbsp &nbsp &nbsp</th>
-	<th>Previously Incarcerated Contacts</th>	 
- </tr>
+<% if @tabular == 'chart' then %>
+	<div style="clear:left;">
 
-  <% @follows.each do |fl| %>
-  <tr>
-	<td><%= fl.contact_date %></td>
-	<td><%= fl.all_contacts %></td>
-	<td><%= fl.follow_contacts%></td>
-	<td><%= fl.incar_contacts%></td>		
-  </tr>
-	<td colspan="10"><hr></td>
-  <% end %>
-</table>
+		<%
+		# The xml is obtained as a string from builder template.
+		str_xml = render "/reports/follows/index.xml.builder"
+		%>
+		<% #Create the chart - Column 3D Chart with data from strXML
+		render_chart '/charts/FCF_MSLine.swf' , '' , str_xml , 'ClientContact' ,  750 ,  400 ,  false, false do %>
+		<%  end %>
+
+	</div>
+<% end %>
+
+<% if @tabular == 'table' then %>
+	<div style="clear:left">
+		<table cellspacing="2" >
+		  <tr>
+				<th>Contact Date</th>
+				<th style="text-align: right; padding-right: 8px;">Total Contacts</th>
+				<% @status_types.sort.each do |status_type| %>
+					<th style="text-align: right; padding-right: 8px;"><%= status_type.name.titleize %></th>
+				<% end %>
+		  </tr>
+
+		  <% @follows.each do |fl| %>
+			  <tr>
+					<td><%= fl.contact_date %></td>
+					<td style="text-align: right; padding-right: 8px;"><%= fl.all_contacts %></td>
+					<% @status_types.sort.each do |status_type| %>
+						<td style="text-align: right; padding-right: 8px;"><%= eval("fl.#{status_type.name.delete(' ').underscore}_contacts") %></td>
+					<% end %>
+			  </tr>
+				<tr>
+					<td colspan="<%=2+@status_types.size%>"><hr></td>
+				</tr>
+		  <% end %>
+			
+			<% if @follows.size == 0 then %>
+				<tr><td colspan="18">No data to display</td></tr>
+			<% end %>
+		</table>
+	</div>
+<% end %>
