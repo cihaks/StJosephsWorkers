@@ -1,0 +1,120 @@
+<table cellspacing="2">
+	<th> <a name="ThisYear">Demographics for Current Year</a> </th>
+
+	<br>&nbsp</br>
+	<br>&nbsp</br>
+
+  <tr> 
+	<th> Gender </th>
+	<th> Count </th>	
+  </tr>
+  <% @gender.each do |resource| %> 
+ <tr>
+	<td><%= resource.gender1 %></td>
+	<td><%= resource.count_gender %></td>
+  </tr>
+	<td colspan="10"><hr></td>
+  <% end %>
+
+  <tr> 
+
+	<th> Race </th>
+	<th> Count </th>	
+  </tr>
+
+  <% @demo.each do |resource| %> 
+ <tr>
+	<td><%= resource.race1 %></td>
+	<td><%= resource.count_race %></td>
+  </tr>
+	<td colspan="10"><hr></td>
+  <% end %>
+
+
+ <tr> 
+	<th> Education </th>
+	<th> Count </th>	
+ </tr>
+ <% @education.each do |resource| %> 
+<tr>
+	<td><%= resource.education1 %></td>
+	<td><%= resource.count_education %></td>
+ </tr>
+	<td colspan="10"><hr></td>
+ <% end %>
+
+ <tr> 
+	<th> Age </th>
+	<th> Count </th>	
+ </tr>
+ <% @birth.each do |resource| %> 
+<tr>
+	<td><%= resource.birth1 %></td>
+	<td><%= resource.count_birth %></td>
+ </tr>
+	<td colspan="10"><hr></td>
+ <% end %>
+
+
+</table>
+
+<br>&nbsp</br>
+<br>&nbsp</br>
+
+<table cellspacing="2">
+	<th> <a name="AllYears">Demographics All Years</a> </th>
+
+	<br>&nbsp</br>
+
+  <tr> 
+	<th> Gender </th>
+	<th> Count </th>	
+  </tr>
+  <% @gendera.each do |resource| %> 
+ <tr>
+	<td><%= resource.gender1 %></td>
+	<td><%= resource.count_gender %></td>
+  </tr>
+	<td colspan="10"><hr></td>
+  <% end %>
+
+  <tr> 
+
+	<th> Race </th>
+	<th> Count </th>	
+  </tr>
+
+  <% @demoa.each do |resource| %> 
+ <tr>
+	<td><%= resource.race1 %></td>
+	<td><%= resource.count_race %></td>
+  </tr>
+	<td colspan="10"><hr></td>
+  <% end %>
+
+ <tr> 
+	<th> Education </th>
+	<th> Count </th>	
+ </tr>
+ <% @educationa.each do |resource| %> 
+<tr>
+	<td><%= resource.education1 %></td>
+	<td><%= resource.count_education %></td>
+ </tr>
+	<td colspan="10"><hr></td>
+ <% end %>
+
+ <tr> 
+	<th> Age </th>
+	<th> Count </th>	
+ </tr>
+ <% @birtha.each do |resource| %> 
+<tr>
+	<td><%= resource.birth1 %></td>
+	<td><%= resource.count_birth %></td>
+ </tr>
+	<td colspan="10"><hr></td>
+ <% end %>
+
+
+</table>

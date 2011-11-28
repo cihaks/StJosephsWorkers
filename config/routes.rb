@@ -62,6 +62,7 @@ ActionController::Routing::Routes.draw do |map|
 		reports.resources :follows
 		reports.resources :distinct_detail
 		reports.resources :clients_by_statuses
+		reports.resources :demographics		
 	end
 
 	map.delete_clients 'delete_clients', :controller => 'delete_clients'
