@@ -68,7 +68,17 @@ class ClientsController < ApplicationController
   # POST /clients
   # POST /clients.xml
   def create
+		new_types = params[:client][:new_status_type_ids]
+		new_types ||= []
+		
+		params[:client].delete :new_status_type_ids
+		
     @client = Client.new(params[:client])
+		
+		new_types.each do |type_id|
+			status = StatusType.find(type_id)
+			@client.assigned_status_types << AssignedStatusType.new(:start_date => Time.now, :status_type=>status)
+		end
 
     respond_to do |format|
       if @client.save
