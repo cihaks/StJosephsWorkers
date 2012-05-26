@@ -65,7 +65,7 @@ class Client < ActiveRecord::Base
   validates_uniqueness_of :birth_date, :scope=>[:first_name, :middle_name, :last_name]
 	validates_date :birth_date
   	
-  def namex.
+  def name
     if first_name.nil?
       if middle_name.nil?
         if last_name.nil?
