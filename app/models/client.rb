@@ -44,7 +44,7 @@ class Client < ActiveRecord::Base
   has_many :assigned_status_types, :dependent=>:destroy
   has_many :status_types, :through => :assigned_status_types, :uniq => false
   has_many :active_status_types, :through => :assigned_status_types, 
-							:source => :status_type, :conditions => ['end_date is null and start_date <= ?', Date.today], :uniq => true
+							:source => :status_type, :conditions => ['end_date is null'], :uniq => true
 
 	has_many :resource_types, :through => :assigned_resources, :uniq => true
   has_many :substances, :through => :used_substances, :uniq => true
@@ -62,10 +62,10 @@ class Client < ActiveRecord::Base
 	accepts_nested_attributes_for :jobs, :allow_destroy=>true, :reject_if=>lambda { |a| a[:job_type_id].blank? }
 	accepts_nested_attributes_for :app_interviews, :allow_destroy=>true, :reject_if=>lambda { |a| a[:meeting_date].blank? }
   
-  validates_uniqueness_of :birth_date, :scope=>[:first_name, :last_name]
+  validates_uniqueness_of :birth_date, :scope=>[:first_name, :middle_name, :last_name]
 	validates_date :birth_date
   	
-  def name
+  def namex.
     if first_name.nil?
       if middle_name.nil?
         if last_name.nil?
