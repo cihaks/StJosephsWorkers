@@ -28,12 +28,12 @@ class Reports::DistinctDetailController < ApplicationController
 			if contact_types.length > 0
 				conditions << " and contact_type_id in (#{contact_types})"
 			end
-			
-			
-      @disclientd=Contact.find(:all,:select => "DISTINCT client_id, STR_TO_DATE(concat('01,',month(contact_date),',',year(contact_date)),'%d,%m,%Y') contact_date, count(id) contacts",:conditions=>[conditions], :group=>'client_id, contact_date')
+						  
 
-      @disclientdetail=@disclientd.sort_by(&:contact_date)
-    
+      @disclientd=Contact.find(:all,:select => "distinct client_id, contact_date, count(id) contacts",:conditions=>[conditions], :group=>'client_id, month(contact_date)')
+
+
+     @disclientdetail=@disclientd  
     
       respond_to do |format|
         format.html
