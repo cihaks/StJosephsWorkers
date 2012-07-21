@@ -39,15 +39,7 @@ class ScheduledCoursesController < SecurityController
   # 
   # POST /scheduled_courses
   # POST /scheduled_courses.xml
-  def create
-		
-		puts params
-		{"occurrences"=>"4", 
-			"scheduled_course"=>{"location"=>"", "teacher"=>"", "course_date"=>"08/01/2011 9:13 AM", "capacity"=>"10", "course_id"=>"3"}, 
-			"weekly_on"=>"Tuesday", 
-			"frequency"=>"weekly", 
-			"monthly_on"=>"1"}
-		
+  # def create
     # @scheduled_course = ScheduledCourse.new(params[:scheduled_course])
     #   
     # respond_to do |format|
@@ -59,7 +51,7 @@ class ScheduledCoursesController < SecurityController
     #     format.xml  { render :xml => @scheduled_course.errors, :status => :unprocessable_entity }
     #   end
     # end
-  end
+  # end
   # 
   # # PUT /scheduled_courses/1
   # # PUT /scheduled_courses/1.xml

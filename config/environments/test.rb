@@ -42,3 +42,6 @@ CalendarDateSelect.default_options.update(
 
 # force ssl in entire app
 USE_SSL = false
+
+# name to display in banner on left
+APP_NAME = 'St. Joseph the Worker - TEST'

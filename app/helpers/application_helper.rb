@@ -30,6 +30,18 @@ module ApplicationHelper
     end
   end
 	
+	def application_name_for_display(default_name='St. Joseph the Worker')
+		name = default_name
+		begin
+			if !APP_NAME.nil?
+				name = APP_NAME
+			end
+		rescue
+			name = default_name
+		end
+		name
+	end
+	
 	# fix for bug in number_to_currency
 	# to change to percentage, use :format=>"%%%s"
 	def formatted_number(n, options={})
