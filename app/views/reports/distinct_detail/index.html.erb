@@ -62,7 +62,8 @@
 
 	  <% @disclientdetail.each do |resource| %>
 		  <tr>
-				<td class="alignLeft padRight8"><%= resource.contact_date.strftime("%B %Y") %></td>
+			<td class="alignLeft padRight8"><%= resource.contact_date.strftime("%B %Y") %></td> 
+
 				<td>
 			  	<div class="photoImage floatLeft">
 						<% if !resource.client.pictures.empty? and resource.client.pictures.first.photo.exists? %>
