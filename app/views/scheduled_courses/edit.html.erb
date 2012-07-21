@@ -1,5 +1,13 @@
-
 <% form_for(@scheduled_course) do |f| %>
+  <%= f.error_messages %>
+  <%= render :partial=>"/scheduled_courses/form", :locals=>{ :f => f } %>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+<br/>
+
+<!-- <% form_for(@scheduled_course) do |f| %>
   <%= f.error_messages %>
 
   <p>
@@ -23,4 +31,4 @@
   </p>
 <% end %>
 
-<br/>
+<br/> -->

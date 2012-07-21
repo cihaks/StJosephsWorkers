@@ -1,5 +1,13 @@
-
 <% form_for(@scheduled_course) do |f| %>
+  <%= f.error_messages %>
+  <%= render :partial=>"/scheduled_courses/form", :locals=>{ :f => f } %>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+<br/>
+
+<!-- <% form_for(@scheduled_course) do |f| %>
   <%= f.error_messages %>
 	
 	<p>Courses are set up as recurring, please enter the start date, the frequency, and the number of occurrences</p>
@@ -84,4 +92,4 @@
 		$('monthly').hide();
 		$(this.value).show();
 	});
-</script>
+</script> -->
